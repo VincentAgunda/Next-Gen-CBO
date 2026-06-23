@@ -19,10 +19,10 @@ export default function Navbar() {
     <nav className="bg-[#fafafa] border-b border-gray-200 sticky top-0 z-50 transition-all duration-300">
       <div className="max-w-[95%] mx-auto px-4 flex justify-between items-center h-20">
         
-        {/* Logo: Set to sans-light to maintain absolute consistency with the geometric design */}
+        {/* Logo updated to Two-Font rule */}
         <Link 
           to="/" 
-          className="text-2xl md:text-3xl text-[#222] font-sans font-light tracking-wide hover:opacity-80 transition-opacity"
+          className="text-2xl text-[#222] font-heading font-semibold tracking-tight hover:opacity-80 transition-opacity"
         >
           Next-Gen Youth
         </Link>
@@ -33,7 +33,7 @@ export default function Navbar() {
             <Link
               key={link.to}
               to={link.to}
-              className="text-[#333333] font-sans text-[11px] uppercase tracking-[0.2em] hover:text-[#b8a898] transition-colors duration-300 font-medium"
+              className="text-[#333333] font-heading text-[11px] uppercase tracking-[0.2em] hover:text-[#b8a898] transition-colors duration-300 font-medium"
             >
               {link.label}
             </Link>
@@ -45,7 +45,7 @@ export default function Navbar() {
            <ShoppingBag fontSize="small" className="cursor-pointer hover:text-[#b8a898] transition-colors" />
            <LocationOn fontSize="small" className="cursor-pointer hover:text-[#b8a898] transition-colors" />
            <Search fontSize="small" className="cursor-pointer hover:text-[#b8a898] transition-colors" />
-           <div className="flex items-center gap-1 cursor-pointer font-sans text-[11px] uppercase tracking-widest ml-2 hover:text-[#b8a898] transition-colors">
+           <div className="flex items-center gap-1 cursor-pointer font-heading text-[11px] uppercase tracking-widest ml-2 hover:text-[#b8a898] transition-colors font-medium">
              <span>EN</span>
              <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5" d="M19 9l-7 7-7-7"></path></svg>
            </div>
@@ -65,7 +65,7 @@ export default function Navbar() {
               <Link
                 key={link.to}
                 to={link.to}
-                className="text-[#333333] font-sans text-xs uppercase tracking-[0.2em] font-medium"
+                className="text-[#333333] font-heading text-xs uppercase tracking-[0.2em] font-medium"
                 onClick={() => setOpen(false)}
               >
                 {link.label}

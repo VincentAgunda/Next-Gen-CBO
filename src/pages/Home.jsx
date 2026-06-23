@@ -23,7 +23,7 @@ export default function Home() {
         />
         <Link
           to="/about"
-          className="inline-block font-sans border border-[#979797] text-[#333333] px-10 py-3 text-xs uppercase tracking-[0.2em] font-medium hover:bg-[#333333] hover:text-white transition-all duration-500"
+          className="inline-block font-heading border border-[#979797] text-[#333333] px-10 py-3 text-xs uppercase tracking-[0.2em] font-medium hover:bg-[#333333] hover:text-white transition-all duration-500"
         >
           Learn More
         </Link>
@@ -36,7 +36,7 @@ export default function Home() {
           <div className="grid md:grid-cols-3 gap-12 text-center mt-16">
             <div className="flex flex-col items-center">
               <div className="w-[1px] h-12 bg-[#b8a898] mb-8"></div>
-              <h3 className="text-2xl font-sans font-light text-[#333333] mb-4">
+              <h3 className="text-2xl font-heading font-normal text-[#333333] mb-4">
                 Agribusiness Development
               </h3>
               <p className="font-sans text-sm text-[#666666] font-light leading-relaxed max-w-xs">
@@ -45,7 +45,7 @@ export default function Home() {
             </div>
             <div className="flex flex-col items-center">
               <div className="w-[1px] h-12 bg-[#b8a898] mb-8"></div>
-              <h3 className="text-2xl font-sans font-light text-[#333333] mb-4">
+              <h3 className="text-2xl font-heading font-normal text-[#333333] mb-4">
                 Youth Empowerment
               </h3>
               <p className="font-sans text-sm text-[#666666] font-light leading-relaxed max-w-xs">
@@ -54,7 +54,7 @@ export default function Home() {
             </div>
             <div className="flex flex-col items-center">
               <div className="w-[1px] h-12 bg-[#b8a898] mb-8"></div>
-              <h3 className="text-2xl font-sans font-light text-[#333333] mb-4">
+              <h3 className="text-2xl font-heading font-normal text-[#333333] mb-4">
                 Research & Innovation
               </h3>
               <p className="font-sans text-sm text-[#666666] font-light leading-relaxed max-w-xs">
@@ -63,7 +63,7 @@ export default function Home() {
             </div>
           </div>
           <div className="text-center mt-16">
-            <Link to="/programs" className="inline-block font-sans border border-black bg-black text-white px-10 py-3 text-xs uppercase tracking-[0.2em] font-medium hover:bg-transparent hover:text-black transition-all duration-500">
+            <Link to="/programs" className="inline-block font-heading border border-black bg-black text-white px-10 py-3 text-xs uppercase tracking-[0.2em] font-medium hover:bg-transparent hover:text-black transition-all duration-500">
               View Programs
             </Link>
           </div>
@@ -76,11 +76,11 @@ export default function Home() {
           
           {/* Left Content */}
           <div className="max-w-xl">
-            <span className="text-[#d2b79b] font-sans text-xs uppercase tracking-[0.3em] block mb-10 font-medium">
+            <span className="text-[#d2b79b] font-heading text-xs uppercase tracking-[0.3em] block mb-10 font-medium">
               Featured Programs
             </span>
 
-            <h2 className="text-white font-sans text-5xl md:text-6xl font-light mb-10 leading-tight">
+            <h2 className="text-white font-heading text-5xl md:text-6xl font-light mb-10 leading-tight">
               Empowering
               <br />
               Future Leaders
@@ -93,8 +93,8 @@ export default function Home() {
               and transform communities.
             </p>
 
-            <Link to="/programs" className="inline-block group">
-              <span className="text-[#d2b79b] font-sans uppercase tracking-[0.2em] text-sm font-medium">
+            <Link to="/programs" className="inline-block group font-heading">
+              <span className="text-[#d2b79b] uppercase tracking-[0.2em] text-sm">
                 Explore Programs
               </span>
               <div className="w-28 h-[1px] bg-[#d2b79b] mt-4 group-hover:w-40 transition-all duration-500"></div>
@@ -129,7 +129,7 @@ export default function Home() {
             ))}
           </div>
           <div className="text-center mt-16">
-            <Link to="/innovation-hub" className="font-sans text-xs uppercase tracking-[0.2em] font-medium text-gray-500 hover:text-black border-b border-transparent hover:border-black transition-all pb-1">
+            <Link to="/innovation-hub" className="font-heading text-xs uppercase tracking-[0.2em] font-medium text-gray-500 hover:text-black border-b border-transparent hover:border-black transition-all pb-1">
               Explore Innovation Hub
             </Link>
           </div>
@@ -140,10 +140,10 @@ export default function Home() {
       <section className="py-24 px-4 bg-[#858689]">
         <div className="max-w-[90%] mx-auto">
           <div className="mb-12 text-left">
-            <span className="text-[#b8a898] font-sans text-xs uppercase tracking-[0.25em] font-medium block mb-3">
+            <span className="text-[#b8a898] font-heading text-xs uppercase tracking-[0.25em] font-medium block mb-3">
               Gatherings
             </span>
-            <h2 className="text-3xl md:text-5xl font-sans font-light text-white tracking-wide mb-4">
+            <h2 className="text-3xl md:text-5xl font-heading font-normal text-white tracking-wide mb-4">
               Upcoming Events
             </h2>
             <p className="font-sans text-white/90 text-sm md:text-base font-light leading-relaxed max-w-xl">
@@ -160,7 +160,7 @@ export default function Home() {
           <div className="text-center mt-16">
             <Link 
               to="/events" 
-              className="font-sans text-xs uppercase tracking-[0.2em] font-medium text-white hover:text-[#b8a898] border-b border-white hover:border-[#b8a898] transition-all duration-300 pb-1"
+              className="font-heading text-xs uppercase tracking-[0.2em] font-medium text-white hover:text-[#b8a898] border-b border-white hover:border-[#b8a898] transition-all duration-300 pb-1"
             >
               View All Events
             </Link>
@@ -175,15 +175,15 @@ export default function Home() {
             <div className="w-2 h-2 bg-[#b8a898]"></div>
           </div>
           
-          <h2 className="text-3xl md:text-5xl font-sans font-light text-[#333333] mb-12 leading-snug tracking-wide">
+          <h2 className="text-3xl md:text-5xl font-heading font-normal text-[#333333] mb-12 leading-snug tracking-wide">
             Become a member, join our community and gain access to training, mentorship, and networking.
           </h2>
 
           <div className="flex flex-col sm:flex-row justify-center gap-6">
-            <Link to="/membership" className="font-sans border border-black bg-black text-white px-10 py-3 text-xs uppercase tracking-[0.2em] font-medium hover:bg-transparent hover:text-black transition-all duration-500">
+            <Link to="/membership" className="font-heading border border-black bg-black text-white px-10 py-3 text-xs uppercase tracking-[0.2em] font-medium hover:bg-transparent hover:text-black transition-all duration-500">
               Join Now
             </Link>
-            <Link to="/membership" className="font-sans border border-[#979797] text-[#333333] px-10 py-3 text-xs uppercase tracking-[0.2em] font-medium hover:border-black transition-all duration-500">
+            <Link to="/membership" className="font-heading border border-[#979797] text-[#333333] px-10 py-3 text-xs uppercase tracking-[0.2em] font-medium hover:border-black transition-all duration-500">
               Membership Benefits
             </Link>
           </div>
@@ -195,10 +195,10 @@ export default function Home() {
         <div className="max-w-[90%] mx-auto">
           
           <div className="text-center mb-12">
-            <span className="text-[#d2b79b] font-sans text-xs uppercase tracking-[0.25em] font-medium block mb-3">
+            <span className="text-[#d2b79b] font-heading text-xs uppercase tracking-[0.25em] font-medium block mb-3">
               Collaborations
             </span>
-            <h2 className="text-3xl md:text-5xl font-sans font-light text-white tracking-wide">
+            <h2 className="text-3xl md:text-5xl font-heading font-normal text-white tracking-wide">
               Our Partners
             </h2>
           </div>
@@ -217,7 +217,7 @@ export default function Home() {
           <div className="text-center mt-16">
             <Link 
               to="/partnerships" 
-              className="font-sans text-xs uppercase tracking-[0.2em] font-medium text-white/80 hover:text-white border-b border-white/20 hover:border-white transition-all pb-1"
+              className="font-heading text-xs uppercase tracking-[0.2em] font-medium text-white/80 hover:text-white border-b border-white/20 hover:border-white transition-all pb-1"
             >
               Become a Partner
             </Link>
@@ -226,14 +226,14 @@ export default function Home() {
       </section>
 
       {/* Support Us CTA */}
-      <section className="py-32 md:py-48 bg-[#3B3A38] text-center px-4 font-sans flex flex-col items-center justify-center">
+      <section className="py-32 md:py-48 bg-[#3B3A38] text-center px-4 flex flex-col items-center justify-center">
         <div className="max-w-4xl mx-auto flex flex-col items-center">
           
-          <span className="text-[#94938F] font-sans text-[11px] uppercase tracking-[0.25em] mb-6 block font-medium">
+          <span className="text-[#94938F] font-heading text-[11px] uppercase tracking-[0.25em] mb-6 block font-medium">
             Make An Impact
           </span>
           
-          <h2 className="text-5xl md:text-[64px] font-sans font-light mb-10 text-[#D4CBB6] tracking-wide">
+          <h2 className="text-5xl md:text-[64px] font-heading font-normal mb-10 text-[#D4CBB6] tracking-wide">
             Support Our Mission
           </h2>
           
@@ -243,7 +243,7 @@ export default function Home() {
           
           <Link 
             to="/support-us" 
-            className="text-[#D4CBB6] font-sans text-[11px] uppercase tracking-[0.2em] font-medium border-b border-[#D4CBB6] pb-1.5 hover:text-white hover:border-white transition-colors duration-300"
+            className="text-[#D4CBB6] font-heading text-[11px] uppercase tracking-[0.2em] font-medium border-b border-[#D4CBB6] pb-1.5 hover:text-white hover:border-white transition-colors duration-300"
           >
             Support Us
           </Link>

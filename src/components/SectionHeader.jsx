@@ -2,12 +2,12 @@ export default function SectionHeader({ title, subtitle, eyebrow, center = true,
   return (
     <div className={`mb-16 ${center ? "text-center" : ""} flex flex-col ${center ? "items-center" : "items-start"}`}>
       {eyebrow && (
-        <span className="font-sans text-[#b8a898] text-[10px] md:text-xs uppercase tracking-[0.3em] mb-4 font-medium">
+        <span className="font-heading text-[#b8a898] text-[10px] md:text-xs uppercase tracking-[0.3em] mb-4 font-medium">
           {eyebrow}
         </span>
       )}
       <h2 
-        className={`text-3xl md:text-5xl font-sans font-light mb-6 tracking-wide ${dark ? "text-white" : "text-[#333333]"}`}
+        className={`text-3xl md:text-5xl font-heading font-normal mb-6 tracking-wide ${dark ? "text-white" : "text-[#333333]"}`}
       >
         {title}
       </h2>

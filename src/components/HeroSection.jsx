@@ -64,10 +64,10 @@ export default function HeroSection() {
           transition={{ duration: 0.8, delay: 0.3 }}
           className="max-w-2xl text-white mt-12"
         >
-          <p className="text-[10px] md:text-xs font-sans uppercase tracking-[0.3em] mb-4 text-gray-300 font-medium">
+          <p className="text-[10px] md:text-xs font-heading uppercase tracking-[0.3em] mb-4 text-gray-300 font-medium">
             {slides[current].subtitle}
           </p>
-          <h1 className="text-4xl md:text-6xl font-sans font-light mb-6 tracking-wide text-white">
+          <h1 className="text-4xl md:text-6xl font-heading font-normal mb-6 tracking-wide text-white">
             {slides[current].title}
           </h1>
           <p className="text-sm md:text-base font-sans text-gray-300 mb-10 max-w-lg leading-relaxed font-light">
@@ -76,7 +76,7 @@ export default function HeroSection() {
           
           <Link
             to={slides[current].link}
-            className="inline-block font-sans border border-white text-white px-8 py-3 text-xs uppercase tracking-[0.2em] hover:bg-white hover:text-black transition-all duration-500 font-medium"
+            className="inline-block font-heading border border-white text-white px-8 py-3 text-xs uppercase tracking-[0.2em] hover:bg-white hover:text-black transition-all duration-500 font-medium"
           >
             {slides[current].buttonText}
           </Link>
