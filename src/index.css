@@ -1,0 +1,203 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ===========================
+   Global
+=========================== */
+
+html{
+    scroll-behavior:smooth;
+}
+
+body{
+
+    margin:0;
+
+    background:#ffffff;
+
+    color:#222;
+
+    font-family:"Inter",sans-serif;
+
+    font-weight:300;
+
+    -webkit-font-smoothing:antialiased;
+
+    text-rendering:optimizeLegibility;
+
+    overflow-x:hidden;
+}
+
+/* ===========================
+   Headings
+=========================== */
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6{
+
+    font-family:"Cormorant Garamond",serif;
+
+    font-weight:300;
+
+    letter-spacing:-0.02em;
+
+    color:#222;
+}
+
+/* ===========================
+   Paragraphs
+=========================== */
+
+p{
+
+    font-size:17px;
+
+    line-height:1.95;
+
+    color:#606060;
+
+    font-weight:300;
+}
+
+/* ===========================
+   Links
+=========================== */
+
+a{
+
+    transition:all .45s cubic-bezier(.22,.61,.36,1);
+}
+
+/* ===========================
+   Images
+=========================== */
+
+img{
+
+    display:block;
+
+    max-width:100%;
+}
+
+/* ===========================
+   Selection
+=========================== */
+
+::selection{
+
+    background:#222;
+
+    color:white;
+}
+
+/* ===========================
+   Scrollbar
+=========================== */
+
+::-webkit-scrollbar{
+
+    width:8px;
+}
+
+::-webkit-scrollbar-track{
+
+    background:#f4f4f4;
+}
+
+::-webkit-scrollbar-thumb{
+
+    background:#b8a898;
+}
+
+::-webkit-scrollbar-thumb:hover{
+
+    background:#222;
+}
+
+/* ===========================
+   Premium Buttons
+=========================== */
+
+.btn-premium{
+
+    display:inline-flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    padding:14px 38px;
+
+    border:1px solid #222;
+
+    font-size:12px;
+
+    letter-spacing:.24em;
+
+    text-transform:uppercase;
+
+    transition:.5s cubic-bezier(.22,.61,.36,1);
+
+    font-weight:500;
+}
+
+.btn-premium:hover{
+
+    background:#222;
+
+    color:white;
+}
+
+/* ===========================
+   Typography Helpers
+=========================== */
+
+.display-xl{
+
+    font-size:clamp(4rem,8vw,7rem);
+
+    line-height:.95;
+
+    letter-spacing:-.03em;
+}
+
+.display-lg{
+
+    font-size:clamp(3rem,5vw,5rem);
+
+    line-height:1;
+}
+
+.section-title{
+
+    font-size:clamp(2.8rem,5vw,4.8rem);
+
+    line-height:1;
+
+    letter-spacing:-.02em;
+}
+
+.card-title{
+
+    font-size:2.25rem;
+
+    line-height:1.15;
+}
+
+.eyebrow{
+
+    text-transform:uppercase;
+
+    letter-spacing:.32em;
+
+    font-size:11px;
+
+    color:#B8A898;
+
+    font-weight:500;
+}
