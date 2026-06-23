@@ -8,11 +8,11 @@ export default {
           light: "#F5F5F7",
           offwhite: "#FAFAFA",
           gray: "#979797",
-          mid: "#878687",     // The mid-gray from the quote section (Screenshot 151)
-          dark: "#2D2C2B",    // The rich dark charcoal from the Porsche/Ferrari sections
+          mid: "#878687",
+          dark: "#2D2C2B",
           charcoal: "#333333", 
           muted: "#666666",    
-          accent: "#B8A898",  // The signature gold accent
+          accent: "#B8A898", 
         },
       },
       fontFamily: {

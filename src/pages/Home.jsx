@@ -36,7 +36,7 @@ export default function Home() {
           <div className="grid md:grid-cols-3 gap-12 text-center mt-16">
             <div className="flex flex-col items-center">
               <div className="w-[1px] h-12 bg-[#b8a898] mb-8"></div>
-              <h3 className="text-2xl font-serif font-normal text-[#333333] mb-4">
+              <h3 className="text-2xl font-sans font-light text-[#333333] mb-4">
                 Agribusiness Development
               </h3>
               <p className="font-sans text-sm text-[#666666] font-light leading-relaxed max-w-xs">
@@ -45,7 +45,7 @@ export default function Home() {
             </div>
             <div className="flex flex-col items-center">
               <div className="w-[1px] h-12 bg-[#b8a898] mb-8"></div>
-              <h3 className="text-2xl font-serif font-normal text-[#333333] mb-4">
+              <h3 className="text-2xl font-sans font-light text-[#333333] mb-4">
                 Youth Empowerment
               </h3>
               <p className="font-sans text-sm text-[#666666] font-light leading-relaxed max-w-xs">
@@ -54,7 +54,7 @@ export default function Home() {
             </div>
             <div className="flex flex-col items-center">
               <div className="w-[1px] h-12 bg-[#b8a898] mb-8"></div>
-              <h3 className="text-2xl font-serif font-normal text-[#333333] mb-4">
+              <h3 className="text-2xl font-sans font-light text-[#333333] mb-4">
                 Research & Innovation
               </h3>
               <p className="font-sans text-sm text-[#666666] font-light leading-relaxed max-w-xs">
@@ -76,17 +76,17 @@ export default function Home() {
           
           {/* Left Content */}
           <div className="max-w-xl">
-            <span className="text-[#d2b79b] text-xs uppercase tracking-[0.3em] block mb-10">
+            <span className="text-[#d2b79b] font-sans text-xs uppercase tracking-[0.3em] block mb-10 font-medium">
               Featured Programs
             </span>
 
-            <h2 className="text-white text-5xl md:text-6xl font-light mb-10 leading-tight">
+            <h2 className="text-white font-sans text-5xl md:text-6xl font-light mb-10 leading-tight">
               Empowering
               <br />
               Future Leaders
             </h2>
 
-            <p className="text-[#a9a5ac] text-xl leading-relaxed mb-16 font-light">
+            <p className="text-[#a9a5ac] font-sans text-xl leading-relaxed mb-16 font-light">
               Through agribusiness development, youth empowerment and
               research-driven innovation, we equip young people with the
               skills and opportunities needed to create sustainable livelihoods
@@ -94,7 +94,7 @@ export default function Home() {
             </p>
 
             <Link to="/programs" className="inline-block group">
-              <span className="text-[#d2b79b] uppercase tracking-[0.2em] text-sm">
+              <span className="text-[#d2b79b] font-sans uppercase tracking-[0.2em] text-sm font-medium">
                 Explore Programs
               </span>
               <div className="w-28 h-[1px] bg-[#d2b79b] mt-4 group-hover:w-40 transition-all duration-500"></div>
@@ -140,10 +140,10 @@ export default function Home() {
       <section className="py-24 px-4 bg-[#858689]">
         <div className="max-w-[90%] mx-auto">
           <div className="mb-12 text-left">
-            <span className="text-[#b8a898] text-xs uppercase tracking-[0.25em] font-medium block mb-3">
+            <span className="text-[#b8a898] font-sans text-xs uppercase tracking-[0.25em] font-medium block mb-3">
               Gatherings
             </span>
-            <h2 className="text-3xl md:text-5xl font-serif font-normal text-white tracking-wide mb-4">
+            <h2 className="text-3xl md:text-5xl font-sans font-light text-white tracking-wide mb-4">
               Upcoming Events
             </h2>
             <p className="font-sans text-white/90 text-sm md:text-base font-light leading-relaxed max-w-xl">
@@ -175,7 +175,7 @@ export default function Home() {
             <div className="w-2 h-2 bg-[#b8a898]"></div>
           </div>
           
-          <h2 className="text-3xl md:text-5xl font-serif font-normal text-[#333333] mb-12 leading-snug tracking-wide">
+          <h2 className="text-3xl md:text-5xl font-sans font-light text-[#333333] mb-12 leading-snug tracking-wide">
             Become a member, join our community and gain access to training, mentorship, and networking.
           </h2>
 
@@ -195,10 +195,10 @@ export default function Home() {
         <div className="max-w-[90%] mx-auto">
           
           <div className="text-center mb-12">
-            <span className="text-[#d2b79b] text-xs uppercase tracking-[0.25em] font-medium block mb-3">
+            <span className="text-[#d2b79b] font-sans text-xs uppercase tracking-[0.25em] font-medium block mb-3">
               Collaborations
             </span>
-            <h2 className="text-3xl md:text-5xl font-serif font-normal text-white tracking-wide">
+            <h2 className="text-3xl md:text-5xl font-sans font-light text-white tracking-wide">
               Our Partners
             </h2>
           </div>
@@ -229,21 +229,21 @@ export default function Home() {
       <section className="py-32 md:py-48 bg-[#3B3A38] text-center px-4 font-sans flex flex-col items-center justify-center">
         <div className="max-w-4xl mx-auto flex flex-col items-center">
           
-          <span className="text-[#94938F] text-[11px] uppercase tracking-[0.25em] mb-6 block font-medium">
+          <span className="text-[#94938F] font-sans text-[11px] uppercase tracking-[0.25em] mb-6 block font-medium">
             Make An Impact
           </span>
           
-          <h2 className="text-5xl md:text-[64px] font-serif font-normal mb-10 text-[#D4CBB6] tracking-wide">
+          <h2 className="text-5xl md:text-[64px] font-sans font-light mb-10 text-[#D4CBB6] tracking-wide">
             Support Our Mission
           </h2>
           
-          <p className="text-[#94938F] text-lg md:text-xl font-light leading-relaxed max-w-3xl mb-16 mx-auto">
+          <p className="text-[#94938F] font-sans text-lg md:text-xl font-light leading-relaxed max-w-3xl mb-16 mx-auto">
             Your donation or volunteer effort can change lives. Help us build a sustainable future for the next generation.
           </p>
           
           <Link 
             to="/support-us" 
-            className="text-[#D4CBB6] text-[11px] uppercase tracking-[0.2em] font-medium border-b border-[#D4CBB6] pb-1.5 hover:text-white hover:border-white transition-colors duration-300"
+            className="text-[#D4CBB6] font-sans text-[11px] uppercase tracking-[0.2em] font-medium border-b border-[#D4CBB6] pb-1.5 hover:text-white hover:border-white transition-colors duration-300"
           >
             Support Us
           </Link>

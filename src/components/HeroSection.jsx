@@ -67,7 +67,7 @@ export default function HeroSection() {
           <p className="text-[10px] md:text-xs font-sans uppercase tracking-[0.3em] mb-4 text-gray-300 font-medium">
             {slides[current].subtitle}
           </p>
-          <h1 className="text-4xl md:text-6xl font-serif font-normal mb-6 tracking-wide text-white">
+          <h1 className="text-4xl md:text-6xl font-sans font-light mb-6 tracking-wide text-white">
             {slides[current].title}
           </h1>
           <p className="text-sm md:text-base font-sans text-gray-300 mb-10 max-w-lg leading-relaxed font-light">

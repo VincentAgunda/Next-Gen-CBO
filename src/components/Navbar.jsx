@@ -19,15 +19,15 @@ export default function Navbar() {
     <nav className="bg-[#fafafa] border-b border-gray-200 sticky top-0 z-50 transition-all duration-300">
       <div className="max-w-[95%] mx-auto px-4 flex justify-between items-center h-20">
         
-        {/* Logo: Cleaned up to call font-script */}
+        {/* Logo: Set to sans-light to maintain absolute consistency with the geometric design */}
         <Link 
           to="/" 
-          className="text-3xl text-[#222] font-script tracking-normal hover:opacity-80 transition-opacity"
+          className="text-2xl md:text-3xl text-[#222] font-sans font-light tracking-wide hover:opacity-80 transition-opacity"
         >
           Next-Gen Youth
         </Link>
 
-        {/* Desktop menu - Using the precise Montserrat tracking from Screenshot (148).jpg */}
+        {/* Desktop menu */}
         <div className="hidden lg:flex gap-8 items-center">
           {navLinks.map((link) => (
             <Link

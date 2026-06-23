@@ -7,7 +7,7 @@ export default function SectionHeader({ title, subtitle, eyebrow, center = true,
         </span>
       )}
       <h2 
-        className={`text-3xl md:text-5xl font-serif font-normal mb-6 tracking-wide ${dark ? "text-white" : "text-[#333333]"}`}
+        className={`text-3xl md:text-5xl font-sans font-light mb-6 tracking-wide ${dark ? "text-white" : "text-[#333333]"}`}
       >
         {title}
       </h2>
