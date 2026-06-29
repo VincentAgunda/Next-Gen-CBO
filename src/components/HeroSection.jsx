@@ -5,8 +5,8 @@ import { ArrowBackIosNew, ArrowForwardIos } from "@mui/icons-material";
 
 const slides = [
   {
-    id: 1,
-    image: "Hero/h1.png", 
+    id: 2,
+    image: "/Innovation/mushroom.png", 
     subtitle: "NEXT-GEN YOUTH INITIATIVE",
     title: "Empowering The Future.",
     description: "A youth-driven organization creating sustainable livelihoods through agribusiness development and scientific innovation.",
@@ -30,7 +30,7 @@ export default function HeroSection() {
   useEffect(() => {
     const timer = setInterval(() => {
       setCurrent((prev) => (prev === slides.length - 1 ? 0 : prev + 1));
-    }, 6000);
+    }, 7000); // Slower, more elegant timing
     return () => clearInterval(timer);
   }, []);
 
@@ -38,45 +38,46 @@ export default function HeroSection() {
   const prevSlide = () => setCurrent(current === 0 ? slides.length - 1 : current - 1);
 
   return (
-    <section className="relative w-full h-[85vh] bg-black overflow-hidden font-sans">
+    <section className="relative w-full h-[90vh] bg-[#111] overflow-hidden">
       <AnimatePresence mode="wait">
         <motion.div
           key={current}
-          initial={{ opacity: 0, scale: 1.05 }}
+          initial={{ opacity: 0, scale: 1.03 }}
           animate={{ opacity: 1, scale: 1 }}
           exit={{ opacity: 0 }}
-          transition={{ duration: 1.2, ease: "easeInOut" }}
+          transition={{ duration: 1.5, ease: [0.25, 0.1, 0.25, 1] }} // Smoother custom easing
           className="absolute inset-0"
         >
           <div 
             className="absolute inset-0 bg-cover bg-center"
             style={{ backgroundImage: `url(${slides[current].image})` }}
           />
-          <div className="absolute inset-0 bg-black/40 bg-gradient-to-r from-black/60 to-transparent" />
+          {/* Subtle gradient specifically to make left-aligned text readable without muddying the image */}
+          <div className="absolute inset-0 bg-gradient-to-r from-black/80 via-black/40 to-transparent" />
         </motion.div>
       </AnimatePresence>
 
-      <div className="relative z-10 h-full max-w-[95%] mx-auto px-4 flex flex-col justify-center">
+      <div className="relative z-10 h-full max-w-[95%] mx-auto px-4 lg:px-12 flex flex-col justify-center">
         <motion.div 
           key={`text-${current}`}
-          initial={{ opacity: 0, y: 20 }}
+          initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.3 }}
-          className="max-w-2xl text-white mt-12"
+          transition={{ duration: 1, delay: 0.5, ease: "easeOut" }}
+          className="max-w-3xl text-white mt-16"
         >
-          <p className="text-[10px] md:text-xs font-heading uppercase tracking-[0.3em] mb-4 text-gray-300 font-medium">
+          <p className="text-[9px] md:text-[10px] uppercase tracking-[0.4em] mb-6 text-gray-300 font-medium">
             {slides[current].subtitle}
           </p>
-          <h1 className="text-4xl md:text-6xl font-heading font-normal mb-6 tracking-wide text-white">
+          <h1 className="text-5xl md:text-7xl lg:text-[80px] font-light mb-8 tracking-tight text-white leading-[1.1]">
             {slides[current].title}
           </h1>
-          <p className="text-sm md:text-base font-sans text-gray-300 mb-10 max-w-lg leading-relaxed font-light">
+          <p className="text-sm md:text-lg text-gray-300 mb-12 max-w-xl leading-relaxed font-light">
             {slides[current].description}
           </p>
           
           <Link
             to={slides[current].link}
-            className="inline-block font-heading border border-white text-white px-8 py-3 text-xs uppercase tracking-[0.2em] hover:bg-white hover:text-black transition-all duration-500 font-medium"
+            className="inline-block border border-white/60 text-white px-10 py-4 text-[10px] uppercase tracking-[0.25em] hover:bg-white hover:text-black hover:border-white transition-all duration-700 font-medium"
           >
             {slides[current].buttonText}
           </Link>
@@ -85,26 +86,26 @@ export default function HeroSection() {
 
       <button 
         onClick={prevSlide}
-        className="absolute left-4 top-1/2 -translate-y-1/2 z-20 text-white/50 hover:text-white transition-colors p-4"
+        className="absolute left-4 md:left-8 top-1/2 -translate-y-1/2 z-20 text-white/40 hover:text-white transition-colors duration-500 p-4 group"
         aria-label="Previous Slide"
       >
-        <ArrowBackIosNew fontSize="large" strokeWidth={1} />
+        <ArrowBackIosNew fontSize="large" className="font-light transform group-hover:-translate-x-1 transition-transform duration-500" />
       </button>
       <button 
         onClick={nextSlide}
-        className="absolute right-4 top-1/2 -translate-y-1/2 z-20 text-white/50 hover:text-white transition-colors p-4"
+        className="absolute right-4 md:right-8 top-1/2 -translate-y-1/2 z-20 text-white/40 hover:text-white transition-colors duration-500 p-4 group"
         aria-label="Next Slide"
       >
-        <ArrowForwardIos fontSize="large" />
+        <ArrowForwardIos fontSize="large" className="font-light transform group-hover:translate-x-1 transition-transform duration-500" />
       </button>
 
-      <div className="absolute bottom-8 left-1/2 -translate-x-1/2 z-20 flex gap-3">
+      <div className="absolute bottom-10 left-4 lg:left-16 z-20 flex gap-4">
         {slides.map((_, index) => (
           <button
             key={index}
             onClick={() => setCurrent(index)}
-            className={`h-[2px] transition-all duration-500 ${
-              current === index ? "w-12 bg-white" : "w-8 bg-white/40 hover:bg-white/70"
+            className={`h-[1px] transition-all duration-700 ${
+              current === index ? "w-16 bg-white" : "w-8 bg-white/30 hover:bg-white/60"
             }`}
             aria-label={`Go to slide ${index + 1}`}
           />

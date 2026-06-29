@@ -16,9 +16,9 @@ export default {
         },
       },
       fontFamily: {
-        // The Two-Font System
-        sans: ["'Open Sans'", "sans-serif"], // For body/paragraphs
-        heading: ["Inter", "sans-serif"],    // For titles/buttons/accents
+        // Unified Grotesk Font System
+        sans: ['"Neue Haas Grotesk Display Pro"', '"Helvetica Neue"', 'Helvetica', 'Inter', 'Arial', 'sans-serif'], 
+        heading: ['"Neue Haas Grotesk Display Pro"', '"Helvetica Neue"', 'Helvetica', 'Inter', 'Arial', 'sans-serif'], 
       },
     },
   },

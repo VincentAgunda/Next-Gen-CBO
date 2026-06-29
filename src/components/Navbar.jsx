@@ -16,13 +16,13 @@ export default function Navbar() {
   const [open, setOpen] = useState(false);
 
   return (
-    <nav className="bg-[#fafafa] border-b border-gray-200 sticky top-0 z-50 transition-all duration-300">
-      <div className="max-w-[95%] mx-auto px-4 flex justify-between items-center h-20">
+    <nav className="bg-white border-b border-gray-100 sticky top-0 z-50 transition-all duration-300">
+      <div className="w-full px-6 md:px-12 mx-auto flex justify-between items-center h-[80px]">
         
-        {/* Logo updated to Two-Font rule */}
+        {/* Logo - Refined serif style for a premium feel */}
         <Link 
           to="/" 
-          className="text-2xl text-[#222] font-heading font-semibold tracking-tight hover:opacity-80 transition-opacity"
+          className="text-2xl text-black font-serif italic tracking-wide hover:opacity-70 transition-opacity"
         >
           Next-Gen Youth
         </Link>
@@ -33,7 +33,7 @@ export default function Navbar() {
             <Link
               key={link.to}
               to={link.to}
-              className="text-[#333333] font-heading text-[11px] uppercase tracking-[0.2em] hover:text-[#b8a898] transition-colors duration-300 font-medium"
+              className="text-[#666666] font-sans text-[11px] uppercase tracking-[0.2em] hover:text-black transition-colors duration-500 font-medium"
             >
               {link.label}
             </Link>
@@ -41,31 +41,31 @@ export default function Navbar() {
         </div>
 
         {/* Right side icons */}
-        <div className="hidden lg:flex gap-5 items-center text-[#333333]">
-           <ShoppingBag fontSize="small" className="cursor-pointer hover:text-[#b8a898] transition-colors" />
-           <LocationOn fontSize="small" className="cursor-pointer hover:text-[#b8a898] transition-colors" />
-           <Search fontSize="small" className="cursor-pointer hover:text-[#b8a898] transition-colors" />
-           <div className="flex items-center gap-1 cursor-pointer font-heading text-[11px] uppercase tracking-widest ml-2 hover:text-[#b8a898] transition-colors font-medium">
+        <div className="hidden lg:flex gap-6 items-center text-[#333333]">
+           <ShoppingBag sx={{ fontSize: 20 }} className="cursor-pointer hover:text-black transition-colors" />
+           <LocationOn sx={{ fontSize: 20 }} className="cursor-pointer hover:text-black transition-colors" />
+           <Search sx={{ fontSize: 20 }} className="cursor-pointer hover:text-black transition-colors" />
+           <div className="flex items-center gap-1 cursor-pointer font-sans text-[11px] uppercase tracking-[0.2em] ml-2 hover:text-black transition-colors font-medium">
              <span>EN</span>
-             <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5" d="M19 9l-7 7-7-7"></path></svg>
+             <svg className="w-3 h-3 text-[#666666]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1" d="M19 9l-7 7-7-7"></path></svg>
            </div>
         </div>
 
         {/* Mobile Toggle */}
-        <button className="lg:hidden text-[#333333]" onClick={() => setOpen(!open)} aria-label="Toggle Menu">
+        <button className="lg:hidden text-black" onClick={() => setOpen(!open)} aria-label="Toggle Menu">
           {open ? <Close /> : <Menu />}
         </button>
       </div>
 
       {/* Mobile menu */}
       {open && (
-        <div className="lg:hidden px-6 py-8 bg-[#fafafa] absolute w-full left-0 border-b border-gray-200 shadow-lg">
+        <div className="lg:hidden px-6 py-8 bg-white absolute w-full left-0 border-b border-gray-100 shadow-lg">
           <div className="flex flex-col gap-6">
             {navLinks.map((link) => (
               <Link
                 key={link.to}
                 to={link.to}
-                className="text-[#333333] font-heading text-xs uppercase tracking-[0.2em] font-medium"
+                className="text-[#333333] font-sans text-xs uppercase tracking-[0.2em] font-medium"
                 onClick={() => setOpen(false)}
               >
                 {link.label}
