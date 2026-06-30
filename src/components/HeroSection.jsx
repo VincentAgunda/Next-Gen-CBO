@@ -5,7 +5,7 @@ import { ArrowBackIosNew, ArrowForwardIos } from "@mui/icons-material";
 
 const slides = [
   {
-    id: 2,
+    id: 1,
     image: "/Innovation/mushroom.png", 
     subtitle: "NEXT-GEN YOUTH INITIATIVE",
     title: "Empowering The Future.",
@@ -30,7 +30,7 @@ export default function HeroSection() {
   useEffect(() => {
     const timer = setInterval(() => {
       setCurrent((prev) => (prev === slides.length - 1 ? 0 : prev + 1));
-    }, 7000); // Slower, more elegant timing
+    }, 7000);
     return () => clearInterval(timer);
   }, []);
 
@@ -45,15 +45,14 @@ export default function HeroSection() {
           initial={{ opacity: 0, scale: 1.03 }}
           animate={{ opacity: 1, scale: 1 }}
           exit={{ opacity: 0 }}
-          transition={{ duration: 1.5, ease: [0.25, 0.1, 0.25, 1] }} // Smoother custom easing
+          transition={{ duration: 1.5, ease: [0.25, 0.1, 0.25, 1] }} 
           className="absolute inset-0"
         >
           <div 
             className="absolute inset-0 bg-cover bg-center"
             style={{ backgroundImage: `url(${slides[current].image})` }}
           />
-          {/* Subtle gradient specifically to make left-aligned text readable without muddying the image */}
-          <div className="absolute inset-0 bg-gradient-to-r from-black/80 via-black/40 to-transparent" />
+          <div className="absolute inset-0 bg-gradient-to-r from-black/85 via-black/50 to-transparent" />
         </motion.div>
       </AnimatePresence>
 
@@ -65,7 +64,7 @@ export default function HeroSection() {
           transition={{ duration: 1, delay: 0.5, ease: "easeOut" }}
           className="max-w-3xl text-white mt-16"
         >
-          <p className="text-[9px] md:text-[10px] uppercase tracking-[0.4em] mb-6 text-gray-300 font-medium">
+          <p className="text-[9px] md:text-[10px] uppercase tracking-[0.4em] mb-6 text-[#d2b79b] font-medium">
             {slides[current].subtitle}
           </p>
           <h1 className="text-5xl md:text-7xl lg:text-[80px] font-light mb-8 tracking-tight text-white leading-[1.1]">
@@ -77,7 +76,7 @@ export default function HeroSection() {
           
           <Link
             to={slides[current].link}
-            className="inline-block border border-white/60 text-white px-10 py-4 text-[10px] uppercase tracking-[0.25em] hover:bg-white hover:text-black hover:border-white transition-all duration-700 font-medium"
+            className="inline-block border border-[#d2b79b] text-[#d2b79b] px-10 py-4 text-[10px] uppercase tracking-[0.25em] hover:bg-[#d2b79b] hover:text-white hover:border-[#d2b79b] transition-all duration-700 font-medium"
           >
             {slides[current].buttonText}
           </Link>
@@ -86,14 +85,14 @@ export default function HeroSection() {
 
       <button 
         onClick={prevSlide}
-        className="absolute left-4 md:left-8 top-1/2 -translate-y-1/2 z-20 text-white/40 hover:text-white transition-colors duration-500 p-4 group"
+        className="absolute left-4 md:left-8 top-1/2 -translate-y-1/2 z-20 text-white/40 hover:text-[#d2b79b] transition-colors duration-500 p-4 group"
         aria-label="Previous Slide"
       >
         <ArrowBackIosNew fontSize="large" className="font-light transform group-hover:-translate-x-1 transition-transform duration-500" />
       </button>
       <button 
         onClick={nextSlide}
-        className="absolute right-4 md:right-8 top-1/2 -translate-y-1/2 z-20 text-white/40 hover:text-white transition-colors duration-500 p-4 group"
+        className="absolute right-4 md:right-8 top-1/2 -translate-y-1/2 z-20 text-white/40 hover:text-[#d2b79b] transition-colors duration-500 p-4 group"
         aria-label="Next Slide"
       >
         <ArrowForwardIos fontSize="large" className="font-light transform group-hover:translate-x-1 transition-transform duration-500" />
@@ -105,7 +104,7 @@ export default function HeroSection() {
             key={index}
             onClick={() => setCurrent(index)}
             className={`h-[1px] transition-all duration-700 ${
-              current === index ? "w-16 bg-white" : "w-8 bg-white/30 hover:bg-white/60"
+              current === index ? "w-16 bg-[#d2b79b]" : "w-8 bg-white/30 hover:bg-[#d2b79b]/60"
             }`}
             aria-label={`Go to slide ${index + 1}`}
           />

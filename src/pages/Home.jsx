@@ -11,7 +11,7 @@ import { Link } from "react-router-dom";
 
 export default function Home() {
   return (
-    <div className="font-sans text-[#333333]">
+    <div className="font-sans text-[#333333] bg-[#F5F5F7]">
       <HeroSection />
 
       {/* About Preview */}
@@ -32,7 +32,7 @@ export default function Home() {
       {/* Three Pillars */}
       <section className="py-24 bg-[#e5e5e5]">
         <div className="max-w-[90%] mx-auto px-4">
-          <SectionHeader eyebrow="Our Foundation" title="Our Strategic Pillars" />
+          <SectionHeader eyebrow="Our Foundation"  title="Our Strategic Pillars" />
           <div className="grid md:grid-cols-3 gap-12 text-center mt-16">
             <div className="flex flex-col items-center">
               <div className="w-[1px] h-12 bg-[#b8a898] mb-8"></div>
@@ -209,7 +209,7 @@ export default function Home() {
                 key={i} 
                 src={p.logo} 
                 alt={p.name} 
-                className="h-12 grayscale invert brightness-200 opacity-75 hover:grayscale-0 hover:invert-0 hover:brightness-100 hover:opacity-100 transition-all duration-500 cursor-pointer" 
+                className="w-full max-w-[700px] object-contain grayscale invert brightness-200 opacity-75 hover:grayscale-0 hover:invert-0 hover:brightness-100 hover:opacity-100 transition-all duration-500 cursor-pointer" 
               />
             ))}
           </div>

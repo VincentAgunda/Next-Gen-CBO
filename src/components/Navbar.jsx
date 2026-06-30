@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import { useState } from "react";
-import { Menu, Close, Search, ShoppingBag, LocationOn } from "@mui/icons-material";
+import { Menu, Close, Search,  LocationOn } from "@mui/icons-material";
 
 const navLinks = [
   { to: "/", label: "Home" },
@@ -42,7 +42,7 @@ export default function Navbar() {
 
         {/* Right side icons */}
         <div className="hidden lg:flex gap-6 items-center text-[#333333]">
-           <ShoppingBag sx={{ fontSize: 20 }} className="cursor-pointer hover:text-black transition-colors" />
+           
            <LocationOn sx={{ fontSize: 20 }} className="cursor-pointer hover:text-black transition-colors" />
            <Search sx={{ fontSize: 20 }} className="cursor-pointer hover:text-black transition-colors" />
            <div className="flex items-center gap-1 cursor-pointer font-sans text-[11px] uppercase tracking-[0.2em] ml-2 hover:text-black transition-colors font-medium">
