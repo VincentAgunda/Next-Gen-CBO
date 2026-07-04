@@ -126,46 +126,73 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Featured Programs */}
+      {/* Featured Programs (Updated to match alternating design pattern) */}
       <section className="bg-[#2d2932] py-24 lg:py-32">
-        <div className="max-w-7xl mx-auto px-6 lg:px-12 grid lg:grid-cols-2 gap-16 lg:gap-24 items-center">
-          {/* Left Content */}
-          <div className="max-w-xl">
-            <span className="text-[#d2b79b] font-heading text-xs uppercase tracking-[0.3em] block mb-6 font-medium">
-              Featured Programs
-            </span>
-
-            <h2 className="text-white font-heading text-4xl lg:text-6xl font-light mb-8 leading-tight">
-              Empowering <br className="hidden lg:block" />
-              Future Leaders
-            </h2>
-
-            <p className="text-[#c1bdc4] font-sans text-lg lg:text-xl leading-relaxed mb-12 font-light">
-              Through agribusiness development, youth empowerment and
-              research-driven innovation, we equip young people with the
-              skills and opportunities needed to create sustainable livelihoods
-              and transform communities.
-            </p>
-
-            <Link to="/programs" className="inline-flex flex-col group font-heading">
-              <span className="text-[#d2b79b] uppercase tracking-[0.2em] text-sm group-hover:text-white transition-colors duration-300">
-                Explore Programs
+        <div className="max-w-7xl mx-auto px-6 lg:px-12 flex flex-col gap-24 lg:gap-40">
+          
+          {/* Row 1: Text Left, Image Right */}
+          <div className="grid lg:grid-cols-2 gap-12 lg:gap-24 items-center">
+            <div className="max-w-lg order-2 lg:order-1">
+              <span className="text-[#d2b79b] font-heading text-xs uppercase tracking-[0.3em] block mb-4 font-medium">
+                Agribusiness Initiative
               </span>
-              <div className="w-12 h-[1px] bg-[#d2b79b] mt-3 group-hover:w-full group-hover:bg-white transition-all duration-500 ease-in-out"></div>
-            </Link>
-          </div>
-
-          {/* Right Image */}
-          <div className="flex justify-center lg:justify-end">
-            <div className="relative overflow-hidden w-full aspect-square lg:aspect-[4/5] bg-[#3a3540] group">
-              <div className="absolute inset-0 bg-black/20 z-10 group-hover:bg-transparent transition-colors duration-700"></div>
+              <h2 className="text-white font-heading text-4xl lg:text-5xl font-light mb-6 leading-tight">
+                Empowering <br className="hidden lg:block" />
+                Future Leaders
+              </h2>
+              <p className="text-[#c1bdc4] font-sans text-lg leading-relaxed mb-10 font-light">
+                Through agribusiness development, youth empowerment and
+                research-driven innovation, we equip young people with the
+                skills and opportunities needed to create sustainable livelihoods
+                and transform communities.
+              </p>
+              <Link to="/programs" className="inline-flex flex-col group font-heading w-max">
+                <span className="text-[#d2b79b] uppercase tracking-[0.2em] text-xs font-medium group-hover:text-white transition-colors duration-300">
+                  Explore Programs
+                </span>
+                <div className="w-full h-[1px] bg-[#d2b79b] mt-2 group-hover:bg-white transition-all duration-500 ease-in-out"></div>
+              </Link>
+            </div>
+            <div className="w-full order-1 lg:order-2">
               <img
                 src="/Innovation/mushroom.png"
-                alt="Featured Programs"
-                className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-1000 ease-out"
+                alt="Agribusiness Development"
+                className="w-full h-auto object-cover aspect-[4/3]"
               />
             </div>
           </div>
+
+          {/* Row 2: Image Left, Text Right */}
+          <div className="grid lg:grid-cols-2 gap-12 lg:gap-24 items-center">
+            <div className="w-full order-1">
+              <img
+                src="/Innovation/mush2.png" // Replace with your actual second image path
+                alt="Research & Innovation"
+                className="w-full h-auto object-cover aspect-[4/3]"
+              />
+            </div>
+            <div className="max-w-lg order-2 lg:pl-8">
+              <span className="text-[#d2b79b] font-heading text-xs uppercase tracking-[0.3em] block mb-4 font-medium">
+                Youth Innovation Hub
+              </span>
+              <h2 className="text-white font-heading text-4xl lg:text-5xl font-light mb-6 leading-tight">
+                First steps into the <br className="hidden lg:block" />
+                agricultural sector
+              </h2>
+              <p className="text-[#c1bdc4] font-sans text-lg leading-relaxed mb-10 font-light">
+                Our innovation projects mark the start of community-led agricultural 
+                advancements, redefining how young entrepreneurs approach sustainable 
+                farming and local economic growth.
+              </p>
+              <Link to="/innovation-hub" className="inline-flex flex-col group font-heading w-max">
+                <span className="text-[#d2b79b] uppercase tracking-[0.2em] text-xs font-medium group-hover:text-white transition-colors duration-300">
+                  To The Project
+                </span>
+                <div className="w-full h-[1px] bg-[#d2b79b] mt-2 group-hover:bg-white transition-all duration-500 ease-in-out"></div>
+              </Link>
+            </div>
+          </div>
+
         </div>
       </section>
 
@@ -266,7 +293,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Partners Preview - MODIFIED */}
+      {/* Partners Preview */}
       <section className="py-24 lg:py-32 px-6 lg:px-12 bg-[#7a787d]">
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-16">
@@ -278,7 +305,6 @@ export default function Home() {
             </h2>
           </div>
 
-          {/* Changed to a 2-column grid and limited to 2 bigger photos/logos */}
           <div className="grid grid-cols-1 md:grid-cols-2 gap-12 lg:gap-24 max-w-4xl mx-auto items-center justify-items-center">
             {partners.slice(0, 2).map((p, i) => (
               <div key={i} className="w-full flex justify-center items-center py-4">
