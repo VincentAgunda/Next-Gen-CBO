@@ -27,6 +27,15 @@ const slides = [
 export default function HeroSection() {
   const [current, setCurrent] = useState(0);
 
+  // 1. Preload images on initial mount so they render instantly upon transition
+  useEffect(() => {
+    slides.forEach((slide) => {
+      const img = new Image();
+      img.src = slide.image;
+    });
+  }, []);
+
+  // 2. Auto-advance slides
   useEffect(() => {
     const timer = setInterval(() => {
       setCurrent((prev) => (prev === slides.length - 1 ? 0 : prev + 1));
@@ -39,12 +48,13 @@ export default function HeroSection() {
 
   return (
     <section className="relative w-full h-[90vh] bg-[#111] overflow-hidden">
-      <AnimatePresence mode="wait">
+      {/* 3. Removed mode="wait" to allow smooth crossfading without background peek-through */}
+      <AnimatePresence initial={false}>
         <motion.div
           key={current}
           initial={{ opacity: 0, scale: 1.03 }}
-          animate={{ opacity: 1, scale: 1 }}
-          exit={{ opacity: 0 }}
+          animate={{ opacity: 1, scale: 1, zIndex: 1 }}
+          exit={{ opacity: 0, zIndex: 0 }}
           transition={{ duration: 1.5, ease: [0.25, 0.1, 0.25, 1] }} 
           className="absolute inset-0"
         >
@@ -56,12 +66,13 @@ export default function HeroSection() {
         </motion.div>
       </AnimatePresence>
 
+      {/* Content Section */}
       <div className="relative z-10 h-full max-w-[95%] mx-auto px-4 lg:px-12 flex flex-col justify-center">
         <motion.div 
           key={`text-${current}`}
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 1, delay: 0.5, ease: "easeOut" }}
+          transition={{ duration: 1, delay: 0.3, ease: "easeOut" }}
           className="max-w-3xl text-white mt-16"
         >
           <p className="text-[9px] md:text-[10px] uppercase tracking-[0.4em] mb-6 text-[#d2b79b] font-medium">
@@ -83,6 +94,7 @@ export default function HeroSection() {
         </motion.div>
       </div>
 
+      {/* Navigation Controls */}
       <button 
         onClick={prevSlide}
         className="absolute left-4 md:left-8 top-1/2 -translate-y-1/2 z-20 text-white/40 hover:text-[#d2b79b] transition-colors duration-500 p-4 group"
@@ -98,6 +110,7 @@ export default function HeroSection() {
         <ArrowForwardIos fontSize="large" className="font-light transform group-hover:translate-x-1 transition-transform duration-500" />
       </button>
 
+      {/* Pagination Indicators */}
       <div className="absolute bottom-10 left-4 lg:left-16 z-20 flex gap-4">
         {slides.map((_, index) => (
           <button

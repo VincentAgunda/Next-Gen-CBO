@@ -11,125 +11,184 @@ import { Link } from "react-router-dom";
 
 export default function Home() {
   return (
-    <div className="font-sans text-[#333333] bg-[#F5F5F7]">
+    <div className="font-sans text-[#333333] bg-[#F5F5F7] antialiased selection:bg-[#b8a898] selection:text-white overflow-hidden">
       <HeroSection />
 
-      {/* About Preview */}
-      <section className="py-24 px-4 max-w-5xl mx-auto text-center">
-        <SectionHeader
-          eyebrow="Our Mission"
-          title="About Us"
-          subtitle="We are a youth-driven CBO dedicated to creating sustainable livelihoods through agribusiness, research, and innovation."
-        />
-        <Link
-          to="/about"
-          className="inline-block font-heading border border-[#979797] text-[#333333] px-10 py-3 text-xs uppercase tracking-[0.2em] font-medium hover:bg-[#333333] hover:text-white transition-all duration-500"
-        >
-          Learn More
-        </Link>
+      <section className="relative py-24 lg:py-32 px-6 lg:px-12 max-w-[1500px] mx-auto bg-white flex items-center min-h-[80vh]">
+        {/* items-stretch forces both columns to be equal in height */}
+        <div className="grid lg:grid-cols-2 gap-12 lg:gap-20 items-stretch w-full relative pr-8 lg:pr-16">
+          
+          {/* Left Column: Image perfectly mapped to the text area's exact height */}
+          <div className="w-full relative min-h-[350px] lg:min-h-0">
+            <img
+              src="/Hero/h1.png"
+              alt="Youth transforming communities in Makueni County"
+              className="absolute inset-0 w-full h-full object-cover block"
+            />
+          </div>
+
+          {/* Right Column: Unified Text Flow & CTA */}
+          <div className="flex flex-col justify-center py-6 max-w-lg lg:ml-8">
+            <div className="mb-6">
+              {/* Eyebrow Text */}
+              <span className="block text-[#d2b79b] font-sans text-[10px] lg:text-[11px] uppercase tracking-[0.25em] mb-4">
+                Who We Are
+              </span>
+              
+              {/* Heading */}
+              <h2 className="text-[#222222] font-sans text-3xl md:text-4xl lg:text-[2.75rem] font-normal leading-[1.2] uppercase tracking-wide">
+                Transforming Communities Through Youth Innovation
+              </h2>
+            </div>
+
+            {/* Body Text */}
+            <div className="space-y-6">
+              <p className="text-[#777777] font-sans text-[15px] lg:text-[16px] leading-[1.9] font-light">
+                Next-Generation Youth Agribusiness & Research CBO is a youth-led community-based organization based in Makueni County, Kenya, committed to transforming communities through sustainable agriculture, research, innovation, environmental conservation, and youth empowerment.
+              </p>
+              <p className="text-[#777777] font-sans text-[15px] lg:text-[16px] leading-[1.9] font-light">
+                We bring together young innovators, researchers, entrepreneurs, and community members who are passionate about creating practical, evidence-based solutions to today's social, environmental, and economic challenges. By combining research with real-world action, we empower young people to become drivers of sustainable development while improving livelihoods within our communities.
+              </p>
+            </div>
+
+            {/* CTA */}
+            <div className="mt-10">
+              <Link
+                to="/about"
+                className="inline-block text-[#333333] font-sans text-[11px] uppercase tracking-[0.2em] pb-2 border-b border-[#c2b4a3] hover:text-[#c2b4a3] transition-colors duration-300"
+              >
+                Learn More About Us
+              </Link>
+            </div>
+          </div>
+
+          {/* Right Edge: Vertical Navigation/Pagination Indicator */}
+          <div className="hidden lg:flex absolute right-0 top-1/2 -translate-y-1/2 flex-col items-end gap-[6px]">
+            {[...Array(9)].map((_, index) => (
+              <div
+                key={index}
+                className={`h-[1px] transition-all duration-300 ${
+                  index === 2 ? 'w-6 bg-[#222222]' : 'w-4 bg-[#d1d1d1]'
+                }`}
+              />
+            ))}
+          </div>
+          
+        </div>
       </section>
 
       {/* Three Pillars */}
-      <section className="py-24 bg-[#e5e5e5]">
-        <div className="max-w-[90%] mx-auto px-4">
-          <SectionHeader eyebrow="Our Foundation"  title="Our Strategic Pillars" />
-          <div className="grid md:grid-cols-3 gap-12 text-center mt-16">
-            <div className="flex flex-col items-center">
-              <div className="w-[1px] h-12 bg-[#b8a898] mb-8"></div>
-              <h3 className="text-2xl font-heading font-normal text-[#333333] mb-4">
+      <section className="py-24 lg:py-32 bg-[#e5e5e5]">
+        <div className="max-w-7xl mx-auto px-6 lg:px-12">
+          <SectionHeader eyebrow="Our Foundation" title="Our Strategic Pillars" />
+          
+          <div className="grid md:grid-cols-3 gap-12 lg:gap-16 text-center mt-20">
+            {/* Pillar 1 */}
+            <div className="flex flex-col items-center group">
+              <div className="w-[1px] h-16 bg-gradient-to-b from-[#b8a898]/20 via-[#b8a898] to-[#b8a898]/20 mb-8 group-hover:scale-y-125 transition-transform duration-500"></div>
+              <h3 className="text-2xl font-heading font-medium text-[#333333] mb-4">
                 Agribusiness Development
               </h3>
-              <p className="font-sans text-sm text-[#666666] font-light leading-relaxed max-w-xs">
+              <p className="font-sans text-base text-[#666666] font-light leading-relaxed max-w-sm">
                 Supporting sustainable agricultural enterprises and income-generating opportunities.
               </p>
             </div>
-            <div className="flex flex-col items-center">
-              <div className="w-[1px] h-12 bg-[#b8a898] mb-8"></div>
-              <h3 className="text-2xl font-heading font-normal text-[#333333] mb-4">
+            {/* Pillar 2 */}
+            <div className="flex flex-col items-center group">
+              <div className="w-[1px] h-16 bg-gradient-to-b from-[#b8a898]/20 via-[#b8a898] to-[#b8a898]/20 mb-8 group-hover:scale-y-125 transition-transform duration-500"></div>
+              <h3 className="text-2xl font-heading font-medium text-[#333333] mb-4">
                 Youth Empowerment
               </h3>
-              <p className="font-sans text-sm text-[#666666] font-light leading-relaxed max-w-xs">
+              <p className="font-sans text-base text-[#666666] font-light leading-relaxed max-w-sm">
                 Building future leaders through rigorous training, mentorship, and entrepreneurship.
               </p>
             </div>
-            <div className="flex flex-col items-center">
-              <div className="w-[1px] h-12 bg-[#b8a898] mb-8"></div>
-              <h3 className="text-2xl font-heading font-normal text-[#333333] mb-4">
+            {/* Pillar 3 */}
+            <div className="flex flex-col items-center group">
+              <div className="w-[1px] h-16 bg-gradient-to-b from-[#b8a898]/20 via-[#b8a898] to-[#b8a898]/20 mb-8 group-hover:scale-y-125 transition-transform duration-500"></div>
+              <h3 className="text-2xl font-heading font-medium text-[#333333] mb-4">
                 Research & Innovation
               </h3>
-              <p className="font-sans text-sm text-[#666666] font-light leading-relaxed max-w-xs">
+              <p className="font-sans text-base text-[#666666] font-light leading-relaxed max-w-sm">
                 Driving evidence-based solutions and supporting youth-led innovations.
               </p>
             </div>
           </div>
-          <div className="text-center mt-16">
-            <Link to="/programs" className="inline-block font-heading border border-black bg-black text-white px-10 py-3 text-xs uppercase tracking-[0.2em] font-medium hover:bg-transparent hover:text-black transition-all duration-500">
-              View Programs
+
+          <div className="text-center mt-20">
+            <Link 
+              to="/programs" 
+              className="inline-block font-heading border border-[#333333] bg-[#333333] text-white px-10 py-4 text-xs uppercase tracking-[0.2em] font-medium hover:bg-transparent hover:text-[#333333] transition-all duration-500"
+            >
+              View All Programs
             </Link>
           </div>
         </div>
       </section>
 
       {/* Featured Programs */}
-      <section className="bg-[#2d2932] py-32">
-        <div className="max-w-[90%] mx-auto grid lg:grid-cols-2 gap-20 items-center">
-          
+      <section className="bg-[#2d2932] py-24 lg:py-32">
+        <div className="max-w-7xl mx-auto px-6 lg:px-12 grid lg:grid-cols-2 gap-16 lg:gap-24 items-center">
           {/* Left Content */}
           <div className="max-w-xl">
-            <span className="text-[#d2b79b] font-heading text-xs uppercase tracking-[0.3em] block mb-10 font-medium">
+            <span className="text-[#d2b79b] font-heading text-xs uppercase tracking-[0.3em] block mb-6 font-medium">
               Featured Programs
             </span>
 
-            <h2 className="text-white font-heading text-5xl md:text-6xl font-light mb-10 leading-tight">
-              Empowering
-              <br />
+            <h2 className="text-white font-heading text-4xl lg:text-6xl font-light mb-8 leading-tight">
+              Empowering <br className="hidden lg:block" />
               Future Leaders
             </h2>
 
-            <p className="text-[#a9a5ac] font-sans text-xl leading-relaxed mb-16 font-light">
+            <p className="text-[#c1bdc4] font-sans text-lg lg:text-xl leading-relaxed mb-12 font-light">
               Through agribusiness development, youth empowerment and
               research-driven innovation, we equip young people with the
               skills and opportunities needed to create sustainable livelihoods
               and transform communities.
             </p>
 
-            <Link to="/programs" className="inline-block group font-heading">
-              <span className="text-[#d2b79b] uppercase tracking-[0.2em] text-sm">
+            <Link to="/programs" className="inline-flex flex-col group font-heading">
+              <span className="text-[#d2b79b] uppercase tracking-[0.2em] text-sm group-hover:text-white transition-colors duration-300">
                 Explore Programs
               </span>
-              <div className="w-28 h-[1px] bg-[#d2b79b] mt-4 group-hover:w-40 transition-all duration-500"></div>
+              <div className="w-12 h-[1px] bg-[#d2b79b] mt-3 group-hover:w-full group-hover:bg-white transition-all duration-500 ease-in-out"></div>
             </Link>
           </div>
 
           {/* Right Image */}
           <div className="flex justify-center lg:justify-end">
-            <div className="overflow-hidden">
+            <div className="relative overflow-hidden w-full aspect-square lg:aspect-[4/5] bg-[#3a3540] group">
+              <div className="absolute inset-0 bg-black/20 z-10 group-hover:bg-transparent transition-colors duration-700"></div>
               <img
                 src="/Innovation/mushroom.png"
                 alt="Featured Programs"
-                className="w-full max-w-[700px] object-cover"
+                className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-1000 ease-out"
               />
             </div>
           </div>
-
         </div>
       </section>
 
       {/* Innovation Preview */}
-      <section className="py-24 bg-[#F5F5F7]">
-        <div className="max-w-[90%] mx-auto px-4">
+      <section className="py-24 lg:py-32 bg-[#F5F5F7]">
+        <div className="max-w-[1400px] mx-auto px-6 lg:px-12">
           <SectionHeader 
             eyebrow="Future Forward" 
             title="Innovation Hub" 
             subtitle="Youth-led innovations shaping the future of agriculture." 
           />
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mt-12">
+          
+          <div className="flex flex-col gap-12 lg:gap-16 mt-16 items-center">
             {innovations.slice(0, 3).map((inv) => (
               <InnovationCard key={inv.id} {...inv} />
             ))}
           </div>
-          <div className="text-center mt-16">
-            <Link to="/innovation-hub" className="font-heading text-xs uppercase tracking-[0.2em] font-medium text-gray-500 hover:text-black border-b border-transparent hover:border-black transition-all pb-1">
+          
+          <div className="text-center mt-20">
+            <Link 
+              to="/innovation-hub" 
+              className="inline-block font-heading text-xs uppercase tracking-[0.2em] font-medium text-[#666666] hover:text-[#333333] border-b border-[#cccccc] hover:border-[#333333] transition-all pb-1.5"
+            >
               Explore Innovation Hub
             </Link>
           </div>
@@ -137,30 +196,41 @@ export default function Home() {
       </section>
 
       {/* Upcoming Events */}
-      <section className="py-24 px-4 bg-[#858689]">
-        <div className="max-w-[90%] mx-auto">
-          <div className="mb-12 text-left">
-            <span className="text-[#b8a898] font-heading text-xs uppercase tracking-[0.25em] font-medium block mb-3">
-              Gatherings
-            </span>
-            <h2 className="text-3xl md:text-5xl font-heading font-normal text-white tracking-wide mb-4">
-              Upcoming Events
-            </h2>
-            <p className="font-sans text-white/90 text-sm md:text-base font-light leading-relaxed max-w-xl">
-              Join our exclusive trainings, conferences, and community activities.
-            </p>
+      <section className="py-24 lg:py-32 px-6 lg:px-12 bg-[#858689]">
+        <div className="max-w-7xl mx-auto">
+          <div className="flex flex-col md:flex-row md:items-end justify-between mb-16 gap-8">
+            <div className="text-left max-w-2xl">
+              <span className="text-[#e2dacd] font-heading text-xs uppercase tracking-[0.25em] font-medium block mb-4">
+                Gatherings
+              </span>
+              <h2 className="text-4xl md:text-5xl font-heading font-light text-white tracking-wide mb-4">
+                Upcoming Events
+              </h2>
+              <p className="font-sans text-white/80 text-base md:text-lg font-light leading-relaxed">
+                Join our exclusive trainings, conferences, and community activities designed to foster growth and connection.
+              </p>
+            </div>
+            
+            <div className="hidden md:block">
+              <Link 
+                to="/events" 
+                className="font-heading text-xs uppercase tracking-[0.2em] font-medium text-white hover:text-[#d2b79b] border-b border-white/50 hover:border-[#d2b79b] transition-all duration-300 pb-1.5 whitespace-nowrap"
+              >
+                View All Events
+              </Link>
+            </div>
           </div>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mt-12">
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
             {events.slice(0, 3).map((evt) => (
               <EventCard key={evt.id} {...evt} />
             ))}
           </div>
 
-          <div className="text-center mt-16">
+          <div className="mt-12 md:hidden text-center">
             <Link 
               to="/events" 
-              className="font-heading text-xs uppercase tracking-[0.2em] font-medium text-white hover:text-[#b8a898] border-b border-white hover:border-[#b8a898] transition-all duration-300 pb-1"
+              className="font-heading text-xs uppercase tracking-[0.2em] font-medium text-white hover:text-[#d2b79b] border-b border-white/50 hover:border-[#d2b79b] transition-all duration-300 pb-1.5"
             >
               View All Events
             </Link>
@@ -169,55 +239,62 @@ export default function Home() {
       </section>
 
       {/* Membership CTA */}
-      <section className="py-32 px-4 bg-[#e5e5e5]">
+      <section className="py-24 lg:py-32 px-6 lg:px-12 bg-[#e5e5e5]">
         <div className="max-w-4xl mx-auto text-center flex flex-col items-center">
-          <div className="w-8 h-8 border border-[#b8a898] rotate-45 mb-10 flex items-center justify-center">
+          <div className="w-10 h-10 border border-[#b8a898] rotate-45 mb-12 flex items-center justify-center">
             <div className="w-2 h-2 bg-[#b8a898]"></div>
           </div>
           
-          <h2 className="text-3xl md:text-5xl font-heading font-normal text-[#333333] mb-12 leading-snug tracking-wide">
+          <h2 className="text-3xl md:text-4xl lg:text-5xl font-heading font-light text-[#333333] mb-12 leading-[1.3] tracking-wide">
             Become a member, join our community and gain access to training, mentorship, and networking.
           </h2>
 
-          <div className="flex flex-col sm:flex-row justify-center gap-6">
-            <Link to="/membership" className="font-heading border border-black bg-black text-white px-10 py-3 text-xs uppercase tracking-[0.2em] font-medium hover:bg-transparent hover:text-black transition-all duration-500">
+          <div className="flex flex-col sm:flex-row justify-center gap-6 w-full sm:w-auto">
+            <Link 
+              to="/membership" 
+              className="font-heading border border-[#333333] bg-[#333333] text-white px-10 py-4 text-xs uppercase tracking-[0.2em] font-medium hover:bg-transparent hover:text-[#333333] transition-all duration-500 w-full sm:w-auto text-center"
+            >
               Join Now
             </Link>
-            <Link to="/membership" className="font-heading border border-[#979797] text-[#333333] px-10 py-3 text-xs uppercase tracking-[0.2em] font-medium hover:border-black transition-all duration-500">
+            <Link 
+              to="/membership" 
+              className="font-heading border border-[#979797] bg-transparent text-[#333333] px-10 py-4 text-xs uppercase tracking-[0.2em] font-medium hover:border-[#333333] transition-all duration-500 w-full sm:w-auto text-center"
+            >
               Membership Benefits
             </Link>
           </div>
         </div>
       </section>
 
-      {/* Partners Preview */}
-      <section className="py-24 px-4 bg-[#7a787d]">
-        <div className="max-w-[90%] mx-auto">
-          
-          <div className="text-center mb-12">
-            <span className="text-[#d2b79b] font-heading text-xs uppercase tracking-[0.25em] font-medium block mb-3">
+      {/* Partners Preview - MODIFIED */}
+      <section className="py-24 lg:py-32 px-6 lg:px-12 bg-[#7a787d]">
+        <div className="max-w-7xl mx-auto">
+          <div className="text-center mb-16">
+            <span className="text-[#d2b79b] font-heading text-xs uppercase tracking-[0.25em] font-medium block mb-4">
               Collaborations
             </span>
-            <h2 className="text-3xl md:text-5xl font-heading font-normal text-white tracking-wide">
+            <h2 className="text-4xl md:text-5xl font-heading font-light text-white tracking-wide">
               Our Partners
             </h2>
           </div>
 
-          <div className="flex flex-wrap justify-center gap-12 items-center mt-12">
-            {partners.map((p, i) => (
-              <img 
-                key={i} 
-                src={p.logo} 
-                alt={p.name} 
-                className="w-full max-w-[700px] object-contain grayscale invert brightness-200 opacity-75 hover:grayscale-0 hover:invert-0 hover:brightness-100 hover:opacity-100 transition-all duration-500 cursor-pointer" 
-              />
+          {/* Changed to a 2-column grid and limited to 2 bigger photos/logos */}
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-12 lg:gap-24 max-w-4xl mx-auto items-center justify-items-center">
+            {partners.slice(0, 2).map((p, i) => (
+              <div key={i} className="w-full flex justify-center items-center py-4">
+                <img 
+                  src={p.image || p.logo} 
+                  alt={p.name} 
+                  className="w-auto h-auto max-h-36 md:max-h-48 lg:max-h-56 object-contain grayscale invert brightness-200 opacity-75 hover:grayscale-0 hover:invert-0 hover:brightness-100 hover:opacity-100 hover:scale-105 transition-all duration-500 cursor-pointer" 
+                />
+              </div>
             ))}
           </div>
 
-          <div className="text-center mt-16">
+          <div className="text-center mt-20">
             <Link 
               to="/partnerships" 
-              className="font-heading text-xs uppercase tracking-[0.2em] font-medium text-white/80 hover:text-white border-b border-white/20 hover:border-white transition-all pb-1"
+              className="inline-block font-heading text-xs uppercase tracking-[0.2em] font-medium text-white/70 hover:text-white border-b border-white/20 hover:border-white transition-all pb-1.5"
             >
               Become a Partner
             </Link>
@@ -226,28 +303,29 @@ export default function Home() {
       </section>
 
       {/* Support Us CTA */}
-      <section className="py-32 md:py-48 bg-[#3B3A38] text-center px-4 flex flex-col items-center justify-center">
-        <div className="max-w-4xl mx-auto flex flex-col items-center">
-          
-          <span className="text-[#94938F] font-heading text-[11px] uppercase tracking-[0.25em] mb-6 block font-medium">
+      <section className="py-32 md:py-48 bg-[#3B3A38] px-6 lg:px-12 flex flex-col items-center justify-center">
+        <div className="max-w-4xl mx-auto flex flex-col items-center text-center">
+          <span className="text-[#94938F] font-heading text-[11px] uppercase tracking-[0.3em] mb-6 block font-medium">
             Make An Impact
           </span>
           
-          <h2 className="text-5xl md:text-[64px] font-heading font-normal mb-10 text-[#D4CBB6] tracking-wide">
+          <h2 className="text-5xl md:text-6xl lg:text-7xl font-heading font-light mb-10 text-[#D4CBB6] tracking-wide">
             Support Our Mission
           </h2>
           
-          <p className="text-[#94938F] font-sans text-lg md:text-xl font-light leading-relaxed max-w-3xl mb-16 mx-auto">
+          <p className="text-[#94938F] font-sans text-lg md:text-xl font-light leading-relaxed max-w-2xl mb-16 mx-auto">
             Your donation or volunteer effort can change lives. Help us build a sustainable future for the next generation.
           </p>
           
           <Link 
             to="/support-us" 
-            className="text-[#D4CBB6] font-heading text-[11px] uppercase tracking-[0.2em] font-medium border-b border-[#D4CBB6] pb-1.5 hover:text-white hover:border-white transition-colors duration-300"
+            className="inline-flex flex-col group text-[#D4CBB6] font-heading text-xs uppercase tracking-[0.2em] font-medium transition-all duration-300"
           >
-            Support Us
+            <span className="group-hover:text-white transition-colors duration-300">
+              Support Us
+            </span>
+            <div className="w-full h-[1px] bg-[#D4CBB6] mt-2 group-hover:bg-white transition-all duration-500"></div>
           </Link>
-          
         </div>
       </section>
       
