@@ -6,7 +6,7 @@ import { ArrowBackIosNew, ArrowForwardIos } from "@mui/icons-material";
 const slides = [
   {
     id: 1,
-    image: "/Innovation/mushroom.png", 
+    image: "/Hero/h3.png", 
     subtitle: "NEXT-GEN YOUTH INITIATIVE",
     title: "Empowering The Future.",
     description: "A youth-driven organization creating sustainable livelihoods through agribusiness development and scientific innovation.",
@@ -15,7 +15,7 @@ const slides = [
   },
   {
     id: 2,
-    image: "/Innovation/mushroom.png", 
+    image: "/Hero/h3.png", 
     subtitle: "AGRIBUSINESS DEVELOPMENT",
     title: "Cultivating Growth.",
     description: "Equipping young leaders with the tools, knowledge, and resources to build thriving agricultural enterprises.",
