@@ -15,7 +15,7 @@ export default function Dashboard() {
         const snap = await getCountFromServer(collection(db, col));
         counts[col] = snap.data().count;
       }
-      // Additional: pending members count
+      
       const pendingSnap = await getCountFromServer(
         collection(db, "member_applications")
       );
@@ -26,15 +26,23 @@ export default function Dashboard() {
   }, []);
 
   return (
-    <div>
-      <h1 className="text-2xl font-bold mb-6">Dashboard Overview</h1>
-      <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
-        <StatCard icon={<People />} label="Total Members" value={stats.members || 0} color="bg-blue-500" />
-        <StatCard icon={<People />} label="Pending Approvals" value={stats.pendingMembers || 0} color="bg-yellow-500" />
-        <StatCard icon={<Event />} label="Events" value={stats.events || 0} color="bg-green-500" />
-        <StatCard icon={<Biotech />} label="Research Pubs" value={stats.research_publications || 0} color="bg-purple-500" />
-        <StatCard icon={<Handshake />} label="Partners" value={stats.partners || 0} color="bg-indigo-500" />
-        <StatCard icon={<VolunteerActivism />} label="Volunteers" value={stats.volunteers || 0} color="bg-red-500" />
+    <div className="space-y-8 font-sans">
+      <div className="space-y-2">
+        <span className="text-[10px] uppercase tracking-[0.35em] text-[#d2b79b] font-semibold font-heading block">
+          Overview
+        </span>
+        <h1 className="text-3xl font-heading font-light tracking-tight text-[#333333]">
+          System Dashboard
+        </h1>
+      </div>
+
+      <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+        <StatCard icon={<People />} label="Total Members" value={stats.members || 0} color="bg-[#333333]" />
+        <StatCard icon={<People />} label="Pending Approvals" value={stats.pendingMembers || 0} color="bg-[#d2b79b]" />
+        <StatCard icon={<Event />} label="Events" value={stats.events || 0} color="bg-stone-600" />
+        <StatCard icon={<Biotech />} label="Research Pubs" value={stats.research_publications || 0} color="bg-zinc-700" />
+        <StatCard icon={<Handshake />} label="Partners" value={stats.partners || 0} color="bg-neutral-600" />
+        <StatCard icon={<VolunteerActivism />} label="Volunteers" value={stats.volunteers || 0} color="bg-gray-800" />
       </div>
     </div>
   );

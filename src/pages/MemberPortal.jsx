@@ -40,9 +40,7 @@ export default function Membership() {
         <div className="bg-white border border-gray-200/70 p-10 rounded-2xl shadow-xl transform-gpu transition-all duration-500">
           {tab === "register" ? (
             <div className="space-y-4">
-              <div className="p-4 bg-emerald-50 border border-emerald-100 rounded-xl mb-6 text-xs text-emerald-800 leading-relaxed">
-                Notice: Statutory baseline membership registration fee is set to <strong>KES 500</strong> pursuant to Art. 4.1 of the Constitution[cite: 430].
-              </div>
+              
               <MembershipForm />
             </div>
           ) : (

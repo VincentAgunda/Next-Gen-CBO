@@ -1,19 +1,30 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { useAuth } from "../contexts/AuthContext";
 import { useNavigate } from "react-router-dom";
 
 export default function AdminLogin() {
-  const { login } = useAuth();
+  const { login, currentUser, isAdmin, isApproved, loading } = useAuth();
   const [error, setError] = useState("");
   const navigate = useNavigate();
   const { register, handleSubmit, formState: { isSubmitting } } = useForm();
 
+  // Watch for auth state changes and navigate securely
+  useEffect(() => {
+    // Only fire navigation if we have finished fetching data from Firestore
+    if (!loading && currentUser) {
+      if (isAdmin && isApproved) {
+        navigate("/admin");
+      } else {
+        navigate("/member-portal"); // Route non-admins/unapproved to the member portal
+      }
+    }
+  }, [currentUser, isAdmin, isApproved, loading, navigate]);
+
   const onSubmit = async (data) => {
     try {
       await login(data.email, data.password);
-      // AdminRoute will handle redirect if user is admin
-      navigate("/admin");
+      // Navigation is now handled by the useEffect
     } catch (e) {
       setError(e.message);
     }
@@ -33,7 +44,7 @@ export default function AdminLogin() {
         </div>
         {error && <p className="text-red-500">{error}</p>}
         <button disabled={isSubmitting} className="w-full bg-brand-primary text-white py-2 rounded hover:bg-blue-600">
-          Login
+          {isSubmitting ? "Logging in..." : "Login"}
         </button>
       </form>
     </div>
