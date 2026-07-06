@@ -28,7 +28,7 @@ const coreValues = [
 
 export default function About() {
   return (
-    <div className="bg-white min-h-screen py-32 px-6 md:px-12 lg:px-24 antialiased text-neutral-800 selection:bg-neutral-900 selection:text-white font-sans tracking-wide">
+    <div className="bg-[#F5F5F7] min-h-screen py-32 px-6 md:px-12 lg:px-24 antialiased text-neutral-800 selection:bg-neutral-900 selection:text-white font-sans tracking-wide">
       
       {/* 1. HERO HEADER: Mimicking Burmester's Centered Elegance */}
       <header className="max-w-4xl mx-auto text-center space-y-6 mb-32">

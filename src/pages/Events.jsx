@@ -26,14 +26,13 @@ export default function Events() {
   };
 
   return (
-    <div className="bg-white min-h-screen py-32 px-6 md:px-12 lg:px-24 antialiased text-neutral-800 font-sans tracking-wide">
+    <div className="bg-[#F5F5F7] min-h-screen py-32 px-6 md:px-12 lg:px-24 antialiased text-neutral-800 font-sans tracking-wide">
       
-      {/* Header section */}
       <header className="max-w-4xl mx-auto text-center space-y-6 mb-24">
         <span className="text-[11px] uppercase tracking-[0.3em] text-[#B0926A] font-medium block">
           Knowledge Ecosystems
         </span>
-        <h1 className="text-4xl md:text-5xl font-serif font-light tracking-tight text-neutral-900 leading-tight">
+        <h1 className="text-4xl md:text-5xl font-sans font-light tracking-tight text-neutral-900 leading-tight">
           Events & Technical Symposia
         </h1>
         <p className="max-w-2xl mx-auto text-neutral-500 font-light text-base leading-relaxed pt-2">
@@ -41,7 +40,6 @@ export default function Events() {
         </p>
       </header>
 
-      {/* Grid container formatting events logs cleanly */}
       <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
         {events.map((evt) => (
           <div 
@@ -53,12 +51,11 @@ export default function Events() {
         ))}
       </div>
 
-      {/* Structured Minimal Registration Interface via URL parameter trigger */}
       {registerEventId && (
         <section className="mt-32 max-w-2xl mx-auto border border-neutral-100 p-10 md:p-14 bg-white shadow-sm">
           <div className="space-y-3 mb-10 text-center">
             <span className="text-[10px] uppercase tracking-widest text-[#B0926A] block font-medium">Reservation Registry</span>
-            <h3 className="text-2xl font-serif font-light text-neutral-900">Secure Access Pass</h3>
+            <h3 className="text-2xl font-sans font-light text-neutral-900">Secure Access Pass</h3>
           </div>
 
           <form onSubmit={handleRegister} className="space-y-8">

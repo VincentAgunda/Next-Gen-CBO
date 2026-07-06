@@ -14,14 +14,13 @@ export default function SupportUs() {
   };
 
   return (
-    <div className="bg-white min-h-screen py-32 px-6 md:px-12 lg:px-24 antialiased text-neutral-800 font-sans tracking-wide space-y-40">
+    <div className="bg-[#F5F5F7] min-h-screen py-32 px-6 md:px-12 lg:px-24 antialiased text-neutral-800 font-sans tracking-wide space-y-40">
       
-      {/* Page Header */}
       <header className="max-w-4xl mx-auto text-center space-y-6">
         <span className="text-[11px] uppercase tracking-[0.3em] text-[#B0926A] font-medium block">
           Resource Mobilization
         </span>
-        <h1 className="text-4xl md:text-5xl font-serif font-light tracking-tight text-neutral-900 leading-tight">
+        <h1 className="text-4xl md:text-5xl font-sans font-light tracking-tight text-neutral-900 leading-tight">
           Support Our Mission Framework
         </h1>
         <p className="max-w-2xl mx-auto text-neutral-500 font-light text-base leading-relaxed pt-2">
@@ -29,11 +28,10 @@ export default function SupportUs() {
         </p>
       </header>
 
-      {/* Fiscal Remittance Box: Designed like an institutional statement sheet */}
       <section className="max-w-xl mx-auto border border-neutral-100 p-10 bg-white shadow-sm space-y-8">
         <div className="text-center border-b border-neutral-100 pb-6 space-y-2">
           <span className="text-[10px] uppercase tracking-widest text-[#B0926A] font-medium block">M-Pesa Integration gateway</span>
-          <h3 className="text-xl font-serif font-normal text-neutral-900">Direct Institutional Donation</h3>
+          <h3 className="text-xl font-sans font-light text-neutral-900">Direct Institutional Donation</h3>
         </div>
         
         <div className="space-y-4 max-w-xs mx-auto text-sm font-light">
@@ -54,11 +52,10 @@ export default function SupportUs() {
         </div>
       </section>
 
-      {/* Volunteer Registration Pipeline */}
       <section className="max-w-3xl mx-auto border border-neutral-100 p-10 md:p-16 bg-white shadow-sm">
         <div className="space-y-3 mb-12 text-center">
           <span className="text-[10px] uppercase tracking-widest text-[#B0926A] block font-medium">Human Capital</span>
-          <h3 className="text-2xl font-serif font-light text-neutral-900">Join the Volunteer Cadre</h3>
+          <h3 className="text-2xl font-sans font-light text-neutral-900">Join the Volunteer Cadre</h3>
           <p className="text-xs text-neutral-400 font-light max-w-sm mx-auto">Lend your technical expertise, research focus, or operations capability to regional field setups.</p>
         </div>
 

@@ -17,12 +17,11 @@ export default function Partnerships() {
   return (
     <div className="bg-white min-h-screen py-32 px-6 md:px-12 lg:px-24 antialiased text-neutral-800 font-sans tracking-wide">
       
-      {/* Header section */}
       <header className="max-w-4xl mx-auto text-center space-y-6 mb-28">
         <span className="text-[11px] uppercase tracking-[0.3em] text-[#B0926A] font-medium block">
           Consortium Networks
         </span>
-        <h1 className="text-4xl md:text-5xl font-serif font-light tracking-tight text-neutral-900 leading-tight">
+        <h1 className="text-4xl md:text-5xl font-sans font-light tracking-tight text-neutral-900 leading-tight">
           Strategic Institutional Alliances
         </h1>
         <p className="max-w-2xl mx-auto text-neutral-500 font-light text-base leading-relaxed pt-2">
@@ -30,7 +29,6 @@ export default function Partnerships() {
         </p>
       </header>
 
-      {/* Grid distribution for logos — pure monochrome alignment */}
       <section className="max-w-5xl mx-auto border-y border-neutral-100 py-16 mb-40">
         <div className="flex flex-wrap justify-center items-center gap-16 md:gap-24 opacity-60 grayscale filter contrast-200">
           {partners.map((p, i) => (
@@ -39,11 +37,10 @@ export default function Partnerships() {
         </div>
       </section>
 
-      {/* Structural Minimalist Request Form */}
       <section className="max-w-3xl mx-auto border border-neutral-100 p-10 md:p-16 bg-white shadow-sm">
         <div className="space-y-3 mb-12 text-center">
           <span className="text-[10px] uppercase tracking-widest text-[#B0926A] block font-medium">Alliance Charter</span>
-          <h3 className="text-2xl font-serif font-light text-neutral-900">Initiate Partnership Affiliation</h3>
+          <h3 className="text-2xl font-sans font-light text-neutral-900">Initiate Partnership Affiliation</h3>
           <p className="text-xs text-neutral-400 font-light max-w-sm mx-auto">Register your corporate framework to establish shared cooperative projects and operational setups.</p>
         </div>
 
