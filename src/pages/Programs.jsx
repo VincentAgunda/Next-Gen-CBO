@@ -15,11 +15,12 @@ export default function Programs() {
   return (
     <div className="bg-white min-h-screen py-32 px-6 md:px-12 lg:px-24 antialiased text-neutral-800 font-sans tracking-wide">
       
+      {/* Header section built to match design philosophy */}
       <header className="max-w-4xl mx-auto text-center space-y-6 mb-24">
         <span className="text-[11px] uppercase tracking-[0.3em] text-[#B0926A] font-medium block">
           Strategic Initiatives
         </span>
-        <h1 className="text-4xl md:text-5xl font-sans font-light tracking-tight text-neutral-900 leading-tight">
+        <h1 className="text-4xl md:text-5xl font-serif font-light tracking-tight text-neutral-900 leading-tight">
           Our Operational Programs
         </h1>
         <p className="max-w-2xl mx-auto text-neutral-500 font-light text-base leading-relaxed pt-2">
@@ -27,6 +28,7 @@ export default function Programs() {
         </p>
       </header>
 
+      {/* High-end textual menu bar instead of rounded button pills */}
       <div className="flex flex-wrap justify-center items-center gap-x-10 gap-y-4 mb-20 max-w-3xl mx-auto border-b border-neutral-100 pb-6">
         {categories.map((cat) => (
           <button
@@ -43,6 +45,7 @@ export default function Programs() {
         ))}
       </div>
 
+      {/* Grid container matching the structural cards design */}
       <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
         {filtered.map((prog, idx) => (
           <div 

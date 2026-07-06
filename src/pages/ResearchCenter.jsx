@@ -17,11 +17,12 @@ export default function ResearchCenter() {
   return (
     <div className="bg-white min-h-screen py-32 px-6 md:px-12 lg:px-24 antialiased text-neutral-800 font-sans tracking-wide">
       
+      {/* Header block */}
       <header className="max-w-4xl mx-auto text-center space-y-6 mb-32">
         <span className="text-[11px] uppercase tracking-[0.3em] text-[#B0926A] font-medium block">
           Empirical Frameworks
         </span>
-        <h1 className="text-4xl md:text-5xl font-sans font-light tracking-tight text-neutral-900 leading-tight">
+        <h1 className="text-4xl md:text-5xl font-serif font-light tracking-tight text-neutral-900 leading-tight">
           Research Center & Publications
         </h1>
         <p className="max-w-2xl mx-auto text-neutral-500 font-light text-base leading-relaxed pt-2">
@@ -29,6 +30,7 @@ export default function ResearchCenter() {
         </p>
       </header>
 
+      {/* Publications Grid modeled as structural archival listings */}
       <section className="max-w-6xl mx-auto mb-40 space-y-8">
         <div className="border-b border-neutral-200 pb-4">
           <h2 className="text-xs uppercase tracking-[0.25em] font-medium text-neutral-900">Archived Academic Publications</h2>
@@ -47,7 +49,7 @@ export default function ResearchCenter() {
                   <span>{pub.category}</span>
                   <span>{pub.year}</span>
                 </div>
-                <h3 className="text-lg font-sans font-light text-neutral-900 group-hover:text-[#B0926A] transition-colors duration-300">
+                <h3 className="text-lg font-serif font-normal text-neutral-900 group-hover:text-[#B0926A] transition-colors duration-300">
                   {pub.title}
                 </h3>
                 <p className="text-xs text-neutral-400 font-light leading-relaxed">
@@ -62,10 +64,11 @@ export default function ResearchCenter() {
         </div>
       </section>
 
+      {/* Clean Structured Collaboration Form Container */}
       <section className="max-w-3xl mx-auto border border-neutral-100 p-10 md:p-16 bg-white shadow-sm">
         <div className="space-y-3 mb-12 text-center">
           <span className="text-[10px] uppercase tracking-widest text-[#B0926A] block font-medium">Institutional Alignment</span>
-          <h3 className="text-2xl font-sans font-light text-neutral-900">Propose a Research Collaboration</h3>
+          <h3 className="text-2xl font-serif font-light text-neutral-900">Propose a Research Collaboration</h3>
           <p className="text-xs text-neutral-400 font-light max-w-md mx-auto">We partner with universities, legacy organizations, and development groups to accelerate climate-smart technologies.</p>
         </div>
 

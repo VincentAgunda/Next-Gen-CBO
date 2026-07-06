@@ -15,8 +15,10 @@ export default function Home() {
       <HeroSection />
 
       <section className="relative py-24 lg:py-36 px-6 md:px-12 lg:px-24 bg-white flex items-center min-h-[80vh] antialiased text-neutral-800 font-sans tracking-wide">
+      {/* items-stretch forces both columns to be equal in height */}
       <div className="grid lg:grid-cols-2 gap-16 lg:gap-24 items-stretch w-full relative max-w-7xl mx-auto">
         
+        {/* Left Column: Image perfectly mapped to the text area's exact height */}
         <div className="w-full relative min-h-[400px] lg:min-h-0 border border-neutral-100 shadow-sm overflow-hidden group">
           <img
             src="/Hero/h1.png"
@@ -25,17 +27,21 @@ export default function Home() {
           />
         </div>
 
+        {/* Right Column: Unified Text Flow & CTA */}
         <div className="flex flex-col justify-center py-6 max-w-xl">
           <div className="mb-6 space-y-3">
+            {/* Eyebrow Text */}
             <span className="block text-[#B0926A] text-[11px] uppercase tracking-[0.3em] font-medium">
               Who We Are
             </span>
             
-            <h2 className="text-neutral-900 font-sans text-3xl md:text-4xl lg:text-5xl font-light leading-tight tracking-tight">
+            {/* Heading */}
+            <h2 className="text-neutral-900 font-serif text-3xl md:text-4xl lg:text-5xl font-light leading-tight tracking-tight">
               Transforming Communities Through Youth Innovation
             </h2>
           </div>
 
+          {/* Body Text */}
           <div className="space-y-6 text-neutral-500 font-light text-sm md:text-base leading-relaxed">
             <p>
               Next-Generation Youth Agribusiness & Research CBO is a youth-led community-based organization based in Makueni County, Kenya, committed to transforming communities through sustainable agriculture, research, innovation, environmental conservation, and youth empowerment.
@@ -45,6 +51,7 @@ export default function Home() {
             </p>
           </div>
 
+          {/* CTA */}
           <div className="mt-12">
             <Link
               to="/about"
@@ -55,6 +62,7 @@ export default function Home() {
           </div>
         </div>
 
+        {/* Right Edge: Vertical Navigation/Pagination Indicator */}
         <div className="hidden lg:flex absolute right-[-40px] top-1/2 -translate-y-1/2 flex-col items-end gap-[8px]">
           {[...Array(9)].map((_, index) => (
             <div
