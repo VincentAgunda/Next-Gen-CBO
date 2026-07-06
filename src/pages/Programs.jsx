@@ -1,6 +1,5 @@
 import { programs } from "../data/programs";
 import ProgramCard from "../components/ProgramCard";
-import SectionHeader from "../components/SectionHeader";
 import { useState } from "react";
 
 const categories = ["All", "Agribusiness", "Youth Empowerment", "Research & Innovation"];
@@ -14,26 +13,44 @@ export default function Programs() {
       : programs.filter((p) => p.category === filter);
 
   return (
-    <div className="py-16 px-4 max-w-6xl mx-auto">
-      <SectionHeader title="Our Programs" subtitle="Holistic initiatives driving youth transformation." />
-      <div className="flex flex-wrap justify-center gap-2 mb-8">
+    <div className="bg-white min-h-screen py-32 px-6 md:px-12 lg:px-24 antialiased text-neutral-800 font-sans tracking-wide">
+      
+      <header className="max-w-4xl mx-auto text-center space-y-6 mb-24">
+        <span className="text-[11px] uppercase tracking-[0.3em] text-[#B0926A] font-medium block">
+          Strategic Initiatives
+        </span>
+        <h1 className="text-4xl md:text-5xl font-sans font-light tracking-tight text-neutral-900 leading-tight">
+          Our Operational Programs
+        </h1>
+        <p className="max-w-2xl mx-auto text-neutral-500 font-light text-base leading-relaxed pt-2">
+          Holistic portfolios driving youth development, digital-smart agriculture setups, and scalable research-backed interventions.
+        </p>
+      </header>
+
+      <div className="flex flex-wrap justify-center items-center gap-x-10 gap-y-4 mb-20 max-w-3xl mx-auto border-b border-neutral-100 pb-6">
         {categories.map((cat) => (
           <button
             key={cat}
             onClick={() => setFilter(cat)}
-            className={`px-4 py-2 rounded-full border ${
+            className={`text-xs uppercase tracking-[0.2em] font-medium transition-all duration-300 relative pb-2 ${
               filter === cat
-                ? "bg-brand-primary text-white"
-                : "bg-white text-gray-700 hover:bg-gray-100"
+                ? "text-neutral-900 after:absolute after:bottom-0 after:left-0 after:w-full after:h-[1px] after:bg-[#B0926A]"
+                : "text-neutral-400 hover:text-neutral-900"
             }`}
           >
             {cat}
           </button>
         ))}
       </div>
-      <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+
+      <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
         {filtered.map((prog, idx) => (
-          <ProgramCard key={idx} {...prog} />
+          <div 
+            key={idx} 
+            className="border border-neutral-100 p-8 flex flex-col justify-between space-y-6 hover:border-neutral-300 transition-all duration-500 bg-white shadow-sm"
+          >
+            <ProgramCard {...prog} />
+          </div>
         ))}
       </div>
     </div>

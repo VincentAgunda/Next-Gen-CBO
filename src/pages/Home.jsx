@@ -14,68 +14,60 @@ export default function Home() {
     <div className="font-sans text-[#333333] bg-[#F5F5F7] antialiased selection:bg-[#b8a898] selection:text-white overflow-hidden">
       <HeroSection />
 
-      <section className="relative py-24 lg:py-32 px-6 lg:px-12 max-w-[1500px] mx-auto bg-white flex items-center min-h-[80vh]">
-        {/* items-stretch forces both columns to be equal in height */}
-        <div className="grid lg:grid-cols-2 gap-12 lg:gap-20 items-stretch w-full relative pr-8 lg:pr-16">
-          
-          {/* Left Column: Image perfectly mapped to the text area's exact height */}
-          <div className="w-full relative min-h-[350px] lg:min-h-0">
-            <img
-              src="/Hero/h1.png"
-              alt="Youth transforming communities in Makueni County"
-              className="absolute inset-0 w-full h-full object-cover block"
-            />
-          </div>
-
-          {/* Right Column: Unified Text Flow & CTA */}
-          <div className="flex flex-col justify-center py-6 max-w-lg lg:ml-8">
-            <div className="mb-6">
-              {/* Eyebrow Text */}
-              <span className="block text-[#d2b79b] font-sans text-[10px] lg:text-[11px] uppercase tracking-[0.25em] mb-4">
-                Who We Are
-              </span>
-              
-              {/* Heading */}
-              <h2 className="text-[#222222] font-sans text-3xl md:text-4xl lg:text-[2.75rem] font-normal leading-[1.2] uppercase tracking-wide">
-                Transforming Communities Through Youth Innovation
-              </h2>
-            </div>
-
-            {/* Body Text */}
-            <div className="space-y-6">
-              <p className="text-[#777777] font-sans text-[15px] lg:text-[16px] leading-[1.9] font-light">
-                Next-Generation Youth Agribusiness & Research CBO is a youth-led community-based organization based in Makueni County, Kenya, committed to transforming communities through sustainable agriculture, research, innovation, environmental conservation, and youth empowerment.
-              </p>
-              <p className="text-[#777777] font-sans text-[15px] lg:text-[16px] leading-[1.9] font-light">
-                We bring together young innovators, researchers, entrepreneurs, and community members who are passionate about creating practical, evidence-based solutions to today's social, environmental, and economic challenges. By combining research with real-world action, we empower young people to become drivers of sustainable development while improving livelihoods within our communities.
-              </p>
-            </div>
-
-            {/* CTA */}
-            <div className="mt-10">
-              <Link
-                to="/about"
-                className="inline-block text-[#333333] font-sans text-[11px] uppercase tracking-[0.2em] pb-2 border-b border-[#c2b4a3] hover:text-[#c2b4a3] transition-colors duration-300"
-              >
-                Learn More About Us
-              </Link>
-            </div>
-          </div>
-
-          {/* Right Edge: Vertical Navigation/Pagination Indicator */}
-          <div className="hidden lg:flex absolute right-0 top-1/2 -translate-y-1/2 flex-col items-end gap-[6px]">
-            {[...Array(9)].map((_, index) => (
-              <div
-                key={index}
-                className={`h-[1px] transition-all duration-300 ${
-                  index === 2 ? 'w-6 bg-[#222222]' : 'w-4 bg-[#d1d1d1]'
-                }`}
-              />
-            ))}
-          </div>
-          
+      <section className="relative py-24 lg:py-36 px-6 md:px-12 lg:px-24 bg-white flex items-center min-h-[80vh] antialiased text-neutral-800 font-sans tracking-wide">
+      <div className="grid lg:grid-cols-2 gap-16 lg:gap-24 items-stretch w-full relative max-w-7xl mx-auto">
+        
+        <div className="w-full relative min-h-[400px] lg:min-h-0 border border-neutral-100 shadow-sm overflow-hidden group">
+          <img
+            src="/Hero/h1.png"
+            alt="Youth transforming communities in Makueni County"
+            className="absolute inset-0 w-full h-full object-cover block grayscale opacity-95 group-hover:scale-105 transition-transform duration-1000 ease-out"
+          />
         </div>
-      </section>
+
+        <div className="flex flex-col justify-center py-6 max-w-xl">
+          <div className="mb-6 space-y-3">
+            <span className="block text-[#B0926A] text-[11px] uppercase tracking-[0.3em] font-medium">
+              Who We Are
+            </span>
+            
+            <h2 className="text-neutral-900 font-sans text-3xl md:text-4xl lg:text-5xl font-light leading-tight tracking-tight">
+              Transforming Communities Through Youth Innovation
+            </h2>
+          </div>
+
+          <div className="space-y-6 text-neutral-500 font-light text-sm md:text-base leading-relaxed">
+            <p>
+              Next-Generation Youth Agribusiness & Research CBO is a youth-led community-based organization based in Makueni County, Kenya, committed to transforming communities through sustainable agriculture, research, innovation, environmental conservation, and youth empowerment.
+            </p>
+            <p>
+              We bring together young innovators, researchers, entrepreneurs, and community members who are passionate about creating practical, evidence-based solutions to today's social, environmental, and economic challenges. By combining research with real-world action, we empower young people to become drivers of sustainable development while improving livelihoods within our communities.
+            </p>
+          </div>
+
+          <div className="mt-12">
+            <Link
+              to="/about"
+              className="inline-block border border-neutral-900 text-neutral-900 px-10 py-4 text-[11px] uppercase tracking-[0.25em] font-medium hover:bg-neutral-900 hover:text-white transition-all duration-500 ease-out shadow-sm"
+            >
+              Learn More About Us
+            </Link>
+          </div>
+        </div>
+
+        <div className="hidden lg:flex absolute right-[-40px] top-1/2 -translate-y-1/2 flex-col items-end gap-[8px]">
+          {[...Array(9)].map((_, index) => (
+            <div
+              key={index}
+              className={`h-[1px] transition-all duration-500 ${
+                index === 2 ? 'w-8 bg-neutral-900' : 'w-4 bg-neutral-200'
+              }`}
+            />
+          ))}
+        </div>
+        
+      </div>
+    </section>
 
       {/* Three Pillars */}
       <section className="py-24 lg:py-32 bg-[#e5e5e5]">
