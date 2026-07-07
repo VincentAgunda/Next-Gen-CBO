@@ -28,7 +28,7 @@ const coreValues = [
 
 export default function About() {
   return (
-    <div className="font-sans text-black bg-white antialiased selection:bg-black selection:text-white overflow-hidden min-h-screen">
+    <div className="font-sans text-black bg-[#F5F5F7] antialiased selection:bg-black selection:text-white overflow-hidden min-h-screen">
       
       {/* 01. TYPOGRAPHIC HERO */}
       <header className="pt-40 pb-28 px-[6vw] md:px-12 lg:px-24 max-w-[1440px] mx-auto">

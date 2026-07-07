@@ -1,25 +1,24 @@
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
-import { ArrowBackIosNew, ArrowForwardIos } from "@mui/icons-material";
 
 const slides = [
   {
     id: 1,
     image: "/Hero/h3.png", 
-    subtitle: "NEXT-GEN YOUTH INITIATIVE",
-    title: "Engineered for Impact.",
-    description: "A youth-led architectural shift in sustainable agriculture. Combining scientific rigor with community action to build resilient, self-sustaining economies in Makueni County.",
-    buttonText: "Discover the Mission",
+    subtitle: "NEXT-GEN YOUTH INITIATIVE // COGNITIVE CORE",
+    title: "Empowering The Future.",
+    description: "An autonomous, youth-driven operational framework deploying high-performance systems across sustainable agribusiness development and precision empirical research.",
+    buttonText: "DISCOVER MATRIX",
     link: "/about"
   },
   {
     id: 2,
     image: "/Hero/h3.png", 
-    subtitle: "AGRIBUSINESS DEVELOPMENT",
-    title: "Cultivating Tomorrow.",
-    description: "Equipping the next generation of agricultural entrepreneurs with advanced tools, evidence-based research, and scalable enterprise models.",
-    buttonText: "Explore Programs",
+    subtitle: "AGRIBUSINESS OPTIMIZATION // VALUE CHAINS",
+    title: "Cultivating Growth.",
+    description: "Equipping generation-next regional leaders with technical capabilities, hardware resources, and scalable modular framework models to secure self-sustaining economic yields.",
+    buttonText: "SYSTEM INDEX",
     link: "/programs"
   }
 ];
@@ -27,6 +26,7 @@ const slides = [
 export default function HeroSection() {
   const [current, setCurrent] = useState(0);
 
+  // Preload background assets instantaneously
   useEffect(() => {
     slides.forEach((slide) => {
       const img = new Image();
@@ -34,10 +34,11 @@ export default function HeroSection() {
     });
   }, []);
 
+  // Automate frame sequence transitions
   useEffect(() => {
     const timer = setInterval(() => {
       setCurrent((prev) => (prev === slides.length - 1 ? 0 : prev + 1));
-    }, 7000);
+    }, 8000);
     return () => clearInterval(timer);
   }, []);
 
@@ -45,90 +46,95 @@ export default function HeroSection() {
   const prevSlide = () => setCurrent(current === 0 ? slides.length - 1 : current - 1);
 
   return (
-    <section className="relative w-full h-[88vh] bg-[#0A0A0A] overflow-hidden font-sans border-b border-neutral-200">
+    <section className="relative w-full h-[95vh] bg-[#0c0c0d] overflow-hidden border-b border-neutral-900">
+      
+      {/* High Fidelity Spatial Crossfade Image Container */}
       <AnimatePresence initial={false}>
         <motion.div
           key={current}
-          initial={{ opacity: 0, scale: 1.02 }}
-          animate={{ opacity: 1, scale: 1, zIndex: 1 }}
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1, zIndex: 1 }}
           exit={{ opacity: 0, zIndex: 0 }}
-          transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1] }} 
+          transition={{ duration: 1.8, ease: [0.25, 0.1, 0.25, 1] }} 
           className="absolute inset-0"
         >
           <div 
-            className="absolute inset-0 bg-cover bg-center grayscale contrast-125 opacity-70"
+            className="absolute inset-0 bg-cover bg-center grayscale contrast-105 scale-102"
             style={{ backgroundImage: `url(${slides[current].image})` }}
           />
-          {/* Subtle architectural gradient overlay */}
-          <div className="absolute inset-0 bg-gradient-to-r from-black/90 via-black/50 to-transparent" />
+          {/* Symmetrical dark mathematical layout shielding */}
+          <div className="absolute inset-0 bg-gradient-to-r from-black/90 via-black/40 to-transparent" />
+          <div className="absolute inset-x-0 bottom-0 h-40 bg-gradient-to-t from-[#0c0c0d] to-transparent" />
         </motion.div>
       </AnimatePresence>
 
-      {/* Content Section */}
-      <div className="relative z-10 h-full max-w-7xl mx-auto px-6 lg:px-12 flex flex-col justify-end pb-20 lg:pb-28">
+      {/* Typographic Technical Content Block */}
+      <div className="relative z-10 h-full max-w-[92%] mx-auto px-4 lg:px-12 flex flex-col justify-center">
         <motion.div 
           key={`text-${current}`}
-          initial={{ opacity: 0, y: 20 }}
+          initial={{ opacity: 0, y: 15 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.2, ease: "easeOut" }}
-          className="max-w-3xl text-white"
+          transition={{ duration: 1.2, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
+          className="max-w-4xl text-white space-y-8"
         >
-          <div className="flex items-center gap-3 mb-6">
-            <span className="w-8 h-[1px] bg-[#d2b79b]"></span>
-            <p className="text-[11px] uppercase tracking-[0.3em] text-[#d2b79b] font-medium">
-              {slides[current].subtitle}
-            </p>
-          </div>
-
-          <h1 className="text-5xl md:text-7xl lg:text-8xl font-light mb-6 tracking-tighter text-white leading-[1.05]">
+          <p className="text-[10px] uppercase tracking-[0.45em] text-[#d2b79b] font-semibold">
+            {slides[current].subtitle}
+          </p>
+          
+          <h1 className="text-5xl md:text-7xl lg:text-[90px] font-light tracking-tighter text-white leading-[0.95] max-w-3xl">
             {slides[current].title}
           </h1>
-
-          <p className="text-base md:text-lg text-neutral-300 mb-10 max-w-xl leading-relaxed font-light">
+          
+          <p className="text-sm md:text-base text-neutral-300 max-w-xl leading-relaxed font-light tracking-wide pt-2">
             {slides[current].description}
           </p>
           
-          <Link
-            to={slides[current].link}
-            className="group inline-flex items-center gap-4 bg-transparent border border-white/40 hover:border-[#d2b79b] text-white hover:text-[#d2b79b] px-8 py-4 text-xs uppercase tracking-[0.2em] transition-all duration-300 font-medium backdrop-blur-sm"
-          >
-            <span>{slides[current].buttonText}</span>
-            <span className="text-base transform group-hover:translate-x-1 transition-transform duration-300">→</span>
-          </Link>
+          <div className="pt-6">
+            <Link
+              to={slides[current].link}
+              className="inline-flex items-center justify-between border border-[#d2b79b] text-[#d2b79b] px-8 py-4 text-[11px] uppercase tracking-[0.3em] hover:bg-[#d2b79b] hover:text-black transition-all duration-500 font-medium min-w-[220px]"
+            >
+              <span>{slides[current].buttonText}</span>
+              <span className="text-sm">→</span>
+            </Link>
+          </div>
         </motion.div>
       </div>
 
-      {/* Navigation Controls - Minimalist Polestar Style */}
-      <div className="absolute right-6 lg:right-12 bottom-12 z-20 flex border border-white/20 bg-black/40 backdrop-blur-md">
+      {/* Symmetrical Architectural Manual Vectors (Polestar Style Fine Line Chevron Switches) */}
+      <div className="absolute right-4 lg:right-16 bottom-12 z-20 flex gap-2">
         <button 
           onClick={prevSlide}
-          className="p-4 text-white/60 hover:text-[#d2b79b] hover:bg-white/5 transition-all duration-300 border-r border-white/20"
-          aria-label="Previous Slide"
+          className="w-12 h-12 border border-white/20 bg-black/20 hover:border-white/60 text-white flex items-center justify-center transition-colors duration-300 group"
+          aria-label="Previous Data Frame"
         >
-          <ArrowBackIosNew className="!w-4 !h-4" />
+          <span className="transform group-hover:-translate-x-0.5 transition-transform font-light text-sm">←</span>
         </button>
         <button 
           onClick={nextSlide}
-          className="p-4 text-white/60 hover:text-[#d2b79b] hover:bg-white/5 transition-all duration-300"
-          aria-label="Next Slide"
+          className="w-12 h-12 border border-white/20 bg-black/20 hover:border-white/60 text-white flex items-center justify-center transition-colors duration-300 group"
+          aria-label="Next Data Frame"
         >
-          <ArrowForwardIos className="!w-4 !h-4" />
+          <span className="transform group-hover:translate-x-0.5 transition-transform font-light text-sm">→</span>
         </button>
       </div>
 
-      {/* Engineered Pagination Lines */}
-      <div className="absolute top-12 right-6 lg:right-12 z-20 flex gap-2 items-center">
+      {/* Precision Linear Progress Sequence Bars */}
+      <div className="absolute bottom-12 left-4 lg:left-16 z-20 flex gap-3 items-center">
         {slides.map((_, index) => (
           <button
             key={index}
             onClick={() => setCurrent(index)}
-            className={`h-[2px] transition-all duration-500 ${
-              current === index ? "w-12 bg-[#d2b79b]" : "w-4 bg-white/30 hover:bg-white/60"
-            }`}
-            aria-label={`Go to slide ${index + 1}`}
-          />
+            className="group py-2 focus:outline-none"
+            aria-label={`Switch context framework to slide ${index + 1}`}
+          >
+            <div className={`h-[2px] transition-all duration-700 ease-out ${
+              current === index ? "w-20 bg-[#d2b79b]" : "w-10 bg-white/20 group-hover:bg-white/40"
+            }`} />
+          </button>
         ))}
       </div>
+      
     </section>
   );
 }
