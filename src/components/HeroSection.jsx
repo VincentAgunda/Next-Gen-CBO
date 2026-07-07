@@ -58,24 +58,32 @@ export default function HeroSection() {
           transition={{ duration: 1.8, ease: [0.25, 0.1, 0.25, 1] }} 
           className="absolute inset-0"
         >
-          <div 
-            className="absolute inset-0 bg-cover bg-center grayscale contrast-105 scale-102"
-            style={{ backgroundImage: `url(${slides[current].image})` }}
+          {/* Hardware accelerated image with a subtle cinematic scale down */}
+          <motion.img 
+            initial={{ scale: 1.05 }}
+            animate={{ scale: 1 }}
+            transition={{ duration: 10, ease: "easeOut" }}
+            src={slides[current].image}
+            alt={slides[current].title}
+            loading="lazy"
+            decoding="async"
+            className="absolute inset-0 w-full h-full object-cover transform-gpu will-change-transform"
           />
-          {/* Symmetrical dark mathematical layout shielding */}
-          <div className="absolute inset-0 bg-gradient-to-r from-black/90 via-black/40 to-transparent" />
+          {/* Symmetrical dark mathematical layout shielding - adjusted for true color imagery */}
+          <div className="absolute inset-0 bg-gradient-to-r from-black/90 via-black/50 to-black/10" />
           <div className="absolute inset-x-0 bottom-0 h-40 bg-gradient-to-t from-[#0c0c0d] to-transparent" />
         </motion.div>
       </AnimatePresence>
 
       {/* Typographic Technical Content Block */}
-      <div className="relative z-10 h-full max-w-[92%] mx-auto px-4 lg:px-12 flex flex-col justify-center">
+      {/* Added pointer-events-none to the wrapper to prevent it from blocking slider interactions, re-enabling it on the content */}
+      <div className="relative z-10 h-full max-w-[92%] mx-auto px-4 lg:px-12 flex flex-col justify-center pointer-events-none">
         <motion.div 
           key={`text-${current}`}
-          initial={{ opacity: 0, y: 15 }}
+          initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 1.2, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
-          className="max-w-4xl text-white space-y-8"
+          transition={{ duration: 1.2, delay: 0.3, ease: [0.16, 1, 0.3, 1] }}
+          className="max-w-4xl text-white space-y-8 pointer-events-auto"
         >
           <p className="text-[10px] uppercase tracking-[0.45em] text-[#d2b79b] font-semibold">
             {slides[current].subtitle}
@@ -92,10 +100,10 @@ export default function HeroSection() {
           <div className="pt-6">
             <Link
               to={slides[current].link}
-              className="inline-flex items-center justify-between border border-[#d2b79b] text-[#d2b79b] px-8 py-4 text-[11px] uppercase tracking-[0.3em] hover:bg-[#d2b79b] hover:text-black transition-all duration-500 font-medium min-w-[220px]"
+              className="group inline-flex items-center justify-between border border-[#d2b79b] text-[#d2b79b] px-8 py-4 text-[11px] uppercase tracking-[0.3em] hover:bg-[#d2b79b] hover:text-black transition-colors duration-500 font-medium min-w-[220px]"
             >
               <span>{slides[current].buttonText}</span>
-              <span className="text-sm">→</span>
+              <span className="text-sm transform group-hover:translate-x-1.5 transition-transform duration-500 ease-out">→</span>
             </Link>
           </div>
         </motion.div>
@@ -105,17 +113,17 @@ export default function HeroSection() {
       <div className="absolute right-4 lg:right-16 bottom-12 z-20 flex gap-2">
         <button 
           onClick={prevSlide}
-          className="w-12 h-12 border border-white/20 bg-black/20 hover:border-white/60 text-white flex items-center justify-center transition-colors duration-300 group"
+          className="w-12 h-12 border border-white/20 bg-black/20 backdrop-blur-sm hover:border-white/60 hover:bg-white/10 text-white flex items-center justify-center transition-all duration-500 ease-out group"
           aria-label="Previous Data Frame"
         >
-          <span className="transform group-hover:-translate-x-0.5 transition-transform font-light text-sm">←</span>
+          <span className="transform group-hover:-translate-x-1 transition-transform duration-500 ease-out font-light text-sm">←</span>
         </button>
         <button 
           onClick={nextSlide}
-          className="w-12 h-12 border border-white/20 bg-black/20 hover:border-white/60 text-white flex items-center justify-center transition-colors duration-300 group"
+          className="w-12 h-12 border border-white/20 bg-black/20 backdrop-blur-sm hover:border-white/60 hover:bg-white/10 text-white flex items-center justify-center transition-all duration-500 ease-out group"
           aria-label="Next Data Frame"
         >
-          <span className="transform group-hover:translate-x-0.5 transition-transform font-light text-sm">→</span>
+          <span className="transform group-hover:translate-x-1 transition-transform duration-500 ease-out font-light text-sm">→</span>
         </button>
       </div>
 
@@ -128,8 +136,8 @@ export default function HeroSection() {
             className="group py-2 focus:outline-none"
             aria-label={`Switch context framework to slide ${index + 1}`}
           >
-            <div className={`h-[2px] transition-all duration-700 ease-out ${
-              current === index ? "w-20 bg-[#d2b79b]" : "w-10 bg-white/20 group-hover:bg-white/40"
+            <div className={`h-[2px] transition-all duration-700 ease-[cubic-bezier(0.25,1,0.5,1)] ${
+              current === index ? "w-20 bg-[#d2b79b]" : "w-10 bg-white/20 group-hover:bg-white/40 group-hover:w-14"
             }`} />
           </button>
         ))}
