@@ -41,7 +41,7 @@ export default function Navbar() {
           onClick={() => setOpen(false)}
           className="text-2xl text-black font-serif italic tracking-wide hover:opacity-70 transition-opacity"
         >
-          NGYER
+          NGYAR
         </Link>
 
         {/* Desktop menu */}

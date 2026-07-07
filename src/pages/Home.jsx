@@ -36,27 +36,29 @@ export default function Home() {
                 className="inline-flex items-center gap-4 border border-[#111111] px-8 py-4 text-xs font-semibold uppercase tracking-[0.2em] text-[#111111] hover:bg-[#111111] hover:text-white transition-all duration-300 rounded-none group shadow-sm"
               >
                 <span>Learn more about us</span>
-                <span className="transform group-hover:translate-x-1 transition-transform duration-300">→</span>
+                <svg className="w-4 h-4 transform group-hover:translate-x-1 transition-transform duration-300" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
+                  <path strokeLinecap="square" strokeLinejoin="miter" d="M5 12h14M12 5l7 7-7 7" />
+                </svg>
               </Link>
             </div>
           </div>
 
           <div className="lg:col-span-7 grid md:grid-cols-2 gap-8 items-stretch">
             <div className="bg-white p-8 md:p-10 border border-neutral-200 flex flex-col justify-between shadow-sm">
-              <span className="text-4xl font-light text-[#B0926A] mb-8 block">01</span>
+              <span className="text-4xl font-normal md:font-light text-[#B0926A] mb-8 block">01</span>
               <div>
                 <h3 className="text-lg font-semibold uppercase tracking-wider mb-3 text-[#111111]"> Grassroots Action</h3>
-                <p className="text-neutral-600 font-light text-sm md:text-base leading-relaxed">
+                <p className="text-neutral-600 font-normal md:font-light text-sm md:text-base leading-relaxed">
                   Next-Generation Youth Agribusiness & Research CBO is a youth-led organization in Makueni County, Kenya, committed to transforming communities through sustainable agriculture, environmental conservation, and youth empowerment.
                 </p>
               </div>
             </div>
 
             <div className="bg-[#111111] text-white p-8 md:p-10 border border-neutral-800 flex flex-col justify-between shadow-sm">
-              <span className="text-4xl font-light text-[#d2b79b] mb-8 block">02</span>
+              <span className="text-4xl font-normal md:font-light text-[#d2b79b] mb-8 block">02</span>
               <div>
                 <h3 className="text-lg font-semibold uppercase tracking-wider mb-3 text-white">Evidence-Based</h3>
-                <p className="text-neutral-400 font-light text-sm md:text-base leading-relaxed">
+                <p className="text-neutral-400 font-normal md:font-light text-sm md:text-base leading-relaxed">
                   We unite young innovators, researchers, and entrepreneurs to architect practical solutions to environmental and economic challenges, driving sustainable development and improving regional livelihoods.
                 </p>
               </div>
@@ -66,7 +68,7 @@ export default function Home() {
         </div>
       </section>
 
-        {/* Section 2: Three Pillars — Polestar Grid Boxes (Ref: Screenshot 173) */}
+      {/* Section 2: Three Pillars — Polestar Grid Boxes */}
       <section className="py-28 lg:py-36 bg-[#e5e5e5] border-b border-neutral-300">
         <div className="max-w-7xl mx-auto px-6 lg:px-12">
           <div className="flex flex-col md:flex-row md:items-end justify-between mb-16 gap-6">
@@ -83,7 +85,9 @@ export default function Home() {
               className="group inline-flex items-center gap-2 text-xs uppercase tracking-[0.2em] font-semibold text-neutral-900 hover:text-[#B0926A] transition-colors"
             >
               <span>Explore All Programs</span>
-              <span className="text-base leading-none transition-transform group-hover:translate-x-1">→</span>
+              <svg className="w-4 h-4 transform group-hover:translate-x-1 transition-transform duration-300" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
+                <path strokeLinecap="square" strokeLinejoin="miter" d="M5 12h14M12 5l7 7-7 7" />
+              </svg>
             </Link>
           </div>
           
@@ -94,16 +98,18 @@ export default function Home() {
             <div className="bg-[#f0f0f0] hover:bg-white p-8 lg:p-12 flex flex-col justify-between min-h-[340px] group transition-colors duration-500">
               <div>
                 <span className="text-xs font-mono text-[#B0926A] block mb-6">01 // PILLAR</span>
-                <h3 className="text-2xl lg:text-3xl font-normal text-neutral-900 mb-4 tracking-tight leading-snug">
+                <h3 className="text-2xl lg:text-3xl font-medium md:font-normal text-neutral-900 mb-4 tracking-tight leading-snug">
                   Agribusiness Development
                 </h3>
-                <p className="text-neutral-600 font-light text-sm lg:text-base leading-relaxed">
+                <p className="text-neutral-600 font-normal lg:font-light text-sm lg:text-base leading-relaxed">
                   Supporting sustainable agricultural enterprises, modern farming techniques, and income-generating opportunities for rural youth.
                 </p>
               </div>
               <div className="pt-8 flex items-center justify-between border-t border-neutral-300 mt-8">
                 <span className="text-[11px] uppercase tracking-widest font-semibold text-neutral-500 group-hover:text-neutral-900 transition-colors">Learn more</span>
-                <span className="text-lg text-neutral-400 group-hover:text-neutral-900 group-hover:translate-x-1 transition-all">↗</span>
+                <svg className="w-5 h-5 text-neutral-400 group-hover:text-neutral-900 transform group-hover:translate-x-1 group-hover:-translate-y-1 transition-all duration-300" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
+                  <path strokeLinecap="square" strokeLinejoin="miter" d="M7 17L17 7M17 7H9M17 7v8" />
+                </svg>
               </div>
             </div>
 
@@ -111,16 +117,18 @@ export default function Home() {
             <div className="bg-[#f0f0f0] hover:bg-white p-8 lg:p-12 flex flex-col justify-between min-h-[340px] group transition-colors duration-500">
               <div>
                 <span className="text-xs font-mono text-[#B0926A] block mb-6">02 // PILLAR</span>
-                <h3 className="text-2xl lg:text-3xl font-normal text-neutral-900 mb-4 tracking-tight leading-snug">
+                <h3 className="text-2xl lg:text-3xl font-medium md:font-normal text-neutral-900 mb-4 tracking-tight leading-snug">
                   Youth Empowerment
                 </h3>
-                <p className="text-neutral-600 font-light text-sm lg:text-base leading-relaxed">
+                <p className="text-neutral-600 font-normal lg:font-light text-sm lg:text-base leading-relaxed">
                   Building future leaders through rigorous technical training, mentorship, leadership development, and hands-on entrepreneurship.
                 </p>
               </div>
               <div className="pt-8 flex items-center justify-between border-t border-neutral-300 mt-8">
                 <span className="text-[11px] uppercase tracking-widest font-semibold text-neutral-500 group-hover:text-neutral-900 transition-colors">Learn more</span>
-                <span className="text-lg text-neutral-400 group-hover:text-neutral-900 group-hover:translate-x-1 transition-all">↗</span>
+                <svg className="w-5 h-5 text-neutral-400 group-hover:text-neutral-900 transform group-hover:translate-x-1 group-hover:-translate-y-1 transition-all duration-300" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
+                  <path strokeLinecap="square" strokeLinejoin="miter" d="M7 17L17 7M17 7H9M17 7v8" />
+                </svg>
               </div>
             </div>
 
@@ -128,16 +136,18 @@ export default function Home() {
             <div className="bg-[#f0f0f0] hover:bg-white p-8 lg:p-12 flex flex-col justify-between min-h-[340px] group transition-colors duration-500">
               <div>
                 <span className="text-xs font-mono text-[#B0926A] block mb-6">03 // PILLAR</span>
-                <h3 className="text-2xl lg:text-3xl font-normal text-neutral-900 mb-4 tracking-tight leading-snug">
+                <h3 className="text-2xl lg:text-3xl font-medium md:font-normal text-neutral-900 mb-4 tracking-tight leading-snug">
                   Research & Innovation
                 </h3>
-                <p className="text-neutral-600 font-light text-sm lg:text-base leading-relaxed">
+                <p className="text-neutral-600 font-normal lg:font-light text-sm lg:text-base leading-relaxed">
                   Driving evidence-based agricultural solutions, climate-smart technologies, and supporting scalable youth-led innovations.
                 </p>
               </div>
               <div className="pt-8 flex items-center justify-between border-t border-neutral-300 mt-8">
                 <span className="text-[11px] uppercase tracking-widest font-semibold text-neutral-500 group-hover:text-neutral-900 transition-colors">Learn more</span>
-                <span className="text-lg text-neutral-400 group-hover:text-neutral-900 group-hover:translate-x-1 transition-all">↗</span>
+                <svg className="w-5 h-5 text-neutral-400 group-hover:text-neutral-900 transform group-hover:translate-x-1 group-hover:-translate-y-1 transition-all duration-300" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
+                  <path strokeLinecap="square" strokeLinejoin="miter" d="M7 17L17 7M17 7H9M17 7v8" />
+                </svg>
               </div>
             </div>
 
@@ -145,7 +155,7 @@ export default function Home() {
         </div>
       </section>
       
-       {/* SECTION 5: Massive Typography Navigation (Inspired by Reference Image 4) */}
+      {/* SECTION 5: Massive Typography Navigation (Inspired by Reference Image 4 & 171) */}
       <section className="bg-[#F5F5F7] py-24 px-6 md:px-12 lg:px-24 border-t border-neutral-300">
         <div className="max-w-[1400px] mx-auto divide-y divide-neutral-300">
           
@@ -153,36 +163,36 @@ export default function Home() {
             to="/programs"
             className="group py-12 flex items-center justify-between transition-colors duration-300 hover:px-6"
           >
-            <span className="text-4xl sm:text-6xl lg:text-7xl font-light text-neutral-900 group-hover:text-[#B0926A] transition-all duration-300 tracking-tight">
+            <span className="text-4xl sm:text-6xl lg:text-7xl font-medium sm:font-normal lg:font-light text-neutral-900 group-hover:text-[#B0926A] transition-all duration-300 tracking-tight">
               Explore All Programs
             </span>
-            <span className="text-3xl sm:text-5xl lg:text-6xl font-light text-neutral-400 group-hover:text-[#B0926A] group-hover:translate-x-4 transition-all duration-300">
-              ›
-            </span>
+            <svg className="w-10 h-10 sm:w-12 sm:h-12 lg:w-16 lg:h-16 text-neutral-400 group-hover:text-[#B0926A] transform group-hover:translate-x-3 group-hover:-translate-y-3 transition-all duration-300" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
+              <path strokeLinecap="square" strokeLinejoin="miter" d="M7 17L17 7M17 7H9M17 7v8" />
+            </svg>
           </Link>
 
           <Link
             to="/innovation-hub"
             className="group py-12 flex items-center justify-between transition-colors duration-300 hover:px-6"
           >
-            <span className="text-4xl sm:text-6xl lg:text-7xl font-light text-neutral-900 group-hover:text-[#B0926A] transition-all duration-300 tracking-tight">
+            <span className="text-4xl sm:text-6xl lg:text-7xl font-medium sm:font-normal lg:font-light text-neutral-900 group-hover:text-[#B0926A] transition-all duration-300 tracking-tight">
               The Innovation Hub
             </span>
-            <span className="text-3xl sm:text-5xl lg:text-6xl font-light text-neutral-400 group-hover:text-[#B0926A] group-hover:translate-x-4 transition-all duration-300">
-              ›
-            </span>
+            <svg className="w-10 h-10 sm:w-12 sm:h-12 lg:w-16 lg:h-16 text-neutral-400 group-hover:text-[#B0926A] transform group-hover:translate-x-3 group-hover:-translate-y-3 transition-all duration-300" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
+              <path strokeLinecap="square" strokeLinejoin="miter" d="M7 17L17 7M17 7H9M17 7v8" />
+            </svg>
           </Link>
 
           <Link
             to="/membership"
             className="group py-12 flex items-center justify-between transition-colors duration-300 hover:px-6"
           >
-            <span className="text-4xl sm:text-6xl lg:text-7xl font-light text-neutral-900 group-hover:text-[#B0926A] transition-all duration-300 tracking-tight">
+            <span className="text-4xl sm:text-6xl lg:text-7xl font-medium sm:font-normal lg:font-light text-neutral-900 group-hover:text-[#B0926A] transition-all duration-300 tracking-tight">
               Become A Member
             </span>
-            <span className="text-3xl sm:text-5xl lg:text-6xl font-light text-neutral-400 group-hover:text-[#B0926A] group-hover:translate-x-4 transition-all duration-300">
-              ›
-            </span>
+            <svg className="w-10 h-10 sm:w-12 sm:h-12 lg:w-16 lg:h-16 text-neutral-400 group-hover:text-[#B0926A] transform group-hover:translate-x-3 group-hover:-translate-y-3 transition-all duration-300" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
+              <path strokeLinecap="square" strokeLinejoin="miter" d="M7 17L17 7M17 7H9M17 7v8" />
+            </svg>
           </Link>
 
         </div>
@@ -202,12 +212,12 @@ export default function Home() {
                 </span>
               </div>
               
-              <h2 className="text-4xl lg:text-6xl font-normal tracking-tight leading-tight text-white">
+              <h2 className="text-4xl lg:text-6xl font-medium md:font-normal tracking-tight leading-tight text-white">
                 Empowering <br className="hidden lg:block" />
                 Future Leaders.
               </h2>
               
-              <p className="text-neutral-300 font-light text-base md:text-lg leading-relaxed">
+              <p className="text-neutral-300 font-normal md:font-light text-base md:text-lg leading-relaxed">
                 Through agribusiness development, youth empowerment, and research-driven innovation, we equip young people with the precision skills and resources needed to architect sustainable livelihoods.
               </p>
               
@@ -217,7 +227,9 @@ export default function Home() {
                   className="inline-flex items-center gap-3 text-xs uppercase tracking-[0.2em] font-semibold text-[#d2b79b] hover:text-white transition-colors group"
                 >
                   <span>Explore programs</span>
-                  <span className="text-base transform group-hover:translate-x-1 transition-transform duration-300">→</span>
+                  <svg className="w-4 h-4 transform group-hover:translate-x-1 transition-transform duration-300" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
+                    <path strokeLinecap="square" strokeLinejoin="miter" d="M5 12h14M12 5l7 7-7 7" />
+                  </svg>
                 </Link>
               </div>
             </div>
@@ -251,12 +263,12 @@ export default function Home() {
                 </span>
               </div>
               
-              <h2 className="text-4xl lg:text-6xl font-normal tracking-tight leading-tight text-white">
+              <h2 className="text-4xl lg:text-6xl font-medium md:font-normal tracking-tight leading-tight text-white">
                 First steps into <br className="hidden lg:block" />
                 modern agriculture.
               </h2>
               
-              <p className="text-neutral-300 font-light text-base md:text-lg leading-relaxed">
+              <p className="text-neutral-300 font-normal md:font-light text-base md:text-lg leading-relaxed">
                 Our innovation projects mark the genesis of community-led agricultural advancements, redefining how young entrepreneurs approach sustainable farming and local economic resilience.
               </p>
               
@@ -266,7 +278,9 @@ export default function Home() {
                   className="inline-flex items-center gap-3 text-xs uppercase tracking-[0.2em] font-semibold text-[#d2b79b] hover:text-white transition-colors group"
                 >
                   <span>To the project</span>
-                  <span className="text-base transform group-hover:translate-x-1 transition-transform duration-300">→</span>
+                  <svg className="w-4 h-4 transform group-hover:translate-x-1 transition-transform duration-300" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
+                    <path strokeLinecap="square" strokeLinejoin="miter" d="M5 12h14M12 5l7 7-7 7" />
+                  </svg>
                 </Link>
               </div>
             </div>
@@ -287,7 +301,7 @@ export default function Home() {
                 Innovation Hub
               </h2>
             </div>
-            <p className="text-neutral-500 max-w-md font-light text-sm sm:text-base">
+            <p className="text-neutral-500 max-w-md font-normal sm:font-light text-sm sm:text-base">
               Youth-led scientific innovations and climate-smart agricultural prototypes shaping the future of farming.
             </p>
           </div>
@@ -306,13 +320,15 @@ export default function Home() {
               className="group inline-flex items-center gap-3 bg-neutral-900 text-white hover:bg-[#B0926A] px-10 py-5 text-xs uppercase tracking-[0.2em] font-semibold transition-all duration-300"
             >
               <span>Explore All Innovations</span>
-              <span className="text-base leading-none transition-transform group-hover:translate-x-1">→</span>
+              <svg className="w-4 h-4 transform group-hover:translate-x-1 transition-transform duration-300" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
+                <path strokeLinecap="square" strokeLinejoin="miter" d="M5 12h14M12 5l7 7-7 7" />
+              </svg>
             </Link>
           </div>
         </div>
       </section>
 
-      {/* Section 5: Upcoming Events — Polestar Massive Text List (Ref: Screenshot 168) */}
+      {/* Section 5: Upcoming Events — Polestar Massive Text List */}
       <section className="py-28 lg:py-36 px-6 lg:px-12 bg-[#858689] text-white border-b border-neutral-600">
         <div className="max-w-7xl mx-auto">
           
@@ -330,11 +346,12 @@ export default function Home() {
               className="group inline-flex items-center gap-2 text-xs uppercase tracking-[0.25em] font-semibold text-white hover:text-[#e2dacd] transition-colors"
             >
               <span>View Calendar</span>
-              <span className="text-lg leading-none transition-transform group-hover:translate-x-1">↗</span>
+              <svg className="w-4 h-4 transform group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform duration-300" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
+                <path strokeLinecap="square" strokeLinejoin="miter" d="M7 17L17 7M17 7H9M17 7v8" />
+              </svg>
             </Link>
           </div>
 
-          {/* Clean architectural grid for events */}
           <div className="grid md:grid-cols-3 gap-8">
             {events.slice(0, 3).map((evt) => (
               <div key={evt.id} className="bg-[#757679] border border-white/10 p-6 flex flex-col justify-between hover:border-white/40 transition-all duration-300">
@@ -346,16 +363,14 @@ export default function Home() {
         </div>
       </section>
 
-      
-
-      {/* MEMBERSHIP CTA: Massive Typography (Inspired by Screenshot 168) */}
+      {/* MEMBERSHIP CTA: Massive Typography */}
       <section className="py-32 lg:py-48 px-6 lg:px-24 bg-[#e5e5e5] border-b border-neutral-300">
         <div className="max-w-5xl mx-auto">
           <span className="text-[#B0926A] text-xs uppercase tracking-[0.3em] font-semibold block mb-8">
             Join The Network
           </span>
           
-          <h2 className="text-4xl sm:text-6xl md:text-7xl lg:text-[80px] font-normal text-[#111111] tracking-tight leading-[1.05] mb-16">
+          <h2 className="text-4xl sm:text-6xl md:text-7xl lg:text-[80px] font-medium md:font-normal text-[#111111] tracking-tight leading-[1.05] mb-16">
             Become a member. <br />
             Shape the future of <br className="hidden sm:block" />
             agribusiness.
@@ -367,7 +382,9 @@ export default function Home() {
               className="inline-flex items-center justify-center gap-4 bg-[#111111] text-white px-10 py-5 text-xs font-semibold uppercase tracking-[0.2em] hover:bg-[#B0926A] hover:text-white transition-all duration-300 rounded-none group"
             >
               <span>Join our community now</span>
-              <span className="transform group-hover:translate-x-1 transition-transform duration-300">→</span>
+              <svg className="w-4 h-4 transform group-hover:translate-x-1 transition-transform duration-300" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
+                <path strokeLinecap="square" strokeLinejoin="miter" d="M5 12h14M12 5l7 7-7 7" />
+              </svg>
             </Link>
             
             <Link 
@@ -375,7 +392,9 @@ export default function Home() {
               className="inline-flex items-center justify-center gap-4 border border-[#111111] bg-transparent text-[#111111] px-10 py-5 text-xs font-semibold uppercase tracking-[0.2em] hover:bg-[#111111] hover:text-white transition-all duration-300 rounded-none group"
             >
               <span>Explore benefits</span>
-              <span className="transform group-hover:translate-x-1 transition-transform duration-300">→</span>
+              <svg className="w-4 h-4 transform group-hover:translate-x-1 transition-transform duration-300" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
+                <path strokeLinecap="square" strokeLinejoin="miter" d="M5 12h14M12 5l7 7-7 7" />
+              </svg>
             </Link>
           </div>
         </div>
@@ -389,7 +408,7 @@ export default function Home() {
               <span className="text-[#d2b79b] text-xs uppercase tracking-[0.3em] font-semibold block mb-3">
                 Collaborations
               </span>
-              <h2 className="text-4xl lg:text-5xl font-normal tracking-tight">
+              <h2 className="text-4xl lg:text-5xl font-medium sm:font-normal tracking-tight">
                 Our Partners
               </h2>
             </div>
@@ -398,7 +417,9 @@ export default function Home() {
               className="group inline-flex items-center gap-2 text-xs uppercase tracking-[0.2em] font-semibold text-white/80 hover:text-white transition-colors"
             >
               <span>Become a Partner</span>
-              <span className="text-base leading-none transition-transform group-hover:translate-x-1">↗</span>
+              <svg className="w-4 h-4 transform group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform duration-300" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
+                <path strokeLinecap="square" strokeLinejoin="miter" d="M7 17L17 7M17 7H9M17 7v8" />
+              </svg>
             </Link>
           </div>
 
@@ -425,21 +446,24 @@ export default function Home() {
             08 / Take Action
           </span>
           
-          <h2 className="text-4xl sm:text-6xl lg:text-7xl font-light tracking-tight leading-[1.08] text-white">
+          <h2 className="text-4xl sm:text-6xl lg:text-7xl font-normal lg:font-light tracking-tight leading-[1.08] text-white">
             Support the mission. <br />
-            <span className="text-neutral-500 font-extralight">Empower the next generation.</span>
+            <span className="text-neutral-500 font-light sm:font-extralight">Empower the next generation.</span>
           </h2>
           
-          <p className="text-neutral-400 text-base sm:text-lg font-light leading-relaxed max-w-2xl mx-auto pt-4">
+          <p className="text-neutral-400 text-base sm:text-lg font-normal sm:font-light leading-relaxed max-w-2xl mx-auto pt-4">
             Whether through direct mentorship, institutional funding, or active community membership, your involvement accelerates sustainable agricultural reform.
           </p>
           
           <div className="pt-8 flex flex-col sm:flex-row items-center justify-center gap-6">
             <Link
               to="/support-us"
-              className="w-full sm:w-auto border border-[#d2b79b] bg-[#d2b79b] text-[#0A0A0A] px-10 py-5 text-xs uppercase tracking-[0.25em] font-medium hover:bg-transparent hover:text-[#d2b79b] transition-all duration-500"
+              className="group w-full sm:w-auto border border-[#d2b79b] bg-[#d2b79b] text-[#0A0A0A] px-10 py-5 flex items-center justify-center gap-3 text-xs uppercase tracking-[0.25em] font-medium hover:bg-transparent hover:text-[#d2b79b] transition-all duration-500"
             >
-              Support Us Today →
+              <span>Support Us Today</span>
+              <svg className="w-4 h-4 transform group-hover:translate-x-1 transition-transform duration-300" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
+                <path strokeLinecap="square" strokeLinejoin="miter" d="M5 12h14M12 5l7 7-7 7" />
+              </svg>
             </Link>
             <Link
               to="/membership"
@@ -451,7 +475,6 @@ export default function Home() {
         </div>
       </section>
 
-      
     </div>
   );
 }
