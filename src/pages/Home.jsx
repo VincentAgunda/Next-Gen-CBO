@@ -1,3 +1,5 @@
+import React from "react";
+import { Link } from "react-router-dom";
 import HeroSection from "../components/HeroSection";
 import SectionHeader from "../components/SectionHeader";
 import ProgramCard from "../components/ProgramCard";
@@ -7,180 +9,171 @@ import { programs } from "../data/programs";
 import { innovations } from "../data/innovations";
 import { events } from "../data/events";
 import { partners } from "../data/partners";
-import { Link } from "react-router-dom";
 
 export default function Home() {
   return (
-    <div className="font-sans text-[#333333] bg-[#F5F5F7] antialiased selection:bg-[#b8a898] selection:text-white overflow-hidden">
+    <div className="font-sans text-black bg-white antialiased selection:bg-black selection:text-white overflow-hidden">
+      
+      {/* 01. HERO SECTION */}
       <HeroSection />
 
-      <section className="relative py-24 lg:py-36 px-6 md:px-12 lg:px-24 bg-[#F5F5F7] flex items-center min-h-[80vh] antialiased text-neutral-800 font-sans tracking-wide">
-      <div className="grid lg:grid-cols-2 gap-16 lg:gap-24 items-stretch w-full relative max-w-7xl mx-auto">
-        
-        <div className="w-full relative min-h-[400px] lg:min-h-0 border border-neutral-100 shadow-sm overflow-hidden group">
-          <img
-            src="/Hero/h1.png"
-            alt="Youth transforming communities in Makueni County"
-            className="absolute inset-0 w-full h-full object-cover block grayscale opacity-95 group-hover:scale-105 transition-transform duration-1000 ease-out"
-          />
-        </div>
+      {/* 02. MANIFESTO SECTION (Who We Are) */}
+      <section className="relative py-28 lg:py-40 px-[6vw] md:px-12 lg:px-24 bg-white flex items-center min-h-[85vh]">
+        <div className="grid lg:grid-cols-12 gap-12 lg:gap-20 items-center w-full max-w-[1440px] mx-auto">
+          
+          {/* Left Column: Image with minimal framing */}
+          <div className="lg:col-span-7 w-full aspect-[16/10] bg-[#f6f6f6] overflow-hidden relative">
+            <img
+              src="/Hero/h1.png"
+              alt="Youth transforming communities in Makueni County"
+              className="absolute inset-0 w-full h-full object-cover block grayscale contrast-110 hover:scale-102 transition-transform duration-700 ease-out"
+            />
+          </div>
 
-        <div className="flex flex-col justify-center py-6 max-w-xl">
-          <div className="mb-6 space-y-3">
-            <span className="block text-[#B0926A] text-[11px] uppercase tracking-[0.3em] font-medium">
-              Who We Are
+          {/* Right Column: High-contrast Editorial Copy */}
+          <div className="lg:col-span-5 flex flex-col justify-center max-w-xl">
+            <span className="block text-[#757575] text-[13px] font-normal mb-6 uppercase tracking-wider">
+              01 / Perspective
             </span>
             
-            <h2 className="text-neutral-900 font-sans text-3xl md:text-4xl lg:text-5xl font-light leading-tight tracking-tight">
-              Transforming Communities Through Youth Innovation
+            <h2 className="text-black text-4xl md:text-5xl lg:text-[56px] font-normal leading-[1.05] tracking-tight mb-8">
+              Community <br />
+              agriculture, <br />
+              reconfigured.
             </h2>
+
+            <div className="space-y-6 text-black font-normal text-[15px] md:text-[16px] leading-relaxed opacity-85">
+              <p>
+                Next-Generation Youth Agribusiness & Research CBO operates as an open ecosystem based in Makueni County, Kenya. We exist to scale sustainable cultivation systems, ecological conservation initiatives, and local economic resilience.
+              </p>
+              <p>
+                By linking rigorous empirical research with field-level implementation, we shift raw youth potential into definitive community action. The objective is clean, sustainable progression.
+              </p>
+            </div>
+
+            <div className="mt-12">
+              <Link
+                to="/about"
+                className="inline-flex items-center justify-between border border-black text-black px-6 py-3.5 text-[15px] font-normal hover:bg-black hover:text-white transition-colors duration-300 w-[220px]"
+              >
+                <span>Read the manifesto</span>
+                <span className="text-lg leading-none">→</span>
+              </Link>
+            </div>
           </div>
-
-          <div className="space-y-6 text-neutral-500 font-light text-sm md:text-base leading-relaxed">
-            <p>
-              Next-Generation Youth Agribusiness & Research CBO is a youth-led community-based organization based in Makueni County, Kenya, committed to transforming communities through sustainable agriculture, research, innovation, environmental conservation, and youth empowerment.
-            </p>
-            <p>
-              We bring together young innovators, researchers, entrepreneurs, and community members who are passionate about creating practical, evidence-based solutions to today's social, environmental, and economic challenges. By combining research with real-world action, we empower young people to become drivers of sustainable development while improving livelihoods within our communities.
-            </p>
-          </div>
-
-          <div className="mt-12">
-            <Link
-              to="/about"
-              className="inline-block border border-neutral-900 text-neutral-900 px-10 py-4 text-[11px] uppercase tracking-[0.25em] font-medium hover:bg-neutral-900 hover:text-white transition-all duration-500 ease-out shadow-sm"
-            >
-              Learn More About Us
-            </Link>
-          </div>
-        </div>
-
-        <div className="hidden lg:flex absolute right-[-40px] top-1/2 -translate-y-1/2 flex-col items-end gap-[8px]">
-          {[...Array(9)].map((_, index) => (
-            <div
-              key={index}
-              className={`h-[1px] transition-all duration-500 ${
-                index === 2 ? 'w-8 bg-neutral-900' : 'w-4 bg-neutral-200'
-              }`}
-            />
-          ))}
-        </div>
-        
-      </div>
-    </section>
-
-      {/* Three Pillars */}
-      <section className="py-24 lg:py-32 bg-[#e5e5e5]">
-        <div className="max-w-7xl mx-auto px-6 lg:px-12">
-          <SectionHeader eyebrow="Our Foundation" title="Our Strategic Pillars" />
           
-          <div className="grid md:grid-cols-3 gap-12 lg:gap-16 text-center mt-20">
+        </div>
+      </section>
+
+      {/* 03. CORE PILLARS SECTION (Strategic Pillars) */}
+      <section className="py-28 lg:py-36 bg-[#f6f6f6] border-t border-b border-[#E5E5E5]">
+        <div className="max-w-[1440px] mx-auto px-[6vw] md:px-12 lg:px-24">
+          <span className="block text-[#757575] text-[13px] font-normal mb-4 uppercase tracking-wider">
+            02 / Parameters
+          </span>
+          <h2 className="text-4xl md:text-[52px] font-normal tracking-tight text-black mb-20">
+            Strategic Pillars
+          </h2>
+          
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-y-16 md:gap-x-12 lg:gap-x-20">
             {/* Pillar 1 */}
-            <div className="flex flex-col items-center group">
-              <div className="w-[1px] h-16 bg-gradient-to-b from-[#b8a898]/20 via-[#b8a898] to-[#b8a898]/20 mb-8 group-hover:scale-y-125 transition-transform duration-500"></div>
-              <h3 className="text-2xl font-heading font-medium text-[#333333] mb-4">
+            <div className="flex flex-col border-t border-[#D9D9D9] pt-6">
+              <span className="text-[13px] text-[#757575] mb-8 font-normal">02.1</span>
+              <h3 className="text-[22px] font-normal text-black mb-4 tracking-tight">
                 Agribusiness Development
               </h3>
-              <p className="font-sans text-base text-[#666666] font-light leading-relaxed max-w-sm">
-                Supporting sustainable agricultural enterprises and income-generating opportunities.
+              <p className="text-[15px] text-black opacity-75 font-normal leading-relaxed max-w-sm">
+                Engineering high-efficiency agricultural enterprises to protect regional food security and construct real commercial careers.
               </p>
             </div>
             {/* Pillar 2 */}
-            <div className="flex flex-col items-center group">
-              <div className="w-[1px] h-16 bg-gradient-to-b from-[#b8a898]/20 via-[#b8a898] to-[#b8a898]/20 mb-8 group-hover:scale-y-125 transition-transform duration-500"></div>
-              <h3 className="text-2xl font-heading font-medium text-[#333333] mb-4">
-                Youth Empowerment
+            <div className="flex flex-col border-t border-[#D9D9D9] pt-6">
+              <span className="text-[13px] text-[#757575] mb-8 font-normal">02.2</span>
+              <h3 className="text-[22px] font-normal text-black mb-4 tracking-tight">
+                Leadership Systems
               </h3>
-              <p className="font-sans text-base text-[#666666] font-light leading-relaxed max-w-sm">
-                Building future leaders through rigorous training, mentorship, and entrepreneurship.
+              <p className="text-[15px] text-black opacity-75 font-normal leading-relaxed max-w-sm">
+                Systematic asset incubation through advanced analytical training frameworks, technical workspace optimization, and applied peer mentorship.
               </p>
             </div>
             {/* Pillar 3 */}
-            <div className="flex flex-col items-center group">
-              <div className="w-[1px] h-16 bg-gradient-to-b from-[#b8a898]/20 via-[#b8a898] to-[#b8a898]/20 mb-8 group-hover:scale-y-125 transition-transform duration-500"></div>
-              <h3 className="text-2xl font-heading font-medium text-[#333333] mb-4">
-                Research & Innovation
+            <div className="flex flex-col border-t border-[#D9D9D9] pt-6">
+              <span className="text-[13px] text-[#757575] mb-8 font-normal">02.3</span>
+              <h3 className="text-[22px] font-normal text-black mb-4 tracking-tight">
+                Empirical Analytics
               </h3>
-              <p className="font-sans text-base text-[#666666] font-light leading-relaxed max-w-sm">
-                Driving evidence-based solutions and supporting youth-led innovations.
+              <p className="text-[15px] text-black opacity-75 font-normal leading-relaxed max-w-sm">
+                Deploying research methodologies directly into field trials to generate empirical validation parameters for modern farming solutions.
               </p>
             </div>
-          </div>
-
-          <div className="text-center mt-20">
-            <Link 
-              to="/programs" 
-              className="inline-block font-heading border border-[#333333] bg-[#333333] text-white px-10 py-4 text-xs uppercase tracking-[0.2em] font-medium hover:bg-transparent hover:text-[#333333] transition-all duration-500"
-            >
-              View All Programs
-            </Link>
           </div>
         </div>
       </section>
 
-      {/* Featured Programs (Updated to match alternating design pattern) */}
-      <section className="bg-[#2d2932] py-24 lg:py-32">
-        <div className="max-w-7xl mx-auto px-6 lg:px-12 flex flex-col gap-24 lg:gap-40">
+      {/* 04. FEATURED CASE STUDIES (Mimics the dynamic style of Screenshot 171) */}
+      <section className="bg-white py-28 lg:py-40">
+        <div className="max-w-[1440px] mx-auto px-[6vw] md:px-12 lg:px-24 flex flex-col gap-32 lg:gap-48">
           
-          {/* Row 1: Text Left, Image Right */}
-          <div className="grid lg:grid-cols-2 gap-12 lg:gap-24 items-center">
-            <div className="max-w-lg order-2 lg:order-1">
-              <span className="text-[#d2b79b] font-heading text-xs uppercase tracking-[0.3em] block mb-4 font-medium">
-                Agribusiness Initiative
+          {/* Row 1: Copy with Polestar-style Inline Header Symbol */}
+          <div className="grid lg:grid-cols-12 gap-8 lg:gap-16 items-start">
+            <div className="lg:col-span-5 lg:pr-12">
+              <span className="text-[#757575] text-[13px] uppercase block mb-4 font-normal tracking-wider">
+                03 / Initiative
               </span>
-              <h2 className="text-white font-heading text-4xl lg:text-5xl font-light mb-6 leading-tight">
-                Empowering <br className="hidden lg:block" />
-                Future Leaders
+              
+              {/* Heading featuring the signature Polestar inline top-right arrow layout from Screenshot 171 */}
+              <h2 className="text-black text-4xl lg:text-[54px] font-normal mb-8 leading-[1.05] tracking-tight flex items-start gap-3">
+                <span className="text-3xl lg:text-5xl font-light translate-y-2 select-none">↗</span>
+                <span>Empowering Future Leaders</span>
               </h2>
-              <p className="text-[#c1bdc4] font-sans text-lg leading-relaxed mb-10 font-light">
-                Through agribusiness development, youth empowerment and
-                research-driven innovation, we equip young people with the
-                skills and opportunities needed to create sustainable livelihoods
-                and transform communities.
+              
+              <p className="text-black opacity-85 text-[16px] leading-relaxed mb-10 font-normal">
+                Through optimized enterprise development, community-first leadership models, and technological research integrations, we provide regional operators with the tools required to form a sustainable path forward.
               </p>
-              <Link to="/programs" className="inline-flex flex-col group font-heading w-max">
-                <span className="text-[#d2b79b] uppercase tracking-[0.2em] text-xs font-medium group-hover:text-white transition-colors duration-300">
-                  Explore Programs
+              
+              <Link to="/programs" className="inline-flex items-center gap-1.5 group font-normal text-[15px]">
+                <span className="hover:underline underline-offset-4 decoration-1">
+                  Explore deep initiatives
                 </span>
-                <div className="w-full h-[1px] bg-[#d2b79b] mt-2 group-hover:bg-white transition-all duration-500 ease-in-out"></div>
+                <span className="group-hover:translate-x-1 transition-transform duration-200">→</span>
               </Link>
             </div>
-            <div className="w-full order-1 lg:order-2">
+            
+            <div className="lg:col-span-7 w-full bg-[#f6f6f6] overflow-hidden aspect-[16/10]">
               <img
                 src="/Innovation/mushroom.png"
                 alt="Agribusiness Development"
-                className="w-full h-auto object-cover aspect-[4/3]"
+                className="w-full h-full object-cover grayscale"
               />
             </div>
           </div>
 
-          {/* Row 2: Image Left, Text Right */}
-          <div className="grid lg:grid-cols-2 gap-12 lg:gap-24 items-center">
-            <div className="w-full order-1">
+          {/* Row 2: Alternating Block */}
+          <div className="grid lg:grid-cols-12 gap-8 lg:gap-16 items-start">
+            <div className="lg:col-span-7 w-full bg-[#f6f6f6] overflow-hidden aspect-[16/10] order-2 lg:order-1">
               <img
-                src="/Innovation/mush2.png" // Replace with your actual second image path
+                src="/Innovation/mush2.png"
                 alt="Research & Innovation"
-                className="w-full h-auto object-cover aspect-[4/3]"
+                className="w-full h-full object-cover grayscale"
               />
             </div>
-            <div className="max-w-lg order-2 lg:pl-8">
-              <span className="text-[#d2b79b] font-heading text-xs uppercase tracking-[0.3em] block mb-4 font-medium">
-                Youth Innovation Hub
+            
+            <div className="lg:col-span-5 lg:pl-12 order-1 lg:order-2">
+              <span className="text-[#757575] text-[13px] uppercase block mb-4 font-normal tracking-wider">
+                04 / Incubation
               </span>
-              <h2 className="text-white font-heading text-4xl lg:text-5xl font-light mb-6 leading-tight">
-                First steps into the <br className="hidden lg:block" />
-                agricultural sector
+              <h2 className="text-black text-4xl lg:text-[54px] font-normal mb-8 leading-[1.05] tracking-tight flex items-start gap-3">
+                <span className="text-3xl lg:text-5xl font-light translate-y-2 select-none">↗</span>
+                <span>The Agriculture Innovation Hub</span>
               </h2>
-              <p className="text-[#c1bdc4] font-sans text-lg leading-relaxed mb-10 font-light">
-                Our innovation projects mark the start of community-led agricultural 
-                advancements, redefining how young entrepreneurs approach sustainable 
-                farming and local economic growth.
+              <p className="text-black opacity-85 text-[16px] leading-relaxed mb-10 font-normal">
+                Our collaborative spaces provide a dedicated point of origin for localized agricultural technology concepts, completely defining how regional micro-enterprises design high-yield local distribution networks.
               </p>
-              <Link to="/innovation-hub" className="inline-flex flex-col group font-heading w-max">
-                <span className="text-[#d2b79b] uppercase tracking-[0.2em] text-xs font-medium group-hover:text-white transition-colors duration-300">
-                  To The Project
+              <Link to="/innovation-hub" className="inline-flex items-center gap-1.5 group font-normal text-[15px]">
+                <span className="hover:underline underline-offset-4 decoration-1">
+                  View structural projects
                 </span>
-                <div className="w-full h-[1px] bg-[#d2b79b] mt-2 group-hover:bg-white transition-all duration-500 ease-in-out"></div>
+                <span className="group-hover:translate-x-1 transition-transform duration-200">→</span>
               </Link>
             </div>
           </div>
@@ -188,161 +181,158 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Innovation Preview */}
-      <section className="py-24 lg:py-32 bg-[#F5F5F7]">
-        <div className="max-w-[1400px] mx-auto px-6 lg:px-12">
+      {/* 05. INNOVATION DISPLAY COMPONENT */}
+      <section className="py-28 lg:py-36 bg-[#f6f6f6] border-t border-b border-[#E5E5E5]">
+        <div className="max-w-[1400px] mx-auto px-[6vw] md:px-12 lg:px-24">
           <SectionHeader 
-            eyebrow="Future Forward" 
-            title="Innovation Hub" 
-            subtitle="Youth-led innovations shaping the future of agriculture." 
+            eyebrow="05 / R&D Pipelines" 
+            title="Innovation Matrix" 
+            subtitle="Evaluating the active tech paradigms driving next-gen operational yields." 
           />
           
-          <div className="flex flex-col gap-12 lg:gap-16 mt-16 items-center">
+          <div className="flex flex-col gap-6 mt-16 items-center">
             {innovations.slice(0, 3).map((inv) => (
               <InnovationCard key={inv.id} {...inv} />
             ))}
           </div>
           
-          <div className="text-center mt-20">
+          <div className="mt-16 border-t border-[#D9D9D9] pt-8 text-left">
             <Link 
               to="/innovation-hub" 
-              className="inline-block font-heading text-xs uppercase tracking-[0.2em] font-medium text-[#666666] hover:text-[#333333] border-b border-[#cccccc] hover:border-[#333333] transition-all pb-1.5"
+              className="inline-flex items-center gap-1.5 font-normal text-[15px] hover:underline underline-offset-4 decoration-1"
             >
-              Explore Innovation Hub
+              <span>Explore full data index</span>
+              <span>→</span>
             </Link>
           </div>
         </div>
       </section>
 
-      {/* Upcoming Events */}
-      <section className="py-24 lg:py-32 px-6 lg:px-12 bg-[#858689]">
-        <div className="max-w-7xl mx-auto">
-          <div className="flex flex-col md:flex-row md:items-end justify-between mb-16 gap-8">
-            <div className="text-left max-w-2xl">
-              <span className="text-[#e2dacd] font-heading text-xs uppercase tracking-[0.25em] font-medium block mb-4">
-                Gatherings
-              </span>
-              <h2 className="text-4xl md:text-5xl font-heading font-light text-white tracking-wide mb-4">
-                Upcoming Events
-              </h2>
-              <p className="font-sans text-white/80 text-base md:text-lg font-light leading-relaxed">
-                Join our exclusive trainings, conferences, and community activities designed to foster growth and connection.
-              </p>
-            </div>
-            
-            <div className="hidden md:block">
-              <Link 
-                to="/events" 
-                className="font-heading text-xs uppercase tracking-[0.2em] font-medium text-white hover:text-[#d2b79b] border-b border-white/50 hover:border-[#d2b79b] transition-all duration-300 pb-1.5 whitespace-nowrap"
-              >
-                View All Events
-              </Link>
-            </div>
-          </div>
-
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {events.slice(0, 3).map((evt) => (
-              <EventCard key={evt.id} {...evt} />
-            ))}
-          </div>
-
-          <div className="mt-12 md:hidden text-center">
-            <Link 
-              to="/events" 
-              className="font-heading text-xs uppercase tracking-[0.2em] font-medium text-white hover:text-[#d2b79b] border-b border-white/50 hover:border-[#d2b79b] transition-all duration-300 pb-1.5"
-            >
-              View All Events
-            </Link>
-          </div>
-        </div>
-      </section>
-
-      {/* Membership CTA */}
-      <section className="py-24 lg:py-32 px-6 lg:px-12 bg-[#e5e5e5]">
-        <div className="max-w-4xl mx-auto text-center flex flex-col items-center">
-          <div className="w-10 h-10 border border-[#b8a898] rotate-45 mb-12 flex items-center justify-center">
-            <div className="w-2 h-2 bg-[#b8a898]"></div>
-          </div>
+      {/* 06. HIGH-IMPACT TYPOGRAPHIC INTERFACE (Perfectly mimicking Screenshot 168) */}
+      <section className="py-28 lg:py-40 px-[6vw] md:px-12 lg:px-24 bg-white">
+        <div className="max-w-[1440px] mx-auto">
           
-          <h2 className="text-3xl md:text-4xl lg:text-5xl font-heading font-light text-[#333333] mb-12 leading-[1.3] tracking-wide">
-            Become a member, join our community and gain access to training, mentorship, and networking.
-          </h2>
-
-          <div className="flex flex-col sm:flex-row justify-center gap-6 w-full sm:w-auto">
-            <Link 
-              to="/membership" 
-              className="font-heading border border-[#333333] bg-[#333333] text-white px-10 py-4 text-xs uppercase tracking-[0.2em] font-medium hover:bg-transparent hover:text-[#333333] transition-all duration-500 w-full sm:w-auto text-center"
-            >
-              Join Now
-            </Link>
-            <Link 
-              to="/membership" 
-              className="font-heading border border-[#979797] bg-transparent text-[#333333] px-10 py-4 text-xs uppercase tracking-[0.2em] font-medium hover:border-[#333333] transition-all duration-500 w-full sm:w-auto text-center"
-            >
-              Membership Benefits
-            </Link>
-          </div>
-        </div>
-      </section>
-
-      {/* Partners Preview */}
-      <section className="py-24 lg:py-32 px-6 lg:px-12 bg-[#7a787d]">
-        <div className="max-w-7xl mx-auto">
-          <div className="text-center mb-16">
-            <span className="text-[#d2b79b] font-heading text-xs uppercase tracking-[0.25em] font-medium block mb-4">
-              Collaborations
+          <div className="mb-16">
+            <span className="text-[#757575] text-[13px] uppercase tracking-wider font-normal block mb-4">
+              06 / Calendar
             </span>
-            <h2 className="text-4xl md:text-5xl font-heading font-light text-white tracking-wide">
-              Our Partners
+            <h2 className="text-4xl md:text-[52px] font-normal text-black tracking-tight">
+              Operational Gatherings
             </h2>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-12 lg:gap-24 max-w-4xl mx-auto items-center justify-items-center">
-            {partners.slice(0, 2).map((p, i) => (
-              <div key={i} className="w-full flex justify-center items-center py-4">
+          {/* Stacked Interactive Links mimicking Screenshot 168 exactly */}
+          <div className="w-full border-t border-black">
+            {events.slice(0, 3).map((evt) => (
+              <Link 
+                key={evt.id}
+                to={`/events`}
+                className="w-full py-10 lg:py-14 flex justify-between items-center border-b border-[#D9D9D9] group hover:opacity-60 transition-opacity duration-300"
+              >
+                <div className="flex flex-col md:flex-row md:items-baseline gap-2 md:gap-8 max-w-[85%]">
+                  <span className="text-3xl md:text-5xl lg:text-[64px] font-normal text-black tracking-tight block leading-none">
+                    {evt.title}
+                  </span>
+                  <span className="text-[14px] text-[#757575] uppercase tracking-wider font-normal whitespace-nowrap">
+                    {evt.date || "Scheduled"}
+                  </span>
+                </div>
+                {/* Minimal clean thin right chevron from image 168 */}
+                <span className="text-2xl md:text-4xl font-light text-black select-none pl-4 transition-transform duration-300 group-hover:translate-x-2">
+                  &gt;
+                </span>
+              </Link>
+            ))}
+          </div>
+
+          <div className="mt-14 text-right">
+            <Link 
+              to="/events" 
+              className="inline-flex items-center gap-1.5 font-normal text-[15px] border-b border-black pb-1 hover:opacity-60 transition-opacity duration-200"
+            >
+              <span>View all scheduled events</span>
+              <span>→</span>
+            </Link>
+          </div>
+
+        </div>
+      </section>
+
+      {/* 07. MINIMALIST ENGAGEMENT BLOCKS */}
+      <section className="py-28 lg:py-36 bg-[#f6f6f6] border-t border-[#E5E5E5]">
+        <div className="max-w-[1440px] mx-auto px-[6vw] md:px-12 lg:px-24 text-left">
+          <span className="text-[#757575] text-[13px] uppercase tracking-wider block mb-6">
+            07 / Cohesion
+          </span>
+          
+          <h2 className="text-3xl md:text-4xl lg:text-[48px] font-normal text-black mb-14 leading-[1.15] tracking-tight max-w-4xl">
+            Register as an active component inside our network ecosystem. Gain instant access to continuous empirical field documentation and scalable infrastructure resources.
+          </h2>
+
+          <div className="flex flex-col sm:flex-row gap-4">
+            <Link 
+              to="/membership" 
+              className="border border-black bg-black text-white px-6 py-3.5 text-[15px] font-normal hover:bg-transparent hover:text-black transition-colors duration-300 text-center sm:w-[180px]"
+            >
+              Join network
+            </Link>
+            <Link 
+              to="/membership" 
+              className="border border-[#B5B5B5] bg-transparent text-black px-6 py-3.5 text-[15px] font-normal hover:border-black transition-colors duration-300 text-center sm:w-[220px]"
+            >
+              Review specifications
+            </Link>
+          </div>
+        </div>
+      </section>
+
+      {/* 08. ECOSYSTEM PARTNERS PREVIEW */}
+      <section className="py-24 bg-white border-t border-[#E5E5E5]">
+        <div className="max-w-[1440px] mx-auto px-[6vw] md:px-12 lg:px-24">
+          <div className="flex flex-col md:flex-row md:items-baseline justify-between mb-16 gap-4">
+            <h2 className="text-2xl font-normal text-black tracking-tight">
+              Institutional Integration
+            </h2>
+            <Link to="/partnerships" className="text-[14px] font-normal hover:underline underline-offset-4">
+              Become a verified partner →
+            </Link>
+          </div>
+
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-8 items-center opacity-60">
+            {partners.slice(0, 4).map((p, i) => (
+              <div key={i} className="w-full flex justify-start items-center py-4">
                 <img 
                   src={p.image || p.logo} 
                   alt={p.name} 
-                  className="w-auto h-auto max-h-36 md:max-h-48 lg:max-h-56 object-contain grayscale invert brightness-200 opacity-75 hover:grayscale-0 hover:invert-0 hover:brightness-100 hover:opacity-100 hover:scale-105 transition-all duration-500 cursor-pointer" 
+                  className="max-h-12 w-auto object-contain grayscale text-black filter contrast-200" 
                 />
               </div>
             ))}
           </div>
-
-          <div className="text-center mt-20">
-            <Link 
-              to="/partnerships" 
-              className="inline-block font-heading text-xs uppercase tracking-[0.2em] font-medium text-white/70 hover:text-white border-b border-white/20 hover:border-white transition-all pb-1.5"
-            >
-              Become a Partner
-            </Link>
-          </div>
         </div>
       </section>
 
-      {/* Support Us CTA */}
-      <section className="py-32 md:py-48 bg-[#3B3A38] px-6 lg:px-12 flex flex-col items-center justify-center">
-        <div className="max-w-4xl mx-auto flex flex-col items-center text-center">
-          <span className="text-[#94938F] font-heading text-[11px] uppercase tracking-[0.3em] mb-6 block font-medium">
-            Make An Impact
+      {/* 09. FULL-BLEED CTA WRAPPER (Support Us) */}
+      <section className="py-36 md:py-48 bg-black text-white px-[6vw] md:px-12 lg:px-24 flex flex-col items-start justify-center">
+        <div className="max-w-[1440px] mx-auto w-full">
+          <span className="text-[#858585] text-[13px] uppercase tracking-wider mb-6 block font-normal">
+            08 / Sustainability
           </span>
           
-          <h2 className="text-5xl md:text-6xl lg:text-7xl font-heading font-light mb-10 text-[#D4CBB6] tracking-wide">
-            Support Our Mission
+          <h2 className="text-5xl md:text-6xl lg:text-[80px] font-normal mb-8 text-white leading-none tracking-tighter max-w-4xl">
+            Fund the transition.
           </h2>
           
-          <p className="text-[#94938F] font-sans text-lg md:text-xl font-light leading-relaxed max-w-2xl mb-16 mx-auto">
-            Your donation or volunteer effort can change lives. Help us build a sustainable future for the next generation.
+          <p className="text-[#858585] text-[16px] md:text-[18px] font-normal leading-relaxed max-w-xl mb-16">
+            Direct alternative capital allocations toward localized climate development models and scientific equipment provisioning for smallholder networks.
           </p>
           
           <Link 
             to="/support-us" 
-            className="inline-flex flex-col group text-[#D4CBB6] font-heading text-xs uppercase tracking-[0.2em] font-medium transition-all duration-300"
+            className="inline-flex items-center justify-between border border-white text-white px-6 py-4 text-[15px] font-normal hover:bg-white hover:text-black transition-colors duration-300 w-[240px]"
           >
-            <span className="group-hover:text-white transition-colors duration-300">
-              Support Us
-            </span>
-            <div className="w-full h-[1px] bg-[#D4CBB6] mt-2 group-hover:bg-white transition-all duration-500"></div>
+            <span>Initiate contribution</span>
+            <span className="text-lg leading-none">→</span>
           </Link>
         </div>
       </section>
