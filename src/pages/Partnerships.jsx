@@ -9,9 +9,13 @@ export default function Partnerships() {
   const [msg, setMsg] = useState("");
 
   const onSubmit = async (data) => {
-    await addDoc(collection(db, "partnership_requests"), { ...data, createdAt: new Date() });
-    setMsg("Partnership request securely catalogued.");
-    reset();
+    try {
+      await addDoc(collection(db, "partnership_requests"), { ...data, createdAt: new Date() });
+      setMsg("Partnership request securely catalogued.");
+      reset();
+    } catch (err) {
+      console.error("Partnership tracking error:", err);
+    }
   };
 
   return (
@@ -31,7 +35,7 @@ export default function Partnerships() {
 
       <section className="max-w-5xl mx-auto border-y border-neutral-100 py-16 mb-40">
         <div className="flex flex-wrap justify-center items-center gap-16 md:gap-24 opacity-60 grayscale filter contrast-200">
-          {partners.map((p, i) => (
+          {partners && partners.map((p, i) => (
             <img key={i} src={p.logo} alt={p.name} className="h-12 object-contain hover:opacity-100 transition-opacity duration-300" />
           ))}
         </div>

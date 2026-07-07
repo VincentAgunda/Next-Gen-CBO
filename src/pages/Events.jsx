@@ -26,75 +26,97 @@ export default function Events() {
   };
 
   return (
-    <div className="bg-[#F5F5F7] min-h-screen py-32 px-6 md:px-12 lg:px-24 antialiased text-neutral-800 font-sans tracking-wide">
+    <div className="font-sans text-black bg-white antialiased selection:bg-black selection:text-white overflow-hidden min-h-screen">
       
-      <header className="max-w-4xl mx-auto text-center space-y-6 mb-24">
-        <span className="text-[11px] uppercase tracking-[0.3em] text-[#B0926A] font-medium block">
-          Knowledge Ecosystems
+      {/* TYPOGRAPHIC HERO */}
+      <header className="pt-40 pb-28 px-[6vw] md:px-12 lg:px-24 max-w-[1440px] mx-auto">
+        <span className="block text-[#757575] text-[13px] font-normal mb-8 uppercase tracking-wider">
+          01 / Knowledge Ecosystems
         </span>
-        <h1 className="text-4xl md:text-5xl font-sans font-light tracking-tight text-neutral-900 leading-tight">
-          Events & Technical Symposia
+        <h1 className="text-5xl md:text-7xl lg:text-[110px] font-normal leading-[0.95] tracking-tight text-black mb-12">
+          Events & <br />
+          Symposia.
         </h1>
-        <p className="max-w-2xl mx-auto text-neutral-500 font-light text-base leading-relaxed pt-2">
-          Join our structured fields workshops, tech-transfer operations briefings, and evidence-based rural research presentations.
+        <p className="max-w-3xl text-black opacity-85 font-normal text-[16px] md:text-[18px] leading-relaxed">
+          Join our structured fields workshops, tech-transfer operations briefings, and evidence-based rural research presentations designed to scale localized innovation.
         </p>
       </header>
 
-      <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
-        {events.map((evt) => (
-          <div 
-            key={evt.id} 
-            className="border border-neutral-100 p-8 flex flex-col justify-between space-y-6 hover:border-neutral-300 transition-all duration-500 bg-white shadow-sm"
-          >
-            <EventCard {...evt} />
+      {/* EVENT GRID */}
+      <section className="pb-28 px-[6vw] md:px-12 lg:px-24">
+        <div className="max-w-[1440px] mx-auto border-t border-[#E5E5E5] pt-16">
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 lg:gap-12">
+            {events.map((evt) => (
+              <div 
+                key={evt.id} 
+                className="group border border-[#E5E5E5] bg-[#f6f6f6] hover:bg-black hover:text-white transition-colors duration-500 overflow-hidden"
+              >
+                <div className="p-8 h-full flex flex-col justify-between">
+                  {/* Assuming EventCard inherits the parent text color nicely, if not, adjust inside EventCard */}
+                  <EventCard {...evt} />
+                </div>
+              </div>
+            ))}
           </div>
-        ))}
-      </div>
+        </div>
+      </section>
 
+      {/* REGISTRATION FORM (Conditional) */}
       {registerEventId && (
-        <section className="mt-32 max-w-2xl mx-auto border border-neutral-100 p-10 md:p-14 bg-white shadow-sm">
-          <div className="space-y-3 mb-10 text-center">
-            <span className="text-[10px] uppercase tracking-widest text-[#B0926A] block font-medium">Reservation Registry</span>
-            <h3 className="text-2xl font-sans font-light text-neutral-900">Secure Access Pass</h3>
-          </div>
-
-          <form onSubmit={handleRegister} className="space-y-8">
-            <input 
-              name="fullName" 
-              placeholder="Full Legal Name" 
-              required 
-              className="w-full bg-white border-b border-neutral-200 py-3 text-sm focus:outline-none focus:border-neutral-900 transition-colors font-light placeholder:text-neutral-300 text-neutral-800 rounded-none" 
-            />
-            <div className="grid md:grid-cols-2 gap-8">
-              <input 
-                name="phone" 
-                placeholder="Mobile Verification Number" 
-                required 
-                className="w-full bg-white border-b border-neutral-200 py-3 text-sm focus:outline-none focus:border-neutral-900 transition-colors font-light placeholder:text-neutral-300 text-neutral-800 rounded-none" 
-              />
-              <input 
-                name="email" 
-                type="email" 
-                placeholder="Active Email Address" 
-                required 
-                className="w-full bg-white border-b border-neutral-200 py-3 text-sm focus:outline-none focus:border-neutral-900 transition-colors font-light placeholder:text-neutral-300 text-neutral-800 rounded-none" 
-              />
-            </div>
-            <input 
-              name="organization" 
-              placeholder="Institutional / Organizational Affiliation" 
-              className="w-full bg-white border-b border-neutral-200 py-3 text-sm focus:outline-none focus:border-neutral-900 transition-colors font-light placeholder:text-neutral-300 text-neutral-800 rounded-none" 
-            />
+        <section className="py-28 bg-[#f6f6f6] px-[6vw] md:px-12 lg:px-24 border-t border-[#E5E5E5]">
+          <div className="max-w-3xl mx-auto">
             
-            <div className="text-center pt-4">
-              <button className="border border-neutral-900 text-neutral-900 px-12 py-4 text-[11px] uppercase tracking-[0.25em] font-medium hover:bg-neutral-900 hover:text-white transition-all duration-500 ease-out rounded-none">
-                Register Reservation
-              </button>
-              {regMsg && (
-                <p className="text-xs text-neutral-500 font-mono tracking-wider mt-4">{regMsg}</p>
-              )}
+            <div className="mb-16">
+              <span className="text-[#757575] text-[13px] uppercase tracking-wider font-normal block mb-4">
+                Registry 
+              </span>
+              <h2 className="text-4xl md:text-[52px] font-normal text-black tracking-tight leading-none">
+                Secure Access Pass
+              </h2>
             </div>
-          </form>
+
+            <form onSubmit={handleRegister} className="space-y-8 border-t border-[#D9D9D9] pt-12">
+              <div className="grid md:grid-cols-2 gap-8 lg:gap-12">
+                <input 
+                  name="fullName" 
+                  placeholder="Full Legal Name" 
+                  required 
+                  className="w-full bg-transparent border-b border-[#D9D9D9] py-4 text-[16px] focus:outline-none focus:border-black transition-colors font-normal placeholder:text-[#757575] text-black rounded-none" 
+                />
+                <input 
+                  name="organization" 
+                  placeholder="Institutional Affiliation" 
+                  className="w-full bg-transparent border-b border-[#D9D9D9] py-4 text-[16px] focus:outline-none focus:border-black transition-colors font-normal placeholder:text-[#757575] text-black rounded-none" 
+                />
+              </div>
+              
+              <div className="grid md:grid-cols-2 gap-8 lg:gap-12">
+                <input 
+                  name="phone" 
+                  placeholder="Mobile Verification Number" 
+                  required 
+                  className="w-full bg-transparent border-b border-[#D9D9D9] py-4 text-[16px] focus:outline-none focus:border-black transition-colors font-normal placeholder:text-[#757575] text-black rounded-none" 
+                />
+                <input 
+                  name="email" 
+                  type="email" 
+                  placeholder="Active Email Address" 
+                  required 
+                  className="w-full bg-transparent border-b border-[#D9D9D9] py-4 text-[16px] focus:outline-none focus:border-black transition-colors font-normal placeholder:text-[#757575] text-black rounded-none" 
+                />
+              </div>
+              
+              <div className="pt-12 flex flex-col sm:flex-row items-center justify-between gap-6">
+                <button className="w-full sm:w-auto inline-flex items-center justify-between border border-black bg-black text-white px-10 py-5 text-[15px] font-normal hover:bg-white hover:text-black transition-colors duration-300">
+                  <span>Register Reservation</span>
+                  <span className="ml-8 text-lg leading-none">↗</span>
+                </button>
+                {regMsg && (
+                  <p className="text-[14px] text-[#757575] font-normal">{regMsg}</p>
+                )}
+              </div>
+            </form>
+          </div>
         </section>
       )}
     </div>

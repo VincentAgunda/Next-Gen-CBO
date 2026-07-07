@@ -8,9 +8,13 @@ export default function SupportUs() {
   const [msg, setMsg] = useState("");
 
   const volunteerSubmit = async (data) => {
-    await addDoc(collection(db, "volunteers"), { ...data, status: "pending", createdAt: new Date() });
-    setMsg("Volunteer record registered under pending verification status.");
-    reset();
+    try {
+      await addDoc(collection(db, "volunteers"), { ...data, status: "pending", createdAt: new Date() });
+      setMsg("Volunteer record registered under pending verification status.");
+      reset();
+    } catch (err) {
+      console.error("Error registering volunteer:", err);
+    }
   };
 
   return (

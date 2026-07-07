@@ -37,12 +37,12 @@ export default function InnovationHub() {
     <div className="bg-[#F5F5F7] min-h-screen py-24 px-6 lg:px-12">
       <div className="max-w-[1400px] mx-auto">
         
-        {/* Header & Controls */}
         <div className="flex flex-col md:flex-row justify-between items-start md:items-end gap-8 mb-16 pb-8 border-b border-[#e5e5e5]">
           <div className="max-w-xl">
             <SectionHeader 
               title="Innovation Hub" 
               subtitle="Pioneering systems and hardware architectures driving deep agricultural automation." 
+              center={false}
             />
           </div>
           <button
@@ -53,7 +53,6 @@ export default function InnovationHub() {
           </button>
         </div>
 
-        {/* Submission Form */}
         {showForm && (
           <div className="bg-white p-10 lg:p-16 border border-[#e5e5e5] max-w-3xl mx-auto mb-20 transition-all duration-500">
             <h3 className="text-[#1a1a1a] font-sans text-2xl lg:text-3xl font-normal leading-[1.2] mb-8 tracking-tight">
@@ -100,7 +99,6 @@ export default function InnovationHub() {
           </div>
         )}
 
-        {/* Animated Innovations List mapping to the new horizontal wide-card layout */}
         <div className="flex flex-col gap-12 lg:gap-16 items-center w-full">
           {innovations.length === 0 ? (
             <div className="w-full max-w-[1200px] mx-auto bg-white border border-[#e5e5e5] p-16 text-center text-[#757575] font-light text-[15px]">

@@ -1,20 +1,20 @@
-import SectionHeader from "../components/SectionHeader";
+import React from "react";
 
 const governance = [
-  { role: "Chairperson", name: "Shadrach Munuve" },
-  { role: "Vice Chairperson", name: "Ochieng’ Samuel Owino" },
-  { role: "Secretary", name: "Veronica Mwende" },
-  { role: "Assistant Secretary", name: "Patrick Otieno" },
-  { role: "Treasurer", name: "Erick Muthonzwe" },
-  { role: "Founding Member", name: "Vincent Agunda" },
-  { role: "Founding Member", name: "William Mikaia" },
-  { role: "Founding Member", name: "Diana Mulusa" },
-  { role: "Founding Member", name: "Cleophas Mwendwa" },
-  { role: "Founding Member", name: "Esther Muia" },
-  { role: "Founding Member", name: "Roselevina Wao" },
-  { role: "Founding Member", name: "Sarah Kalekye" },
-  { role: "Founding Member", name: "Evans Nzomo" },
-  { role: "Founding Member", name: "Doreen Wangari" },
+  { role: "Chairperson", name: "Shadrach Munuve", image: "/images/governance/shadrach-munuve.jpg" },
+  { role: "Vice Chairperson", name: "Ochieng’ Samuel Owino", image: "/images/governance/ochieng-owino.jpg" },
+  { role: "Secretary", name: "Veronica Mwende", image: "/images/governance/veronica-mwende.jpg" },
+  { role: "Assistant Secretary", name: "Patrick Otieno", image: "/images/governance/patrick-otieno.jpg" },
+  { role: "Treasurer", name: "Erick Muthonzwe", image: "/images/governance/erick-muthonzwe.jpg" },
+  { role: "Founding Member", name: "Vincent Agunda", image: "/images/governance/vincent-agunda.jpg" },
+  { role: "Founding Member", name: "William Mikaia", image: "/images/governance/william-mikaia.jpg" },
+  { role: "Founding Member", name: "Diana Mulusa", image: "/images/governance/diana-mulusa.jpg" },
+  { role: "Founding Member", name: "Cleophas Mwendwa", image: "/images/governance/cleophas-mwendwa.jpg" },
+  { role: "Founding Member", name: "Esther Muia", image: "/images/governance/esther-muia.jpg" },
+  { role: "Founding Member", name: "Roselevina Wao", image: "/images/governance/roselevina-wao.jpg" },
+  { role: "Founding Member", name: "Sarah Kalekye", image: "/images/governance/sarah-kalekye.jpg" },
+  { role: "Founding Member", name: "Evans Nzomo", image: "/images/governance/evans-nzomo.jpg" },
+  { role: "Founding Member", name: "Doreen Wangari", image: "/images/governance/doreen-wangari.jpg" },
 ];
 
 const coreValues = [
@@ -28,193 +28,243 @@ const coreValues = [
 
 export default function About() {
   return (
-    <div className="bg-[#F5F5F7] min-h-screen py-32 px-6 md:px-12 lg:px-24 antialiased text-neutral-800 selection:bg-neutral-900 selection:text-white font-sans tracking-wide">
+    <div className="font-sans text-black bg-white antialiased selection:bg-black selection:text-white overflow-hidden min-h-screen">
       
-      {/* 1. HERO HEADER: Mimicking Burmester's Centered Elegance */}
-      <header className="max-w-4xl mx-auto text-center space-y-6 mb-32">
-        <span className="text-[11px] uppercase tracking-[0.3em] text-[#B0926A] font-medium block">
-          Institutional Framework
+      {/* 01. TYPOGRAPHIC HERO */}
+      <header className="pt-40 pb-28 px-[6vw] md:px-12 lg:px-24 max-w-[1440px] mx-auto">
+        <span className="block text-[#757575] text-[13px] font-normal mb-8 uppercase tracking-wider">
+          01 / Framework
         </span>
-        <h1 className="text-4xl md:text-5xl font-serif font-light tracking-tight text-neutral-900 leading-tight">
-          Our Foundation & Philosophy
+        <h1 className="text-5xl md:text-7xl lg:text-[110px] font-normal leading-[0.95] tracking-tight text-black mb-12">
+          Foundation & <br />
+          Philosophy.
         </h1>
-        <p className="max-w-2xl mx-auto text-neutral-500 font-light text-base md:text-lg leading-relaxed pt-2">
+        <p className="max-w-3xl text-black opacity-85 font-normal text-[16px] md:text-[18px] leading-relaxed">
           Formally constituted and registered under the Organization Act (No. 30 of 2022, Laws of Kenya), 
           the Next-Generation Youth Agribusiness & Researchers CBO operates as a premium catalyst for 
           evidence-based sustainable development from its regional seat in the Emali-Sultan Humud Municipality, Makueni County.
         </p>
       </header>
 
-      {/* 2. DUAL IMAGE / BLOCK ROW: Symmetrical Column Layout */}
-      <section className="max-w-6xl mx-auto grid md:grid-cols-2 gap-16 lg:gap-24 mb-40">
-        <div className="space-y-6 group">
-          <div className="aspect-[4/3] w-full bg-white overflow-hidden relative border border-neutral-100 shadow-sm">
-            <img 
-              src="/images/about/vision-blueprint.jpg" 
-              alt="Strategic agricultural research fields" 
-              className="w-full h-full object-cover grayscale opacity-90 group-hover:scale-105 transition-transform duration-1000 ease-out"
-            />
-          </div>
-          <div className="space-y-2 max-w-md">
-            <span className="text-[10px] uppercase tracking-widest text-[#B0926A] block font-medium">Strategic Horizon</span>
-            <h3 className="text-xl font-serif font-normal text-neutral-900">The Vision Blueprint</h3>
-            <p className="text-sm text-neutral-500 font-light leading-relaxed">
+      {/* 02. DUAL IMAGE BLOCK (Vision & Mission) */}
+      <section className="py-28 bg-[#f6f6f6] px-[6vw] md:px-12 lg:px-24 border-t border-b border-[#E5E5E5]">
+        <div className="max-w-[1440px] mx-auto grid md:grid-cols-2 gap-16 lg:gap-24">
+          
+          {/* Vision */}
+          <div className="flex flex-col border-t border-[#D9D9D9] pt-6">
+            <span className="text-[13px] text-[#757575] mb-8 font-normal uppercase tracking-wider">
+              02.1 / Horizon
+            </span>
+            <div className="aspect-[16/10] w-full bg-[#E5E5E5] mb-10 overflow-hidden relative group">
+              <img 
+                src="/images/about/vision-blueprint.jpg" 
+                alt="Strategic agricultural research fields" 
+                className="w-full h-full object-cover grayscale contrast-110 group-hover:scale-102 transition-transform duration-700"
+              />
+            </div>
+            <h3 className="text-3xl lg:text-[40px] font-normal text-black mb-6 tracking-tight leading-none">
+              The Vision Blueprint
+            </h3>
+            <p className="text-[16px] text-black opacity-75 font-normal leading-relaxed max-w-md">
               To be a leading youth-driven research and innovation group, advancing sustainable agriculture, 
               climate resilience, and inclusive development within the young Organization as well as to the community.
             </p>
           </div>
-        </div>
 
-        <div className="space-y-6 group md:pt-12">
-          <div className="aspect-[4/3] w-full bg-white overflow-hidden relative border border-neutral-100 shadow-sm">
-            <img 
-              src="/images/about/mission-parameter.jpg" 
-              alt="Youth researchers collecting data" 
-              className="w-full h-full object-cover grayscale opacity-90 group-hover:scale-105 transition-transform duration-1000 ease-out"
-            />
-          </div>
-          <div className="space-y-2 max-w-md">
-            <span className="text-[10px] uppercase tracking-widest text-[#B0926A] block font-medium">Operational Mandate</span>
-            <h3 className="text-xl font-serif font-normal text-neutral-900">The Mission Parameter</h3>
-            <p className="text-sm text-neutral-500 font-light leading-relaxed">
+          {/* Mission */}
+          <div className="flex flex-col border-t border-[#D9D9D9] pt-6">
+            <span className="text-[13px] text-[#757575] mb-8 font-normal uppercase tracking-wider">
+              02.2 / Mandate
+            </span>
+            <div className="aspect-[16/10] w-full bg-[#E5E5E5] mb-10 overflow-hidden relative group">
+              <img 
+                src="/images/about/mission-parameter.jpg" 
+                alt="Youth researchers collecting data" 
+                className="w-full h-full object-cover grayscale contrast-110 group-hover:scale-102 transition-transform duration-700"
+              />
+            </div>
+            <h3 className="text-3xl lg:text-[40px] font-normal text-black mb-6 tracking-tight leading-none">
+              The Mission Parameter
+            </h3>
+            <p className="text-[16px] text-black opacity-75 font-normal leading-relaxed max-w-md">
               To empower young innovators, researchers and communities focused in agribusiness to generate 
               evidence-based solutions that promote sustainable agriculture, climate action, and poverty 
               eradication through research, innovation, and community engagement.
             </p>
           </div>
+
         </div>
       </section>
 
-      {/* 3. ASYMMETRICAL ROW (LEFT IMAGE / RIGHT TEXT): Innovation for Eternity Style */}
-      <section className="max-w-6xl mx-auto grid lg:grid-cols-12 gap-12 lg:gap-24 items-center mb-44">
-        <div className="lg:col-span-5 aspect-[3/4] w-full bg-white overflow-hidden border border-neutral-100 shadow-sm">
-          <img 
-            src="/images/about/objectives-manifesto.jpg" 
-            alt="Close up of structural botany and research tools" 
-            className="w-full h-full object-cover grayscale contrast-115"
-          />
-        </div>
-        <div className="lg:col-span-7 space-y-8 lg:pl-6">
-          <div className="space-y-2">
-            <span className="text-[11px] uppercase tracking-[0.25em] text-[#B0926A] block font-medium">Statutory Charter</span>
-            <h2 className="text-3xl font-serif font-light text-neutral-900 tracking-tight">Constitutional Objectives</h2>
+      {/* 03. ASYMMETRICAL ROW (Constitutional Objectives) */}
+      <section className="bg-white py-28 lg:py-40">
+        <div className="max-w-[1440px] mx-auto px-[6vw] md:px-12 lg:px-24 grid lg:grid-cols-12 gap-12 lg:gap-20 items-start">
+          
+          <div className="lg:col-span-7 w-full bg-[#f6f6f6] overflow-hidden aspect-[4/3]">
+            <img 
+              src="/images/about/objectives-manifesto.jpg" 
+              alt="Close up of structural botany and research tools" 
+              className="w-full h-full object-cover grayscale contrast-125"
+            />
           </div>
-          <div className="space-y-6 text-neutral-600 font-light text-sm leading-relaxed max-w-xl">
-            <p>
+
+          <div className="lg:col-span-5 lg:pl-8 flex flex-col justify-center">
+            <span className="text-[#757575] text-[13px] uppercase block mb-6 font-normal tracking-wider">
+              03 / Statutory Charter
+            </span>
+            
+            <h2 className="text-black text-4xl lg:text-[52px] font-normal mb-10 leading-[1.05] tracking-tight flex items-start gap-3">
+              <span className="text-3xl lg:text-5xl font-light translate-y-1.5 select-none">↗</span>
+              <span>Constitutional <br/> Objectives</span>
+            </h2>
+            
+            <p className="text-black opacity-85 text-[16px] leading-relaxed mb-10 font-normal border-b border-[#E5E5E5] pb-8">
               Pursuant to Section 3.3 of our founding charter, NGYAR maps its resource allocation against rigorous scientific benchmarks to ensure sustainable livelihoods and environmental stewardship across local ecosystems.
             </p>
-            <ul className="space-y-4 border-l border-[#B0926A]/30 pl-6 text-neutral-500">
-              <li>• Promote youth-led research and innovation in sustainable agriculture, climate change, and environmental conservation.</li>
-              <li>• Conduct, support, and disseminate scientific and community-based research for sustainable local development.</li>
-              <li>• Build research capacity and advanced technical skills among young innovators through verified training and academic collaborations.</li>
-              <li>• Support the immediate development, deployment, and community adoption of climate-smart, high-yield agricultural technologies.</li>
-              <li>• Actively engage communities, legacy institutions, and regional policymakers in evidence-based decisions.</li>
+            
+            <ul className="space-y-4 text-[14px] text-black opacity-75 font-normal">
+              <li className="flex gap-4 border-b border-[#f6f6f6] pb-4">
+                <span className="opacity-50">01</span>
+                <span>Promote youth-led research and innovation in sustainable agriculture and climate resilience.</span>
+              </li>
+              <li className="flex gap-4 border-b border-[#f6f6f6] pb-4">
+                <span className="opacity-50">02</span>
+                <span>Conduct and deploy scientific, community-based research for localized development.</span>
+              </li>
+              <li className="flex gap-4 border-b border-[#f6f6f6] pb-4">
+                <span className="opacity-50">03</span>
+                <span>Build capacity through advanced technical training and academic collaboration frameworks.</span>
+              </li>
+              <li className="flex gap-4">
+                <span className="opacity-50">04</span>
+                <span>Accelerate the adoption of climate-smart, high-yield agricultural technologies.</span>
+              </li>
             </ul>
           </div>
+
         </div>
       </section>
 
-      {/* 4. PREMIUM TYPOGRAPHIC PULL QUOTE: Completely Clean & Grand */}
-      <section className="max-w-4xl mx-auto text-center my-52 py-12 border-y border-neutral-100">
-        <blockquote className="font-serif italic text-2xl md:text-3xl text-neutral-800 font-light max-w-3xl mx-auto leading-relaxed">
-          “To empower young innovators, researchers and communities focused in agribusiness to generate evidence-based solutions that promote sustainable development.”
-        </blockquote>
-        <cite className="text-[10px] uppercase tracking-[0.3em] text-[#B0926A] font-medium not-italic mt-6 block">
-          — Section 3.2, National Regulatory Filing
-        </cite>
+      {/* 04. ABSOLUTE HIGH-CONTRAST STATEMENT */}
+      <section className="bg-black text-white py-32 lg:py-48 px-[6vw] md:px-12 lg:px-24 flex items-center justify-center">
+        <div className="max-w-5xl mx-auto text-center">
+          <h2 className="text-3xl md:text-5xl lg:text-[64px] font-normal leading-[1.1] tracking-tight">
+            “To empower young innovators, researchers and communities focused in agribusiness to generate evidence-based solutions that promote sustainable development.”
+          </h2>
+          <span className="block mt-12 text-[#858585] text-[13px] uppercase tracking-wider font-normal">
+            — Section 3.2, National Regulatory Filing
+          </span>
+        </div>
       </section>
 
-      {/* 5. ASYMMETRICAL ROW (RIGHT IMAGE / LEFT TEXT): Customized Design Style */}
-      <section className="max-w-6xl mx-auto grid lg:grid-cols-12 gap-12 lg:gap-24 items-center mb-52">
-        <div className="lg:col-span-7 space-y-8 order-2 lg:order-1 lg:pr-6">
-          <div className="space-y-2">
-            <span className="text-[11px] uppercase tracking-[0.25em] text-[#B0926A] block font-medium">Operational Framework</span>
-            <h2 className="text-3xl font-serif font-light text-neutral-900 tracking-tight">Proposed Focus Initiatives</h2>
+      {/* 05. CORE VALUES LIST */}
+      <section className="py-28 lg:py-40 px-[6vw] md:px-12 lg:px-24 bg-white">
+        <div className="max-w-[1440px] mx-auto">
+          
+          <div className="mb-16">
+            <span className="text-[#757575] text-[13px] uppercase tracking-wider font-normal block mb-4">
+              04 / Ethics
+            </span>
+            <h2 className="text-4xl md:text-[52px] font-normal text-black tracking-tight">
+              Institutional Discipline
+            </h2>
           </div>
-          <p className="text-neutral-500 font-light text-sm leading-relaxed max-w-xl">
-            Our multi-tiered execution pipeline transforms foundational academic studies into physical community infrastructure. 
-            By merging tech-driven research frameworks with intensive regional output programs, we establish scalable solutions 
-            for sustainable, high-value agricultural ecosystems.
-          </p>
-          <div className="grid sm:grid-cols-2 gap-8 pt-2">
-            <div className="space-y-2">
-              <h4 className="text-xs uppercase tracking-wider font-medium text-neutral-900">Agribusiness Value Chains</h4>
-              <p className="text-xs text-neutral-400 font-light leading-relaxed">High-density organic poultry frameworks, precision mushroom cultivation tech, custom feed formulations, and tech-driven apiary management matrices.</p>
-            </div>
-            <div className="space-y-2">
-              <h4 className="text-xs uppercase tracking-wider font-medium text-neutral-900">Digital Agriculture & Hubs</h4>
-              <p className="text-xs text-neutral-400 font-light leading-relaxed">Deployment of custom smart-farming machinery, automated hydroponics layouts, GIS ecosystem mapping, and precision community data collection tools.</p>
-            </div>
+
+          <div className="w-full border-t border-black">
+            {coreValues.map((value, index) => (
+              <div 
+                key={value.term}
+                className="w-full py-8 lg:py-12 flex flex-col lg:flex-row lg:items-baseline justify-between border-b border-[#D9D9D9] gap-4 lg:gap-12 hover:opacity-60 transition-opacity duration-300"
+              >
+                <div className="flex items-baseline gap-6 lg:w-1/3">
+                  <span className="text-[13px] text-[#757575] font-normal block min-w-[30px]">
+                    0{index + 1}
+                  </span>
+                  <h3 className="text-3xl md:text-4xl lg:text-[48px] font-normal text-black tracking-tight leading-none">
+                    {value.term}
+                  </h3>
+                </div>
+                <p className="text-[16px] text-black opacity-85 font-normal leading-relaxed lg:w-2/3 lg:max-w-2xl">
+                  {value.definition}
+                </p>
+              </div>
+            ))}
           </div>
-        </div>
-        <div className="lg:col-span-5 aspect-[4/5] w-full bg-white overflow-hidden order-1 lg:order-2 border border-neutral-100 shadow-sm">
-          <img 
-            src="/images/about/pillars-execution.jpg" 
-            alt="Modern automated agricultural installation" 
-            className="w-full h-full object-cover grayscale opacity-95"
-          />
+
         </div>
       </section>
 
-      {/* 6. VERTICAL DETAIL SECTION: Commitment to Quality Style Layout */}
-      <section className="max-w-6xl mx-auto grid lg:grid-cols-12 gap-12 lg:gap-16 pt-24 border-t border-neutral-100 mb-52">
-        <div className="lg:col-span-4 space-y-3">
-          <span className="text-[11px] uppercase tracking-[0.25em] text-[#B0926A] block font-medium">Ethical Benchmarks</span>
-          <h2 className="text-2xl font-serif font-light text-neutral-900 tracking-tight">Core Values & Institutional Discipline</h2>
-        </div>
-        <div className="lg:col-span-8 grid sm:grid-cols-2 gap-x-12 gap-y-10">
-          {coreValues.map((value) => (
-            <div key={value.term} className="space-y-2 border-b border-neutral-50 pb-4">
-              <h3 className="text-sm font-medium uppercase tracking-wider text-neutral-900">{value.term}</h3>
-              <p className="text-xs md:text-sm text-neutral-500 font-light leading-relaxed">{value.definition}</p>
+      {/* 06. GOVERNANCE MATRIX (Rigid grid architecture with minimal rounded profiles) */}
+      <section className="py-28 bg-[#f6f6f6] px-[6vw] md:px-12 lg:px-24 border-t border-[#E5E5E5]">
+        <div className="max-w-[1440px] mx-auto">
+          
+          <div className="flex flex-col md:flex-row md:justify-between md:items-end mb-20 gap-8">
+            <div>
+              <span className="text-[#757575] text-[13px] uppercase tracking-wider font-normal block mb-4">
+                05 / Leadership
+              </span>
+              <h2 className="text-4xl md:text-[52px] font-normal text-black tracking-tight">
+                Governance Matrix
+              </h2>
             </div>
-          ))}
-        </div>
-      </section>
+            <p className="text-[15px] text-black opacity-75 max-w-sm">
+              The founding executive secretariat strictly governs operational strategy and regulatory compliance.
+            </p>
+          </div>
+          
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-x-8 gap-y-16 border-t border-[#D9D9D9] pt-12">
+            {governance.map((person) => (
+              <div key={person.name} className="flex flex-col border-b border-[#E5E5E5] pb-8 group">
+                
+                {/* Minimalist Circular Profile Image Frame */}
+                <div className="w-20 h-20 rounded-full bg-[#E5E5E5] overflow-hidden mb-6 relative border border-[#E5E5E5]">
+                  <img 
+                    src={person.image} 
+                    alt={person.name} 
+                    className="w-full h-full object-cover grayscale contrast-110 group-hover:scale-105 transition-transform duration-500 ease-out"
+                    onError={(e) => {
+                      // Fallback visual implementation if image source is physically missing
+                      e.target.style.display = 'none';
+                    }}
+                  />
+                </div>
 
-      {/* 7. HIGH-END EXECUTIVE DIRECTORY: Board Member Registry Layout */}
-      <section className="max-w-6xl mx-auto space-y-16 mb-44">
-        <div className="border-b border-neutral-200 pb-6">
-          <span className="text-[11px] uppercase tracking-[0.25em] text-[#B0926A] block font-medium mb-2">Governance Matrix</span>
-          <h2 className="text-3xl font-serif font-light text-neutral-900 tracking-tight">Founding Members & Executive Secretariat</h2>
-        </div>
-        
-        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-x-16 gap-y-12">
-          {governance.map((person) => (
-            <div key={person.name} className="group border-b border-neutral-100 pb-4 flex flex-col justify-between space-y-2">
-              <div className="space-y-1">
-                <span className="text-[9px] uppercase tracking-[0.2em] text-[#B0926A] block font-medium">
+                <span className="text-[12px] uppercase tracking-wider text-[#757575] block font-normal mb-2">
                   {person.role}
                 </span>
-                <h4 className="text-base font-serif font-normal text-neutral-900 group-hover:text-[#B0926A] transition-colors duration-300">
+                <h4 className="text-[20px] font-normal text-black tracking-tight mb-2">
                   {person.name}
                 </h4>
+                <span className="text-[11px] uppercase text-[#757575] font-normal block opacity-50">
+                  ID: NGYAR-{person.name.substring(0, 3).toUpperCase()}
+                </span>
               </div>
-              <span className="text-[9px] tracking-widest uppercase text-neutral-300 font-light font-mono block pt-1">
-                NGYAR.SEC.2026
-              </span>
-            </div>
-          ))}
+            ))}
+          </div>
+
         </div>
       </section>
 
-      {/* 8. MINIMALIST CALL TO ACTION: Fine Bordered Action Block */}
-      <footer className="text-center max-w-2xl mx-auto space-y-8 pt-12 border-t border-neutral-100">
-        <p className="text-xs text-neutral-400 font-light max-w-md mx-auto leading-relaxed tracking-wide">
-          Review structural bylaws, official asset registration guidelines, financial indemnity rules, 
-          and foundational protocols outlined in the signed legal registry.
-        </p>
-        <div>
+      {/* 07. MINIMALIST CTA */}
+      <section className="py-28 px-[6vw] md:px-12 lg:px-24 bg-white text-center flex flex-col items-center">
+        <div className="max-w-2xl mx-auto space-y-10">
+          <p className="text-[16px] text-[#757575] font-normal leading-relaxed">
+            Review structural bylaws, official asset registration guidelines, financial indemnity rules, 
+            and foundational protocols outlined in the signed legal registry.
+          </p>
+          
           <a
             href="https://res.cloudinary.com/your-cloud/raw/upload/v1/constitution.pdf"
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-block border border-neutral-900 text-neutral-900 px-12 py-4 text-[11px] uppercase tracking-[0.25em] font-medium hover:bg-neutral-900 hover:text-white hover:border-transparent transition-all duration-500 ease-out font-sans shadow-sm"
+            className="inline-flex items-center justify-between border border-black text-black px-8 py-4 text-[15px] font-normal hover:bg-black hover:text-white transition-colors duration-300 w-full max-w-[320px]"
           >
-            Download Signed Constitution (PDF)
+            <span>Download Constitution</span>
+            <span className="text-lg leading-none">↓</span>
           </a>
         </div>
-      </footer>
+      </section>
+      
     </div>
   );
 }

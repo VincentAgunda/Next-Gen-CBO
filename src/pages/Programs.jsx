@@ -13,46 +13,59 @@ export default function Programs() {
       : programs.filter((p) => p.category === filter);
 
   return (
-    <div className="bg-[#F5F5F7] min-h-screen py-32 px-6 md:px-12 lg:px-24 antialiased text-neutral-800 font-sans tracking-wide">
+    <div className="font-sans text-black bg-white antialiased selection:bg-black selection:text-white overflow-hidden min-h-screen">
       
-      <header className="max-w-4xl mx-auto text-center space-y-6 mb-24">
-        <span className="text-[11px] uppercase tracking-[0.3em] text-[#B0926A] font-medium block">
-          Strategic Initiatives
+      {/* TYPOGRAPHIC HERO */}
+      <header className="pt-40 pb-20 px-[6vw] md:px-12 lg:px-24 max-w-[1440px] mx-auto border-b border-[#E5E5E5]">
+        <span className="block text-[#757575] text-[13px] font-normal mb-8 uppercase tracking-wider">
+          02 / Strategic Initiatives
         </span>
-        <h1 className="text-4xl md:text-5xl font-sans font-light tracking-tight text-neutral-900 leading-tight">
-          Our Operational Programs
+        <h1 className="text-5xl md:text-7xl lg:text-[110px] font-normal leading-[0.95] tracking-tight text-black mb-12">
+          Operational <br />
+          Programs.
         </h1>
-        <p className="max-w-2xl mx-auto text-neutral-500 font-light text-base leading-relaxed pt-2">
+        <p className="max-w-3xl text-black opacity-85 font-normal text-[16px] md:text-[18px] leading-relaxed">
           Holistic portfolios driving youth development, digital-smart agriculture setups, and scalable research-backed interventions.
         </p>
       </header>
 
-      <div className="flex flex-wrap justify-center items-center gap-x-10 gap-y-4 mb-20 max-w-3xl mx-auto border-b border-neutral-100 pb-6">
-        {categories.map((cat) => (
-          <button
-            key={cat}
-            onClick={() => setFilter(cat)}
-            className={`text-xs uppercase tracking-[0.2em] font-medium transition-all duration-300 relative pb-2 ${
-              filter === cat
-                ? "text-neutral-900 after:absolute after:bottom-0 after:left-0 after:w-full after:h-[1px] after:bg-[#B0926A]"
-                : "text-neutral-400 hover:text-neutral-900"
-            }`}
-          >
-            {cat}
-          </button>
-        ))}
+      {/* FILTER CONTROLS */}
+      <div className="px-[6vw] md:px-12 lg:px-24 py-12 max-w-[1440px] mx-auto">
+        <div className="flex flex-wrap items-center gap-x-8 gap-y-4">
+          {categories.map((cat) => (
+            <button
+              key={cat}
+              onClick={() => setFilter(cat)}
+              className={`text-[13px] uppercase tracking-wider font-normal transition-all duration-300 pb-1 border-b ${
+                filter === cat
+                  ? "text-black border-black"
+                  : "text-[#757575] border-transparent hover:text-black"
+              }`}
+            >
+              {cat}
+            </button>
+          ))}
+        </div>
       </div>
 
-      <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
-        {filtered.map((prog, idx) => (
-          <div 
-            key={idx} 
-            className="border border-neutral-100 p-8 flex flex-col justify-between space-y-6 hover:border-neutral-300 transition-all duration-500 bg-white shadow-sm"
-          >
-            <ProgramCard {...prog} />
+      {/* PROGRAM GRID */}
+      <section className="pb-32 px-[6vw] md:px-12 lg:px-24">
+        <div className="max-w-[1440px] mx-auto">
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 lg:gap-12">
+            {filtered.map((prog, idx) => (
+              <div 
+                key={idx} 
+                className="group border border-[#E5E5E5] bg-[#f6f6f6] hover:border-black transition-colors duration-500 overflow-hidden"
+              >
+                <div className="p-8 lg:p-10 h-full flex flex-col justify-between">
+                  <ProgramCard {...prog} />
+                </div>
+              </div>
+            ))}
           </div>
-        ))}
-      </div>
+        </div>
+      </section>
+
     </div>
   );
 }
