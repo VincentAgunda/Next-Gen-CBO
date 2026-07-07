@@ -11,338 +11,366 @@ import { Link } from "react-router-dom";
 
 export default function Home() {
   return (
-    <div className="font-sans text-[#333333] bg-[#F5F5F7] antialiased selection:bg-[#b8a898] selection:text-white overflow-hidden">
+    <div className="font-sans text-neutral-900 bg-[#FFFFFF] antialiased selection:bg-[#b8a898] selection:text-white overflow-hidden">
       <HeroSection />
 
-      <section className="relative py-24 lg:py-36 px-6 md:px-12 lg:px-24 bg-[#F5F5F7] flex items-center min-h-[80vh] antialiased text-neutral-800 font-sans tracking-wide">
-      <div className="grid lg:grid-cols-2 gap-16 lg:gap-24 items-stretch w-full relative max-w-7xl mx-auto">
-        
-        <div className="w-full relative min-h-[400px] lg:min-h-0 border border-neutral-100 shadow-sm overflow-hidden group">
-          <img
-            src="/Hero/h1.png"
-            alt="Youth transforming communities in Makueni County"
-            className="absolute inset-0 w-full h-full object-cover block grayscale opacity-95 group-hover:scale-105 transition-transform duration-1000 ease-out"
-          />
-        </div>
-
-        <div className="flex flex-col justify-center py-6 max-w-xl">
-          <div className="mb-6 space-y-3">
-            <span className="block text-[#B0926A] text-[11px] uppercase tracking-[0.3em] font-medium">
-              Who We Are
-            </span>
-            
-            <h2 className="text-neutral-900 font-sans text-3xl md:text-4xl lg:text-5xl font-light leading-tight tracking-tight">
-              Transforming Communities Through Youth Innovation
-            </h2>
-          </div>
-
-          <div className="space-y-6 text-neutral-500 font-light text-sm md:text-base leading-relaxed">
-            <p>
-              Next-Generation Youth Agribusiness & Research CBO is a youth-led community-based organization based in Makueni County, Kenya, committed to transforming communities through sustainable agriculture, research, innovation, environmental conservation, and youth empowerment.
-            </p>
-            <p>
-              We bring together young innovators, researchers, entrepreneurs, and community members who are passionate about creating practical, evidence-based solutions to today's social, environmental, and economic challenges. By combining research with real-world action, we empower young people to become drivers of sustainable development while improving livelihoods within our communities.
-            </p>
-          </div>
-
-          <div className="mt-12">
-            <Link
-              to="/about"
-              className="inline-block border border-neutral-900 text-neutral-900 px-10 py-4 text-[11px] uppercase tracking-[0.25em] font-medium hover:bg-neutral-900 hover:text-white transition-all duration-500 ease-out shadow-sm"
-            >
-              Learn More About Us
-            </Link>
-          </div>
-        </div>
-
-        <div className="hidden lg:flex absolute right-[-40px] top-1/2 -translate-y-1/2 flex-col items-end gap-[8px]">
-          {[...Array(9)].map((_, index) => (
-            <div
-              key={index}
-              className={`h-[1px] transition-all duration-500 ${
-                index === 2 ? 'w-8 bg-neutral-900' : 'w-4 bg-neutral-200'
-              }`}
-            />
-          ))}
-        </div>
-        
-      </div>
-    </section>
-
-      {/* Three Pillars */}
-      <section className="py-24 lg:py-32 bg-[#e5e5e5]">
-        <div className="max-w-7xl mx-auto px-6 lg:px-12">
-          <SectionHeader eyebrow="Our Foundation" title="Our Strategic Pillars" />
+      {/* WHO WE ARE - Clean Architectural Grid */}
+      <section className="relative py-24 lg:py-36 px-6 md:px-12 lg:px-24 bg-[#FFFFFF] border-b border-neutral-200">
+        <div className="grid lg:grid-cols-12 gap-12 lg:gap-16 items-start max-w-7xl mx-auto">
           
-          <div className="grid md:grid-cols-3 gap-12 lg:gap-16 text-center mt-20">
-            {/* Pillar 1 */}
-            <div className="flex flex-col items-center group">
-              <div className="w-[1px] h-16 bg-gradient-to-b from-[#b8a898]/20 via-[#b8a898] to-[#b8a898]/20 mb-8 group-hover:scale-y-125 transition-transform duration-500"></div>
-              <h3 className="text-2xl font-heading font-medium text-[#333333] mb-4">
-                Agribusiness Development
+          <div className="lg:col-span-5 space-y-6">
+            <div className="flex items-center gap-3">
+              <span className="w-6 h-[1px] bg-[#B0926A]"></span>
+              <span className="block text-[#B0926A] text-xs uppercase tracking-[0.25em] font-semibold">
+                01 / Who We Are
+              </span>
+            </div>
+            
+            <h2 className="text-4xl md:text-5xl lg:text-6xl font-light tracking-tighter text-neutral-900 leading-[1.08]">
+              The catalyst for sustainable youth innovation.
+            </h2>
+
+            <div className="pt-4">
+              <Link
+                to="/about"
+                className="group inline-flex items-center gap-3 text-xs font-semibold uppercase tracking-[0.2em] text-neutral-900 hover:text-[#B0926A] transition-colors"
+              >
+                <span>Read Our Full Story</span>
+                <span className="text-lg leading-none transform group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform">↗</span>
+              </Link>
+            </div>
+          </div>
+
+          <div className="lg:col-span-7 grid md:grid-cols-2 gap-8 lg:pl-8 border-t lg:border-t-0 lg:border-l border-neutral-200 pt-8 lg:pt-0">
+            <div className="space-y-4">
+              <h3 className="text-sm font-semibold uppercase tracking-[0.15em] text-neutral-900">
+                Evidence-Based Action
               </h3>
-              <p className="font-sans text-base text-[#666666] font-light leading-relaxed max-w-sm">
-                Supporting sustainable agricultural enterprises and income-generating opportunities.
+              <p className="text-neutral-600 font-light text-base leading-relaxed">
+                Next-Generation Youth Agribusiness & Research CBO is a youth-led engine based in Makueni County, Kenya. We reject outdated farming norms in favor of climate-smart agriculture, empirical research, and environmental preservation.
               </p>
             </div>
-            {/* Pillar 2 */}
-            <div className="flex flex-col items-center group">
-              <div className="w-[1px] h-16 bg-gradient-to-b from-[#b8a898]/20 via-[#b8a898] to-[#b8a898]/20 mb-8 group-hover:scale-y-125 transition-transform duration-500"></div>
-              <h3 className="text-2xl font-heading font-medium text-[#333333] mb-4">
-                Youth Empowerment
+            <div className="space-y-4">
+              <h3 className="text-sm font-semibold uppercase tracking-[0.15em] text-neutral-900">
+                Community Transformation
               </h3>
-              <p className="font-sans text-base text-[#666666] font-light leading-relaxed max-w-sm">
-                Building future leaders through rigorous training, mentorship, and entrepreneurship.
-              </p>
-            </div>
-            {/* Pillar 3 */}
-            <div className="flex flex-col items-center group">
-              <div className="w-[1px] h-16 bg-gradient-to-b from-[#b8a898]/20 via-[#b8a898] to-[#b8a898]/20 mb-8 group-hover:scale-y-125 transition-transform duration-500"></div>
-              <h3 className="text-2xl font-heading font-medium text-[#333333] mb-4">
-                Research & Innovation
-              </h3>
-              <p className="font-sans text-base text-[#666666] font-light leading-relaxed max-w-sm">
-                Driving evidence-based solutions and supporting youth-led innovations.
+              <p className="text-neutral-600 font-light text-base leading-relaxed">
+                We bridge the gap between academic research and rural execution. By deploying young researchers and entrepreneurs directly into community ecosystems, we turn complex sustainability challenges into profitable, scalable livelihoods.
               </p>
             </div>
           </div>
 
-          <div className="text-center mt-20">
-            <Link 
-              to="/programs" 
-              className="inline-block font-heading border border-[#333333] bg-[#333333] text-white px-10 py-4 text-xs uppercase tracking-[0.2em] font-medium hover:bg-transparent hover:text-[#333333] transition-all duration-500"
-            >
-              View All Programs
-            </Link>
+        </div>
+
+        {/* Minimalist Visual Anchor */}
+        <div className="max-w-7xl mx-auto mt-16 lg:mt-24 border border-neutral-200 p-2 bg-[#F8F8FA]">
+          <div className="relative w-full h-[400px] lg:h-[500px] overflow-hidden">
+            <img
+              src="/Hero/h1.png"
+              alt="Youth transforming communities in Makueni County"
+              className="w-full h-full object-cover grayscale contrast-115 hover:scale-105 transition-transform duration-1000 ease-out"
+            />
           </div>
         </div>
       </section>
 
-      {/* Featured Programs (Updated to match alternating design pattern) */}
-      <section className="bg-[#2d2932] py-24 lg:py-32">
-        <div className="max-w-7xl mx-auto px-6 lg:px-12 flex flex-col gap-24 lg:gap-40">
+      {/* THREE PILLARS - Polestar Light Concrete Style (#F8F8FA) */}
+      <section className="py-24 lg:py-32 bg-[#F8F8FA] border-b border-neutral-200">
+        <div className="max-w-7xl mx-auto px-6 lg:px-12">
+          <div className="flex flex-col md:flex-row md:items-end justify-between mb-20 gap-6">
+            <div>
+              <span className="text-[#B0926A] text-xs uppercase tracking-[0.25em] font-semibold block mb-3">
+                02 / Core Methodology
+              </span>
+              <h2 className="text-4xl lg:text-5xl font-light tracking-tighter text-neutral-900">
+                Our Strategic Pillars
+              </h2>
+            </div>
+            <Link 
+              to="/programs" 
+              className="group inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.2em] text-neutral-900 hover:text-[#B0926A] transition-colors"
+            >
+              <span>Explore All Programs</span>
+              <span className="transform group-hover:translate-x-1 transition-transform">→</span>
+            </Link>
+          </div>
+          
+          <div className="grid md:grid-cols-3 gap-8">
+            {/* Pillar 1 */}
+            <div className="bg-white border border-neutral-200 p-10 flex flex-col justify-between h-full group hover:border-neutral-400 transition-all duration-300">
+              <div>
+                <span className="text-xs font-mono text-[#b8a898] block mb-6 font-semibold">/ 01</span>
+                <h3 className="text-2xl font-light tracking-tight text-neutral-900 mb-4">
+                  Agribusiness Development
+                </h3>
+                <p className="text-neutral-600 font-light text-sm leading-relaxed mb-8">
+                  Transforming traditional farming into scalable, modern commercial enterprises. We provide seed capital access, value-chain optimization, and market linkage for high-yield crops.
+                </p>
+              </div>
+              <div className="w-full h-[1px] bg-neutral-100 group-hover:bg-[#b8a898] transition-colors duration-500"></div>
+            </div>
+
+            {/* Pillar 2 */}
+            <div className="bg-white border border-neutral-200 p-10 flex flex-col justify-between h-full group hover:border-neutral-400 transition-all duration-300">
+              <div>
+                <span className="text-xs font-mono text-[#b8a898] block mb-6 font-semibold">/ 02</span>
+                <h3 className="text-2xl font-light tracking-tight text-neutral-900 mb-4">
+                  Youth Empowerment
+                </h3>
+                <p className="text-neutral-600 font-light text-sm leading-relaxed mb-8">
+                  Building the next generation of rural visionaries through intensive technical training, leadership incubation, and peer-to-peer mentorship ecosystems.
+                </p>
+              </div>
+              <div className="w-full h-[1px] bg-neutral-100 group-hover:bg-[#b8a898] transition-colors duration-500"></div>
+            </div>
+
+            {/* Pillar 3 */}
+            <div className="bg-white border border-neutral-200 p-10 flex flex-col justify-between h-full group hover:border-neutral-400 transition-all duration-300">
+              <div>
+                <span className="text-xs font-mono text-[#b8a898] block mb-6 font-semibold">/ 03</span>
+                <h3 className="text-2xl font-light tracking-tight text-neutral-900 mb-4">
+                  Research & Innovation
+                </h3>
+                <p className="text-neutral-600 font-light text-sm leading-relaxed mb-8">
+                  Deploying empirical scientific methods to develop climate-resilient agricultural techniques, soil restoration frameworks, and clean energy farm applications.
+                </p>
+              </div>
+              <div className="w-full h-[1px] bg-neutral-100 group-hover:bg-[#b8a898] transition-colors duration-500"></div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* FEATURED INITIATIVES - Light Architectural Grey (#F0F0F3) */}
+      <section className="bg-[#F0F0F3] py-24 lg:py-36 border-b border-neutral-300">
+        <div className="max-w-7xl mx-auto px-6 lg:px-12 flex flex-col gap-24 lg:gap-32">
           
           {/* Row 1: Text Left, Image Right */}
-          <div className="grid lg:grid-cols-2 gap-12 lg:gap-24 items-center">
-            <div className="max-w-lg order-2 lg:order-1">
-              <span className="text-[#d2b79b] font-heading text-xs uppercase tracking-[0.3em] block mb-4 font-medium">
-                Agribusiness Initiative
+          <div className="grid lg:grid-cols-12 gap-12 lg:gap-16 items-center">
+            <div className="lg:col-span-5 order-2 lg:order-1 space-y-6">
+              <span className="text-[#B0926A] text-xs uppercase tracking-[0.25em] block font-semibold">
+                03 / Agribusiness Initiative
               </span>
-              <h2 className="text-white font-heading text-4xl lg:text-5xl font-light mb-6 leading-tight">
+              <h2 className="text-neutral-900 text-4xl lg:text-5xl font-light tracking-tighter leading-tight">
                 Empowering <br className="hidden lg:block" />
-                Future Leaders
+                Future Leaders.
               </h2>
-              <p className="text-[#c1bdc4] font-sans text-lg leading-relaxed mb-10 font-light">
-                Through agribusiness development, youth empowerment and
-                research-driven innovation, we equip young people with the
-                skills and opportunities needed to create sustainable livelihoods
-                and transform communities.
+              <p className="text-neutral-600 text-base leading-relaxed font-light">
+                Through precision agribusiness development and research-driven innovation, we equip young entrepreneurs with the exact technical specifications needed to dominate sustainable value chains and uplift rural economies.
               </p>
-              <Link to="/programs" className="inline-flex flex-col group font-heading w-max">
-                <span className="text-[#d2b79b] uppercase tracking-[0.2em] text-xs font-medium group-hover:text-white transition-colors duration-300">
-                  Explore Programs
-                </span>
-                <div className="w-full h-[1px] bg-[#d2b79b] mt-2 group-hover:bg-white transition-all duration-500 ease-in-out"></div>
-              </Link>
+              <div className="pt-2">
+                <Link to="/programs" className="group inline-flex items-center gap-3 bg-white border border-neutral-300 px-6 py-3.5 text-xs font-semibold uppercase tracking-[0.2em] text-neutral-900 hover:border-neutral-900 transition-all">
+                  <span>Explore Agribusiness</span>
+                  <span className="transform group-hover:translate-x-1 transition-transform">→</span>
+                </Link>
+              </div>
             </div>
-            <div className="w-full order-1 lg:order-2">
-              <img
-                src="/Innovation/mushroom.png"
-                alt="Agribusiness Development"
-                className="w-full h-auto object-cover aspect-[4/3]"
-              />
+            
+            <div className="lg:col-span-7 order-1 lg:order-2 border border-neutral-300 p-2 bg-white">
+              <div className="overflow-hidden aspect-[16/10]">
+                <img
+                  src="/Innovation/mushroom.png"
+                  alt="Agribusiness Development"
+                  className="w-full h-full object-cover grayscale contrast-110 hover:scale-105 transition-transform duration-700"
+                />
+              </div>
             </div>
           </div>
 
           {/* Row 2: Image Left, Text Right */}
-          <div className="grid lg:grid-cols-2 gap-12 lg:gap-24 items-center">
-            <div className="w-full order-1">
-              <img
-                src="/Innovation/mush2.png" // Replace with your actual second image path
-                alt="Research & Innovation"
-                className="w-full h-auto object-cover aspect-[4/3]"
-              />
+          <div className="grid lg:grid-cols-12 gap-12 lg:gap-16 items-center">
+            <div className="lg:col-span-7 order-1 border border-neutral-300 p-2 bg-white">
+              <div className="overflow-hidden aspect-[16/10]">
+                <img
+                  src="/Innovation/mush2.png" 
+                  alt="Research & Innovation"
+                  className="w-full h-full object-cover grayscale contrast-110 hover:scale-105 transition-transform duration-700"
+                />
+              </div>
             </div>
-            <div className="max-w-lg order-2 lg:pl-8">
-              <span className="text-[#d2b79b] font-heading text-xs uppercase tracking-[0.3em] block mb-4 font-medium">
-                Youth Innovation Hub
+
+            <div className="lg:col-span-5 order-2 space-y-6 lg:pl-6">
+              <span className="text-[#B0926A] text-xs uppercase tracking-[0.25em] block font-semibold">
+                04 / Youth Innovation Hub
               </span>
-              <h2 className="text-white font-heading text-4xl lg:text-5xl font-light mb-6 leading-tight">
-                First steps into the <br className="hidden lg:block" />
-                agricultural sector
+              <h2 className="text-neutral-900 text-4xl lg:text-5xl font-light tracking-tighter leading-tight">
+                Redefining the <br className="hidden lg:block" />
+                Agricultural Sector.
               </h2>
-              <p className="text-[#c1bdc4] font-sans text-lg leading-relaxed mb-10 font-light">
-                Our innovation projects mark the start of community-led agricultural 
-                advancements, redefining how young entrepreneurs approach sustainable 
-                farming and local economic growth.
+              <p className="text-neutral-600 text-base leading-relaxed font-light">
+                Our innovation incubator marks the frontier of community-led scientific advancement. We provide the testing grounds, agronomic data, and modern tech required to disrupt traditional farming models.
               </p>
-              <Link to="/innovation-hub" className="inline-flex flex-col group font-heading w-max">
-                <span className="text-[#d2b79b] uppercase tracking-[0.2em] text-xs font-medium group-hover:text-white transition-colors duration-300">
-                  To The Project
-                </span>
-                <div className="w-full h-[1px] bg-[#d2b79b] mt-2 group-hover:bg-white transition-all duration-500 ease-in-out"></div>
-              </Link>
+              <div className="pt-2">
+                <Link to="/innovation-hub" className="group inline-flex items-center gap-3 bg-white border border-neutral-300 px-6 py-3.5 text-xs font-semibold uppercase tracking-[0.2em] text-neutral-900 hover:border-neutral-900 transition-all">
+                  <span>View Innovation Projects</span>
+                  <span className="transform group-hover:translate-x-1 transition-transform">→</span>
+                </Link>
+              </div>
             </div>
           </div>
 
         </div>
       </section>
 
-      {/* Innovation Preview */}
-      <section className="py-24 lg:py-32 bg-[#F5F5F7]">
-        <div className="max-w-[1400px] mx-auto px-6 lg:px-12">
-          <SectionHeader 
-            eyebrow="Future Forward" 
-            title="Innovation Hub" 
-            subtitle="Youth-led innovations shaping the future of agriculture." 
-          />
+      {/* INNOVATION PREVIEW - Pure White (#FFFFFF) */}
+      <section className="py-24 lg:py-32 bg-[#FFFFFF] border-b border-neutral-200">
+        <div className="max-w-7xl mx-auto px-6 lg:px-12">
+          <div className="flex flex-col md:flex-row md:items-end justify-between mb-16 gap-6">
+            <div>
+              <span className="text-[#B0926A] text-xs uppercase tracking-[0.25em] font-semibold block mb-3">
+                05 / Future Forward
+              </span>
+              <h2 className="text-4xl lg:text-5xl font-light tracking-tighter text-neutral-900">
+                The Innovation Hub
+              </h2>
+            </div>
+            <p className="text-neutral-500 font-light max-w-md text-sm md:text-base">
+              Explore the youth-led scientific breakthroughs and environmental frameworks shaping the future of East African agriculture.
+            </p>
+          </div>
           
-          <div className="flex flex-col gap-12 lg:gap-16 mt-16 items-center">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {innovations.slice(0, 3).map((inv) => (
-              <InnovationCard key={inv.id} {...inv} />
+              <div key={inv.id} className="border border-neutral-200 p-4 bg-[#F8F8FA] hover:border-neutral-400 transition-all duration-300">
+                <InnovationCard {...inv} />
+              </div>
             ))}
           </div>
           
-          <div className="text-center mt-20">
+          <div className="mt-16 text-center">
             <Link 
               to="/innovation-hub" 
-              className="inline-block font-heading text-xs uppercase tracking-[0.2em] font-medium text-[#666666] hover:text-[#333333] border-b border-[#cccccc] hover:border-[#333333] transition-all pb-1.5"
+              className="inline-flex items-center gap-2 border-b border-neutral-400 pb-1 text-xs font-semibold uppercase tracking-[0.2em] text-neutral-900 hover:text-[#B0926A] hover:border-[#B0926A] transition-all"
             >
-              Explore Innovation Hub
+              <span>Access Full Innovation Archive</span>
+              <span>↗</span>
             </Link>
           </div>
         </div>
       </section>
 
-      {/* Upcoming Events */}
-      <section className="py-24 lg:py-32 px-6 lg:px-12 bg-[#858689]">
+      {/* UPCOMING EVENTS - Ultra-Light Concrete (#F4F4F6) */}
+      <section className="py-24 lg:py-32 px-6 lg:px-12 bg-[#F4F4F6] border-b border-neutral-300">
         <div className="max-w-7xl mx-auto">
           <div className="flex flex-col md:flex-row md:items-end justify-between mb-16 gap-8">
-            <div className="text-left max-w-2xl">
-              <span className="text-[#e2dacd] font-heading text-xs uppercase tracking-[0.25em] font-medium block mb-4">
-                Gatherings
+            <div>
+              <span className="text-[#B0926A] text-xs uppercase tracking-[0.25em] font-semibold block mb-3">
+                06 / Field Gatherings
               </span>
-              <h2 className="text-4xl md:text-5xl font-heading font-light text-white tracking-wide mb-4">
+              <h2 className="text-4xl lg:text-5xl font-light tracking-tighter text-neutral-900">
                 Upcoming Events
               </h2>
-              <p className="font-sans text-white/80 text-base md:text-lg font-light leading-relaxed">
-                Join our exclusive trainings, conferences, and community activities designed to foster growth and connection.
-              </p>
             </div>
             
-            <div className="hidden md:block">
-              <Link 
-                to="/events" 
-                className="font-heading text-xs uppercase tracking-[0.2em] font-medium text-white hover:text-[#d2b79b] border-b border-white/50 hover:border-[#d2b79b] transition-all duration-300 pb-1.5 whitespace-nowrap"
-              >
-                View All Events
-              </Link>
-            </div>
+            <Link 
+              to="/events" 
+              className="group inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.2em] text-neutral-900 hover:text-[#B0926A] transition-colors"
+            >
+              <span>View Schedule</span>
+              <span className="transform group-hover:translate-x-1 transition-transform">→</span>
+            </Link>
           </div>
 
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
             {events.slice(0, 3).map((evt) => (
-              <EventCard key={evt.id} {...evt} />
+              <div key={evt.id} className="bg-white border border-neutral-200 p-4 hover:border-neutral-400 transition-all duration-300">
+                <EventCard {...evt} />
+              </div>
             ))}
           </div>
-
-          <div className="mt-12 md:hidden text-center">
-            <Link 
-              to="/events" 
-              className="font-heading text-xs uppercase tracking-[0.2em] font-medium text-white hover:text-[#d2b79b] border-b border-white/50 hover:border-[#d2b79b] transition-all duration-300 pb-1.5"
-            >
-              View All Events
-            </Link>
-          </div>
         </div>
       </section>
 
-      {/* Membership CTA */}
-      <section className="py-24 lg:py-32 px-6 lg:px-12 bg-[#e5e5e5]">
-        <div className="max-w-4xl mx-auto text-center flex flex-col items-center">
-          <div className="w-10 h-10 border border-[#b8a898] rotate-45 mb-12 flex items-center justify-center">
-            <div className="w-2 h-2 bg-[#b8a898]"></div>
-          </div>
+      {/* MEMBERSHIP CTA - Architectural Minimalist (#FFFFFF) */}
+      <section className="py-28 lg:py-36 px-6 lg:px-12 bg-[#FFFFFF] border-b border-neutral-200 relative overflow-hidden">
+        {/* Background Grid Accent */}
+        <div className="absolute inset-0 bg-[linear-gradient(to_right,#f0f0f0_1px,transparent_1px),linear-gradient(to_bottom,#f0f0f0_1px,transparent_1px)] bg-[size:4rem_4rem] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_50%,#000_70%,transparent_100%)] opacity-40"></div>
+        
+        <div className="max-w-4xl mx-auto text-center flex flex-col items-center relative z-10">
+          <span className="text-[#B0926A] text-xs uppercase tracking-[0.3em] font-semibold block mb-6">
+            07 / Join The Network
+          </span>
           
-          <h2 className="text-3xl md:text-4xl lg:text-5xl font-heading font-light text-[#333333] mb-12 leading-[1.3] tracking-wide">
-            Become a member, join our community and gain access to training, mentorship, and networking.
+          <h2 className="text-4xl md:text-5xl lg:text-6xl font-light tracking-tighter text-neutral-900 mb-8 leading-[1.1]">
+            Ready to engineer the future of agricultural resilience?
           </h2>
 
-          <div className="flex flex-col sm:flex-row justify-center gap-6 w-full sm:w-auto">
+          <p className="text-neutral-500 font-light text-base md:text-lg max-w-2xl mb-12">
+            Gain immediate access to empirical research data, specialized field training, seed funding networks, and a community of relentless innovators.
+          </p>
+
+          <div className="flex flex-col sm:flex-row justify-center gap-4 w-full sm:w-auto">
             <Link 
               to="/membership" 
-              className="font-heading border border-[#333333] bg-[#333333] text-white px-10 py-4 text-xs uppercase tracking-[0.2em] font-medium hover:bg-transparent hover:text-[#333333] transition-all duration-500 w-full sm:w-auto text-center"
+              className="bg-neutral-900 border border-neutral-900 text-white px-10 py-4 text-xs uppercase tracking-[0.2em] font-semibold hover:bg-transparent hover:text-neutral-900 transition-all duration-300 w-full sm:w-auto text-center"
             >
-              Join Now
+              Apply for Membership
             </Link>
             <Link 
               to="/membership" 
-              className="font-heading border border-[#979797] bg-transparent text-[#333333] px-10 py-4 text-xs uppercase tracking-[0.2em] font-medium hover:border-[#333333] transition-all duration-500 w-full sm:w-auto text-center"
+              className="bg-transparent border border-neutral-300 text-neutral-900 px-10 py-4 text-xs uppercase tracking-[0.2em] font-semibold hover:border-neutral-900 transition-all duration-300 w-full sm:w-auto text-center"
             >
-              Membership Benefits
+              Explore Benefits →
             </Link>
           </div>
         </div>
       </section>
 
-      {/* Partners Preview */}
-      <section className="py-24 lg:py-32 px-6 lg:px-12 bg-[#7a787d]">
+      {/* PARTNERS - Light Concrete Palette (#F8F8FA) */}
+      <section className="py-20 lg:py-28 px-6 lg:px-12 bg-[#F8F8FA] border-b border-neutral-200">
         <div className="max-w-7xl mx-auto">
-          <div className="text-center mb-16">
-            <span className="text-[#d2b79b] font-heading text-xs uppercase tracking-[0.25em] font-medium block mb-4">
-              Collaborations
-            </span>
-            <h2 className="text-4xl md:text-5xl font-heading font-light text-white tracking-wide">
-              Our Partners
-            </h2>
+          <div className="flex flex-col md:flex-row md:items-end justify-between mb-16 gap-6">
+            <div>
+              <span className="text-[#B0926A] text-xs uppercase tracking-[0.25em] font-semibold block mb-2">
+                08 / Collaborative Network
+              </span>
+              <h2 className="text-3xl lg:text-4xl font-light tracking-tighter text-neutral-900">
+                Our Institutional Partners
+              </h2>
+            </div>
+            <Link 
+              to="/partnerships" 
+              className="text-xs font-semibold uppercase tracking-[0.2em] text-neutral-500 hover:text-neutral-900 transition-colors"
+            >
+              Become a Partner ↗
+            </Link>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-12 lg:gap-24 max-w-4xl mx-auto items-center justify-items-center">
-            {partners.slice(0, 2).map((p, i) => (
-              <div key={i} className="w-full flex justify-center items-center py-4">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-8 items-center justify-items-center border-t border-neutral-200 pt-12">
+            {partners.slice(0, 4).map((p, i) => (
+              <div key={i} className="w-full flex justify-center items-center p-6 grayscale opacity-60 hover:grayscale-0 hover:opacity-100 transition-all duration-500">
                 <img 
                   src={p.image || p.logo} 
                   alt={p.name} 
-                  className="w-auto h-auto max-h-36 md:max-h-48 lg:max-h-56 object-contain grayscale invert brightness-200 opacity-75 hover:grayscale-0 hover:invert-0 hover:brightness-100 hover:opacity-100 hover:scale-105 transition-all duration-500 cursor-pointer" 
+                  className="max-h-12 md:max-h-16 object-contain" 
                 />
               </div>
             ))}
           </div>
-
-          <div className="text-center mt-20">
-            <Link 
-              to="/partnerships" 
-              className="inline-block font-heading text-xs uppercase tracking-[0.2em] font-medium text-white/70 hover:text-white border-b border-white/20 hover:border-white transition-all pb-1.5"
-            >
-              Become a Partner
-            </Link>
-          </div>
         </div>
       </section>
 
-      {/* Support Us CTA */}
-      <section className="py-32 md:py-48 bg-[#3B3A38] px-6 lg:px-12 flex flex-col items-center justify-center">
+      {/* SUPPORT US CTA - Engineered Light Minimalist (#EAEAEF) */}
+      <section className="py-28 lg:py-40 bg-[#EAEAEF] px-6 lg:px-12 flex flex-col items-center justify-center border-b border-neutral-300">
         <div className="max-w-4xl mx-auto flex flex-col items-center text-center">
-          <span className="text-[#94938F] font-heading text-[11px] uppercase tracking-[0.3em] mb-6 block font-medium">
-            Make An Impact
+          <span className="text-[#B0926A] text-xs uppercase tracking-[0.3em] mb-6 block font-semibold">
+            09 / Make An Impact
           </span>
           
-          <h2 className="text-5xl md:text-6xl lg:text-7xl font-heading font-light mb-10 text-[#D4CBB6] tracking-wide">
-            Support Our Mission
+          <h2 className="text-5xl md:text-6xl lg:text-7xl font-light tracking-tighter mb-8 text-neutral-900 leading-[1.05]">
+            Invest in sustainable community transformation.
           </h2>
           
-          <p className="text-[#94938F] font-sans text-lg md:text-xl font-light leading-relaxed max-w-2xl mb-16 mx-auto">
-            Your donation or volunteer effort can change lives. Help us build a sustainable future for the next generation.
+          <p className="text-neutral-600 font-light text-base md:text-lg leading-relaxed max-w-2xl mb-12 mx-auto">
+            Your funding, technical expertise, or research mentorship directly fuels youth-led agricultural solutions in East Africa. Let's build resilience together.
           </p>
           
           <Link 
             to="/support-us" 
-            className="inline-flex flex-col group text-[#D4CBB6] font-heading text-xs uppercase tracking-[0.2em] font-medium transition-all duration-300"
+            className="group inline-flex items-center gap-4 bg-neutral-900 text-white px-10 py-5 text-xs uppercase tracking-[0.25em] font-semibold hover:bg-[#B0926A] transition-all duration-300 shadow-sm"
           >
-            <span className="group-hover:text-white transition-colors duration-300">
-              Support Us
-            </span>
-            <div className="w-full h-[1px] bg-[#D4CBB6] mt-2 group-hover:bg-white transition-all duration-500"></div>
+            <span>Support Our Mission</span>
+            <span className="text-base transform group-hover:translate-x-1 transition-transform duration-300">→</span>
           </Link>
         </div>
       </section>
