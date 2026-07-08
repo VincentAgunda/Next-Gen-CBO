@@ -5,7 +5,7 @@ import { motion, AnimatePresence } from "framer-motion";
 const slides = [
   {
     id: 1,
-    image: "/Hero/h3.png", 
+    image: "/Hero/h7.png", 
     subtitle: "NEXT-GEN YOUTH INITIATIVE // COGNITIVE CORE",
     title: "Empowering The Future.",
     description: "An autonomous, youth-driven operational framework deploying high-performance systems across sustainable agribusiness development and precision empirical research.",
@@ -14,7 +14,7 @@ const slides = [
   },
   {
     id: 2,
-    image: "/Hero/h3.png", 
+    image: "/Hero/h1.jpeg", 
     subtitle: "AGRIBUSINESS OPTIMIZATION // VALUE CHAINS",
     title: "Cultivating Growth.",
     description: "Equipping generation-next regional leaders with technical capabilities, hardware resources, and scalable modular framework models to secure self-sustaining economic yields.",

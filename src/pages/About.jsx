@@ -6,7 +6,7 @@ const governance = [
   { role: "Secretary", name: "Veronica Mwende", image: "/images/governance/veronica-mwende.jpg" },
   { role: "Assistant Secretary", name: "Patrick Otieno", image: "/images/governance/patrick-otieno.jpg" },
   { role: "Treasurer", name: "Erick Muthonzwe", image: "/images/governance/erick-muthonzwe.jpg" },
-  { role: "Founding Member", name: "Vincent Agunda", image: "/images/governance/vincent-agunda.jpg" },
+  { role: "Founding Member", name: "Vincent Agunda", image: "/Hero/h5.png" },
   { role: "Founding Member", name: "William Mikaia", image: "/images/governance/william-mikaia.jpg" },
   { role: "Founding Member", name: "Diana Mulusa", image: "/images/governance/diana-mulusa.jpg" },
   { role: "Founding Member", name: "Cleophas Mwendwa", image: "/images/governance/cleophas-mwendwa.jpg" },
@@ -78,7 +78,7 @@ export default function About() {
             </span>
             <div className="aspect-[16/10] w-full bg-[#E5E5E5] mb-10 overflow-hidden relative group">
               <img 
-                src="/images/about/mission-parameter.jpg" 
+                src="/Hero/h1.jpeg" 
                 alt="Youth researchers collecting data" 
                 className="w-full h-full object-cover grayscale contrast-110 group-hover:scale-102 transition-transform duration-700"
               />

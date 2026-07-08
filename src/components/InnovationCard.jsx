@@ -37,12 +37,12 @@ export default function InnovationCard({ title, description, innovator, image, s
           </span>
         </div>
 
-        {/* Dynamic Image with Grayscale-to-Color Hover Effect */}
+        {/* Dynamic Image - Grayscale removed for clarity */}
         {image ? (
           <img 
             src={image} 
             alt={title} 
-            className="absolute inset-0 w-full h-full object-cover grayscale contrast-[1.15] opacity-90 group-hover:scale-105 group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-700 ease-out" 
+            className="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-all duration-700 ease-out" 
           />
         ) : (
           <div className="absolute inset-0 w-full h-full bg-[#111111] flex items-center justify-center">

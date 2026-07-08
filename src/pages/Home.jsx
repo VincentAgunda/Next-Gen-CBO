@@ -14,7 +14,7 @@ export default function Home() {
     <div className="font-sans text-[#111111] bg-[#F5F5F7] antialiased selection:bg-[#d2b79b] selection:text-black overflow-hidden scroll-smooth">
       <HeroSection />
 
-      {/* WHO WE ARE: Architectural High-Contrast Layout */}
+     {/* WHO WE ARE: Architectural High-Contrast Layout */}
       <section className="relative py-28 lg:py-40 px-6 md:px-12 lg:px-24 bg-[#F5F5F7] border-b border-neutral-200">
         <div className="max-w-7xl mx-auto grid lg:grid-cols-12 gap-12 lg:gap-16 items-start">
           
@@ -65,6 +65,19 @@ export default function Home() {
             </div>
           </div>
 
+        </div>
+
+        {/* Updated Image Wrapper with custom 30% Y-axis object position */}
+        <div className="max-w-7xl mx-auto mt-24 lg:mt-36 overflow-hidden border border-neutral-200 rounded-sm shadow-sm group relative bg-[#1a1a1a]">
+          <img
+            src="/Hero/h4.jpeg" 
+            alt="Who We Are Team"
+            loading="lazy"
+            decoding="async"
+            className="w-full h-[40vh] md:h-[50vh] lg:h-[60vh] object-cover object-[center_30%] opacity-80 grayscale contrast-[1.15] transform-gpu will-change-[transform,filter,opacity] group-hover:scale-105 group-hover:grayscale-0 group-hover:opacity-100 group-hover:contrast-100 transition-[transform,filter,opacity] duration-[1000ms] ease-[cubic-bezier(0.215,0.61,0.355,1)]"
+          />
+          {/* Refraction Glass Overlay */}
+          <div className="absolute inset-0 bg-gradient-to-b from-transparent via-white/5 to-[#F5F5F7]/20 mix-blend-overlay pointer-events-none group-hover:opacity-0 transition-opacity duration-1000 ease-in-out"></div>
         </div>
       </section>
 
@@ -235,13 +248,12 @@ export default function Home() {
 
             <div className="lg:col-span-7 order-1 lg:order-2 relative group overflow-hidden border border-neutral-700 rounded-sm">
               <img
-                src="/Innovation/mushroom.png"
+                src="/Partner/lead.png"
                 alt="Agribusiness Development"
                 loading="lazy"
                 decoding="async"
                 className="w-full h-auto object-cover aspect-[16/10] transform-gpu will-change-transform group-hover:scale-105 transition-transform duration-[1000ms] ease-[cubic-bezier(0.25,1,0.5,1)]"
               />
-              {/* Using a subtle dark overlay instead of grayscale to preserve image clarity while ensuring text contrast if needed */}
               <div className="absolute inset-0 bg-black/20 group-hover:bg-black/0 transition-colors duration-700 ease-out"></div>
             </div>
           </div>
@@ -404,7 +416,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Section 7: Partners */}
+      {/* Section 7: Partners — Premium Smooth Logo Grayscale */}
       <section className="py-24 lg:py-32 px-6 lg:px-12 bg-[#7a787d] text-white border-b border-neutral-600">
         <div className="max-w-7xl mx-auto">
           <div className="flex flex-col md:flex-row md:items-end justify-between pb-12 mb-12 border-b border-white/20 gap-6">
@@ -413,7 +425,7 @@ export default function Home() {
                 Collaborations
               </span>
               <h2 className="text-4xl lg:text-5xl font-medium sm:font-normal tracking-tight text-white">
-                Our Partners
+                Partner With Us
               </h2>
             </div>
             <Link 
@@ -435,8 +447,7 @@ export default function Home() {
                   alt={p.name}
                   loading="lazy"
                   decoding="async" 
-                  // Softened the inversion and grayscale for cleaner imagery that smoothly transitions into full color on hover
-                  className="max-h-24 md:max-h-32 object-contain opacity-70 grayscale group-hover:grayscale-0 group-hover:opacity-100 transform-gpu group-hover:scale-110 transition-all duration-[800ms] ease-[cubic-bezier(0.25,1,0.5,1)] cursor-pointer" 
+                  className="max-h-24 md:max-h-32 object-contain opacity-60 grayscale filter group-hover:grayscale-0 group-hover:opacity-100 transform-gpu group-hover:scale-[1.04] will-change-[transform,filter,opacity] transition-[transform,filter,opacity] duration-[800ms] ease-[cubic-bezier(0.215,0.61,0.355,1)] cursor-pointer" 
                 />
               </div>
             ))}
@@ -454,7 +465,7 @@ export default function Home() {
           </span>
           
           <h2 className="text-4xl sm:text-6xl lg:text-7xl font-normal lg:font-light tracking-tight leading-[1.08] text-white">
-            Support the mission. <br />
+            Support our mission. <br />
             <span className="text-neutral-500 font-light sm:font-extralight">Empower the next generation.</span>
           </h2>
           
@@ -479,6 +490,17 @@ export default function Home() {
               Become A Member
             </Link>
           </div>
+        </div>
+
+        {/* Added Image at the bottom of Support Our Mission section */}
+        <div className="max-w-5xl mx-auto mt-20 relative z-10 overflow-hidden border border-white/10 rounded-sm group shadow-2xl">
+          <img
+            src="/Hero/h6.png"
+            alt="Support Our Mission"
+            loading="lazy"
+            decoding="async"
+            className="w-full h-[300px] md:h-[400px] lg:h-[500px] object-cover transform-gpu will-change-transform group-hover:scale-105 transition-transform duration-[1000ms] ease-[cubic-bezier(0.25,1,0.5,1)] opacity-90 group-hover:opacity-100 transition-opacity"
+          />
         </div>
       </section>
 
