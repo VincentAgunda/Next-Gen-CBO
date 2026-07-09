@@ -450,7 +450,7 @@ export default function Home() {
                   alt={p.name}
                   loading="lazy"
                   decoding="async" 
-                  className="absolute inset-0 w-full h-full object-cover opacity-60 grayscale filter group-hover:grayscale-0 group-hover:opacity-100 transform-gpu group-hover:scale-105 will-change-[transform,filter,opacity] transition-[transform,filter,opacity] duration-[800ms] ease-[cubic-bezier(0.215,0.61,0.355,1)]" 
+                  className="absolute inset-0 w-full h-full object-cover transform-gpu group-hover:scale-105 will-change-transform transition-transform duration-[800ms] ease-[cubic-bezier(0.215,0.61,0.355,1)]" 
                 />
               </div>
             ))}
