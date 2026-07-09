@@ -441,13 +441,16 @@ export default function Home() {
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-px bg-white/20 border border-white/20 overflow-hidden">
             {partners.slice(0, 2).map((p, i) => (
-              <div key={i} className="bg-[#6e6c71] hover:bg-[#656368] p-12 lg:p-16 flex justify-center items-center group transition-colors duration-700 ease-out min-h-[220px]">
+              <div 
+                key={i} 
+                className="relative bg-[#6e6c71] h-[280px] md:h-[360px] w-full group overflow-hidden cursor-pointer"
+              >
                 <img 
                   src={p.image || p.logo} 
                   alt={p.name}
                   loading="lazy"
                   decoding="async" 
-                  className="max-h-24 md:max-h-32 object-contain opacity-60 grayscale filter group-hover:grayscale-0 group-hover:opacity-100 transform-gpu group-hover:scale-[1.04] will-change-[transform,filter,opacity] transition-[transform,filter,opacity] duration-[800ms] ease-[cubic-bezier(0.215,0.61,0.355,1)] cursor-pointer" 
+                  className="absolute inset-0 w-full h-full object-cover opacity-60 grayscale filter group-hover:grayscale-0 group-hover:opacity-100 transform-gpu group-hover:scale-105 will-change-[transform,filter,opacity] transition-[transform,filter,opacity] duration-[800ms] ease-[cubic-bezier(0.215,0.61,0.355,1)]" 
                 />
               </div>
             ))}
