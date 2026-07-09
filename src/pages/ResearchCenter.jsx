@@ -73,7 +73,22 @@ export default function ResearchCenter() {
 
                 <div className="lg:w-1/4 flex justify-start lg:justify-end items-start pt-2">
                   <span className="inline-flex items-center gap-2 text-[14px] text-black font-normal opacity-50 group-hover:opacity-100 transition-opacity">
-                    Review Document <span>↗</span>
+                    Review Document 
+                    <span className="flex items-center justify-center">
+                      <svg 
+                        xmlns="http://www.w3.org/2000/svg" 
+                        viewBox="0 0 24 24" 
+                        fill="none" 
+                        stroke="currentColor" 
+                        strokeWidth="1.5" 
+                        strokeLinecap="round" 
+                        strokeLinejoin="round" 
+                        className="w-4 h-4 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform duration-300"
+                      >
+                        <path d="M7 17L17 7" />
+                        <path d="M7 7h10v10" />
+                      </svg>
+                    </span>
                   </span>
                 </div>
               </a>
@@ -130,9 +145,23 @@ export default function ResearchCenter() {
               />
               
               <div className="pt-8 flex flex-col sm:flex-row items-center justify-between gap-6">
-                <button className="w-full sm:w-auto inline-flex items-center justify-between border border-black text-black px-10 py-5 text-[15px] font-normal hover:bg-black hover:text-white transition-colors duration-300">
+                <button className="w-full sm:w-auto inline-flex items-center justify-between border border-black text-black px-10 py-5 text-[15px] font-normal hover:bg-black hover:text-white transition-colors duration-300 group">
                   <span>Submit Proposal</span>
-                  <span className="ml-8 text-lg leading-none">↗</span>
+                  <span className="ml-8 leading-none flex items-center justify-center">
+                    <svg 
+                      xmlns="http://www.w3.org/2000/svg" 
+                      viewBox="0 0 24 24" 
+                      fill="none" 
+                      stroke="currentColor" 
+                      strokeWidth="1.5" 
+                      strokeLinecap="round" 
+                      strokeLinejoin="round" 
+                      className="w-5 h-5 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform duration-300"
+                    >
+                      <path d="M7 17L17 7" />
+                      <path d="M7 7h10v10" />
+                    </svg>
+                  </span>
                 </button>
                 {collabMsg && (
                   <p className="text-[14px] text-[#757575] font-normal">{collabMsg}</p>
