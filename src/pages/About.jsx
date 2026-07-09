@@ -59,7 +59,7 @@ export default function About() {
               <img 
                 src="/images/about/vision-blueprint.jpg" 
                 alt="Strategic agricultural research fields" 
-                className="w-full h-full object-cover grayscale contrast-110 group-hover:scale-102 transition-transform duration-700"
+                className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
               />
             </div>
             <h3 className="text-3xl lg:text-[40px] font-normal text-black mb-6 tracking-tight leading-none">
@@ -80,7 +80,7 @@ export default function About() {
               <img 
                 src="/Hero/h1.jpeg" 
                 alt="Youth researchers collecting data" 
-                className="w-full h-full object-cover grayscale contrast-110 group-hover:scale-102 transition-transform duration-700"
+                className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
               />
             </div>
             <h3 className="text-3xl lg:text-[40px] font-normal text-black mb-6 tracking-tight leading-none">
@@ -104,7 +104,7 @@ export default function About() {
             <img 
               src="/images/about/objectives-manifesto.jpg" 
               alt="Close up of structural botany and research tools" 
-              className="w-full h-full object-cover grayscale contrast-125"
+              className="w-full h-full object-cover"
             />
           </div>
 
@@ -114,7 +114,21 @@ export default function About() {
             </span>
             
             <h2 className="text-black text-4xl lg:text-[52px] font-normal mb-10 leading-[1.05] tracking-tight flex items-start gap-3">
-              <span className="text-3xl lg:text-5xl font-light translate-y-1.5 select-none">↗</span>
+              <span className="translate-y-1.5 select-none text-black">
+                <svg 
+                  xmlns="http://www.w3.org/2000/svg" 
+                  viewBox="0 0 24 24" 
+                  fill="none" 
+                  stroke="currentColor" 
+                  strokeWidth="1.2" 
+                  strokeLinecap="round" 
+                  strokeLinejoin="round" 
+                  className="w-8 h-8 lg:w-12 lg:h-12"
+                >
+                  <path d="M7 17L17 7" />
+                  <path d="M7 7h10v10" />
+                </svg>
+              </span>
               <span>Constitutional <br/> Objectives</span>
             </h2>
             
@@ -194,7 +208,7 @@ export default function About() {
         </div>
       </section>
 
-      {/* 06. GOVERNANCE MATRIX (Rigid grid architecture with minimal rounded profiles) */}
+      {/* 06. GOVERNANCE MATRIX */}
       <section className="py-28 bg-[#f6f6f6] px-[6vw] md:px-12 lg:px-24 border-t border-[#E5E5E5]">
         <div className="max-w-[1440px] mx-auto">
           
@@ -221,7 +235,7 @@ export default function About() {
                   <img 
                     src={person.image} 
                     alt={person.name} 
-                    className="w-full h-full object-cover grayscale contrast-110 group-hover:scale-105 transition-transform duration-500 ease-out"
+                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 ease-out"
                     onError={(e) => {
                       // Fallback visual implementation if image source is physically missing
                       e.target.style.display = 'none';
@@ -257,10 +271,24 @@ export default function About() {
             href="https://res.cloudinary.com/your-cloud/raw/upload/v1/constitution.pdf"
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center justify-between border border-black text-black px-8 py-4 text-[15px] font-normal hover:bg-black hover:text-white transition-colors duration-300 w-full max-w-[320px]"
+            className="inline-flex items-center justify-between border border-black text-black px-8 py-4 text-[15px] font-normal hover:bg-black hover:text-white transition-colors duration-300 w-full max-w-[320px] group"
           >
             <span>Download Constitution</span>
-            <span className="text-lg leading-none">↓</span>
+            <span className="leading-none flex items-center justify-center">
+              <svg 
+                xmlns="http://www.w3.org/2000/svg" 
+                viewBox="0 0 24 24" 
+                fill="none" 
+                stroke="currentColor" 
+                strokeWidth="1.5" 
+                strokeLinecap="round" 
+                strokeLinejoin="round" 
+                className="w-5 h-5 group-hover:translate-y-1 transition-transform duration-300"
+              >
+                <path d="M12 5v14" />
+                <path d="M19 12l-7 7-7-7" />
+              </svg>
+            </span>
           </a>
         </div>
       </section>
