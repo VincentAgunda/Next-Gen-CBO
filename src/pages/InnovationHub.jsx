@@ -5,6 +5,17 @@ import InnovationCard from "../components/InnovationCard";
 import SectionHeader from "../components/SectionHeader";
 import { useForm } from "react-hook-form";
 
+// Permanent Flagship Project Data with Official Attribution
+const FLAGSHIP_MUSHROOM_PROJECT = {
+  id: "flagship-white-button",
+  title: "Automated Agaricus Bisporus Climate & Substrate Matrix",
+  innovator: "Samuel Owino (UON Biology Graduate)",
+  description: "An integrated vertical farming protocol engineered specifically for White Button Mushrooms (Agaricus bisporus). Utilizes IoT-driven ambient moisture controllers, CO2 scrubbing actuators, and automated substrate thermal-shocking to regulate mycelial colonization and fruiting body development with zero chemical intervention.",
+  image: "/Innovation/mush2.png",
+  status: "Deployed Protocol",
+  category: "Mycology Automation"
+};
+
 export default function InnovationHub() {
   const [innovations, setInnovations] = useState([]);
   const [showForm, setShowForm] = useState(false);
@@ -37,6 +48,7 @@ export default function InnovationHub() {
     <div className="bg-[#F5F5F7] min-h-screen py-24 px-6 lg:px-12">
       <div className="max-w-[1400px] mx-auto">
         
+        {/* Header & Submit Button Controls */}
         <div className="flex flex-col md:flex-row justify-between items-start md:items-end gap-8 mb-16 pb-8 border-b border-[#e5e5e5]">
           <div className="max-w-xl">
             <SectionHeader 
@@ -53,8 +65,9 @@ export default function InnovationHub() {
           </button>
         </div>
 
+        {/* Enterprise Spec Submission Form */}
         {showForm && (
-          <div className="bg-white p-10 lg:p-16 border border-[#e5e5e5] max-w-3xl mx-auto mb-20 transition-all duration-500">
+          <div className="bg-white p-10 lg:p-16 border border-[#e5e5e5] max-w-3xl mx-auto mb-20 transition-all duration-500 shadow-sm">
             <h3 className="text-[#1a1a1a] font-sans text-2xl lg:text-3xl font-normal leading-[1.2] mb-8 tracking-tight">
               Propose New Agricultural System
             </h3>
@@ -99,10 +112,40 @@ export default function InnovationHub() {
           </div>
         )}
 
+        {/* =========================================================================
+            SECTION 1: FLAGSHIP PROJECT (White Button Mushroom - Always Visible)
+        ========================================================================== */}
+        <div className="mb-20">
+          <div className="flex items-center gap-3 mb-8">
+            <span className="h-[1px] w-8 bg-[#1a1a1a]"></span>
+            <span className="text-[#1a1a1a] font-mono text-xs uppercase tracking-[0.25em] font-semibold">
+              Flagship R&D Architecture
+            </span>
+          </div>
+          
+          <InnovationCard 
+            title={FLAGSHIP_MUSHROOM_PROJECT.title}
+            description={FLAGSHIP_MUSHROOM_PROJECT.description}
+            innovator={FLAGSHIP_MUSHROOM_PROJECT.innovator}
+            image={FLAGSHIP_MUSHROOM_PROJECT.image}
+            status={FLAGSHIP_MUSHROOM_PROJECT.status}
+          />
+        </div>
+
+        {/* =========================================================================
+            SECTION 2: COMMUNITY SUBMISSIONS (Loaded from Firebase)
+        ========================================================================== */}
+        <div className="flex items-center gap-3 mb-8 pt-8 border-t border-[#e5e5e5]">
+          <span className="h-[1px] w-8 bg-[#757575]"></span>
+          <span className="text-[#757575] font-mono text-xs uppercase tracking-[0.25em] font-medium">
+            Authenticated Community Ledgers ({innovations.length})
+          </span>
+        </div>
+
         <div className="flex flex-col gap-12 lg:gap-16 items-center w-full">
           {innovations.length === 0 ? (
-            <div className="w-full max-w-[1200px] mx-auto bg-white border border-[#e5e5e5] p-16 text-center text-[#757575] font-light text-[15px]">
-              No authenticated innovations verified on ledger yet. Check back shortly.
+            <div className="w-full max-w-[1280px] mx-auto bg-white border border-[#e5e5e5] p-16 text-center text-[#757575] font-light text-[15px]">
+              No additional community innovations verified on ledger yet. Submit a system specification above to initiate technical review.
             </div>
           ) : (
             innovations.map((inv) => (
@@ -112,7 +155,7 @@ export default function InnovationHub() {
                 description={inv.description}
                 innovator={inv.innovator}
                 image={inv.image || "https://images.unsplash.com/photo-1516253593875-bd7ba052fbc5?auto=format&fit=crop&q=80&w=800"} 
-                status={inv.category || "General"} 
+                status={inv.status === "approved" ? "Verified System" : (inv.category || "Active Prototype")} 
               />
             ))
           )}

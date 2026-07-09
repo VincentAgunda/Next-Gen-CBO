@@ -258,12 +258,12 @@ export default function Home() {
             </div>
           </div>
 
-          {/* Row 2 */}
+         {/* Row 2: White Button Mushroom Innovation */}
           <div className="grid lg:grid-cols-12 gap-12 lg:gap-16 items-center">
             <div className="lg:col-span-7 order-1 relative group overflow-hidden border border-neutral-700 rounded-sm">
               <img
                 src="/Innovation/mush2.png" 
-                alt="Research & Innovation"
+                alt="White Button Mushroom Automated Cultivation"
                 loading="lazy"
                 decoding="async"
                 className="w-full h-auto object-cover aspect-[16/10] transform-gpu will-change-transform group-hover:scale-105 transition-transform duration-[1000ms] ease-[cubic-bezier(0.25,1,0.5,1)]"
@@ -275,17 +275,17 @@ export default function Home() {
               <div className="flex items-center gap-3">
                 <span className="h-[1px] w-6 bg-[#d2b79b]"></span>
                 <span className="text-[#d2b79b] text-xs uppercase tracking-[0.3em] font-semibold">
-                  Youth Innovation Hub
+                  Precision Mycology Hub
                 </span>
               </div>
               
               <h2 className="text-4xl lg:text-6xl font-medium md:font-normal tracking-tight leading-tight text-white">
-                First steps into <br className="hidden lg:block" />
-                modern agriculture.
+                Next-gen white button <br className="hidden lg:block" />
+                mushroom cultivation.
               </h2>
               
               <p className="text-neutral-300 font-normal md:font-light text-base md:text-lg leading-relaxed">
-                Our innovation projects mark the genesis of community-led agricultural advancements, redefining how young entrepreneurs approach sustainable farming and local economic resilience.
+                Our flagship White Button Mushroom (<em>Agaricus bisporus</em>) project integrates automated ambient humidity regulation and precision substrate thermal-shocking—redefining high-yield vertical farming for local economic resilience.
               </p>
               
               <div className="pt-4">
@@ -293,7 +293,7 @@ export default function Home() {
                   to="/innovation-hub" 
                   className="inline-flex items-center gap-3 text-xs uppercase tracking-[0.2em] font-semibold text-[#d2b79b] hover:text-white transition-colors duration-300 group"
                 >
-                  <span>To the project</span>
+                  <span>Examine Mycology Spec</span>
                   <svg className="w-4 h-4 transform group-hover:translate-x-2 transition-transform duration-500 ease-out" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
                     <path strokeLinecap="square" strokeLinejoin="miter" d="M5 12h14M12 5l7 7-7 7" />
                   </svg>
