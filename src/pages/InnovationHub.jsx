@@ -11,7 +11,7 @@ const FLAGSHIP_MUSHROOM_PROJECT = {
   title: "Automated Agaricus Bisporus Climate & Substrate Matrix",
   innovator: "Samuel Owino (UON Biology Graduate)",
   description: "An integrated vertical farming protocol engineered specifically for White Button Mushrooms (Agaricus bisporus). Utilizes IoT-driven ambient moisture controllers, CO2 scrubbing actuators, and automated substrate thermal-shocking to regulate mycelial colonization and fruiting body development with zero chemical intervention.",
-  image: "/Innovation/mush2.png",
+  image: "/Innovation/mush4.png",
   status: "Deployed Protocol",
   category: "Mycology Automation"
 };

@@ -1,8 +1,9 @@
+import React, { useState } from "react";
 import { programs } from "../data/programs";
 import ProgramCard from "../components/ProgramCard";
-import { useState } from "react";
 
-const categories = ["All", "Agribusiness", "Youth Empowerment", "Research & Innovation"];
+// Updated premium categories to encompass the entire CBO spectrum
+const categories = ["All", "Agribusiness", "Youth Empowerment", "ICT & Digital", "Charity & Outreach"];
 
 export default function Programs() {
   const [filter, setFilter] = useState("All");
@@ -51,18 +52,18 @@ export default function Programs() {
       {/* PROGRAM GRID */}
       <section className="pb-32 px-[6vw] md:px-12 lg:px-24">
         <div className="max-w-[1440px] mx-auto">
+          {/* Cleaned layout grid allowing ProgramCard to handle its premium styling seamlessly */}
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 lg:gap-12">
             {filtered.map((prog, idx) => (
-              <div 
-                key={idx} 
-                className="group border border-[#E5E5E5] bg-[#f6f6f6] hover:border-black transition-colors duration-500 overflow-hidden"
-              >
-                <div className="p-8 lg:p-10 h-full flex flex-col justify-between">
-                  <ProgramCard {...prog} />
-                </div>
-              </div>
+              <ProgramCard key={idx} {...prog} />
             ))}
           </div>
+          
+          {filtered.length === 0 && (
+            <div className="text-center py-20 text-[#757575] text-sm tracking-wide">
+              No programs currently scheduled in this tier.
+            </div>
+          )}
         </div>
       </section>
 
