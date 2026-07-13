@@ -116,7 +116,7 @@ export default function Home() {
               </div>
             </div>
 
-            <div className="bg-[#111111]/90 backdrop-blur-md text-white p-8 md:p-10 border border-neutral-800 flex flex-col justify-between shadow-sm hover:shadow-md hover:border-neutral-700 transition-all duration-500 ease-out">
+            <div className="bg-[#45263C]/90 backdrop-blur-md text-white p-8 md:p-10 border border-neutral-800 flex flex-col justify-between shadow-sm hover:shadow-md hover:border-neutral-700 transition-all duration-500 ease-out">
               <span className="text-4xl font-normal md:font-light text-[#d2b79b] mb-8 block">02</span>
               <div>
                 <h3 className="text-lg font-semibold uppercase tracking-wider mb-3 text-white">Evidence-Based</h3>
