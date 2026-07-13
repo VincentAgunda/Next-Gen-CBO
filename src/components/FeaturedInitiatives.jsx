@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 
 export default function FeaturedInitiatives() {
   return (
-    <section className="bg-[#2d2932] text-white py-28 lg:py-40 px-6 lg:px-24 border-b border-neutral-700">
+    <section className="bg-[#45263C] text-white py-28 lg:py-40 px-6 lg:px-24 border-b border-neutral-700">
       <div className="max-w-7xl mx-auto flex flex-col gap-28 lg:gap-40">
         
         {/* Row 1: Youth Empowerment & Agribusiness */}
