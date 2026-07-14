@@ -209,10 +209,10 @@ export default function About() {
       </section>
 
       {/* 06. GOVERNANCE MATRIX */}
-      <section className="py-28 bg-[#f6f6f6] px-[6vw] md:px-12 lg:px-24 border-t border-[#E5E5E5]">
-        <div className="max-w-[1440px] mx-auto">
+      <section className="py-28 bg-[#f6f6f6] border-t border-[#E5E5E5]">
+        <div className="max-w-[1440px] mx-auto px-[6vw] md:px-12 lg:px-24">
           
-          <div className="flex flex-col md:flex-row md:justify-between md:items-end mb-20 gap-8">
+          <div className="flex flex-col md:flex-row md:justify-between md:items-end mb-16 gap-8">
             <div>
               <span className="text-[#757575] text-[13px] uppercase tracking-wider font-normal block mb-4">
                 05 / Leadership
@@ -225,37 +225,80 @@ export default function About() {
               The founding executive secretariat strictly governs operational strategy and regulatory compliance.
             </p>
           </div>
-          
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-x-8 gap-y-16 border-t border-[#D9D9D9] pt-12">
-            {governance.map((person) => (
-              <div key={person.name} className="flex flex-col border-b border-[#E5E5E5] pb-8 group">
-                
-                {/* Minimalist Circular Profile Image Frame */}
-                <div className="w-20 h-20 rounded-full bg-[#E5E5E5] overflow-hidden mb-6 relative border border-[#E5E5E5]">
-                  <img 
-                    src={person.image} 
-                    alt={person.name} 
-                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 ease-out"
-                    onError={(e) => {
-                      // Fallback visual implementation if image source is physically missing
-                      e.target.style.display = 'none';
-                    }}
-                  />
-                </div>
+        </div>
 
-                <span className="text-[12px] uppercase tracking-wider text-[#757575] block font-normal mb-2">
-                  {person.role}
-                </span>
-                <h4 className="text-[20px] font-normal text-black tracking-tight mb-2">
-                  {person.name}
-                </h4>
-                <span className="text-[11px] uppercase text-[#757575] font-normal block opacity-50">
-                  ID: NGYAR-{person.name.substring(0, 3).toUpperCase()}
-                </span>
-              </div>
+        {/* Executive Section (#45263C Background) */}
+        <div className="bg-[#45263C] w-full py-20 px-[6vw] md:px-12 lg:px-24 mb-16">
+          <div className="max-w-[1440px] mx-auto">
+            
+            <h3 className="text-3xl md:text-4xl font-normal text-white tracking-tight mb-12">
+              Executive
+            </h3>
+
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-x-8 gap-y-16">
+              {governance
+                .filter((person) => person.role !== "Founding Member")
+                .map((person) => (
+                  <div key={person.name} className="flex flex-col border-b border-white/20 pb-8 group">
+                    <div className="w-20 h-20 rounded-full bg-white/10 overflow-hidden mb-6 relative border border-white/10">
+                      <img 
+                        src={person.image} 
+                        alt={person.name} 
+                        className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 ease-out"
+                        onError={(e) => {
+                          e.target.style.display = 'none';
+                        }}
+                      />
+                    </div>
+                    <span className="text-[12px] uppercase tracking-wider text-white/70 block font-normal mb-2">
+                      {person.role}
+                    </span>
+                    <h4 className="text-[20px] font-normal text-white tracking-tight mb-2">
+                      {person.name}
+                    </h4>
+                    <span className="text-[11px] uppercase text-white/50 font-normal block">
+                      ID: NGYAR-{person.name.substring(0, 3).toUpperCase()}
+                    </span>
+                  </div>
+              ))}
+            </div>
+          </div>
+        </div>
+
+        {/* Members Section (Original Background) */}
+        <div className="max-w-[1440px] mx-auto px-[6vw] md:px-12 lg:px-24">
+          
+          <h3 className="text-3xl md:text-4xl font-normal text-black tracking-tight mb-10">
+            Founding Members
+          </h3>
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-x-8 gap-y-16">
+            {governance
+              .filter((person) => person.role === "Founding Member")
+              .map((person) => (
+                <div key={person.name} className="flex flex-col border-b border-[#E5E5E5] pb-8 group">
+                  <div className="w-20 h-20 rounded-full bg-[#E5E5E5] overflow-hidden mb-6 relative border border-[#E5E5E5]">
+                    <img 
+                      src={person.image} 
+                      alt={person.name} 
+                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 ease-out"
+                      onError={(e) => {
+                        e.target.style.display = 'none';
+                      }}
+                    />
+                  </div>
+                  <span className="text-[12px] uppercase tracking-wider text-[#757575] block font-normal mb-2">
+                    {person.role}
+                  </span>
+                  <h4 className="text-[20px] font-normal text-black tracking-tight mb-2">
+                    {person.name}
+                  </h4>
+                  <span className="text-[11px] uppercase text-[#757575] font-normal block opacity-50">
+                    ID: NGYAR-{person.name.substring(0, 3).toUpperCase()}
+                  </span>
+                </div>
             ))}
           </div>
-
         </div>
       </section>
 
