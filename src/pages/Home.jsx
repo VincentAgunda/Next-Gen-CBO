@@ -386,7 +386,7 @@ export default function Home() {
                 Collaborations
               </span>
               <h2 className="text-4xl lg:text-5xl font-medium sm:font-normal tracking-tight text-white">
-                Partner With Us
+                Our Partners
               </h2>
             </div>
             <Link 
