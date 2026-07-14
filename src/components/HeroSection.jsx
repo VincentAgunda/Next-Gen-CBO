@@ -8,7 +8,7 @@ const slides = [
     image: "/Hero/h7.png", 
     subtitle: "NEXT-GEN YOUTH INITIATIVE // COGNITIVE CORE",
     title: "Empowering The Future.",
-    description: "An autonomous, youth-driven operational framework deploying high-performance systems across sustainable agribusiness development and precision empirical research.",
+    description: "A youth-led initiative focused on building sustainable farming businesses and conducting careful, hands-on research for a better future.",
     buttonText: "DISCOVER MATRIX",
     link: "/about"
   },
@@ -17,7 +17,7 @@ const slides = [
     image: "/Hero/h1.jpeg", 
     subtitle: "AGRIBUSINESS OPTIMIZATION // VALUE CHAINS",
     title: "Cultivating Growth.",
-    description: "Equipping generation-next regional leaders with technical capabilities, hardware resources, and scalable modular framework models to secure self-sustaining economic yields.",
+    description: "Providing young leaders with the practical skills, tools, and business models they need to create profitable and lasting agricultural communities.",
     buttonText: "SYSTEM INDEX",
     link: "/programs"
   }
@@ -92,8 +92,8 @@ export default function HeroSection() {
               {slides[current].title}
             </h1>
             
-            {/* Description */}
-            <p className="text-sm md:text-base text-gray-800 leading-relaxed font-light max-w-2xl pt-2">
+            {/* Description - Updated with requested classes and simpler English */}
+            <p className="max-w-2xl pt-2 text-neutral-600 font-normal md:font-light text-sm md:text-base leading-relaxed">
               {slides[current].description}
             </p>
             
