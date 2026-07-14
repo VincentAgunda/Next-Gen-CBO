@@ -458,7 +458,7 @@ export default function Home() {
 
         <div className="max-w-5xl mx-auto mt-20 relative z-10 overflow-hidden border border-white/10 rounded-sm group shadow-2xl">
           <img
-            src="/Hero/h6.png"
+            src="/Hero/h1.jpeg"
             alt="Support Our Mission"
             loading="lazy"
             decoding="async"

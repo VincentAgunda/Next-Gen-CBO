@@ -27,16 +27,14 @@ const coreValues = [
   { term: "Empowerment", definition: "Creating self-sustaining, evidence-based socioeconomic opportunities for youth." },
 ];
 
-// --- High-Performance Animation Configs ---
-const smoothFadeUp = {
+// --- Animation Configs ---
+// Added willChange hints to prevent CPU bottlenecking
+const fadeInUp = {
   hidden: { opacity: 0, y: 40 },
   visible: { 
     opacity: 1, 
     y: 0, 
-    transition: { 
-      duration: 0.8, 
-      ease: [0.16, 1, 0.3, 1] // Premium smooth exponential-out curve
-    } 
+    transition: { duration: 0.8, ease: [0.22, 1, 0.36, 1] } 
   }
 };
 
@@ -45,14 +43,14 @@ const staggerContainer = {
   visible: {
     opacity: 1,
     transition: {
-      staggerChildren: 0.1, // Reduced for smoother batch processing
-      delayChildren: 0.05,
+      staggerChildren: 0.15,
+      delayChildren: 0.1,
     }
   }
 };
 
 export default function About() {
-  // Ensure page always starts at the top on mount without jumping
+  // Ensure page always starts at the top on mount
   useEffect(() => {
     window.scrollTo({ top: 0, left: 0, behavior: "instant" });
   }, []);
@@ -65,16 +63,16 @@ export default function About() {
         initial="hidden"
         animate="visible"
         variants={staggerContainer}
-        className="pt-40 pb-28 px-[6vw] md:px-12 lg:px-24 max-w-[1440px] mx-auto will-change-transform"
+        className="pt-40 pb-28 px-[6vw] md:px-12 lg:px-24 max-w-[1440px] mx-auto transform-gpu"
       >
-        <motion.span variants={smoothFadeUp} className="block text-[#757575] text-[13px] font-normal mb-8 uppercase tracking-wider will-change-[transform,opacity]">
+        <motion.span variants={fadeInUp} className="block text-[#757575] text-[13px] font-normal mb-8 uppercase tracking-wider">
           01 / Framework
         </motion.span>
-        <motion.h1 variants={smoothFadeUp} className="text-5xl md:text-7xl lg:text-[110px] font-normal leading-[0.95] tracking-tight text-black mb-12 will-change-[transform,opacity]">
+        <motion.h1 variants={fadeInUp} className="text-5xl md:text-7xl lg:text-[110px] font-normal leading-[0.95] tracking-tight text-black mb-12">
           Foundation & <br />
           Philosophy.
         </motion.h1>
-        <motion.p variants={smoothFadeUp} className="max-w-3xl text-black opacity-85 font-normal text-[16px] md:text-[18px] leading-relaxed will-change-[transform,opacity]">
+        <motion.p variants={fadeInUp} className="max-w-3xl text-black opacity-85 font-normal text-[16px] md:text-[18px] leading-relaxed">
           Formally constituted and registered under the Organization Act (No. 30 of 2022, Laws of Kenya), 
           the Next-Generation Youth Agribusiness & Researchers CBO operates as a premium catalyst for 
           evidence-based sustainable development from its regional seat in the Emali-Sultan Humud Municipality, Makueni County.
@@ -87,19 +85,23 @@ export default function About() {
           
           {/* Vision */}
           <motion.div 
-            initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-100px", amount: 0.1 }} variants={smoothFadeUp}
-            className="flex flex-col border-t border-[#D9D9D9] pt-6 will-change-[transform,opacity]"
+            initial="hidden" whileInView="visible" viewport={{ once: true, amount: 0.1 }} variants={fadeInUp}
+            className="flex flex-col border-t border-[#D9D9D9] pt-6 transform-gpu"
+            style={{ willChange: "transform, opacity" }}
           >
             <span className="text-[13px] text-[#757575] mb-8 font-normal uppercase tracking-wider">
               02.1 / Horizon
             </span>
             <div className="aspect-[16/10] w-full bg-[#E5E5E5] mb-10 overflow-hidden relative group">
-              <img 
+              <motion.img 
+                initial={{ scale: 1.15 }}
+                whileInView={{ scale: 1 }}
+                viewport={{ once: true }}
+                transition={{ duration: 1.2, ease: [0.22, 1, 0.36, 1] }}
                 src="/images/about/vision-blueprint.jpg" 
                 alt="Strategic agricultural research fields" 
-                loading="lazy"
-                decoding="async"
-                className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 ease-out"
+                // Removed loading="lazy" to prevent decoding jank at the exact moment of animation
+                className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 will-change-transform"
               />
             </div>
             <h3 className="text-3xl lg:text-[40px] font-normal text-black mb-6 tracking-tight leading-none">
@@ -113,19 +115,22 @@ export default function About() {
 
           {/* Mission */}
           <motion.div 
-            initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-100px", amount: 0.1 }} variants={smoothFadeUp}
-            className="flex flex-col border-t border-[#D9D9D9] pt-6 will-change-[transform,opacity]"
+            initial="hidden" whileInView="visible" viewport={{ once: true, amount: 0.1 }} variants={fadeInUp}
+            className="flex flex-col border-t border-[#D9D9D9] pt-6 transform-gpu"
+            style={{ willChange: "transform, opacity" }}
           >
             <span className="text-[13px] text-[#757575] mb-8 font-normal uppercase tracking-wider">
               02.2 / Mandate
             </span>
             <div className="aspect-[16/10] w-full bg-[#E5E5E5] mb-10 overflow-hidden relative group">
-              <img 
+              <motion.img 
+                initial={{ scale: 1.15 }}
+                whileInView={{ scale: 1 }}
+                viewport={{ once: true }}
+                transition={{ duration: 1.2, ease: [0.22, 1, 0.36, 1] }}
                 src="/Hero/h1.jpeg" 
                 alt="Youth researchers collecting data" 
-                loading="lazy"
-                decoding="async"
-                className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 ease-out"
+                className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 will-change-transform"
               />
             </div>
             <h3 className="text-3xl lg:text-[40px] font-normal text-black mb-6 tracking-tight leading-none">
@@ -146,27 +151,33 @@ export default function About() {
         <div className="max-w-[1440px] mx-auto px-[6vw] md:px-12 lg:px-24 grid lg:grid-cols-12 gap-12 lg:gap-20 items-start">
           
           <motion.div 
-            initial={{ opacity: 0, x: -50 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true, margin: "-50px" }} transition={{ duration: 0.9, ease: [0.16, 1, 0.3, 1] }}
-            className="lg:col-span-7 w-full bg-[#f6f6f6] overflow-hidden aspect-[4/3] will-change-[transform,opacity]"
+            initial={{ opacity: 0, x: -50 }} 
+            whileInView={{ opacity: 1, x: 0 }} 
+            viewport={{ once: true, amount: 0.2 }} 
+            transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
+            className="lg:col-span-7 w-full bg-[#f6f6f6] overflow-hidden aspect-[4/3] transform-gpu"
+            style={{ willChange: "transform, opacity" }}
           >
-            <img 
+            <motion.img 
+              initial={{ scale: 1.1 }}
+              whileInView={{ scale: 1 }}
+              viewport={{ once: true }}
+              transition={{ duration: 1.2, ease: [0.22, 1, 0.36, 1] }}
               src="/images/about/objectives-manifesto.jpg" 
               alt="Close up of structural botany and research tools" 
-              loading="lazy"
-              decoding="async"
-              className="w-full h-full object-cover"
+              className="w-full h-full object-cover will-change-transform"
             />
           </motion.div>
 
           <motion.div 
-            initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-50px" }} variants={staggerContainer}
-            className="lg:col-span-5 lg:pl-8 flex flex-col justify-center"
+            initial="hidden" whileInView="visible" viewport={{ once: true, amount: 0.2 }} variants={staggerContainer}
+            className="lg:col-span-5 lg:pl-8 flex flex-col justify-center transform-gpu"
           >
-            <motion.span variants={smoothFadeUp} className="text-[#757575] text-[13px] uppercase block mb-6 font-normal tracking-wider will-change-[transform,opacity]">
+            <motion.span variants={fadeInUp} className="text-[#757575] text-[13px] uppercase block mb-6 font-normal tracking-wider">
               03 / Statutory Charter
             </motion.span>
             
-            <motion.h2 variants={smoothFadeUp} className="text-black text-4xl lg:text-[52px] font-normal mb-10 leading-[1.05] tracking-tight flex items-start gap-3 will-change-[transform,opacity]">
+            <motion.h2 variants={fadeInUp} className="text-black text-4xl lg:text-[52px] font-normal mb-10 leading-[1.05] tracking-tight flex items-start gap-3">
               <span className="translate-y-1.5 select-none text-black">
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round" className="w-8 h-8 lg:w-12 lg:h-12">
                   <path d="M7 17L17 7" />
@@ -176,7 +187,7 @@ export default function About() {
               <span>Constitutional <br/> Objectives</span>
             </motion.h2>
             
-            <motion.p variants={smoothFadeUp} className="text-black opacity-85 text-[16px] leading-relaxed mb-10 font-normal border-b border-[#E5E5E5] pb-8 will-change-[transform,opacity]">
+            <motion.p variants={fadeInUp} className="text-black opacity-85 text-[16px] leading-relaxed mb-10 font-normal border-b border-[#E5E5E5] pb-8">
               Pursuant to Section 3.3 of our founding charter, NGYAR maps its resource allocation against rigorous scientific benchmarks to ensure sustainable livelihoods and environmental stewardship across local ecosystems.
             </motion.p>
             
@@ -187,7 +198,7 @@ export default function About() {
                 "Build capacity through advanced technical training and academic collaboration frameworks.",
                 "Accelerate the adoption of climate-smart, high-yield agricultural technologies."
               ].map((item, i) => (
-                <motion.li variants={smoothFadeUp} key={i} className="flex gap-4 border-b border-[#f6f6f6] pb-4 last:border-0 last:pb-0 will-change-[transform,opacity]">
+                <motion.li variants={fadeInUp} key={i} className="flex gap-4 border-b border-[#f6f6f6] pb-4 last:border-0 last:pb-0">
                   <span className="opacity-50">0{i + 1}</span>
                   <span>{item}</span>
                 </motion.li>
@@ -200,19 +211,19 @@ export default function About() {
 
       {/* 04. ABSOLUTE HIGH-CONTRAST STATEMENT */}
       <motion.section 
-        initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} viewport={{ once: true, margin: "-100px" }} transition={{ duration: 1 }}
-        className="bg-black text-white py-32 lg:py-48 px-[6vw] md:px-12 lg:px-24 flex items-center justify-center will-change-opacity"
+        initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} viewport={{ once: true, amount: 0.3 }} transition={{ duration: 1 }}
+        className="bg-black text-white py-32 lg:py-48 px-[6vw] md:px-12 lg:px-24 flex items-center justify-center transform-gpu"
       >
         <div className="max-w-5xl mx-auto text-center">
           <motion.h2 
-            initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, margin: "-50px" }} transition={{ duration: 0.9, ease: [0.16, 1, 0.3, 1] }}
-            className="text-3xl md:text-5xl lg:text-[64px] font-normal leading-[1.1] tracking-tight will-change-[transform,opacity]"
+            initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.8, delay: 0.2 }}
+            className="text-3xl md:text-5xl lg:text-[64px] font-normal leading-[1.1] tracking-tight transform-gpu"
           >
             “To empower young innovators, researchers and communities focused in agribusiness to generate evidence-based solutions that promote sustainable development.”
           </motion.h2>
           <motion.span 
-            initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} viewport={{ once: true }} transition={{ duration: 1, delay: 0.4 }}
-            className="block mt-12 text-[#858585] text-[13px] uppercase tracking-wider font-normal will-change-opacity"
+            initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} viewport={{ once: true }} transition={{ duration: 1, delay: 0.6 }}
+            className="block mt-12 text-[#858585] text-[13px] uppercase tracking-wider font-normal transform-gpu"
           >
             — Section 3.2, National Regulatory Filing
           </motion.span>
@@ -223,7 +234,7 @@ export default function About() {
       <section className="py-28 lg:py-40 px-[6vw] md:px-12 lg:px-24 bg-white">
         <div className="max-w-[1440px] mx-auto">
           
-          <motion.div initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-50px" }} variants={smoothFadeUp} className="mb-16 will-change-[transform,opacity]">
+          <motion.div initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeInUp} className="mb-16 transform-gpu">
             <span className="text-[#757575] text-[13px] uppercase tracking-wider font-normal block mb-4">
               04 / Ethics
             </span>
@@ -233,14 +244,14 @@ export default function About() {
           </motion.div>
 
           <motion.div 
-            initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-50px" }} variants={staggerContainer}
-            className="w-full border-t border-black"
+            initial="hidden" whileInView="visible" viewport={{ once: true, amount: 0.1 }} variants={staggerContainer}
+            className="w-full border-t border-black transform-gpu"
           >
             {coreValues.map((value, index) => (
               <motion.div 
-                variants={smoothFadeUp}
+                variants={fadeInUp}
                 key={value.term}
-                className="w-full py-8 lg:py-12 flex flex-col lg:flex-row lg:items-baseline justify-between border-b border-[#D9D9D9] gap-4 lg:gap-12 hover:opacity-60 transition-opacity duration-300 will-change-[transform,opacity]"
+                className="w-full py-8 lg:py-12 flex flex-col lg:flex-row lg:items-baseline justify-between border-b border-[#D9D9D9] gap-4 lg:gap-12 hover:opacity-60 transition-opacity duration-300 transform-gpu"
               >
                 <div className="flex items-baseline gap-6 lg:w-1/3">
                   <span className="text-[13px] text-[#757575] font-normal block min-w-[30px]">
@@ -264,8 +275,8 @@ export default function About() {
       <section className="py-28 bg-[#f6f6f6] border-t border-[#E5E5E5]">
         <div className="max-w-[1440px] mx-auto px-[6vw] md:px-12 lg:px-24">
           <motion.div 
-            initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-50px" }} variants={smoothFadeUp}
-            className="flex flex-col md:flex-row md:justify-between md:items-end mb-16 gap-8 will-change-[transform,opacity]"
+            initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeInUp}
+            className="flex flex-col md:flex-row md:justify-between md:items-end mb-16 gap-8 transform-gpu"
           >
             <div>
               <span className="text-[#757575] text-[13px] uppercase tracking-wider font-normal block mb-4">
@@ -289,19 +300,18 @@ export default function About() {
             </h3>
 
             <motion.div 
-              initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-50px" }} variants={staggerContainer}
-              className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-x-8 gap-y-16"
+              initial="hidden" whileInView="visible" viewport={{ once: true, amount: 0.1 }} variants={staggerContainer}
+              className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-x-8 gap-y-16 transform-gpu"
             >
               {governance
                 .filter((person) => person.role !== "Founding Member")
                 .map((person) => (
-                  <motion.div variants={smoothFadeUp} key={person.name} className="flex flex-col border-b border-white/20 pb-8 group will-change-[transform,opacity]">
+                  <motion.div variants={fadeInUp} key={person.name} className="flex flex-col border-b border-white/20 pb-8 group transform-gpu">
                     <div className="w-20 h-20 rounded-full bg-white/10 overflow-hidden mb-6 relative border border-white/10">
                       <img 
                         src={person.image} 
                         alt={person.name} 
                         loading="lazy"
-                        decoding="async"
                         className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 ease-out"
                         onError={(e) => { e.target.style.display = 'none'; }}
                       />
@@ -328,19 +338,18 @@ export default function About() {
           </h3>
 
           <motion.div 
-            initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-50px" }} variants={staggerContainer}
-            className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-x-8 gap-y-16"
+            initial="hidden" whileInView="visible" viewport={{ once: true, amount: 0.1 }} variants={staggerContainer}
+            className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-x-8 gap-y-16 transform-gpu"
           >
             {governance
               .filter((person) => person.role === "Founding Member")
               .map((person) => (
-                <motion.div variants={smoothFadeUp} key={person.name} className="flex flex-col border-b border-[#E5E5E5] pb-8 group will-change-[transform,opacity]">
+                <motion.div variants={fadeInUp} key={person.name} className="flex flex-col border-b border-[#E5E5E5] pb-8 group transform-gpu">
                   <div className="w-20 h-20 rounded-full bg-[#E5E5E5] overflow-hidden mb-6 relative border border-[#E5E5E5]">
                     <img 
                       src={person.image} 
                       alt={person.name} 
                       loading="lazy"
-                      decoding="async"
                       className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 ease-out"
                       onError={(e) => { e.target.style.display = 'none'; }}
                     />
@@ -362,21 +371,21 @@ export default function About() {
 
       {/* 07. MINIMALIST CTA */}
       <motion.section 
-        initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-50px" }} variants={staggerContainer}
-        className="py-28 px-[6vw] md:px-12 lg:px-24 bg-white text-center flex flex-col items-center"
+        initial="hidden" whileInView="visible" viewport={{ once: true, amount: 0.3 }} variants={staggerContainer}
+        className="py-28 px-[6vw] md:px-12 lg:px-24 bg-white text-center flex flex-col items-center transform-gpu"
       >
         <div className="max-w-2xl mx-auto space-y-10">
-          <motion.p variants={smoothFadeUp} className="text-[16px] text-[#757575] font-normal leading-relaxed will-change-[transform,opacity]">
+          <motion.p variants={fadeInUp} className="text-[16px] text-[#757575] font-normal leading-relaxed">
             Review structural bylaws, official asset registration guidelines, financial indemnity rules, 
             and foundational protocols outlined in the signed legal registry.
           </motion.p>
           
           <motion.a
-            variants={smoothFadeUp}
+            variants={fadeInUp}
             href="https://res.cloudinary.com/your-cloud/raw/upload/v1/constitution.pdf"
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center justify-between border border-black text-black px-8 py-4 text-[15px] font-normal hover:bg-black hover:text-white transition-colors duration-300 w-full max-w-[320px] group will-change-[transform,opacity]"
+            className="inline-flex items-center justify-between border border-black text-black px-8 py-4 text-[15px] font-normal hover:bg-black hover:text-white transition-colors duration-300 w-full max-w-[320px] group"
           >
             <span>Download Constitution</span>
             <span className="leading-none flex items-center justify-center">
