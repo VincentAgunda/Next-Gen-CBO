@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef, useMemo, useCallback } from "react";
+import React, { useEffect, useRef, useCallback } from "react";
 import HeroSection from "../components/HeroSection";
 import SectionHeader from "../components/SectionHeader";
 import ProgramCard from "../components/ProgramCard";
@@ -11,23 +11,24 @@ import { events } from "../data/events";
 import { partners } from "../data/partners";
 import { Link } from "react-router-dom";
 
-export default function Home() {
-  const [activeIndex, setActiveIndex] = useState(0);
-  const sectionRefs = useRef([]);
+// Moved outside the component so it's not recreated on every render
+const sectionsConfig = [
+  { id: "hero", color: "#F5F5F7", dotColor: "bg-black" },
+  { id: "who-we-are", color: "#F5F5F7", dotColor: "bg-black" },
+  { id: "pillars", color: "#e5e5e5", dotColor: "bg-black" },
+  { id: "typography", color: "#F5F5F7", dotColor: "bg-black" },
+  { id: "featured", color: "#F5F5F7", dotColor: "bg-black" },
+  { id: "innovation", color: "#F5F5F7", dotColor: "bg-black" },
+  { id: "events", color: "#858689", dotColor: "bg-white" },
+  { id: "membership", color: "#e5e5e5", dotColor: "bg-black" },
+  { id: "partners", color: "#7a787d", dotColor: "bg-white" },
+  { id: "action", color: "#3B3A38", dotColor: "bg-white" },
+];
 
-  // Added dotColor property to replace the laggy mix-blend-difference CSS
-  const sectionsConfig = useMemo(() => [
-    { id: "hero", color: "#F5F5F7", dotColor: "bg-black" },
-    { id: "who-we-are", color: "#F5F5F7", dotColor: "bg-black" },
-    { id: "pillars", color: "#e5e5e5", dotColor: "bg-black" },
-    { id: "typography", color: "#F5F5F7", dotColor: "bg-black" },
-    { id: "featured", color: "#F5F5F7", dotColor: "bg-black" },
-    { id: "innovation", color: "#F5F5F7", dotColor: "bg-black" },
-    { id: "events", color: "#858689", dotColor: "bg-white" },
-    { id: "membership", color: "#e5e5e5", dotColor: "bg-black" },
-    { id: "partners", color: "#7a787d", dotColor: "bg-white" },
-    { id: "action", color: "#3B3A38", dotColor: "bg-white" },
-  ], []);
+export default function Home() {
+  const containerRef = useRef(null);
+  const sectionRefs = useRef([]);
+  const dotRefs = useRef([]);
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -37,15 +38,28 @@ export default function Home() {
             const index = sectionRefs.current.findIndex(
               (ref) => ref === entry.target
             );
+            
             if (index !== -1) {
-              setActiveIndex(index);
+              // 1. Direct DOM mutation for background color (zero React re-renders)
+              if (containerRef.current) {
+                containerRef.current.style.backgroundColor = sectionsConfig[index].color;
+              }
+              
+              // 2. Direct DOM mutation for navigation dots
+              dotRefs.current.forEach((dot, idx) => {
+                if (dot) {
+                  const isActive = idx === index;
+                  dot.className = `h-[2px] transition-all duration-700 ease-[cubic-bezier(0.25,1,0.5,1)] ${sectionsConfig[idx].dotColor} ${
+                    isActive ? "w-8 opacity-100" : "w-3 opacity-30"
+                  }`;
+                }
+              });
             }
           }
         });
       },
       {
         root: null,
-        // -50% creates an exact center line trigger, preventing overlapping triggers
         rootMargin: "-50% 0px -50% 0px", 
         threshold: 0,
       }
@@ -57,92 +71,122 @@ export default function Home() {
     });
 
     return () => {
-      currentRefs.forEach((ref) => {
-        if (ref) observer.unobserve(ref);
-      });
+      observer.disconnect();
     };
   }, []);
 
-  // Stabilize ref assignments so they don't trigger re-evaluations
-  const setRef = useCallback((index) => (el) => {
+  const setSectionRef = useCallback((index) => (el) => {
     sectionRefs.current[index] = el;
   }, []);
 
-  // MEMOIZE CONTENT: This is the biggest performance fix.
-  // By memoizing the static sections, we prevent the massive DOM tree 
-  // from re-rendering every time the background color changes.
-  const pageContent = useMemo(() => (
-    <>
-      <section ref={setRef(0)} className="bg-transparent">
+  const setDotRef = useCallback((index) => (el) => {
+    dotRefs.current[index] = el;
+  }, []);
+
+  return (
+    <div
+      ref={containerRef}
+      className="font-sans text-[#111111] antialiased selection:bg-[#d2b79b] selection:text-black overflow-hidden scroll-smooth transition-colors duration-1000 ease-in-out"
+      style={{ backgroundColor: sectionsConfig[0].color }}
+    >
+      {/* Scroll Progress Indicator */}
+      <div className="fixed right-6 top-1/2 -translate-y-1/2 z-50 flex flex-col items-end gap-3 pointer-events-none">
+        {sectionsConfig.map((config, idx) => (
+          <div
+            key={idx}
+            ref={setDotRef(idx)}
+            className={`h-[2px] transition-all duration-700 ease-[cubic-bezier(0.25,1,0.5,1)] ${config.dotColor} ${
+              idx === 0 ? "w-8 opacity-100" : "w-3 opacity-30"
+            }`}
+          />
+        ))}
+      </div>
+
+      <section ref={setSectionRef(0)} className="bg-transparent">
         <HeroSection />
       </section>
 
-      {/* WHO WE ARE: Architectural High-Contrast Layout */}
-      <section ref={setRef(1)} className="relative py-28 lg:py-40 px-6 md:px-12 lg:px-24 bg-transparent border-b border-neutral-200/50">
-        <div className="max-w-7xl mx-auto grid lg:grid-cols-12 gap-12 lg:gap-16 items-start">
-          <div className="lg:col-span-5 space-y-6">
-            <div className="flex items-center gap-3">
-              <span className="h-[1px] w-6 bg-[#B0926A]"></span>
-              <span className="block text-[#B0926A] text-xs uppercase tracking-[0.3em] font-semibold">
-                Who We Are
-              </span>
-            </div>
+      {/* WHO WE ARE: Added missing ref={setSectionRef(1)} here */}
+      
+<section className="relative py-28 lg:py-40 px-6 md:px-12 lg:px-24 bg-[#F5F5F7] border-b border-neutral-200">
+  <div className="max-w-7xl mx-auto grid lg:grid-cols-12 gap-12 lg:gap-16 items-start">
+    
+    {/* Left Column */}
+    <div className="lg:col-span-5 space-y-6">
+      <div className="flex items-center gap-3">
+        <span className="h-[1px] w-6 bg-[#B0926A]"></span>
+        <span className="block text-[#B0926A] text-xs uppercase tracking-[0.3em] font-semibold">
+          Who We Are
+        </span>
+      </div>
+      
+      <h2 className="text-3xl md:text-5xl lg:text-[56px] font-normal text-[#111111] tracking-tight leading-[1.1]">
+        Transforming communities through youth innovation.
+      </h2>
 
-            <h2 className="text-3xl md:text-5xl lg:text-[56px] font-normal text-[#111111] tracking-tight leading-[1.1]">
-              Transforming communities through youth innovation.
-            </h2>
+      <div className="pt-6">
+        <Link
+          to="/about"
+          className="inline-flex items-center gap-4 border border-[#111111] px-8 py-4 text-xs font-semibold uppercase tracking-[0.2em] text-[#111111] hover:bg-[#111111] hover:text-white transition-all duration-500 ease-out rounded-none group shadow-sm"
+        >
+          <span>Learn more about us</span>
+          <svg className="w-4 h-4 transform group-hover:translate-x-2 transition-transform duration-500 ease-out" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
+            <path strokeLinecap="square" strokeLinejoin="miter" d="M5 12h14M12 5l7 7-7 7" />
+          </svg>
+        </Link>
+      </div>
+    </div>
 
-            <div className="pt-6">
-              <Link
-                to="/about"
-                className="inline-flex items-center gap-4 border border-[#111111] px-8 py-4 text-xs font-semibold uppercase tracking-[0.2em] text-[#111111] hover:bg-[#111111] hover:text-white transition-all duration-500 ease-out rounded-none group shadow-sm"
-              >
-                <span>Learn more about us</span>
-                <svg className="w-4 h-4 transform group-hover:translate-x-2 transition-transform duration-500 ease-out" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
-                  <path strokeLinecap="square" strokeLinejoin="miter" d="M5 12h14M12 5l7 7-7 7" />
-                </svg>
-              </Link>
-            </div>
-          </div>
-
-          <div className="lg:col-span-7 grid md:grid-cols-2 gap-8 items-stretch">
-            <div className="bg-white/80 backdrop-blur-md p-8 md:p-10 border border-neutral-200 flex flex-col justify-between shadow-sm hover:shadow-md transition-shadow duration-500 ease-out">
-              <span className="text-4xl font-normal md:font-light text-[#B0926A] mb-8 block">01</span>
-              <div>
-                <h3 className="text-lg font-semibold uppercase tracking-wider mb-3 text-[#111111]"> Grassroots Action</h3>
-                <p className="text-neutral-600 font-normal md:font-light text-sm md:text-base leading-relaxed">
-                  Next-Generation Youth Agribusiness & Research CBO is a youth-led organization in Makueni County, Kenya, committed to transforming communities through sustainable agriculture, environmental conservation, and youth empowerment.
-                </p>
-              </div>
-            </div>
-
-            <div className="bg-[#45263C]/90 backdrop-blur-md text-white p-8 md:p-10 border border-neutral-800 flex flex-col justify-between shadow-sm hover:shadow-md hover:border-neutral-700 transition-all duration-500 ease-out">
-              <span className="text-4xl font-normal md:font-light text-[#d2b79b] mb-8 block">02</span>
-              <div>
-                <h3 className="text-lg font-semibold uppercase tracking-wider mb-3 text-white">Evidence-Based</h3>
-                <p className="text-neutral-400 font-normal md:font-light text-sm md:text-base leading-relaxed">
-                  We unite young innovators, researchers, and entrepreneurs to architect practical solutions to environmental and economic challenges, driving sustainable development and improving regional livelihoods.
-                </p>
-              </div>
-            </div>
-          </div>
+    {/* Right Column: Cards */}
+    <div className="lg:col-span-7 grid md:grid-cols-2 gap-8 items-stretch">
+      
+      {/* Card 01: Grassroots Action */}
+      <div className="group bg-white p-8 md:p-10 border border-neutral-200 flex flex-col justify-between shadow-sm hover:shadow-xl hover:border-neutral-300 hover:-translate-y-1.5 transition-all duration-500 ease-out cursor-pointer">
+        <span className="text-4xl font-normal md:font-light text-[#B0926A] mb-8 block transition-transform duration-500 ease-out group-hover:scale-105 origin-left">
+          01
+        </span>
+        <div>
+          <h3 className="text-lg font-semibold uppercase tracking-wider mb-3 text-[#111111]"> Grassroots Action</h3>
+          <p className="text-neutral-600 font-normal md:font-light text-sm md:text-base leading-relaxed">
+            Next-Generation Youth Agribusiness & Research CBO is a youth-led organization in Makueni County, Kenya, committed to transforming communities through sustainable agriculture, environmental conservation, and youth empowerment.
+          </p>
         </div>
+      </div>
 
-        {/* Removed will-change classes to save GPU memory */}
-        <div className="max-w-7xl mx-auto mt-24 lg:mt-36 overflow-hidden border border-neutral-200 rounded-sm shadow-sm group relative bg-[#1a1a1a]">
-          <img
-            src="/Hero/h4.jpeg" 
-            alt="Who We Are Team"
-            loading="lazy"
-            decoding="async"
-            className="w-full h-[40vh] md:h-[50vh] lg:h-[60vh] object-cover object-[center_30%] opacity-80 grayscale contrast-[1.15] transform-gpu group-hover:scale-105 group-hover:grayscale-0 group-hover:opacity-100 group-hover:contrast-100 transition-all duration-[1000ms] ease-[cubic-bezier(0.215,0.61,0.355,1)]"
-          />
-          <div className="absolute inset-0 bg-gradient-to-b from-transparent via-white/5 to-[#F5F5F7]/20 mix-blend-overlay pointer-events-none group-hover:opacity-0 transition-opacity duration-1000 ease-in-out"></div>
+      {/* Card 02: Evidence-Based (Updated Green & Hover) */}
+      <div className="group bg-[#008000] hover:bg-[#006d00] text-white p-8 md:p-10 border border-[#006400] hover:border-[#004d00] flex flex-col justify-between shadow-sm hover:shadow-xl hover:-translate-y-1.5 transition-all duration-500 ease-out cursor-pointer">
+        <span className="text-4xl font-normal md:font-light text-[#d2b79b] mb-8 block transition-transform duration-500 ease-out group-hover:scale-105 origin-left">
+          02
+        </span>
+        <div>
+          <h3 className="text-lg font-semibold uppercase tracking-wider mb-3 text-white">
+            Evidence-Based
+          </h3>
+          <p className="text-white/90 font-normal md:font-light text-sm md:text-base leading-relaxed">
+            We unite young innovators, researchers, and entrepreneurs to architect practical solutions to environmental and economic challenges, driving sustainable development and improving regional livelihoods.
+          </p>
         </div>
-      </section>
+      </div>
+
+    </div>
+
+  </div>
+
+  {/* Image Wrapper */}
+  <div className="max-w-7xl mx-auto mt-24 lg:mt-36 overflow-hidden border border-neutral-200 rounded-sm shadow-sm group relative bg-[#1a1a1a]">
+    <img
+      src="/Hero/h4.jpeg"
+      alt="Who We Are Team"
+      loading="lazy"
+      decoding="async"
+      className="w-full h-[40vh] md:h-[50vh] lg:h-[60vh] object-cover object-[center_30%] opacity-80 grayscale contrast-[1.15] transform-gpu will-change-[transform,filter,opacity] group-hover:scale-105 group-hover:grayscale-0 group-hover:opacity-100 group-hover:contrast-100 transition-[transform,filter,opacity] duration-[1000ms] ease-[cubic-bezier(0.215,0.61,0.355,1)]"
+    />
+    <div className="absolute inset-0 bg-gradient-to-b from-transparent via-white/5 to-[#F5F5F7]/20 mix-blend-overlay pointer-events-none group-hover:opacity-0 transition-opacity duration-1000 ease-in-out"></div>
+  </div>
+</section>
 
       {/* Section 2: Three Pillars */}
-      <section ref={setRef(2)} className="py-28 lg:py-36 bg-transparent border-b border-neutral-300/50">
+      <section ref={setSectionRef(2)} className="py-28 lg:py-36 bg-transparent border-b border-neutral-300/50">
         <div className="max-w-7xl mx-auto px-6 lg:px-12">
           <div className="flex flex-col md:flex-row md:items-end justify-between mb-16 gap-6">
             <div>
@@ -223,7 +267,7 @@ export default function Home() {
       </section>
       
       {/* SECTION 5: Massive Typography Navigation */}
-      <section ref={setRef(3)} className="bg-transparent py-24 px-6 md:px-12 lg:px-24 border-t border-neutral-300/50">
+      <section ref={setSectionRef(3)} className="bg-transparent py-24 px-6 md:px-12 lg:px-24 border-t border-neutral-300/50">
         <div className="max-w-[1400px] mx-auto divide-y divide-neutral-300">
           <Link
             to="/programs"
@@ -264,12 +308,12 @@ export default function Home() {
       </section>
 
       {/* FEATURED INITIATIVES */}
-      <section ref={setRef(4)} className="bg-transparent">
+      <section ref={setSectionRef(4)} className="bg-transparent">
         <FeaturedInitiatives />
       </section>
 
       {/* Section 4: Innovation Hub Preview */}
-      <section ref={setRef(5)} className="py-28 lg:py-36 bg-transparent border-b border-neutral-300/50">
+      <section ref={setSectionRef(5)} className="py-28 lg:py-36 bg-transparent border-b border-neutral-300/50">
         <div className="max-w-7xl mx-auto px-6 lg:px-12">
           <div className="flex flex-col md:flex-row md:items-end justify-between mb-16 gap-6">
             <div>
@@ -308,7 +352,7 @@ export default function Home() {
       </section>
 
       {/* Section 5: Upcoming Events */}
-      <section ref={setRef(6)} className="py-28 lg:py-36 px-6 lg:px-12 bg-transparent text-white border-b border-neutral-600/30">
+      <section ref={setSectionRef(6)} className="py-28 lg:py-36 px-6 lg:px-12 bg-transparent text-white border-b border-neutral-600/30">
         <div className="max-w-7xl mx-auto">
           <div className="border-b border-white/20 pb-12 mb-12 flex flex-col md:flex-row md:items-end justify-between gap-6">
             <div>
@@ -341,7 +385,7 @@ export default function Home() {
       </section>
 
       {/* MEMBERSHIP CTA */}
-      <section ref={setRef(7)} className="py-32 lg:py-48 px-6 lg:px-24 bg-transparent border-b border-neutral-300/50">
+      <section ref={setSectionRef(7)} className="py-32 lg:py-48 px-6 lg:px-24 bg-transparent border-b border-neutral-300/50">
         <div className="max-w-5xl mx-auto">
           <span className="text-[#B0926A] text-xs uppercase tracking-[0.3em] font-semibold block mb-8">
             Join The Network
@@ -378,7 +422,7 @@ export default function Home() {
       </section>
 
       {/* Section 7: Partners */}
-      <section ref={setRef(8)} className="py-24 lg:py-32 px-6 lg:px-12 bg-transparent text-white border-b border-neutral-600/30">
+      <section ref={setSectionRef(8)} className="py-24 lg:py-32 px-6 lg:px-12 bg-transparent text-white border-b border-neutral-600/30">
         <div className="max-w-7xl mx-auto">
           <div className="flex flex-col md:flex-row md:items-end justify-between pb-12 mb-12 border-b border-white/20 gap-6">
             <div>
@@ -420,7 +464,7 @@ export default function Home() {
       </section>
 
       {/* SECTION 8: Membership & Support Call to Action */}
-      <section ref={setRef(9)} className="py-32 lg:py-48 bg-transparent text-white px-6 md:px-12 lg:px-24 relative overflow-hidden border-t border-white/15">
+      <section ref={setSectionRef(9)} className="py-32 lg:py-48 bg-transparent text-white px-6 md:px-12 lg:px-24 relative overflow-hidden border-t border-white/15">
         <div className="max-w-4xl mx-auto text-center space-y-8 relative z-10">
           <div className="inline-block w-3 h-3 bg-[#d2b79b] rotate-45 mb-4" />
           
@@ -466,30 +510,6 @@ export default function Home() {
           />
         </div>
       </section>
-    </>
-  ), [setRef]); 
-
- return (
-    <div
-      className="font-sans text-[#111111] antialiased selection:bg-[#d2b79b] selection:text-black overflow-hidden scroll-smooth transition-colors duration-1000 ease-in-out"
-      style={{ backgroundColor: sectionsConfig[activeIndex].color }}
-    >
-      {/* Scroll Progress Indicator - NO mix-blend-difference */}
-      <div className="fixed right-6 top-1/2 -translate-y-1/2 z-50 flex flex-col items-end gap-3 pointer-events-none">
-        {sectionsConfig.map((config, idx) => (
-          <div
-            key={idx}
-            className={`h-[2px] transition-all duration-700 ease-[cubic-bezier(0.25,1,0.5,1)] ${config.dotColor} ${
-              activeIndex === idx
-                ? "w-8 opacity-100"
-                : "w-3 opacity-30"
-            }`}
-          />
-        ))}
-      </div>
-
-      {/* FIX: Changed from memoizedContent to pageContent */}
-      {pageContent} 
     </div>
   );
 }

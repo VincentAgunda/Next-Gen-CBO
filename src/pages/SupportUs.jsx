@@ -41,11 +41,11 @@ export default function SupportUs() {
         <div className="space-y-4 max-w-xs mx-auto text-sm font-light">
           <div className="flex justify-between border-b border-neutral-50 pb-2">
             <span className="text-neutral-400">Paybill Number</span>
-            <span className="font-mono font-medium text-neutral-900">123456</span>
+            <span className="font-mono font-medium text-neutral-900">247247</span>
           </div>
           <div className="flex justify-between border-b border-neutral-50 pb-2">
-            <span className="text-neutral-400">Account Parameter</span>
-            <span className="font-mono font-medium text-neutral-900">NEXTGEN</span>
+            <span className="text-neutral-400">Account Number</span>
+            <span className="font-mono font-medium text-neutral-900">0600187518823</span>
           </div>
         </div>
 

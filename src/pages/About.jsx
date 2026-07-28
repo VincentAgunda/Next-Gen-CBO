@@ -2,20 +2,26 @@ import React, { useEffect } from "react";
 import { motion } from "framer-motion";
 
 const governance = [
-  { role: "Chairperson", name: "Shadrach Munuve", image: "/images/governance/shadrach-munuve.jpg" },
-  { role: "Vice Chairperson", name: "Ochieng’ Samuel Owino", image: "/images/governance/ochieng-owino.jpg" },
-  { role: "Secretary", name: "Veronica Mwende", image: "/images/governance/veronica-mwende.jpg" },
-  { role: "Assistant Secretary", name: "Patrick Otieno", image: "/images/governance/patrick-otieno.jpg" },
-  { role: "Treasurer", name: "Erick Muthonzwe", image: "/images/governance/erick-muthonzwe.jpg" },
+  { role: "Chairperson", name: "Shadrach Nzoka Munuve", image: "/team/shadrac.png" },
+  { role: "Vice Chairperson", name: "Samuel Ochieng ", image: "/team/samuel.png" },
+  { role: "Secretary", name: "Veronica Mwende", image: "/team/veronica.png" },
+  { role: "Assistant Secretary", name: "Patrick Otieno Ochieng ", image: "/team/patrick.png" },
+  { role: "Treasurer", name: "Erick Muthonzwe", image: "/team/erick.png" },
   { role: "Founding Member", name: "Vincent Agunda", image: "/Hero/h5.png" },
-  { role: "Founding Member", name: "William Mikaia", image: "/images/governance/william-mikaia.jpg" },
-  { role: "Founding Member", name: "Diana Mulusa", image: "/images/governance/diana-mulusa.jpg" },
-  { role: "Founding Member", name: "Cleophas Mwendwa", image: "/images/governance/cleophas-mwendwa.jpg" },
-  { role: "Founding Member", name: "Esther Muia", image: "/images/governance/esther-muia.jpg" },
+  { role: "Founding Member", name: "William Mikaia Mbuvi", image: "/team/william.png" },
+  { role: "Founding Member", name: "Diana Mulusa", image: "/team/diana.png" },
+  { role: "Founding Member", name: "Cleaphas mwendwa Mbatha", image: "/team/cleo.png" },
+  { role: "Founding Member", name: "Esther Muia", image: "/team/esther.png" },
   { role: "Founding Member", name: "Roselevina Wao", image: "/images/governance/roselevina-wao.jpg" },
-  { role: "Founding Member", name: "Sarah Kalekye", image: "/images/governance/sarah-kalekye.jpg" },
+  { role: "Founding Member", name: "Serah Kalekye Peter", image: "/team/serah.png" },
   { role: "Founding Member", name: "Evans Nzomo", image: "/images/governance/evans-nzomo.jpg" },
   { role: "Founding Member", name: "Doreen Wangari", image: "/images/governance/doreen-wangari.jpg" },
+  { role: "Founding Member", name: "Tabitha Dorcus", image: "/team/tabitha.png" },
+  { role: "Founding Member", name: "Daniel kyanui Kituku", image: "/team/kyan.png" },
+  { role: "Founding Member", name: "Faith Mutheu Muthini", image: "/team/faith.png" },
+  { role: "Founding Member", name: "John waweru Ngigi", image: "/team/john.png" },
+  { role: "Founding Member", name: "Purity wavinya Mati", image: "/team/purity.png" },
+
 ];
 
 const coreValues = [

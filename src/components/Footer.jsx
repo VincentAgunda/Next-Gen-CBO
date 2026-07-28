@@ -38,8 +38,8 @@ export default function Footer() {
     {
       title: "Social",
       links: [
-        { name: "Instagram", path: "#instagram", isExternal: true },
-        { name: "Facebook", path: "#facebook", isExternal: true },
+        { name: "Instagram", path: "https://www.instagram.com/ngyar._333?igsh=MXR2YXJuYnRxcm8zZg%3D%3D", isExternal: true },
+        { name: "Facebook", path: "https://www.facebook.com/share/p/1DAVs34z5t/", isExternal: true },
         { name: "YouTube", path: "#youtube", isExternal: true },
         { name: "LinkedIn", path: "#linkedin", isExternal: true },
       ]
@@ -52,7 +52,7 @@ export default function Footer() {
     }
     const className = "hover:underline underline-offset-4 decoration-1 block w-full text-black font-normal";
     if (link.isExternal) {
-      return <a href={link.path} className={className}>{link.name}</a>;
+      return <a href={link.path} target="_blank" rel="noopener noreferrer" className={className}>{link.name}</a>;
     }
     return <Link to={link.path} className={className}>{link.name}</Link>;
   };
