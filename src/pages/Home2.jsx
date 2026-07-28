@@ -16,71 +16,72 @@ export default function Home() {
       <HeroSection />
 
       {/* WHO WE ARE: Architectural High-Contrast Layout */}
-      <section className="relative py-28 lg:py-40 px-6 md:px-12 lg:px-24 bg-[#F5F5F7] border-b border-neutral-200">
-        <div className="max-w-7xl mx-auto grid lg:grid-cols-12 gap-12 lg:gap-16 items-start">
-          
-          <div className="lg:col-span-5 space-y-6">
-            <div className="flex items-center gap-3">
-              <span className="h-[1px] w-6 bg-[#B0926A]"></span>
-              <span className="block text-[#B0926A] text-xs uppercase tracking-[0.3em] font-semibold">
-                Who We Are
-              </span>
-            </div>
-            
-            <h2 className="text-3xl md:text-5xl lg:text-[56px] font-normal text-[#111111] tracking-tight leading-[1.1]">
-              Transforming communities through youth innovation.
-            </h2>
+     <section className="relative py-28 lg:py-40 px-6 md:px-12 lg:px-24 bg-[#F5F5F7] border-b border-neutral-200">
+  <div className="max-w-7xl mx-auto grid lg:grid-cols-12 gap-12 lg:gap-16 items-start">
+    
+    <div className="lg:col-span-5 space-y-6">
+      <div className="flex items-center gap-3">
+        <span className="h-[1px] w-6 bg-[#B0926A]"></span>
+        <span className="block text-[#B0926A] text-xs uppercase tracking-[0.3em] font-semibold">
+          Who We Are
+        </span>
+      </div>
+      
+      <h2 className="text-3xl md:text-5xl lg:text-[56px] font-normal text-[#111111] tracking-tight leading-[1.1]">
+        Transforming communities through youth innovation.
+      </h2>
 
-            <div className="pt-6">
-              <Link
-                to="/about"
-                className="inline-flex items-center gap-4 border border-[#111111] px-8 py-4 text-xs font-semibold uppercase tracking-[0.2em] text-[#111111] hover:bg-[#111111] hover:text-white transition-all duration-500 ease-out rounded-none group shadow-sm"
-              >
-                <span>Learn more about us</span>
-                <svg className="w-4 h-4 transform group-hover:translate-x-2 transition-transform duration-500 ease-out" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
-                  <path strokeLinecap="square" strokeLinejoin="miter" d="M5 12h14M12 5l7 7-7 7" />
-                </svg>
-              </Link>
-            </div>
-          </div>
+      <div className="pt-6">
+        <Link
+          to="/about"
+          className="inline-flex items-center gap-4 border border-[#111111] px-8 py-4 text-xs font-semibold uppercase tracking-[0.2em] text-[#111111] hover:bg-[#111111] hover:text-white transition-all duration-500 ease-out rounded-none group shadow-sm"
+        >
+          <span>Learn more about us</span>
+          <svg className="w-4 h-4 transform group-hover:translate-x-2 transition-transform duration-500 ease-out" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
+            <path strokeLinecap="square" strokeLinejoin="miter" d="M5 12h14M12 5l7 7-7 7" />
+          </svg>
+        </Link>
+      </div>
+    </div>
 
-          <div className="lg:col-span-7 grid md:grid-cols-2 gap-8 items-stretch">
-            <div className="bg-white p-8 md:p-10 border border-neutral-200 flex flex-col justify-between shadow-sm hover:shadow-md transition-shadow duration-500 ease-out">
-              <span className="text-4xl font-normal md:font-light text-[#B0926A] mb-8 block">01</span>
-              <div>
-                <h3 className="text-lg font-semibold uppercase tracking-wider mb-3 text-[#111111]"> Grassroots Action</h3>
-                <p className="text-neutral-600 font-normal md:font-light text-sm md:text-base leading-relaxed">
-                  Next-Generation Youth Agribusiness & Research CBO is a youth-led organization in Makueni County, Kenya, committed to transforming communities through sustainable agriculture, environmental conservation, and youth empowerment.
-                </p>
-              </div>
-            </div>
-
-            <div className="bg-[#45263C] text-white p-8 md:p-10 border border-neutral-800 flex flex-col justify-between shadow-sm hover:shadow-md hover:border-neutral-700 transition-all duration-500 ease-out">
-              <span className="text-4xl font-normal md:font-light text-[#d2b79b] mb-8 block">02</span>
-              <div>
-                <h3 className="text-lg font-semibold uppercase tracking-wider mb-3 text-white">Evidence-Based</h3>
-                <p className="text-neutral-400 font-normal md:font-light text-sm md:text-base leading-relaxed">
-                  We unite young innovators, researchers, and entrepreneurs to architect practical solutions to environmental and economic challenges, driving sustainable development and improving regional livelihoods.
-                </p>
-              </div>
-            </div>
-          </div>
-
+    <div className="lg:col-span-7 grid md:grid-cols-2 gap-8 items-stretch">
+      <div className="bg-white p-8 md:p-10 border border-neutral-200 flex flex-col justify-between shadow-sm hover:shadow-md transition-shadow duration-500 ease-out">
+        <span className="text-4xl font-normal md:font-light text-[#B0926A] mb-8 block">01</span>
+        <div>
+          <h3 className="text-lg font-semibold uppercase tracking-wider mb-3 text-[#111111]"> Grassroots Action</h3>
+          <p className="text-neutral-600 font-normal md:font-light text-sm md:text-base leading-relaxed">
+            Next-Generation Youth Agribusiness & Research CBO is a youth-led organization in Makueni County, Kenya, committed to transforming communities through sustainable agriculture, environmental conservation, and youth empowerment.
+          </p>
         </div>
+      </div>
 
-        {/* Updated Image Wrapper with custom 30% Y-axis object position */}
-        <div className="max-w-7xl mx-auto mt-24 lg:mt-36 overflow-hidden border border-neutral-200 rounded-sm shadow-sm group relative bg-[#1a1a1a]">
-          <img
-            src="/Hero/h4.jpeg" 
-            alt="Who We Are Team"
-            loading="lazy"
-            decoding="async"
-            className="w-full h-[40vh] md:h-[50vh] lg:h-[60vh] object-cover object-[center_30%] opacity-80 grayscale contrast-[1.15] transform-gpu will-change-[transform,filter,opacity] group-hover:scale-105 group-hover:grayscale-0 group-hover:opacity-100 group-hover:contrast-100 transition-[transform,filter,opacity] duration-[1000ms] ease-[cubic-bezier(0.215,0.61,0.355,1)]"
-          />
-          {/* Refraction Glass Overlay */}
-          <div className="absolute inset-0 bg-gradient-to-b from-transparent via-white/5 to-[#F5F5F7]/20 mix-blend-overlay pointer-events-none group-hover:opacity-0 transition-opacity duration-1000 ease-in-out"></div>
+      {/* Updated Background Color Here */}
+      <div className="bg-[#008000] text-white p-8 md:p-10 border border-neutral-800 flex flex-col justify-between shadow-sm hover:shadow-md hover:border-neutral-700 transition-all duration-500 ease-out">
+        <span className="text-4xl font-normal md:font-light text-[#d2b79b] mb-8 block">02</span>
+        <div>
+          <h3 className="text-lg font-semibold uppercase tracking-wider mb-3 text-white">Evidence-Based</h3>
+          <p className="text-neutral-200 font-normal md:font-light text-sm md:text-base leading-relaxed">
+            We unite young innovators, researchers, and entrepreneurs to architect practical solutions to environmental and economic challenges, driving sustainable development and improving regional livelihoods.
+          </p>
         </div>
-      </section>
+      </div>
+    </div>
+
+  </div>
+
+  {/* Updated Image Wrapper with custom 30% Y-axis object position */}
+  <div className="max-w-7xl mx-auto mt-24 lg:mt-36 overflow-hidden border border-neutral-200 rounded-sm shadow-sm group relative bg-[#1a1a1a]">
+    <img
+      src="/Hero/h4.jpeg" 
+      alt="Who We Are Team"
+      loading="lazy"
+      decoding="async"
+      className="w-full h-[40vh] md:h-[50vh] lg:h-[60vh] object-cover object-[center_30%] opacity-80 grayscale contrast-[1.15] transform-gpu will-change-[transform,filter,opacity] group-hover:scale-105 group-hover:grayscale-0 group-hover:opacity-100 group-hover:contrast-100 transition-[transform,filter,opacity] duration-[1000ms] ease-[cubic-bezier(0.215,0.61,0.355,1)]"
+    />
+    {/* Refraction Glass Overlay */}
+    <div className="absolute inset-0 bg-gradient-to-b from-transparent via-white/5 to-[#F5F5F7]/20 mix-blend-overlay pointer-events-none group-hover:opacity-0 transition-opacity duration-1000 ease-in-out"></div>
+  </div>
+</section>
 
       {/* Section 2: Three Pillars — Polestar Grid Boxes */}
       <section className="py-28 lg:py-36 bg-[#e5e5e5] border-b border-neutral-300">

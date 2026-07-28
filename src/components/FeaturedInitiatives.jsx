@@ -3,34 +3,34 @@ import { Link } from "react-router-dom";
 
 export default function FeaturedInitiatives() {
   return (
-    <section className="bg-[#45263C] text-white py-28 lg:py-40 px-6 lg:px-24 border-b border-neutral-700">
+    <section className="bg-[#E4DFD8] text-neutral-900 py-28 lg:py-40 px-6 lg:px-24 border-b border-[#d1c8bd]">
       <div className="max-w-7xl mx-auto flex flex-col gap-28 lg:gap-40">
         
-        {/* Row 1: Youth Empowerment & Agribusiness */}
+        {/* Row 1: Strategic Agribusiness Development */}
         <div className="grid lg:grid-cols-12 gap-12 lg:gap-16 items-center">
           <div className="lg:col-span-5 order-2 lg:order-1 space-y-6">
             <div className="flex items-center gap-3">
-              <span className="h-[1px] w-6 bg-[#d2b79b]"></span>
-              <span className="text-[#d2b79b] text-xs uppercase tracking-[0.3em] font-semibold">
-                Agribusiness Initiative
+              <span className="h-[1px] w-6 bg-[#8b6845]"></span>
+              <span className="text-[#8b6845] text-xs uppercase tracking-[0.3em] font-semibold">
+                Strategic Agribusiness
               </span>
             </div>
             
-            <h2 className="text-4xl lg:text-6xl font-medium md:font-normal tracking-tight leading-tight text-white">
-              Empowering <br className="hidden lg:block" />
-              Future Leaders.
+            <h2 className="text-4xl lg:text-6xl font-medium md:font-normal tracking-tight leading-tight text-neutral-900">
+              Cultivating <br className="hidden lg:block" />
+              Visionary Leadership.
             </h2>
             
-            <p className="text-neutral-300 font-normal md:font-light text-base md:text-lg leading-relaxed">
-              Through agribusiness development, youth empowerment, and research-driven innovation, we equip young people with the precision skills and resources needed to architect sustainable livelihoods.
+            <p className="text-neutral-700 font-normal md:font-light text-base md:text-lg leading-relaxed">
+              Through synergistic agribusiness development, institutional youth empowerment, and empirical research, we equip emerging leaders with the precise competencies required to architect resilient community livelihoods.
             </p>
             
             <div className="pt-4">
               <Link 
                 to="/programs" 
-                className="inline-flex items-center gap-3 text-xs uppercase tracking-[0.2em] font-semibold text-[#d2b79b] hover:text-white transition-colors duration-300 group"
+                className="inline-flex items-center gap-3 text-xs uppercase tracking-[0.2em] font-semibold text-[#8b6845] hover:text-neutral-900 transition-colors duration-300 group"
               >
-                <span>Explore programs</span>
+                <span>Explore Strategic Programs</span>
                 <svg className="w-4 h-4 transform group-hover:translate-x-2 transition-transform duration-500 ease-out" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
                   <path strokeLinecap="square" strokeLinejoin="miter" d="M5 12h14M12 5l7 7-7 7" />
                 </svg>
@@ -38,54 +38,54 @@ export default function FeaturedInitiatives() {
             </div>
           </div>
 
-          <div className="lg:col-span-7 order-1 lg:order-2 relative group overflow-hidden border border-neutral-700 rounded-sm">
+          <div className="lg:col-span-7 order-1 lg:order-2 relative group overflow-hidden border border-[#d1c8bd] rounded-sm">
             <img
               src="/Partner/lead.png"
-              alt="Agribusiness Development"
+              alt="Agribusiness Development and Youth Leadership"
               loading="lazy"
               decoding="async"
-              className="w-full h-auto object-cover aspect-[16/10] transform-gpu will-change-transform group-hover:scale-105 transition-transform duration-[1000ms] ease-[cubic-bezier(0.25,1,0.5,1)]"
+              className="w-full h-auto object-cover aspect-[16/10] transform-gpu group-hover:scale-105 transition-transform duration-[1000ms] ease-[cubic-bezier(0.215,0.61,0.355,1)]"
             />
-            <div className="absolute inset-0 bg-black/20 group-hover:bg-black/0 transition-colors duration-700 ease-out"></div>
+            <div className="absolute inset-0 bg-black/10 group-hover:bg-transparent transition-colors duration-700 ease-out"></div>
           </div>
         </div>
 
-        {/* Row 2: White Button Mushroom Innovation */}
+        {/* Row 2: Precision Mycology Hub */}
         <div className="grid lg:grid-cols-12 gap-12 lg:gap-16 items-center">
-          <div className="lg:col-span-7 order-1 relative group overflow-hidden border border-neutral-700 rounded-sm">
+          <div className="lg:col-span-7 order-1 relative group overflow-hidden border border-[#d1c8bd] rounded-sm">
             <img
               src="/Innovation/mush2.png" 
-              alt="White Button Mushroom Automated Cultivation"
+              alt="White Button Mushroom Automated Cultivation Systems"
               loading="lazy"
               decoding="async"
-              className="w-full h-auto object-cover aspect-[16/10] transform-gpu will-change-transform group-hover:scale-105 transition-transform duration-[1000ms] ease-[cubic-bezier(0.25,1,0.5,1)]"
+              className="w-full h-auto object-cover aspect-[16/10] transform-gpu group-hover:scale-105 transition-transform duration-[1000ms] ease-[cubic-bezier(0.215,0.61,0.355,1)]"
             />
-            <div className="absolute inset-0 bg-black/20 group-hover:bg-black/0 transition-colors duration-700 ease-out"></div>
+            <div className="absolute inset-0 bg-black/10 group-hover:bg-transparent transition-colors duration-700 ease-out"></div>
           </div>
 
           <div className="lg:col-span-5 order-2 space-y-6 lg:pl-6">
             <div className="flex items-center gap-3">
-              <span className="h-[1px] w-6 bg-[#d2b79b]"></span>
-              <span className="text-[#d2b79b] text-xs uppercase tracking-[0.3em] font-semibold">
+              <span className="h-[1px] w-6 bg-[#8b6845]"></span>
+              <span className="text-[#8b6845] text-xs uppercase tracking-[0.3em] font-semibold">
                 Precision Mycology Hub
               </span>
             </div>
             
-            <h2 className="text-4xl lg:text-6xl font-medium md:font-normal tracking-tight leading-tight text-white">
-              Next-gen white button <br className="hidden lg:block" />
-              mushroom cultivation.
+            <h2 className="text-4xl lg:text-6xl font-medium md:font-normal tracking-tight leading-tight text-neutral-900">
+              Automated <br className="hidden lg:block" />
+              Agaricus Bisporus.
             </h2>
             
-            <p className="text-neutral-300 font-normal md:font-light text-base md:text-lg leading-relaxed">
-              Our flagship White Button Mushroom (<em>Agaricus bisporus</em>) project integrates automated ambient humidity regulation and precision substrate thermal-shocking—redefining high-yield vertical farming for local economic resilience.
+            <p className="text-neutral-700 font-normal md:font-light text-base md:text-lg leading-relaxed">
+              Our flagship Precision Mycology project integrates automated environmental regulation and precise substrate thermal-shock protocols—redefining high-yield vertical farming for localized economic sustainability.
             </p>
             
             <div className="pt-4">
               <Link 
                 to="/innovation-hub" 
-                className="inline-flex items-center gap-3 text-xs uppercase tracking-[0.2em] font-semibold text-[#d2b79b] hover:text-white transition-colors duration-300 group"
+                className="inline-flex items-center gap-3 text-xs uppercase tracking-[0.2em] font-semibold text-[#8b6845] hover:text-neutral-900 transition-colors duration-300 group"
               >
-                <span>Examine Mycology Spec</span>
+                <span>Examine Mycology Protocols</span>
                 <svg className="w-4 h-4 transform group-hover:translate-x-2 transition-transform duration-500 ease-out" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
                   <path strokeLinecap="square" strokeLinejoin="miter" d="M5 12h14M12 5l7 7-7 7" />
                 </svg>
@@ -94,31 +94,31 @@ export default function FeaturedInitiatives() {
           </div>
         </div>
 
-        {/* Row 3: ICT Training & Infrastructure */}
+        {/* Row 3: ICT & Systems Literacy */}
         <div className="grid lg:grid-cols-12 gap-12 lg:gap-16 items-center">
           <div className="lg:col-span-5 order-2 lg:order-1 space-y-6">
             <div className="flex items-center gap-3">
-              <span className="h-[1px] w-6 bg-[#d2b79b]"></span>
-              <span className="text-[#d2b79b] text-xs uppercase tracking-[0.3em] font-semibold">
+              <span className="h-[1px] w-6 bg-[#8b6845]"></span>
+              <span className="text-[#8b6845] text-xs uppercase tracking-[0.3em] font-semibold">
                 Digital Architecture
               </span>
             </div>
             
-            <h2 className="text-4xl lg:text-6xl font-medium md:font-normal tracking-tight leading-tight text-white">
+            <h2 className="text-4xl lg:text-6xl font-medium md:font-normal tracking-tight leading-tight text-neutral-900">
               Advanced ICT <br className="hidden lg:block" />
               & Systems Literacy.
             </h2>
             
-            <p className="text-neutral-300 font-normal md:font-light text-base md:text-lg leading-relaxed">
-              Bridging the digital divide via modern computing frameworks. We deliver targeted modules in software basics, networking infrastructure, and localized technology stacks to build a competitive digital workforce.
+            <p className="text-neutral-700 font-normal md:font-light text-base md:text-lg leading-relaxed">
+              Eradicating the digital divide through sophisticated computing frameworks. We deliver targeted curriculum modules encompassing software fundamentals, network architecture, and localized technology stacks to cultivate a highly competitive workforce.
             </p>
             
             <div className="pt-4">
               <Link 
                 to="/programs" 
-                className="inline-flex items-center gap-3 text-xs uppercase tracking-[0.2em] font-semibold text-[#d2b79b] hover:text-white transition-colors duration-300 group"
+                className="inline-flex items-center gap-3 text-xs uppercase tracking-[0.2em] font-semibold text-[#8b6845] hover:text-neutral-900 transition-colors duration-300 group"
               >
-                <span>Review Tech Stack</span>
+                <span>Review Technological Stacks</span>
                 <svg className="w-4 h-4 transform group-hover:translate-x-2 transition-transform duration-500 ease-out" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
                   <path strokeLinecap="square" strokeLinejoin="miter" d="M5 12h14M12 5l7 7-7 7" />
                 </svg>
@@ -126,54 +126,54 @@ export default function FeaturedInitiatives() {
             </div>
           </div>
 
-          <div className="lg:col-span-7 order-1 lg:order-2 relative group overflow-hidden border border-neutral-700 rounded-sm">
+          <div className="lg:col-span-7 order-1 lg:order-2 relative group overflow-hidden border border-[#d1c8bd] rounded-sm">
             <img
               src="/Innovation/ict.png"
-              alt="ICT Training Infrastructure"
+              alt="Advanced ICT and Digital Systems Training"
               loading="lazy"
               decoding="async"
-              className="w-full h-auto object-cover aspect-[16/10] transform-gpu will-change-transform group-hover:scale-105 transition-transform duration-[1000ms] ease-[cubic-bezier(0.25,1,0.5,1)]"
+              className="w-full h-auto object-cover aspect-[16/10] transform-gpu group-hover:scale-105 transition-transform duration-[1000ms] ease-[cubic-bezier(0.215,0.61,0.355,1)]"
             />
-            <div className="absolute inset-0 bg-black/20 group-hover:bg-black/0 transition-colors duration-700 ease-out"></div>
+            <div className="absolute inset-0 bg-black/10 group-hover:bg-transparent transition-colors duration-700 ease-out"></div>
           </div>
         </div>
 
-        {/* Row 4: Precision Poultry Farming */}
+        {/* Row 4: Precision Avian Agronomy */}
         <div className="grid lg:grid-cols-12 gap-12 lg:gap-16 items-center">
-          <div className="lg:col-span-7 order-1 relative group overflow-hidden border border-neutral-700 rounded-sm">
+          <div className="lg:col-span-7 order-1 relative group overflow-hidden border border-[#d1c8bd] rounded-sm">
             <img
               src="/Innovation/poultry.png" 
-              alt="Bio-Secured Poultry Systems"
+              alt="Bio-Secured Precision Poultry Farming"
               loading="lazy"
               decoding="async"
-              className="w-full h-auto object-cover aspect-[16/10] transform-gpu will-change-transform group-hover:scale-105 transition-transform duration-[1000ms] ease-[cubic-bezier(0.25,1,0.5,1)]"
+              className="w-full h-auto object-cover aspect-[16/10] transform-gpu group-hover:scale-105 transition-transform duration-[1000ms] ease-[cubic-bezier(0.215,0.61,0.355,1)]"
             />
-            <div className="absolute inset-0 bg-black/20 group-hover:bg-black/0 transition-colors duration-700 ease-out"></div>
+            <div className="absolute inset-0 bg-black/10 group-hover:bg-transparent transition-colors duration-700 ease-out"></div>
           </div>
 
           <div className="lg:col-span-5 order-2 space-y-6 lg:pl-6">
             <div className="flex items-center gap-3">
-              <span className="h-[1px] w-6 bg-[#d2b79b]"></span>
-              <span className="text-[#d2b79b] text-xs uppercase tracking-[0.3em] font-semibold">
+              <span className="h-[1px] w-6 bg-[#8b6845]"></span>
+              <span className="text-[#8b6845] text-xs uppercase tracking-[0.3em] font-semibold">
                 Avian Development Hub
               </span>
             </div>
             
-            <h2 className="text-4xl lg:text-6xl font-medium md:font-normal tracking-tight leading-tight text-white">
-              Bio-secured poultry <br className="hidden lg:block" />
-              farming operations.
+            <h2 className="text-4xl lg:text-6xl font-medium md:font-normal tracking-tight leading-tight text-neutral-900">
+              Bio-secured Avian <br className="hidden lg:block" />
+              Farming Operations.
             </h2>
             
-            <p className="text-neutral-300 font-normal md:font-light text-base md:text-lg leading-relaxed">
-              Optimizing poultry yields using high-efficiency nutrient deployment and robust bio-security strategies. This system acts as an operational blueprint for community micro-enterprises.
+            <p className="text-neutral-700 font-normal md:font-light text-base md:text-lg leading-relaxed">
+              Maximizing operational yields via high-efficiency nutrient deployment and rigorous bio-security frameworks. This specialized system serves as an empirical blueprint for scalable community micro-enterprises.
             </p>
             
             <div className="pt-4">
               <Link 
                 to="/programs" 
-                className="inline-flex items-center gap-3 text-xs uppercase tracking-[0.2em] font-semibold text-[#d2b79b] hover:text-white transition-colors duration-300 group"
+                className="inline-flex items-center gap-3 text-xs uppercase tracking-[0.2em] font-semibold text-[#8b6845] hover:text-neutral-900 transition-colors duration-300 group"
               >
-                <span>View Avian Protocols</span>
+                <span>View Avian Methodologies</span>
                 <svg className="w-4 h-4 transform group-hover:translate-x-2 transition-transform duration-500 ease-out" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
                   <path strokeLinecap="square" strokeLinejoin="miter" d="M5 12h14M12 5l7 7-7 7" />
                 </svg>
@@ -182,31 +182,31 @@ export default function FeaturedInitiatives() {
           </div>
         </div>
 
-        {/* Row 5: Charity & Socio-Economic Relief */}
+        {/* Row 5: Strategic Philanthropy & Outreach */}
         <div className="grid lg:grid-cols-12 gap-12 lg:gap-16 items-center">
           <div className="lg:col-span-5 order-2 lg:order-1 space-y-6">
             <div className="flex items-center gap-3">
-              <span className="h-[1px] w-6 bg-[#d2b79b]"></span>
-              <span className="text-[#d2b79b] text-xs uppercase tracking-[0.3em] font-semibold">
-                Socio-Economic Development
+              <span className="h-[1px] w-6 bg-[#8b6845]"></span>
+              <span className="text-[#8b6845] text-xs uppercase tracking-[0.3em] font-semibold">
+                Strategic Philanthropy
               </span>
             </div>
             
-            <h2 className="text-4xl lg:text-6xl font-medium md:font-normal tracking-tight leading-tight text-white">
-              Impact-Driven Charity <br className="hidden lg:block" />
-              & Outreaches.
+            <h2 className="text-4xl lg:text-6xl font-medium md:font-normal tracking-tight leading-tight text-neutral-900">
+              Impact-Driven <br className="hidden lg:block" />
+              Socio-Economic Relief.
             </h2>
             
-            <p className="text-neutral-300 font-normal md:font-light text-base md:text-lg leading-relaxed">
-              Targeted philanthropic interventions designed to support vulnerable community circles. From foundational resource supply runs to structured equity investments, we build stable support frameworks.
+            <p className="text-neutral-700 font-normal md:font-light text-base md:text-lg leading-relaxed">
+              Executing targeted philanthropic interventions designed to stabilize vulnerable demographics. From foundational resource distribution to structured equity investments, we engineer robust socio-economic support frameworks.
             </p>
             
             <div className="pt-4">
               <Link 
                 to="/programs" 
-                className="inline-flex items-center gap-3 text-xs uppercase tracking-[0.2em] font-semibold text-[#d2b79b] hover:text-white transition-colors duration-300 group"
+                className="inline-flex items-center gap-3 text-xs uppercase tracking-[0.2em] font-semibold text-[#8b6845] hover:text-neutral-900 transition-colors duration-300 group"
               >
-                <span>See Impact Metrics</span>
+                <span>Review Impact Metrics</span>
                 <svg className="w-4 h-4 transform group-hover:translate-x-2 transition-transform duration-500 ease-out" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
                   <path strokeLinecap="square" strokeLinejoin="miter" d="M5 12h14M12 5l7 7-7 7" />
                 </svg>
@@ -214,15 +214,15 @@ export default function FeaturedInitiatives() {
             </div>
           </div>
 
-          <div className="lg:col-span-7 order-1 lg:order-2 relative group overflow-hidden border border-neutral-700 rounded-sm">
+          <div className="lg:col-span-7 order-1 lg:order-2 relative group overflow-hidden border border-[#d1c8bd] rounded-sm">
             <img
               src="/Hero/h4.jpeg"
-              alt="Community Philanthropy Initiatives"
+              alt="Community Philanthropy and Outreach Initiatives"
               loading="lazy"
               decoding="async"
-              className="w-full h-auto object-cover aspect-[16/10] transform-gpu will-change-transform group-hover:scale-105 transition-transform duration-[1000ms] ease-[cubic-bezier(0.25,1,0.5,1)]"
+              className="w-full h-auto object-cover aspect-[16/10] transform-gpu group-hover:scale-105 transition-transform duration-[1000ms] ease-[cubic-bezier(0.215,0.61,0.355,1)]"
             />
-            <div className="absolute inset-0 bg-black/20 group-hover:bg-black/0 transition-colors duration-700 ease-out"></div>
+            <div className="absolute inset-0 bg-black/10 group-hover:bg-transparent transition-colors duration-700 ease-out"></div>
           </div>
         </div>
 
