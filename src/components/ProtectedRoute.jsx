@@ -1,53 +1,100 @@
-import { Navigate } from "react-router-dom";
+import { Navigate, useNavigate } from "react-router-dom";
 import { useAuth } from "../contexts/AuthContext";
+import { signOut } from "firebase/auth";
+import { auth } from "../firebase/config"; // Ensure this path matches your project structure
 
 export default function ProtectedRoute({ children }) {
   const { currentUser, userData, loading } = useAuth();
+  const navigate = useNavigate();
 
-  // 1. Wait for the initial global auth check to finish
-  if (loading) {
+  // Logout Handler for Pending Users
+  const handleLogout = async () => {
+    try {
+      await signOut(auth);
+      navigate("/membership");
+    } catch (error) {
+      console.error("Failed to log out:", error);
+    }
+  };
+
+  // 1. Loading State
+  if (loading || (!userData && currentUser)) {
     return (
-      <div className="min-h-screen flex items-center justify-center bg-[#F5F5F7]">
-        <p className="text-[#777777] font-sans text-xs uppercase tracking-[0.15em] font-medium">
-          Verifying session...
-        </p>
-      </div>
-    );
-  }
-
-  // 2. If no user is logged in, kick them back to the login page
-  if (!currentUser) {
-    return <Navigate to="/membership" replace />;
-  }
-
-  // 3. The Race Condition Fix: Logged in, but Firestore data is still fetching
-  if (!userData) {
-    return (
-      <div className="min-h-screen flex items-center justify-center bg-[#F5F5F7]">
-        <p className="text-[#777777] font-sans text-xs uppercase tracking-[0.15em] font-medium">
-          Loading profile...
-        </p>
-      </div>
-    );
-  }
-
-  // 4. Logged in and data loaded, but account is pending/rejected
-  if (userData.status !== "approved") {
-    return (
-      <div className="min-h-screen flex flex-col items-center justify-center bg-[#F5F5F7] p-6">
-        <div className="bg-white p-8 rounded-xl shadow-sm border border-gray-100 max-w-md w-full text-center">
-          <span className="block text-[#d2b79b] font-heading text-[11px] uppercase tracking-[0.25em] mb-4 border-b border-gray-100 pb-3">
-            Access Restricted
-          </span>
-          <h2 className="text-xl font-bold text-[#333333] mb-2">Account Pending</h2>
-          <p className="text-sm text-[#777777]">
-            Your membership is currently being reviewed by our team. Please check back later once your account is approved.
-          </p>
+      <div className="min-h-screen flex flex-col items-center justify-center bg-[#FAFAFC]">
+        <div className="animate-pulse flex flex-col items-center space-y-4">
+          <div className="w-8 h-8 border-t-2 border-[#B0926A] rounded-full animate-spin"></div>
+          <p className="text-neutral-400 text-[10px] tracking-[0.3em] uppercase">Synchronizing Data...</p>
         </div>
       </div>
     );
   }
 
-  // 5. Fully authenticated and approved! Render the dashboard.
+  // 2. Unauthenticated State
+  if (!currentUser) {
+    return <Navigate to="/membership" replace />;
+  }
+
+  // 3. Pending Approval State (Now includes Header & Logout)
+  if (userData.status !== "approved") {
+    return (
+      <div className="min-h-screen bg-[#FAFAFC] font-sans flex flex-col selection:bg-[#B0926A]/20">
+        
+        {/* Sticky Top Header */}
+        <header className="bg-white/80 backdrop-blur-md border-b border-neutral-200/60 sticky top-0 z-50 transition-all duration-300">
+          <div className="max-w-[1400px] mx-auto px-6 md:px-12 lg:px-24 h-20 sm:h-24 flex items-center justify-between">
+            
+            {/* Branding / Home Button */}
+            <button 
+              onClick={() => navigate("/")}
+              className="flex items-center gap-2 hover:opacity-70 transition-opacity focus:outline-none"
+            >
+              <span className="text-[10px] sm:text-xs uppercase tracking-[0.3em] font-medium text-neutral-900">
+                NGYAR
+              </span>
+              <span className="hidden sm:inline text-[10px] sm:text-xs uppercase tracking-[0.3em] font-light text-[#B0926A]">
+                Portal
+              </span>
+            </button>
+
+            {/* Logout Control */}
+            <div className="flex items-center gap-6">
+              <span className="hidden md:inline text-[10px] uppercase tracking-[0.2em] text-neutral-400">
+                Account Pending
+              </span>
+              <button 
+                onClick={handleLogout}
+                className="text-[10px] sm:text-[11px] uppercase tracking-[0.2em] font-medium text-neutral-500 hover:text-neutral-900 transition-all duration-300 border border-neutral-200 hover:border-[#B0926A]/50 px-6 py-3"
+              >
+                Secure Log Out
+              </button>
+            </div>
+          </div>
+        </header>
+
+        {/* Main Pending Content */}
+        <main className="flex-grow flex flex-col items-center justify-center p-6">
+          <div className="max-w-md w-full text-center space-y-6">
+            <span className="block text-[#B0926A] text-[11px] uppercase tracking-[0.35em] mb-4">
+              Access Restricted
+            </span>
+            <h2 className="text-4xl font-light text-neutral-900 tracking-tight">Account Pending</h2>
+            <p className="text-neutral-500 font-light leading-relaxed">
+              Your membership application is currently under review by the governance board. You will receive an email once clearance is granted.
+            </p>
+            <div className="pt-8 border-t border-neutral-300/50">
+              <button 
+                onClick={() => navigate("/")} 
+                className="text-[10px] text-neutral-400 uppercase tracking-[0.2em] hover:text-[#B0926A] transition-colors duration-500"
+              >
+                Return to Homepage
+              </button>
+            </div>
+          </div>
+        </main>
+      </div>
+    );
+  }
+
+  // 4. Approved State (Renders the actual Dashboard component)
   return children;
 }

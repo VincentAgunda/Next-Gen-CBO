@@ -31,7 +31,7 @@ export const AuthProvider = ({ children }) => {
       } else {
         setUserData(null);
       }
-      setLoading(false); // Finished loading Auth and Firestore data
+      setLoading(false);
     });
     return unsubscribe;
   }, []);
@@ -57,9 +57,9 @@ export const AuthProvider = ({ children }) => {
     signup,
     login,
     logout,
-    loading, // <-- ADDED: Expose loading state
+    loading,
     isAdmin: userData?.role === "admin",
-    isApproved: userData?.status === "approved", // <-- ADDED: Expose approved status
+    isApproved: userData?.status === "approved",
   };
 
   return (

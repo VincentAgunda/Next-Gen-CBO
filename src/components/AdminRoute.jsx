@@ -4,18 +4,19 @@ import { useAuth } from "../contexts/AuthContext";
 export default function AdminRoute({ children }) {
   const { currentUser, isAdmin, isApproved, loading } = useAuth();
   
-  // Wait for Firestore data to finish loading before making routing decisions
   if (loading) {
     return (
-      <div className="min-h-screen flex items-center justify-center bg-gray-100">
-        <p className="text-gray-500 font-medium tracking-widest uppercase text-sm">Verifying access...</p>
+      <div className="min-h-screen flex flex-col items-center justify-center bg-transparent">
+        <div className="animate-pulse flex flex-col items-center space-y-4">
+          <div className="w-8 h-8 border-t-2 border-[#B0926A] rounded-full animate-spin"></div>
+          <p className="text-neutral-400 text-[10px] tracking-[0.3em] uppercase">Verifying Clearance...</p>
+        </div>
       </div>
     );
   }
 
   if (!currentUser) return <Navigate to="/admin-login" replace />;
   
-  // Enforce both Admin role and Approved status
   if (!isAdmin || !isApproved) return <Navigate to="/member-portal" replace />;
   
   return children;

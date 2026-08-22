@@ -9,14 +9,12 @@ export default function AdminLogin() {
   const navigate = useNavigate();
   const { register, handleSubmit, formState: { isSubmitting } } = useForm();
 
-  // Watch for auth state changes and navigate securely
   useEffect(() => {
-    // Only fire navigation if we have finished fetching data from Firestore
     if (!loading && currentUser) {
       if (isAdmin && isApproved) {
         navigate("/admin");
       } else {
-        navigate("/member-portal"); // Route non-admins/unapproved to the member portal
+        navigate("/member-portal"); 
       }
     }
   }, [currentUser, isAdmin, isApproved, loading, navigate]);
@@ -24,27 +22,41 @@ export default function AdminLogin() {
   const onSubmit = async (data) => {
     try {
       await login(data.email, data.password);
-      // Navigation is now handled by the useEffect
     } catch (e) {
-      setError(e.message);
+      setError("Invalid administrative credentials.");
     }
   };
 
+  const inputClasses = "w-full bg-white/50 border border-neutral-300 focus:border-[#B0926A] focus:bg-white text-neutral-900 text-sm px-5 py-4 outline-none transition-all duration-500";
+
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gray-100">
-      <form onSubmit={handleSubmit(onSubmit)} className="bg-white p-8 rounded-xl shadow-md w-full max-w-sm space-y-4">
-        <h2 className="text-2xl font-bold text-center">Admin Login</h2>
-        <div>
-          <label className="block text-sm font-medium">Email</label>
-          <input type="email" {...register("email", { required: true })} className="w-full border rounded p-2" />
+    <div className="bg-transparent min-h-screen py-24 px-6 flex flex-col justify-center items-center border-t border-neutral-300/50">
+      
+      <div className="text-center mb-12 space-y-4">
+        <span className="text-[10px] uppercase tracking-[0.35em] text-[#B0926A] font-semibold">
+          Restricted Zone
+        </span>
+        <h1 className="text-4xl sm:text-5xl font-light text-neutral-900 tracking-tight">
+          Admin Portal
+        </h1>
+      </div>
+
+      <form onSubmit={handleSubmit(onSubmit)} className="w-full max-w-md bg-transparent space-y-8">
+        <div className="space-y-6">
+          <div>
+            <label className="block text-neutral-500 text-[10px] uppercase tracking-[0.2em] mb-3">System Email</label>
+            <input type="email" {...register("email", { required: true })} className={inputClasses} placeholder="admin@domain.com" />
+          </div>
+          <div>
+            <label className="block text-neutral-500 text-[10px] uppercase tracking-[0.2em] mb-3">Security Key</label>
+            <input type="password" {...register("password", { required: true })} className={inputClasses} placeholder="••••••••" />
+          </div>
         </div>
-        <div>
-          <label className="block text-sm font-medium">Password</label>
-          <input type="password" {...register("password", { required: true })} className="w-full border rounded p-2" />
-        </div>
-        {error && <p className="text-red-500">{error}</p>}
-        <button disabled={isSubmitting} className="w-full bg-brand-primary text-white py-2 rounded hover:bg-blue-600">
-          {isSubmitting ? "Logging in..." : "Login"}
+
+        {error && <p className="text-[#B0926A] text-sm text-center font-medium">{error}</p>}
+        
+        <button disabled={isSubmitting} className="w-full bg-neutral-900 text-white px-10 py-5 text-xs uppercase tracking-[0.2em] hover:bg-[#B0926A] transition-colors duration-500">
+          {isSubmitting ? "Authorizing..." : "Initialize Session"}
         </button>
       </form>
     </div>

@@ -4,12 +4,10 @@ import { useEffect, useState } from "react";
 import { db } from "../firebase/config";
 
 export default function MemberPortalDashboard() {
-  // 1. Destructure loading from useAuth
   const { userData, currentUser, loading } = useAuth();
   const [announcements, setAnnouncements] = useState([]);
 
   useEffect(() => {
-    // Only fetch announcements if there is an active user
     if (!currentUser) return;
     
     const q = query(collection(db, "announcements"), where("target", "array-contains", "all"));
@@ -20,80 +18,104 @@ export default function MemberPortalDashboard() {
     return unsub;
   }, [currentUser]);
 
-  // 2. Show a clean loading state while Firebase fetches the user data
+  // High-end loading state to match AdminRoute and ProtectedRoute
   if (loading) {
     return (
-      <div className="min-h-[50vh] flex items-center justify-center">
-        <p className="text-[#777777] font-sans text-xs uppercase tracking-[0.15em] font-medium">
-          Loading Dashboard...
+      <div className="min-h-screen flex flex-col items-center justify-center bg-transparent">
+        <div className="animate-pulse flex flex-col items-center space-y-4">
+          <div className="w-8 h-8 border-t-2 border-[#B0926A] rounded-full animate-spin"></div>
+          <p className="text-neutral-400 text-[10px] tracking-[0.3em] uppercase">Loading Portal...</p>
+        </div>
+      </div>
+    );
+  }
+
+  if (!userData) {
+    return (
+      <div className="min-h-screen flex items-center justify-center bg-transparent">
+        <p className="text-[#B0926A] font-light tracking-widest text-sm uppercase">
+          Error loading profile. Please authenticate again.
         </p>
       </div>
     );
   }
 
-  // 3. Fallback in case they somehow bypass route protection without data
-  if (!userData) {
-    return (
-      <div className="max-w-4xl mx-auto p-6 text-center text-red-500">
-        Error loading member profile. Please try logging in again.
-      </div>
-    );
-  }
+  // Extract first name for a personalized massive greeting
+  const firstName = userData?.fullName?.split(' ')[0] || 'Member';
 
   return (
-    <div className="max-w-4xl mx-auto p-6">
-      <h1 className="text-2xl font-bold mb-6 text-[#333333]">Member Dashboard</h1>
-      
-      <div className="grid md:grid-cols-2 gap-6">
-        {/* Membership Details Card */}
-        <div className="bg-white p-6 rounded-xl shadow-sm border border-gray-100 hover:shadow-md transition-shadow">
-          <h2 className="text-xs uppercase tracking-[0.2em] font-bold text-[#d2b79b] mb-4 border-b border-gray-50 pb-2">
-            Membership Details
-          </h2>
-          <div className="space-y-3 text-sm text-[#555555]">
-            <p className="flex justify-between">
-              <span className="font-medium text-[#777777]">Status</span>
-              <span className={`capitalize font-bold ${
-                userData.status === 'approved' ? 'text-green-600' : 'text-amber-600'
-              }`}>
-                {userData.status}
-              </span>
-            </p>
-            {userData.memberNumber && (
-              <p className="flex justify-between">
-                <span className="font-medium text-[#777777]">Member Number</span>
-                <span className="font-semibold">{userData.memberNumber}</span>
-              </p>
-            )}
-            <p className="flex justify-between">
-              <span className="font-medium text-[#777777]">Role</span>
-              <span className="capitalize font-semibold">{userData.role}</span>
-            </p>
-          </div>
+    <div className="min-h-screen bg-transparent py-24 px-6 md:px-12 lg:px-24">
+      <div className="max-w-[1400px] mx-auto space-y-16">
+        
+        {/* Massive Typography Header */}
+        <div className="space-y-6">
+          <span className="text-[10px] sm:text-xs uppercase tracking-[0.35em] text-[#B0926A] font-semibold block">
+            Alliance Portal
+          </span>
+          <h1 className="text-4xl sm:text-6xl lg:text-7xl font-light text-neutral-900 tracking-tight">
+            Welcome, {firstName}.
+          </h1>
+          <p className="text-neutral-500 font-light max-w-2xl text-sm sm:text-base leading-relaxed">
+            Access your membership credentials, structural mentorship programs, and the latest alliance announcements below.
+          </p>
         </div>
 
-        {/* Announcements Card */}
-        <div className="bg-white p-6 rounded-xl shadow-sm border border-gray-100 hover:shadow-md transition-shadow">
-          <h2 className="text-xs uppercase tracking-[0.2em] font-bold text-[#d2b79b] mb-4 border-b border-gray-50 pb-2">
-            Announcements
-          </h2>
-          {announcements.length === 0 ? (
-            <p className="text-[#777777] text-sm italic mt-4 text-center">
-              No new announcements at this time.
-            </p>
-          ) : (
-            <ul className="space-y-3 mt-4">
-              {announcements.map((a) => (
-                <li key={a.id} className="text-sm text-[#555555] bg-[#F5F5F7] p-3 rounded-md border-l-2 border-[#d2b79b]">
-                  {a.message}
-                </li>
-              ))}
-            </ul>
-          )}
+        {/* Dashboard Grid */}
+        <div className="grid lg:grid-cols-2 gap-8 lg:gap-12">
+          
+          {/* Membership Details Card */}
+          <div className="bg-white/80 backdrop-blur-sm border border-neutral-200/60 p-8 sm:p-12 transition-all duration-500 hover:border-[#B0926A]/50">
+            <h2 className="text-[11px] uppercase tracking-[0.25em] font-medium text-[#B0926A] mb-8 border-b border-neutral-200 pb-4">
+              Credentials
+            </h2>
+            
+            <div className="space-y-6 text-sm">
+              <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center pb-4 border-b border-neutral-100">
+                <span className="text-[10px] uppercase tracking-[0.2em] text-neutral-400 mb-1 sm:mb-0">Status</span>
+                <span className={`tracking-widest uppercase text-xs font-medium ${
+                  userData.status === 'approved' ? 'text-neutral-900' : 'text-[#B0926A]'
+                }`}>
+                  {userData.status}
+                </span>
+              </div>
+              
+              {userData.memberNumber && (
+                <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center pb-4 border-b border-neutral-100">
+                  <span className="text-[10px] uppercase tracking-[0.2em] text-neutral-400 mb-1 sm:mb-0">Alliance ID</span>
+                  <span className="text-neutral-900 font-light tracking-wider">{userData.memberNumber}</span>
+                </div>
+              )}
+              
+              <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center pb-4 border-b border-neutral-100">
+                <span className="text-[10px] uppercase tracking-[0.2em] text-neutral-400 mb-1 sm:mb-0">Clearance Level</span>
+                <span className="text-neutral-900 font-light tracking-wider capitalize">{userData.role}</span>
+              </div>
+            </div>
+          </div>
+
+          {/* Announcements Card */}
+          <div className="bg-white/80 backdrop-blur-sm border border-neutral-200/60 p-8 sm:p-12 transition-all duration-500 hover:border-[#B0926A]/50">
+            <h2 className="text-[11px] uppercase tracking-[0.25em] font-medium text-[#B0926A] mb-8 border-b border-neutral-200 pb-4">
+              Directives & Updates
+            </h2>
+            
+            {announcements.length === 0 ? (
+              <p className="text-neutral-400 text-sm font-light italic mt-4">
+                No active directives at this time.
+              </p>
+            ) : (
+              <ul className="space-y-4">
+                {announcements.map((a) => (
+                  <li key={a.id} className="text-sm font-light text-neutral-600 bg-neutral-50/50 p-5 border-l-2 border-[#B0926A] leading-relaxed">
+                    {a.message}
+                  </li>
+                ))}
+              </ul>
+            )}
+          </div>
+
         </div>
       </div>
-      
-      {/* Additional sections: registered events, certificates, downloads can be added similarly */}
     </div>
   );
 }
