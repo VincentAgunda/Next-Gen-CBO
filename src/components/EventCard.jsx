@@ -5,7 +5,7 @@ export default function EventCard({ title, date, venue, description, id }) {
   return (
     <motion.div
       whileHover={{ scale: 1.01, y: -4 }}
-      className="bg-[#008000] border border-[#006400] p-8 flex flex-col hover:bg-[#006d00] hover:border-[#004d00] hover:shadow-xl transition-all duration-500"
+      className="bg-[#d2b79b] border border-[#d2b79b] p-8 flex flex-col hover:bg-[#B0926A] hover:border-[#B0926A] hover:shadow-xl transition-all duration-500"
     >
       <div className="flex justify-between items-start mb-6 border-b border-white/20 pb-4 font-heading">
         {/* Updated date color to match your beige/gold accents */}

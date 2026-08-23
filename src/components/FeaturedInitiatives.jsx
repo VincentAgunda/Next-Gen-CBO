@@ -8,7 +8,20 @@ export default function FeaturedInitiatives() {
         
         {/* Row 1: Strategic Agribusiness Development */}
         <div className="grid lg:grid-cols-12 gap-12 lg:gap-16 items-center">
-          <div className="lg:col-span-5 order-2 lg:order-1 space-y-6">
+          {/* Image (Left) */}
+          <div className="lg:col-span-7 order-1 relative group overflow-hidden border border-[#d1c8bd] rounded-sm">
+            <img
+              src="/Partner/lead.png"
+              alt="Agribusiness Development and Youth Leadership"
+              loading="lazy"
+              decoding="async"
+              className="w-full h-auto object-cover aspect-[16/10] transform-gpu group-hover:scale-105 transition-transform duration-[1000ms] ease-[cubic-bezier(0.215,0.61,0.355,1)]"
+            />
+            <div className="absolute inset-0 bg-black/10 group-hover:bg-transparent transition-colors duration-700 ease-out"></div>
+          </div>
+
+          {/* Text (Right) */}
+          <div className="lg:col-span-5 order-2 space-y-6 lg:pl-8">
             <div className="flex items-center gap-3">
               <span className="h-[1px] w-6 bg-[#8b6845]"></span>
               <span className="text-[#8b6845] text-xs uppercase tracking-[0.3em] font-semibold">
@@ -37,21 +50,11 @@ export default function FeaturedInitiatives() {
               </Link>
             </div>
           </div>
-
-          <div className="lg:col-span-7 order-1 lg:order-2 relative group overflow-hidden border border-[#d1c8bd] rounded-sm">
-            <img
-              src="/Partner/lead.png"
-              alt="Agribusiness Development and Youth Leadership"
-              loading="lazy"
-              decoding="async"
-              className="w-full h-auto object-cover aspect-[16/10] transform-gpu group-hover:scale-105 transition-transform duration-[1000ms] ease-[cubic-bezier(0.215,0.61,0.355,1)]"
-            />
-            <div className="absolute inset-0 bg-black/10 group-hover:bg-transparent transition-colors duration-700 ease-out"></div>
-          </div>
         </div>
 
         {/* Row 2: Precision Mycology Hub */}
         <div className="grid lg:grid-cols-12 gap-12 lg:gap-16 items-center">
+          {/* Image (Left) */}
           <div className="lg:col-span-7 order-1 relative group overflow-hidden border border-[#d1c8bd] rounded-sm">
             <img
               src="/Innovation/mush2.png" 
@@ -63,7 +66,8 @@ export default function FeaturedInitiatives() {
             <div className="absolute inset-0 bg-black/10 group-hover:bg-transparent transition-colors duration-700 ease-out"></div>
           </div>
 
-          <div className="lg:col-span-5 order-2 space-y-6 lg:pl-6">
+          {/* Text (Right) */}
+          <div className="lg:col-span-5 order-2 space-y-6 lg:pl-8">
             <div className="flex items-center gap-3">
               <span className="h-[1px] w-6 bg-[#8b6845]"></span>
               <span className="text-[#8b6845] text-xs uppercase tracking-[0.3em] font-semibold">
@@ -96,7 +100,20 @@ export default function FeaturedInitiatives() {
 
         {/* Row 3: ICT & Systems Literacy */}
         <div className="grid lg:grid-cols-12 gap-12 lg:gap-16 items-center">
-          <div className="lg:col-span-5 order-2 lg:order-1 space-y-6">
+          {/* Image (Left) */}
+          <div className="lg:col-span-7 order-1 relative group overflow-hidden border border-[#d1c8bd] rounded-sm">
+            <img
+              src="/Innovation/ict.png"
+              alt="Advanced ICT and Digital Systems Training"
+              loading="lazy"
+              decoding="async"
+              className="w-full h-auto object-cover aspect-[16/10] transform-gpu group-hover:scale-105 transition-transform duration-[1000ms] ease-[cubic-bezier(0.215,0.61,0.355,1)]"
+            />
+            <div className="absolute inset-0 bg-black/10 group-hover:bg-transparent transition-colors duration-700 ease-out"></div>
+          </div>
+
+          {/* Text (Right) */}
+          <div className="lg:col-span-5 order-2 space-y-6 lg:pl-8">
             <div className="flex items-center gap-3">
               <span className="h-[1px] w-6 bg-[#8b6845]"></span>
               <span className="text-[#8b6845] text-xs uppercase tracking-[0.3em] font-semibold">
@@ -125,21 +142,11 @@ export default function FeaturedInitiatives() {
               </Link>
             </div>
           </div>
-
-          <div className="lg:col-span-7 order-1 lg:order-2 relative group overflow-hidden border border-[#d1c8bd] rounded-sm">
-            <img
-              src="/Innovation/ict.png"
-              alt="Advanced ICT and Digital Systems Training"
-              loading="lazy"
-              decoding="async"
-              className="w-full h-auto object-cover aspect-[16/10] transform-gpu group-hover:scale-105 transition-transform duration-[1000ms] ease-[cubic-bezier(0.215,0.61,0.355,1)]"
-            />
-            <div className="absolute inset-0 bg-black/10 group-hover:bg-transparent transition-colors duration-700 ease-out"></div>
-          </div>
         </div>
 
         {/* Row 4: Precision Avian Agronomy */}
         <div className="grid lg:grid-cols-12 gap-12 lg:gap-16 items-center">
+          {/* Image (Left) */}
           <div className="lg:col-span-7 order-1 relative group overflow-hidden border border-[#d1c8bd] rounded-sm">
             <img
               src="/Innovation/poultry.png" 
@@ -151,7 +158,8 @@ export default function FeaturedInitiatives() {
             <div className="absolute inset-0 bg-black/10 group-hover:bg-transparent transition-colors duration-700 ease-out"></div>
           </div>
 
-          <div className="lg:col-span-5 order-2 space-y-6 lg:pl-6">
+          {/* Text (Right) */}
+          <div className="lg:col-span-5 order-2 space-y-6 lg:pl-8">
             <div className="flex items-center gap-3">
               <span className="h-[1px] w-6 bg-[#8b6845]"></span>
               <span className="text-[#8b6845] text-xs uppercase tracking-[0.3em] font-semibold">
@@ -184,7 +192,20 @@ export default function FeaturedInitiatives() {
 
         {/* Row 5: Strategic Philanthropy & Outreach */}
         <div className="grid lg:grid-cols-12 gap-12 lg:gap-16 items-center">
-          <div className="lg:col-span-5 order-2 lg:order-1 space-y-6">
+          {/* Image (Left) */}
+          <div className="lg:col-span-7 order-1 relative group overflow-hidden border border-[#d1c8bd] rounded-sm">
+            <img
+              src="/Hero/h4.jpeg"
+              alt="Community Philanthropy and Outreach Initiatives"
+              loading="lazy"
+              decoding="async"
+              className="w-full h-auto object-cover aspect-[16/10] transform-gpu group-hover:scale-105 transition-transform duration-[1000ms] ease-[cubic-bezier(0.215,0.61,0.355,1)]"
+            />
+            <div className="absolute inset-0 bg-black/10 group-hover:bg-transparent transition-colors duration-700 ease-out"></div>
+          </div>
+          
+          {/* Text (Right) */}
+          <div className="lg:col-span-5 order-2 space-y-6 lg:pl-8">
             <div className="flex items-center gap-3">
               <span className="h-[1px] w-6 bg-[#8b6845]"></span>
               <span className="text-[#8b6845] text-xs uppercase tracking-[0.3em] font-semibold">
@@ -212,17 +233,6 @@ export default function FeaturedInitiatives() {
                 </svg>
               </Link>
             </div>
-          </div>
-
-          <div className="lg:col-span-7 order-1 lg:order-2 relative group overflow-hidden border border-[#d1c8bd] rounded-sm">
-            <img
-              src="/Hero/h4.jpeg"
-              alt="Community Philanthropy and Outreach Initiatives"
-              loading="lazy"
-              decoding="async"
-              className="w-full h-auto object-cover aspect-[16/10] transform-gpu group-hover:scale-105 transition-transform duration-[1000ms] ease-[cubic-bezier(0.215,0.61,0.355,1)]"
-            />
-            <div className="absolute inset-0 bg-black/10 group-hover:bg-transparent transition-colors duration-700 ease-out"></div>
           </div>
         </div>
 
