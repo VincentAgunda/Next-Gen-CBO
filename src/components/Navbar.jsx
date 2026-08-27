@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import { useState, useEffect } from "react";
+import { motion, AnimatePresence } from "framer-motion";
 import {
   Menu,
   Close,
@@ -18,6 +19,57 @@ const navLinks = [
   { to: "/contact", label: "Contact" },
 ];
 
+const menuVariants = {
+  closed: {
+    opacity: 0,
+    y: "-20px",
+    transition: {
+      duration: 0.45,
+      ease: [0.22, 1, 0.36, 1],
+    },
+  },
+  open: {
+    opacity: 1,
+    y: 0,
+    transition: {
+      duration: 0.55,
+      ease: [0.22, 1, 0.36, 1],
+      staggerChildren: 0.045,
+      delayChildren: 0.08,
+    },
+  },
+};
+
+const linkVariants = {
+  closed: {
+    opacity: 0,
+    x: -18,
+  },
+  open: {
+    opacity: 1,
+    x: 0,
+    transition: {
+      duration: 0.45,
+      ease: [0.22, 1, 0.36, 1],
+    },
+  },
+};
+
+const utilityVariants = {
+  closed: {
+    opacity: 0,
+    y: 12,
+  },
+  open: {
+    opacity: 1,
+    y: 0,
+    transition: {
+      duration: 0.45,
+      ease: [0.22, 1, 0.36, 1],
+    },
+  },
+};
+
 export default function Navbar() {
   const [open, setOpen] = useState(false);
 
@@ -29,75 +81,115 @@ export default function Navbar() {
     };
   }, [open]);
 
+  useEffect(() => {
+    const handleResize = () => {
+      if (window.innerWidth >= 1024) {
+        setOpen(false);
+      }
+    };
+
+    window.addEventListener("resize", handleResize);
+
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
+  }, []);
+
   const closeMenu = () => setOpen(false);
 
   return (
     <nav
-      className={`sticky top-0 z-50 w-full bg-white border-b border-gray-100 transition-all duration-500 ease-out ${
-        open ? "shadow-lg" : "shadow-none"
+      className={`sticky top-0 z-[100] w-full bg-white border-b border-[#e9e9e7] transition-shadow duration-500 ${
+        open ? "shadow-none" : "shadow-[0_4px_20px_rgba(0,0,0,0.035)]"
       }`}
     >
-      {/* Header */}
-      <div className="relative z-50 flex items-center justify-between w-full h-20 px-6 bg-white md:px-12">
+      {/* -------------------------------------------------- */}
+      {/* DESKTOP / MAIN HEADER                              */}
+      {/* -------------------------------------------------- */}
+
+      <div className="relative z-[110] flex items-center justify-between w-full h-[72px] md:h-[78px] px-5 sm:px-7 md:px-10 lg:px-14 xl:px-16 bg-white">
         {/* Logo */}
         <Link
           to="/"
           onClick={closeMenu}
-          className="text-2xl italic tracking-wide text-black transition-all duration-300 font-serif hover:opacity-60 hover:scale-[1.02]"
+          className="group flex items-center gap-3 shrink-0"
+          aria-label="NGYAR Home"
         >
-          NGYAR
+          <span className="text-[21px] md:text-[23px] font-serif italic tracking-[-0.03em] text-[#0a0a0a] transition-opacity duration-300 group-hover:opacity-60">
+            NGYAR
+          </span>
+
+          <span className="hidden sm:block w-px h-4 bg-[#d8d8d5]" />
+
+          <span className="hidden sm:block text-[8px] uppercase tracking-[0.28em] text-[#858581] font-medium">
+            Youth Initiative
+          </span>
         </Link>
 
         {/* Desktop Navigation */}
-        <div className="items-center hidden gap-6 lg:flex xl:gap-8">
-          {navLinks.map((link) => (
-            <Link
-              key={link.to}
-              to={link.to}
-              className="relative py-2 text-[11px] font-medium uppercase tracking-[0.2em] text-[#666666] transition-colors duration-300 hover:text-black group"
-            >
-              {link.label}
+        <div className="hidden lg:flex items-center">
+          <div className="flex items-center gap-7 xl:gap-9">
+            {navLinks.map((link) => (
+              <Link
+                key={link.to}
+                to={link.to}
+                className="group relative py-2 text-[10px] xl:text-[11px] font-medium uppercase tracking-[0.19em] text-[#62625f] transition-colors duration-300 hover:text-[#080808]"
+              >
+                {link.label}
 
-              <span className="absolute bottom-0 left-0 w-0 h-px bg-[#d2b79b] transition-all duration-500 ease-out group-hover:w-full" />
-            </Link>
-          ))}
+                <span className="absolute left-0 right-0 bottom-0 h-px origin-left scale-x-0 bg-[#bda887] transition-transform duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:scale-x-100" />
+              </Link>
+            ))}
+          </div>
         </div>
 
-        {/* Desktop Right */}
-        <div className="items-center hidden gap-3 text-[#333333] lg:flex xl:gap-4">
+        {/* Right Actions */}
+        <div className="hidden lg:flex items-center gap-2 xl:gap-3">
           <Link
             to="/gallery"
             title="Gallery"
             aria-label="Gallery"
-            className="flex items-center justify-center w-10 h-10 rounded-full border border-gray-200 transition-all duration-300 hover:-translate-y-0.5 hover:border-[#d2b79b] hover:bg-[#d2b79b]/10 hover:text-[#0A2132]"
+            className="group flex items-center justify-center w-9 h-9 xl:w-10 xl:h-10 border border-[#e2e2df] rounded-full text-[#333331] transition-all duration-400 hover:border-[#bda887] hover:bg-[#f8f6f2] hover:-translate-y-[1px]"
           >
-            <CollectionsOutlined sx={{ fontSize: 21 }} />
+            <CollectionsOutlined
+              sx={{
+                fontSize: 19,
+                transition: "transform 400ms ease",
+              }}
+              className="group-hover:scale-90"
+            />
           </Link>
 
           <Link
             to="/membership"
             title="Membership"
             aria-label="Membership"
-            className="flex items-center justify-center w-10 h-10 rounded-full border border-gray-200 transition-all duration-300 hover:-translate-y-0.5 hover:border-[#d2b79b] hover:bg-[#d2b79b]/10 hover:text-[#0A2132]"
+            className="group flex items-center justify-center w-9 h-9 xl:w-10 xl:h-10 border border-[#e2e2df] rounded-full text-[#333331] transition-all duration-400 hover:border-[#bda887] hover:bg-[#f8f6f2] hover:-translate-y-[1px]"
           >
-            <PeopleAltOutlined sx={{ fontSize: 21 }} />
+            <PeopleAltOutlined
+              sx={{
+                fontSize: 19,
+              }}
+            />
           </Link>
 
           <button
+            type="button"
             aria-label="Locations"
-            className="flex items-center justify-center w-10 h-10 transition-all duration-300 hover:text-black hover:-translate-y-0.5"
+            className="flex items-center justify-center w-9 h-9 xl:w-10 xl:h-10 text-[#454542] transition-all duration-300 hover:text-[#bda887] hover:-translate-y-[1px]"
           >
-            <LocationOn sx={{ fontSize: 20 }} />
+            <LocationOn sx={{ fontSize: 19 }} />
           </button>
 
           <button
+            type="button"
             aria-label="Change language"
-            className="flex items-center gap-1 px-1 text-[11px] font-medium uppercase tracking-[0.2em] transition-colors duration-300 hover:text-black"
+            className="flex items-center gap-1.5 ml-1 px-2 text-[10px] font-medium uppercase tracking-[0.18em] text-[#555552] transition-colors duration-300 hover:text-[#bda887]"
           >
             <span>EN</span>
 
             <svg
-              className="w-3 h-3 text-[#666666]"
+              className="w-3 h-3"
               fill="none"
               stroke="currentColor"
               viewBox="0 0 24 24"
@@ -105,7 +197,7 @@ export default function Navbar() {
               <path
                 strokeLinecap="round"
                 strokeLinejoin="round"
-                strokeWidth="1.5"
+                strokeWidth="1.4"
                 d="M19 9l-7 7-7-7"
               />
             </svg>
@@ -113,174 +205,200 @@ export default function Navbar() {
 
           <Link
             to="/support-us"
-            className="ml-2 bg-[#0A2132] text-white px-6 xl:px-7 py-3 text-[11px] uppercase tracking-[0.2em] font-medium transition-all duration-500 hover:bg-[#d2b79b] hover:text-black hover:-translate-y-0.5 hover:shadow-lg"
+            className="ml-2 xl:ml-3 relative overflow-hidden bg-[#0a2132] text-white px-5 xl:px-6 py-3 text-[10px] uppercase tracking-[0.19em] font-medium transition-all duration-500 hover:-translate-y-[1px] group"
           >
-            Support Us
+            <span className="relative z-10 transition-colors duration-500 group-hover:text-[#111]" >
+              Support Us
+            </span>
+
+            <span className="absolute inset-0 bg-[#bda887] translate-y-full transition-transform duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:translate-y-0" />
           </Link>
         </div>
 
-        {/* Mobile Toggle */}
+        {/* Mobile Menu Button */}
         <button
-          className="relative z-50 flex items-center justify-center w-11 h-11 -mr-2 overflow-hidden rounded-full lg:hidden transition-all duration-300 hover:bg-gray-50 active:scale-95"
-          onClick={() => setOpen(!open)}
-          aria-label="Toggle Menu"
+          type="button"
+          onClick={() => setOpen((prev) => !prev)}
+          aria-label={open ? "Close menu" : "Open menu"}
           aria-expanded={open}
+          className="relative z-[120] flex lg:hidden items-center justify-center w-10 h-10 -mr-1 text-[#111] transition-transform duration-300 active:scale-90"
         >
-          <span
-            className={`absolute transition-all duration-500 ease-out ${
-              open
-                ? "rotate-90 scale-75 opacity-0"
-                : "rotate-0 scale-100 opacity-100"
-            }`}
+          <motion.span
+            animate={{
+              rotate: open ? 90 : 0,
+              scale: open ? 0.8 : 1,
+              opacity: open ? 0 : 1,
+            }}
+            transition={{ duration: 0.35 }}
+            className="absolute"
           >
-            <Menu />
-          </span>
+            <Menu sx={{ fontSize: 24 }} />
+          </motion.span>
 
-          <span
-            className={`absolute transition-all duration-500 ease-out ${
-              open
-                ? "rotate-0 scale-100 opacity-100"
-                : "-rotate-90 scale-75 opacity-0"
-            }`}
+          <motion.span
+            animate={{
+              rotate: open ? 0 : -90,
+              scale: open ? 1 : 0.8,
+              opacity: open ? 1 : 0,
+            }}
+            transition={{ duration: 0.35 }}
+            className="absolute"
           >
-            <Close />
-          </span>
+            <Close sx={{ fontSize: 24 }} />
+          </motion.span>
         </button>
       </div>
 
-      {/* Backdrop */}
-      <div
-        onClick={closeMenu}
-        className={`fixed inset-0 top-20 z-30 bg-[#0A2132]/20 backdrop-blur-[2px] transition-all duration-500 lg:hidden ${
-          open
-            ? "opacity-100 visible"
-            : "opacity-0 invisible pointer-events-none"
-        }`}
-      />
+      {/* -------------------------------------------------- */}
+      {/* MOBILE MENU                                        */}
+      {/* -------------------------------------------------- */}
 
-      {/* Mobile Menu */}
-      <div
-        className={`absolute top-20 left-0 z-40 w-full bg-white border-b border-gray-100 overflow-hidden transition-all duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] lg:hidden ${
-          open
-            ? "max-h-[calc(100vh-80px)] opacity-100"
-            : "max-h-0 opacity-0"
-        }`}
-      >
-        <div className="h-[calc(100vh-80px)] overflow-y-auto px-6 py-8">
-          {/* Mobile Links */}
-          <div className="flex flex-col gap-1 pb-8 mb-6 border-b border-gray-100">
-            {navLinks.map((link, index) => (
-              <div
-                key={link.to}
-                className={`transition-all duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] ${
-                  open
-                    ? "translate-x-0 opacity-100"
-                    : "-translate-x-8 opacity-0"
-                }`}
-                style={{
-                  transitionDelay: open
-                    ? `${120 + index * 55}ms`
-                    : "0ms",
-                }}
-              >
-                <Link
-                  to={link.to}
-                  onClick={closeMenu}
-                  className="group flex items-center justify-between py-4 text-xs font-medium uppercase tracking-[0.2em] text-[#333333] transition-all duration-300 hover:pl-3 hover:text-[#d2b79b]"
+      <AnimatePresence>
+        {open && (
+          <>
+            {/* Backdrop */}
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 0.35 }}
+              onClick={closeMenu}
+              className="fixed inset-0 top-[72px] md:top-[78px] z-[90] bg-[#07121b]/25 backdrop-blur-[3px] lg:hidden"
+            />
+
+            {/* Menu */}
+            <motion.div
+              variants={menuVariants}
+              initial="closed"
+              animate="open"
+              exit="closed"
+              className="absolute top-full left-0 z-[100] w-full overflow-hidden bg-white border-b border-[#e7e7e4] shadow-[0_20px_50px_rgba(0,0,0,0.10)] lg:hidden"
+            >
+              <div className="max-h-[calc(100vh-72px)] md:max-h-[calc(100vh-78px)] overflow-y-auto px-6 sm:px-8 py-8">
+                {/* Mobile Navigation */}
+                <div className="border-t border-[#ecece9]">
+                  {navLinks.map((link, index) => (
+                    <motion.div
+                      variants={linkVariants}
+                      key={link.to}
+                      className="border-b border-[#ecece9]"
+                    >
+                      <Link
+                        to={link.to}
+                        onClick={closeMenu}
+                        className="group flex items-center justify-between py-[18px] text-[11px] font-medium uppercase tracking-[0.22em] text-[#252523] transition-all duration-300 hover:pl-2 hover:text-[#a98f6d]"
+                      >
+                        <span>{link.label}</span>
+
+                        <span className="flex items-center gap-2 text-[9px] text-[#aaa9a5]">
+                          <span>
+                            {String(index + 1).padStart(2, "0")}
+                          </span>
+
+                          <span className="w-5 h-px bg-[#d8d8d4] transition-all duration-300 group-hover:w-8 group-hover:bg-[#bda887]" />
+                        </span>
+                      </Link>
+                    </motion.div>
+                  ))}
+                </div>
+
+                {/* Secondary Actions */}
+                <motion.div
+                  variants={utilityVariants}
+                  className="grid grid-cols-2 gap-3 mt-7"
                 >
-                  {link.label}
+                  <Link
+                    to="/gallery"
+                    onClick={closeMenu}
+                    className="group flex items-center gap-3 px-4 py-4 border border-[#e5e5e2] text-[#222] transition-all duration-300 hover:border-[#bda887] hover:bg-[#faf8f4]"
+                  >
+                    <CollectionsOutlined
+                      sx={{
+                        fontSize: 19,
+                        color: "#77756f",
+                      }}
+                    />
 
-                  <span className="w-0 h-px bg-[#d2b79b] transition-all duration-300 group-hover:w-6" />
-                </Link>
+                    <span className="text-[9px] font-medium uppercase tracking-[0.17em]">
+                      Gallery
+                    </span>
+                  </Link>
+
+                  <Link
+                    to="/membership"
+                    onClick={closeMenu}
+                    className="group flex items-center gap-3 px-4 py-4 border border-[#e5e5e2] text-[#222] transition-all duration-300 hover:border-[#bda887] hover:bg-[#faf8f4]"
+                  >
+                    <PeopleAltOutlined
+                      sx={{
+                        fontSize: 19,
+                        color: "#77756f",
+                      }}
+                    />
+
+                    <span className="text-[9px] font-medium uppercase tracking-[0.17em]">
+                      Membership
+                    </span>
+                  </Link>
+                </motion.div>
+
+                {/* Support */}
+                <motion.div
+                  variants={utilityVariants}
+                  className="mt-3"
+                >
+                  <Link
+                    to="/support-us"
+                    onClick={closeMenu}
+                    className="relative overflow-hidden flex items-center justify-center w-full py-[17px] bg-[#0a2132] text-white text-[10px] font-medium uppercase tracking-[0.22em] group"
+                  >
+                    <span className="relative z-10 transition-colors duration-400 group-hover:text-[#111]">
+                      Support Us
+                    </span>
+
+                    <span className="absolute inset-0 bg-[#bda887] translate-y-full transition-transform duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:translate-y-0" />
+                  </Link>
+                </motion.div>
+
+                {/* Utilities */}
+                <motion.div
+                  variants={utilityVariants}
+                  className="flex items-center justify-between pt-6 mt-7 border-t border-[#ecece9]"
+                >
+                  <button
+                    type="button"
+                    className="flex items-center gap-2 text-[9px] font-medium uppercase tracking-[0.18em] text-[#777570] transition-colors duration-300 hover:text-[#111]"
+                  >
+                    <LocationOn sx={{ fontSize: 18 }} />
+                    Locations
+                  </button>
+
+                  <button
+                    type="button"
+                    className="flex items-center gap-2 text-[9px] font-medium uppercase tracking-[0.18em] text-[#777570] transition-colors duration-300 hover:text-[#111]"
+                  >
+                    <span>EN</span>
+
+                    <svg
+                      className="w-3 h-3"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth="1.4"
+                        d="M19 9l-7 7-7-7"
+                      />
+                    </svg>
+                  </button>
+                </motion.div>
               </div>
-            ))}
-          </div>
-
-          {/* Gallery and Membership */}
-          <div
-            className={`grid grid-cols-2 gap-4 mb-8 transition-all duration-700 ${
-              open
-                ? "translate-y-0 opacity-100"
-                : "translate-y-6 opacity-0"
-            }`}
-            style={{
-              transitionDelay: open ? "500ms" : "0ms",
-            }}
-          >
-            <Link
-              to="/gallery"
-              onClick={closeMenu}
-              className="group flex flex-col items-center justify-center gap-3 p-5 border border-gray-100 rounded-xl text-[#0A2132] transition-all duration-300 hover:-translate-y-1 hover:border-[#d2b79b] hover:bg-[#d2b79b]/10"
-            >
-              <div className="flex items-center justify-center w-11 h-11 text-white rounded-full bg-[#0A2132] transition-all duration-300 group-hover:scale-110 group-hover:bg-[#d2b79b] group-hover:text-black">
-                <CollectionsOutlined sx={{ fontSize: 20 }} />
-              </div>
-
-              <span className="text-[10px] font-medium uppercase tracking-[0.15em]">
-                Gallery
-              </span>
-            </Link>
-
-            <Link
-              to="/membership"
-              onClick={closeMenu}
-              className="group flex flex-col items-center justify-center gap-3 p-5 border border-gray-100 rounded-xl text-[#0A2132] transition-all duration-300 hover:-translate-y-1 hover:border-[#d2b79b] hover:bg-[#d2b79b]/10"
-            >
-              <div className="flex items-center justify-center w-11 h-11 text-white rounded-full bg-[#0A2132] transition-all duration-300 group-hover:scale-110 group-hover:bg-[#d2b79b] group-hover:text-black">
-                <PeopleAltOutlined sx={{ fontSize: 20 }} />
-              </div>
-
-              <span className="text-[10px] font-medium uppercase tracking-[0.15em]">
-                Membership
-              </span>
-            </Link>
-          </div>
-
-          {/* Support */}
-          <div
-            className={`transition-all duration-700 ${
-              open
-                ? "translate-y-0 opacity-100"
-                : "translate-y-6 opacity-0"
-            }`}
-            style={{
-              transitionDelay: open ? "580ms" : "0ms",
-            }}
-          >
-            <Link
-              to="/support-us"
-              onClick={closeMenu}
-              className="flex items-center justify-center w-full py-4 text-xs font-medium text-white uppercase tracking-[0.2em] bg-[#0A2132] transition-all duration-300 hover:bg-[#d2b79b] hover:text-black active:scale-[0.98]"
-            >
-              Support Us
-            </Link>
-          </div>
-
-          {/* Utilities */}
-          <div
-            className={`flex flex-col gap-6 pt-8 mt-8 text-[#666666] border-t border-gray-100 transition-all duration-700 ${
-              open
-                ? "translate-y-0 opacity-100"
-                : "translate-y-6 opacity-0"
-            }`}
-            style={{
-              transitionDelay: open ? "650ms" : "0ms",
-            }}
-          >
-            <button className="flex items-center gap-4 text-[11px] font-medium uppercase tracking-[0.2em] transition-colors duration-300 hover:text-black">
-              <LocationOn sx={{ fontSize: 20 }} />
-              <span>Locations</span>
-            </button>
-
-            <button className="flex items-center gap-4 text-[11px] font-medium uppercase tracking-[0.2em] transition-colors duration-300 hover:text-black">
-              <span className="flex justify-center w-5 font-bold leading-none border-b border-current">
-                EN
-              </span>
-              <span>Language</span>
-            </button>
-          </div>
-        </div>
-      </div>
+            </motion.div>
+          </>
+        )}
+      </AnimatePresence>
     </nav>
   );
 }
