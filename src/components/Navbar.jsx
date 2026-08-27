@@ -70,7 +70,7 @@ export default function Navbar() {
            {/* CTA BUTTON: Desktop */}
            <Link
              to="/support-us"
-             className="ml-4 bg-[#008000] text-white px-7 py-3 font-sans text-[11px] uppercase tracking-[0.2em] font-medium hover:bg-[#d2b79b] hover:text-black transition-all duration-300 ease-out"
+             className="ml-4 bg-[#0A2132] text-white px-7 py-3 font-sans text-[11px] uppercase tracking-[0.2em] font-medium hover:bg-[#d2b79b] hover:text-black transition-all duration-300 ease-out"
            >
              Support Us
            </Link>

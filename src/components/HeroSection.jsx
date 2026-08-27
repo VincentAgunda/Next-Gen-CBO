@@ -5,28 +5,33 @@ import { motion, AnimatePresence } from "framer-motion";
 const slides = [
   {
     id: 1,
-    image: "/Hero/h7.png", 
+    image: "/Hero/h7.png",
     subtitle: "NEXT-GEN YOUTH INITIATIVE // COGNITIVE CORE",
     title: "Empowering The Future.",
-    description: "A youth-led initiative focused on building sustainable farming businesses and conducting careful, hands-on research for a better future.",
+    description:
+      "A youth-led initiative focused on building sustainable farming businesses and conducting careful, hands-on research for a better future.",
     buttonText: "DISCOVER MATRIX",
-    link: "/about"
+    link: "/about",
   },
   {
     id: 2,
-    image: "/Hero/h1.jpeg", 
+    image: "/Hero/h1.jpeg",
     subtitle: "AGRIBUSINESS OPTIMIZATION // VALUE CHAINS",
     title: "Cultivating Growth.",
-    description: "Providing young leaders with the practical skills, tools, and business models they need to create profitable and lasting agricultural communities.",
+    description:
+      "Providing young leaders with the practical skills, tools, and business models they need to create profitable and lasting agricultural communities.",
     buttonText: "SYSTEM INDEX",
-    link: "/programs"
-  }
+    link: "/programs",
+  },
 ];
 
 export default function HeroSection() {
   const [current, setCurrent] = useState(0);
 
-  // Preload background assets instantaneously
+  /*
+   * Preload all hero images so the transition between slides
+   * remains smooth and does not wait for the next image.
+   */
   useEffect(() => {
     slides.forEach((slide) => {
       const img = new Image();
@@ -34,98 +39,357 @@ export default function HeroSection() {
     });
   }, []);
 
-  // Automate frame sequence transitions
+  /*
+   * Automatic slide progression.
+   */
   useEffect(() => {
     const timer = setInterval(() => {
-      setCurrent((prev) => (prev === slides.length - 1 ? 0 : prev + 1));
+      setCurrent((prev) =>
+        prev === slides.length - 1 ? 0 : prev + 1
+      );
     }, 8000);
+
     return () => clearInterval(timer);
   }, []);
 
+  const activeSlide = slides[current];
+
   return (
-    <section className="relative w-full min-h-screen bg-white overflow-hidden flex flex-col">
-      
-      {/* Top Section: High Fidelity Image Slider */}
-      <div className="relative w-full h-[50vh] md:h-[60vh] bg-[#f4f4f4] overflow-hidden">
-        <AnimatePresence initial={false}>
+    <section className="relative w-full min-h-screen overflow-hidden bg-[#0A2132] text-white flex flex-col">
+
+      {/* =========================================================
+          HERO IMAGE
+      ========================================================= */}
+      <div className="relative w-full h-[52vh] md:h-[60vh] overflow-hidden bg-[#0A2132]">
+
+        <AnimatePresence initial={false} mode="sync">
           <motion.div
-            key={current}
+            key={activeSlide.id}
             initial={{ opacity: 0 }}
-            animate={{ opacity: 1, zIndex: 1 }}
-            exit={{ opacity: 0, zIndex: 0 }}
-            transition={{ duration: 1.2, ease: "easeInOut" }} 
+            animate={{
+              opacity: 1,
+              zIndex: 1,
+            }}
+            exit={{
+              opacity: 0,
+              zIndex: 0,
+            }}
+            transition={{
+              opacity: {
+                duration: 1.2,
+                ease: "easeInOut",
+              },
+            }}
             className="absolute inset-0"
           >
-            <motion.img 
-              initial={{ scale: 1.02 }}
-              animate={{ scale: 1 }}
-              transition={{ duration: 8, ease: "easeOut" }}
-              src={slides[current].image}
-              alt={slides[current].title}
-              loading="lazy"
+            <motion.img
+              src={activeSlide.image}
+              alt={activeSlide.title}
+              initial={{
+                scale: 1.04,
+              }}
+              animate={{
+                scale: 1,
+              }}
+              transition={{
+                duration: 8,
+                ease: "easeOut",
+              }}
+              loading={current === 0 ? "eager" : "lazy"}
               decoding="async"
-              className="absolute inset-0 w-full h-full object-cover"
+              className="
+                absolute
+                inset-0
+                w-full
+                h-full
+                object-cover
+              "
+            />
+
+            {/* Subtle cinematic overlay */}
+            <div
+              className="
+                absolute
+                inset-0
+                bg-gradient-to-b
+                from-black/5
+                via-transparent
+                to-[#0A2132]/25
+                pointer-events-none
+              "
             />
           </motion.div>
         </AnimatePresence>
       </div>
 
-      {/* Bottom Section: Typographic Content */}
-      <div className="flex-grow relative flex flex-col px-6 md:px-12 lg:px-24 pt-12 pb-24 max-w-7xl mx-auto w-full">
-        {/* mode="wait" ensures text fades out completely before fading in to prevent overlap jumps */}
+      {/* =========================================================
+          CONTENT AREA
+          EXACT REFERENCE BLUE: #0A2132
+      ========================================================= */}
+      <div
+        className="
+          relative
+          flex-1
+          flex
+          flex-col
+          px-6
+          md:px-12
+          lg:px-24
+          pt-14
+          md:pt-20
+          pb-28
+          bg-[#0A2132]
+        "
+      >
+
+        {/* Main content */}
         <AnimatePresence mode="wait">
-          <motion.div 
-            key={`text-${current}`}
-            initial={{ opacity: 0, y: 15 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -10 }}
-            transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
-            className="max-w-3xl space-y-5"
+          <motion.div
+            key={`text-${activeSlide.id}`}
+            initial={{
+              opacity: 0,
+              y: 18,
+            }}
+            animate={{
+              opacity: 1,
+              y: 0,
+            }}
+            exit={{
+              opacity: 0,
+              y: -12,
+            }}
+            transition={{
+              duration: 0.7,
+              ease: [0.16, 1, 0.3, 1],
+            }}
+            className="
+              w-full
+              max-w-7xl
+              mx-auto
+            "
           >
-            {/* Subtitle */}
-            <p className="text-[11px] md:text-xs uppercase tracking-[0.2em] text-[#b3b1aa] font-medium">
-              {slides[current].subtitle}
+
+            {/* =====================================================
+                SUBTITLE
+            ===================================================== */}
+            <p
+              className="
+                text-[10px]
+                md:text-[11px]
+                uppercase
+                tracking-[0.24em]
+                text-white/55
+                font-medium
+                mb-7
+              "
+            >
+              {activeSlide.subtitle}
             </p>
-            
-            {/* Title */}
-            <h1 className="text-4xl md:text-5xl lg:text-[56px] font-normal tracking-tight text-black leading-[1.1]">
-              {slides[current].title}
+
+            {/* =====================================================
+                TITLE
+            ===================================================== */}
+            <h1
+              className="
+                text-white
+                font-normal
+                tracking-[-0.025em]
+                leading-[0.98]
+                text-5xl
+                sm:text-6xl
+                md:text-7xl
+                lg:text-[82px]
+                xl:text-[92px]
+                max-w-5xl
+              "
+            >
+              {activeSlide.title}
             </h1>
-            
-            {/* Description - Updated with requested classes and simpler English */}
-            <p className="max-w-2xl pt-2 text-neutral-600 font-normal md:font-light text-sm md:text-base leading-relaxed">
-              {slides[current].description}
+
+            {/* =====================================================
+                DESCRIPTION
+            ===================================================== */}
+            <p
+              className="
+                mt-8
+                max-w-2xl
+                text-white/65
+                text-sm
+                md:text-base
+                lg:text-[17px]
+                font-light
+                leading-[1.75]
+              "
+            >
+              {activeSlide.description}
             </p>
-            
-            {/* Action Button */}
-            <div className="pt-6">
+
+            {/* =====================================================
+                ACTION BUTTON
+            ===================================================== */}
+            <div className="mt-9">
               <Link
-                to={slides[current].link}
-                className="inline-block border border-[#d5d2cc] text-black px-8 py-3.5 text-[11px] md:text-xs uppercase tracking-[0.15em] font-medium hover:bg-[#f9f9f9] hover:border-gray-400 transition-all duration-300"
+                to={activeSlide.link}
+                className="
+                  group
+                  inline-flex
+                  items-center
+                  justify-center
+                  border
+                  border-white/25
+                  text-white
+                  px-8
+                  py-4
+                  text-[10px]
+                  md:text-[11px]
+                  uppercase
+                  tracking-[0.2em]
+                  font-medium
+                  transition-all
+                  duration-500
+                  hover:bg-white
+                  hover:text-[#0A2132]
+                  hover:border-white
+                "
               >
-                {slides[current].buttonText}
+                <span>{activeSlide.buttonText}</span>
+
+                <span
+                  className="
+                    ml-5
+                    inline-block
+                    transition-transform
+                    duration-500
+                    group-hover:translate-x-1
+                  "
+                >
+                  →
+                </span>
               </Link>
             </div>
           </motion.div>
         </AnimatePresence>
 
-        {/* Centered Precision Linear Progress Sequence Bars */}
-        <div className="absolute bottom-8 left-0 right-0 flex justify-center gap-3">
-          {slides.map((_, index) => (
-            <button
-              key={index}
-              onClick={() => setCurrent(index)}
-              className="group py-2 focus:outline-none"
-              aria-label={`Switch context framework to slide ${index + 1}`}
-            >
-              <div className={`h-[2px] w-12 transition-colors duration-700 ease-[cubic-bezier(0.25,1,0.5,1)] ${
-                current === index ? "bg-[#c4c0b5]" : "bg-[#ebebeb] group-hover:bg-[#d5d2cc]"
-              }`} />
-            </button>
-          ))}
+        {/* =========================================================
+            SLIDE CONTROLS
+        ========================================================= */}
+        <div
+          className="
+            absolute
+            bottom-8
+            md:bottom-10
+            left-6
+            right-6
+            md:left-12
+            md:right-12
+            lg:left-24
+            lg:right-24
+            flex
+            items-center
+            justify-between
+            max-w-7xl
+            mx-auto
+          "
+        >
+
+          {/* Slide number */}
+          <div
+            className="
+              text-[10px]
+              tracking-[0.18em]
+              text-white/45
+              font-medium
+            "
+          >
+            <span className="text-white">
+              0{current + 1}
+            </span>
+
+            <span className="mx-2 text-white/20">
+              /
+            </span>
+
+            <span>
+              0{slides.length}
+            </span>
+          </div>
+
+          {/* Progress bars */}
+          <div className="flex items-center gap-3">
+            {slides.map((slide, index) => (
+              <button
+                key={slide.id}
+                onClick={() => setCurrent(index)}
+                className="
+                  group
+                  py-3
+                  focus:outline-none
+                  focus-visible:ring-1
+                  focus-visible:ring-white/50
+                "
+                aria-label={`Switch to slide ${index + 1}`}
+                aria-current={
+                  current === index ? "true" : "false"
+                }
+              >
+                <div
+                  className={`
+                    relative
+                    h-[1px]
+                    w-12
+                    md:w-16
+                    overflow-hidden
+                    transition-all
+                    duration-500
+                    ${
+                      current === index
+                        ? "bg-white/25"
+                        : "bg-white/15 group-hover:bg-white/30"
+                    }
+                  `}
+                >
+                  {current === index && (
+                    <motion.div
+                      key={`progress-${current}`}
+                      initial={{
+                        scaleX: 0,
+                      }}
+                      animate={{
+                        scaleX: 1,
+                      }}
+                      transition={{
+                        duration: 8,
+                        ease: "linear",
+                      }}
+                      className="
+                        absolute
+                        inset-0
+                        origin-left
+                        bg-white
+                      "
+                    />
+                  )}
+                </div>
+              </button>
+            ))}
+          </div>
         </div>
       </div>
-      
+
+      {/* =========================================================
+          SUBTLE BOTTOM EDGE
+      ========================================================= */}
+      <div
+        className="
+          absolute
+          bottom-0
+          left-0
+          right-0
+          h-px
+          bg-white/10
+          pointer-events-none
+        "
+      />
     </section>
   );
 }
