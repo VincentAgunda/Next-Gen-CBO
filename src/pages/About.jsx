@@ -16,7 +16,7 @@ const governance = [
   { role: "Founding Member", name: "Serah Kalekye Peter", image: "/team/serah.png" },
   { role: "Founding Member", name: "Evans Nzomo", image: "/images/governance/evans-nzomo.jpg" },
   { role: "Founding Member", name: "Doreen Wangari", image: "/images/governance/doreen-wangari.jpg" },
-  { role: "Founding Member", name: "Tabitha Dorcus", image: "/team/tabitha.png" },
+  
   { role: "Founding Member", name: "Daniel kyanui Kituku", image: "/team/kyan.png" },
   { role: "Founding Member", name: "Faith Mutheu Muthini", image: "/team/faith.png" },
   { role: "Founding Member", name: "John waweru Ngigi", image: "/team/john.png" },

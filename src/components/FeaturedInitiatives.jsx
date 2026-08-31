@@ -86,7 +86,7 @@ export default function FeaturedInitiatives() {
         relative
         w-full
         overflow-hidden
-        bg-[#0A2132]
+        bg-[#88878B]
         text-white
         py-28
         md:py-32
@@ -100,18 +100,7 @@ export default function FeaturedInitiatives() {
           BACKGROUND DETAILS
       ============================================================ */}
 
-      {/* Very subtle radial atmosphere */}
-      <div
-        className="
-          absolute
-          inset-0
-          pointer-events-none
-          opacity-40
-          bg-[radial-gradient(circle_at_50%_0%,rgba(255,255,255,0.055),transparent_42%)]
-        "
-      />
-
-      {/* Top hairline */}
+      {/* Top hairline - adjusted opacity for the lighter background */}
       <div
         className="
           absolute
@@ -119,7 +108,7 @@ export default function FeaturedInitiatives() {
           left-0
           right-0
           h-px
-          bg-white/10
+          bg-white/20
         "
       />
 
@@ -162,9 +151,7 @@ export default function FeaturedInitiatives() {
                 relative
                 group
                 overflow-hidden
-                border
-                border-white/10
-                bg-[#081B2A]
+                bg-[#7A797D]
               "
             >
               <div className="relative overflow-hidden aspect-[16/10]">
@@ -187,40 +174,14 @@ export default function FeaturedInitiatives() {
                     ease-[cubic-bezier(0.215,0.61,0.355,1)]
                   "
                 />
-
-                {/* Cinematic image treatment */}
-                <div
-                  className="
-                    absolute
-                    inset-0
-                    bg-black/10
-                    group-hover:bg-black/0
-                    transition-colors
-                    duration-700
-                  "
-                />
-
-                {/* Bottom gradient */}
-                <div
-                  className="
-                    absolute
-                    inset-x-0
-                    bottom-0
-                    h-1/3
-                    bg-gradient-to-t
-                    from-[#0A2132]/30
-                    to-transparent
-                    pointer-events-none
-                  "
-                />
               </div>
 
-              {/* Image index */}
+              {/* Image index - Added subtle shadow for legibility without gradients */}
               <div
                 className="
                   absolute
-                  top-5
-                  left-5
+                  top-6
+                  left-6
                   flex
                   items-center
                   gap-3
@@ -228,11 +189,11 @@ export default function FeaturedInitiatives() {
                   uppercase
                   tracking-[0.22em]
                   font-medium
-                  text-white/75
+                  text-white
+                  drop-shadow-md
                 "
               >
-                <span className="h-px w-5 bg-white/50" />
-
+                <span className="h-px w-5 bg-white shadow-sm" />
                 <span>
                   0{index + 1}
                 </span>
@@ -258,13 +219,12 @@ export default function FeaturedInitiatives() {
                   className="
                     h-px
                     w-7
-                    bg-white/60
+                    bg-white/70
                   "
                 />
-
                 <span
                   className="
-                    text-white/55
+                    text-white/80
                     text-[10px]
                     md:text-[11px]
                     uppercase
@@ -292,11 +252,11 @@ export default function FeaturedInitiatives() {
                 {initiative.title}
               </h2>
 
-              {/* Description */}
+              {/* Description - Increased opacity for better readability on lighter bg */}
               <p
                 className="
                   max-w-xl
-                  text-white/60
+                  text-white/90
                   font-light
                   text-[15px]
                   md:text-base
@@ -342,14 +302,13 @@ export default function FeaturedInitiatives() {
                         bottom-0
                         h-px
                         w-full
-                        bg-white/30
+                        bg-white/40
                         origin-left
                         transition-transform
                         duration-500
                         group-hover:scale-x-0
                       "
                     />
-
                     <span
                       className="
                         absolute
@@ -411,7 +370,7 @@ export default function FeaturedInitiatives() {
           lg:mt-44
           pt-8
           border-t
-          border-white/10
+          border-white/20
           flex
           items-center
           justify-between
@@ -422,7 +381,7 @@ export default function FeaturedInitiatives() {
             text-[9px]
             uppercase
             tracking-[0.25em]
-            text-white/30
+            text-white/60
           "
         >
           Next-Gen Youth Initiative
@@ -433,7 +392,7 @@ export default function FeaturedInitiatives() {
             text-[9px]
             uppercase
             tracking-[0.25em]
-            text-white/30
+            text-white/60
           "
         >
           Agribusiness // Research // Innovation
