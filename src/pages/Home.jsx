@@ -154,7 +154,7 @@ export default function Home() {
       </div>
 
       {/* Card 02: Evidence-Based (Updated Green & Hover) */}
-      <div className="group bg-[#B0926A] hover:bg-[#006d00] text-white p-8 md:p-10 border border-[#006400] hover:border-[#004d00] flex flex-col justify-between shadow-sm hover:shadow-xl hover:-translate-y-1.5 transition-all duration-500 ease-out cursor-pointer">
+      <div className="group bg-[#B0926A] hover:bg-[#88878B] text-white p-8 md:p-10 border border-[#006400] hover:border-[#004d00] flex flex-col justify-between shadow-sm hover:shadow-xl hover:-translate-y-1.5 transition-all duration-500 ease-out cursor-pointer">
         <span className="text-4xl font-normal md:font-light text-white mb-8 block transition-transform duration-500 ease-out group-hover:scale-105 origin-left">
           02
         </span>

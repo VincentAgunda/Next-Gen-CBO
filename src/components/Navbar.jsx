@@ -205,7 +205,7 @@ export default function Navbar() {
 
           <Link
             to="/support-us"
-            className="ml-2 xl:ml-3 relative overflow-hidden bg-[#0a2132] text-white px-5 xl:px-6 py-3 text-[10px] uppercase tracking-[0.19em] font-medium transition-all duration-500 hover:-translate-y-[1px] group"
+            className="ml-2 xl:ml-3 relative overflow-hidden bg-[#bda887] text-white px-5 xl:px-6 py-3 text-[10px] uppercase tracking-[0.19em] font-medium transition-all duration-500 hover:-translate-y-[1px] group"
           >
             <span className="relative z-10 transition-colors duration-500 group-hover:text-[#111]" >
               Support Us
@@ -350,7 +350,7 @@ export default function Navbar() {
                   <Link
                     to="/support-us"
                     onClick={closeMenu}
-                    className="relative overflow-hidden flex items-center justify-center w-full py-[17px] bg-[#0a2132] text-white text-[10px] font-medium uppercase tracking-[0.22em] group"
+                    className="relative overflow-hidden flex items-center justify-center w-full py-[17px] bg-[#bda887] text-white text-[10px] font-medium uppercase tracking-[0.22em] group"
                   >
                     <span className="relative z-10 transition-colors duration-400 group-hover:text-[#111]">
                       Support Us
