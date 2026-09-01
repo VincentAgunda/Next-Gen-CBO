@@ -88,28 +88,28 @@ export default function HeroSection() {
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: -15 }}
               transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
-              className="max-w-xl space-y-4 pt-8 md:pt-0"
+              className="max-w-xl space-y-6 pt-8 md:pt-0"
             >
-              {/* Eyebrow Subtitle */}
+              {/* Eyebrow Subtitle using accent #B0926A */}
               <span className="inline-block text-[10px] md:text-xs uppercase tracking-[0.35em] text-[#B0926A] font-medium">
                 {slides[current].subtitle}
               </span>
               
-              {/* Title with bold font weight for strong hierarchy */}
-              <h1 className="text-4xl sm:text-6xl lg:text-7xl font-bold text-neutral-900 tracking-tight leading-[1.05]">
+              {/* Title with light font weight & tight tracking */}
+              <h1 className="text-4xl sm:text-6xl lg:text-7xl font-light text-neutral-900 tracking-tight leading-[1.05]">
                 {slides[current].title}
               </h1>
               
-              {/* Normal weight body text */}
-              <p className="max-w-lg text-neutral-600 font-normal text-base md:text-lg leading-relaxed pt-3">
+              {/* Modern muted body text */}
+              <p className="max-w-lg text-neutral-600 font-light text-base md:text-lg leading-relaxed pt-1">
                 {slides[current].description}
               </p>
               
-              {/* Interactive link */}
+              {/* Interactive link with offset arrow matching the Navigation section */}
               <div className="pt-6 pb-12 md:pb-0">
                 <Link
                   to={slides[current].link}
-                  className="group inline-flex items-center gap-4 text-neutral-900 hover:text-[#B0926A] transition-colors duration-500 text-xs sm:text-sm uppercase tracking-[0.2em] font-bold"
+                  className="group inline-flex items-center gap-4 text-neutral-900 hover:text-[#B0926A] transition-colors duration-500 text-xs sm:text-sm uppercase tracking-[0.2em] font-medium"
                 >
                   <span className="border-b border-neutral-900 group-hover:border-[#B0926A] pb-1 transition-colors duration-500">
                     {slides[current].buttonText}
@@ -128,14 +128,14 @@ export default function HeroSection() {
             </motion.div>
           </AnimatePresence>
 
-          {/* Minimal progress indicators */}
+          {/* Minimal progress indicators with dynamic width expanding on active */}
           <div className="absolute bottom-12 md:bottom-16 left-6 md:left-12 lg:left-20 flex gap-3 pointer-events-auto">
             {slides.map((_, index) => (
               <button
                 key={index}
                 onClick={() => setCurrent(index)}
                 className="group py-2 focus:outline-none"
-                aria-label={`Switch to slide ${index + 1}`}
+                aria-label={`Switch context framework to slide ${index + 1}`}
               >
                 <div className={`h-[2px] transition-all duration-700 ease-[cubic-bezier(0.25,1,0.5,1)] ${
                   current === index ? "bg-[#B0926A] w-16" : "bg-neutral-300 w-10 group-hover:bg-neutral-400"
