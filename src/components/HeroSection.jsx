@@ -91,7 +91,8 @@ export default function HeroSection() {
               alt={slides[current].title}
               loading="lazy"
               decoding="async"
-              className="absolute inset-0 w-full h-full object-cover opacity-85 mix-blend-luminosity md:mix-blend-normal brightness-90"
+              // Removed mix-blend-luminosity to restore full color
+              className="absolute inset-0 w-full h-full object-cover opacity-95 brightness-95"
             />
           </motion.div>
         </AnimatePresence>

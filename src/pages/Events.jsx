@@ -12,113 +12,275 @@ export default function Events() {
 
   const handleRegister = async (e) => {
     e.preventDefault();
-    const formData = new FormData(e.target);
-    await addDoc(collection(db, "event_registrations"), {
-      eventId: registerEventId,
-      fullName: formData.get("fullName"),
-      phone: formData.get("phone"),
-      email: formData.get("email"),
-      organization: formData.get("organization"),
-      createdAt: new Date(),
-    });
-    setRegMsg("Registration successful! Seat allocated.");
-    e.target.reset();
+
+    try {
+      const formData = new FormData(e.target);
+
+      await addDoc(collection(db, "event_registrations"), {
+        eventId: registerEventId,
+        fullName: formData.get("fullName"),
+        phone: formData.get("phone"),
+        email: formData.get("email"),
+        organization: formData.get("organization"),
+        createdAt: new Date(),
+      });
+
+      setRegMsg("Registration successful! Seat allocated.");
+      e.target.reset();
+    } catch (error) {
+      console.error("Registration error:", error);
+      setRegMsg("Registration failed. Please try again.");
+    }
   };
 
   return (
-    <div className="font-sans text-black bg-[#F5F5F7] antialiased selection:bg-black selection:text-white overflow-hidden min-h-screen">
-      
-      {/* TYPOGRAPHIC HERO */}
-      <header className="pt-40 pb-28 px-[6vw] md:px-12 lg:px-24 max-w-[1440px] mx-auto">
-        <span className="block text-[#757575] text-[13px] font-normal mb-8 uppercase tracking-wider">
-          01 / Knowledge Ecosystems
-        </span>
-        <h1 className="text-5xl md:text-7xl lg:text-[110px] font-normal leading-[0.95] tracking-tight text-black mb-12">
-          Events & <br />
-          Symposia.
-        </h1>
-        <p className="max-w-3xl text-black opacity-85 font-normal text-[16px] md:text-[18px] leading-relaxed">
-          Join our structured fields workshops, tech-transfer operations briefings, and evidence-based rural research presentations designed to scale localized innovation.
-        </p>
+    <div className="min-h-screen w-full bg-[#FAF9F6] text-neutral-900 antialiased selection:bg-[#B0926A] selection:text-white overflow-hidden">
+
+      {/* ============================================================
+          HERO / INTRODUCTION
+      ============================================================ */}
+      <header className="relative w-full px-6 md:px-12 lg:px-24 pt-36 md:pt-44 lg:pt-48 pb-24 md:pb-32">
+        <div className="max-w-[1400px] mx-auto">
+
+          {/* Eyebrow */}
+          <div className="flex items-center gap-4 mb-7 md:mb-9">
+            <span className="w-8 h-[1px] bg-[#B0926A]" />
+
+            <span className="text-[10px] md:text-xs uppercase tracking-[0.25em] text-[#B0926A] font-semibold">
+              Knowledge Ecosystems
+            </span>
+          </div>
+
+          {/* Main heading */}
+          <h1 className="max-w-5xl text-5xl sm:text-6xl md:text-7xl lg:text-[4.5rem] xl:text-[5.5rem] font-medium text-neutral-900 tracking-tighter leading-[1.02]">
+            Events &{" "}
+            <span className="text-neutral-400">
+              Symposia.
+            </span>
+          </h1>
+
+          {/* Description */}
+          <p className="max-w-2xl mt-8 md:mt-10 text-neutral-500 font-light text-base md:text-lg leading-relaxed">
+            Join our structured field workshops, technology-transfer
+            briefings, research presentations, and community forums designed
+            to connect ideas with practical action.
+          </p>
+
+          {/* Decorative metadata */}
+          <div className="mt-14 md:mt-20 pt-6 border-t border-neutral-200 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
+            <span className="text-[9px] md:text-[10px] uppercase tracking-[0.25em] text-neutral-400">
+              Next-Gen Youth Initiative
+            </span>
+
+            <span className="text-[9px] md:text-[10px] uppercase tracking-[0.25em] text-neutral-400">
+              Research // Innovation // Community
+            </span>
+          </div>
+        </div>
       </header>
 
-      {/* EVENT GRID */}
-      <section className="pb-28 px-[6vw] md:px-12 lg:px-24">
-        <div className="max-w-[1440px] mx-auto border-t border-[#E5E5E5] pt-16">
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 lg:gap-12">
-            {events.map((evt) => (
-              <div 
-                key={evt.id} 
-                className="group border border-[#E5E5E5] bg-[#f6f6f6] hover:bg-black hover:text-white transition-colors duration-500 overflow-hidden"
+      {/* ============================================================
+          EVENTS
+      ============================================================ */}
+      <section className="relative w-full px-6 md:px-12 lg:px-24 pb-28 md:pb-36 lg:pb-40">
+        <div className="max-w-[1400px] mx-auto">
+
+          {/* Section heading */}
+          <div className="border-t border-neutral-200 pt-8 md:pt-10 mb-12 md:mb-16">
+            <div className="flex items-center gap-4">
+              <span className="w-7 h-[1px] bg-[#B0926A]" />
+
+              <span className="text-[10px] md:text-[11px] uppercase tracking-[0.28em] text-neutral-500 font-medium">
+                Upcoming Programs
+              </span>
+            </div>
+          </div>
+
+          {/* Event grid */}
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-x-8 lg:gap-x-12 gap-y-12 lg:gap-y-16">
+            {events.map((evt, index) => (
+              <article
+                key={evt.id}
+                className="group relative bg-white border border-neutral-200 overflow-hidden transition-all duration-700 hover:border-[#B0926A] hover:-translate-y-1"
               >
-                <div className="p-8 h-full flex flex-col justify-between">
-                  {/* Assuming EventCard inherits the parent text color nicely, if not, adjust inside EventCard */}
-                  <EventCard {...evt} />
+                {/* Event number */}
+                <div className="absolute top-6 left-6 z-10 flex items-center gap-3">
+                  <span className="w-5 h-[1px] bg-[#B0926A]" />
+
+                  <span className="text-[9px] uppercase tracking-[0.22em] text-neutral-400 font-medium">
+                    0{index + 1}
+                  </span>
                 </div>
-              </div>
+
+                {/* Event content */}
+                <div className="p-8 pt-20 md:p-9 md:pt-20 min-h-[360px] flex flex-col">
+
+                  <div className="flex-1">
+                    <EventCard {...evt} />
+                  </div>
+
+                  {/* Bottom line */}
+                  <div className="mt-10 pt-5 border-t border-neutral-200 flex items-center justify-between">
+                    <span className="text-[9px] uppercase tracking-[0.22em] text-neutral-400">
+                      Event Registry
+                    </span>
+
+                    <span className="text-[#B0926A] text-sm">
+                      ↗
+                    </span>
+                  </div>
+                </div>
+              </article>
             ))}
           </div>
         </div>
       </section>
 
-      {/* REGISTRATION FORM (Conditional) */}
+      {/* ============================================================
+          REGISTRATION FORM
+      ============================================================ */}
       {registerEventId && (
-        <section className="py-28 bg-[#f6f6f6] px-[6vw] md:px-12 lg:px-24 border-t border-[#E5E5E5]">
-          <div className="max-w-3xl mx-auto">
-            
-            <div className="mb-16">
-              <span className="text-[#757575] text-[13px] uppercase tracking-wider font-normal block mb-4">
-                Registry 
-              </span>
-              <h2 className="text-4xl md:text-[52px] font-normal text-black tracking-tight leading-none">
-                Secure Access Pass
-              </h2>
-            </div>
+        <section className="relative w-full bg-[#F2F0EB] px-6 md:px-12 lg:px-24 py-28 md:py-36 lg:py-40 border-t border-neutral-200">
 
-            <form onSubmit={handleRegister} className="space-y-8 border-t border-[#D9D9D9] pt-12">
-              <div className="grid md:grid-cols-2 gap-8 lg:gap-12">
-                <input 
-                  name="fullName" 
-                  placeholder="Full Legal Name" 
-                  required 
-                  className="w-full bg-transparent border-b border-[#D9D9D9] py-4 text-[16px] focus:outline-none focus:border-black transition-colors font-normal placeholder:text-[#757575] text-black rounded-none" 
-                />
-                <input 
-                  name="organization" 
-                  placeholder="Institutional Affiliation" 
-                  className="w-full bg-transparent border-b border-[#D9D9D9] py-4 text-[16px] focus:outline-none focus:border-black transition-colors font-normal placeholder:text-[#757575] text-black rounded-none" 
-                />
+          <div className="max-w-[1400px] mx-auto">
+            <div className="max-w-3xl">
+
+              {/* Eyebrow */}
+              <div className="flex items-center gap-4 mb-7">
+                <span className="w-8 h-[1px] bg-[#B0926A]" />
+
+                <span className="text-[10px] md:text-xs uppercase tracking-[0.25em] text-[#B0926A] font-semibold">
+                  Event Registry
+                </span>
               </div>
-              
-              <div className="grid md:grid-cols-2 gap-8 lg:gap-12">
-                <input 
-                  name="phone" 
-                  placeholder="Mobile Verification Number" 
-                  required 
-                  className="w-full bg-transparent border-b border-[#D9D9D9] py-4 text-[16px] focus:outline-none focus:border-black transition-colors font-normal placeholder:text-[#757575] text-black rounded-none" 
-                />
-                <input 
-                  name="email" 
-                  type="email" 
-                  placeholder="Active Email Address" 
-                  required 
-                  className="w-full bg-transparent border-b border-[#D9D9D9] py-4 text-[16px] focus:outline-none focus:border-black transition-colors font-normal placeholder:text-[#757575] text-black rounded-none" 
-                />
-              </div>
-              
-              <div className="pt-12 flex flex-col sm:flex-row items-center justify-between gap-6">
-                <button className="w-full sm:w-auto inline-flex items-center justify-between border border-black bg-black text-white px-10 py-5 text-[15px] font-normal hover:bg-white hover:text-black transition-colors duration-300">
-                  <span>Register Reservation</span>
-                  <span className="ml-8 text-lg leading-none">↗</span>
-                </button>
-                {regMsg && (
-                  <p className="text-[14px] text-[#757575] font-normal">{regMsg}</p>
-                )}
-              </div>
-            </form>
+
+              {/* Heading */}
+              <h2 className="text-4xl sm:text-5xl md:text-6xl lg:text-[4.5rem] font-medium text-neutral-900 tracking-tighter leading-[1.05]">
+                Secure
+                <br />
+                <span className="text-neutral-400">
+                  Access Pass.
+                </span>
+              </h2>
+
+              {/* Description */}
+              <p className="max-w-xl mt-7 text-neutral-500 font-light text-base md:text-lg leading-relaxed">
+                Complete the registration details below to reserve your place
+                at this event.
+              </p>
+
+              {/* Form */}
+              <form
+                onSubmit={handleRegister}
+                className="mt-14 md:mt-20 border-t border-neutral-300 pt-10 md:pt-12 space-y-10"
+              >
+                {/* Row 1 */}
+                <div className="grid md:grid-cols-2 gap-8 lg:gap-12">
+                  <div>
+                    <label className="block mb-2 text-[9px] uppercase tracking-[0.22em] text-neutral-400">
+                      Full Name
+                    </label>
+
+                    <input
+                      name="fullName"
+                      placeholder="Your full name"
+                      required
+                      className="w-full bg-transparent border-b border-neutral-300 py-4 text-[16px] text-neutral-900 placeholder:text-neutral-400 focus:outline-none focus:border-[#B0926A] transition-colors duration-500 rounded-none"
+                    />
+                  </div>
+
+                  <div>
+                    <label className="block mb-2 text-[9px] uppercase tracking-[0.22em] text-neutral-400">
+                      Affiliation
+                    </label>
+
+                    <input
+                      name="organization"
+                      placeholder="Institution or organization"
+                      className="w-full bg-transparent border-b border-neutral-300 py-4 text-[16px] text-neutral-900 placeholder:text-neutral-400 focus:outline-none focus:border-[#B0926A] transition-colors duration-500 rounded-none"
+                    />
+                  </div>
+                </div>
+
+                {/* Row 2 */}
+                <div className="grid md:grid-cols-2 gap-8 lg:gap-12">
+                  <div>
+                    <label className="block mb-2 text-[9px] uppercase tracking-[0.22em] text-neutral-400">
+                      Phone
+                    </label>
+
+                    <input
+                      name="phone"
+                      type="tel"
+                      placeholder="Mobile number"
+                      required
+                      className="w-full bg-transparent border-b border-neutral-300 py-4 text-[16px] text-neutral-900 placeholder:text-neutral-400 focus:outline-none focus:border-[#B0926A] transition-colors duration-500 rounded-none"
+                    />
+                  </div>
+
+                  <div>
+                    <label className="block mb-2 text-[9px] uppercase tracking-[0.22em] text-neutral-400">
+                      Email
+                    </label>
+
+                    <input
+                      name="email"
+                      type="email"
+                      placeholder="Email address"
+                      required
+                      className="w-full bg-transparent border-b border-neutral-300 py-4 text-[16px] text-neutral-900 placeholder:text-neutral-400 focus:outline-none focus:border-[#B0926A] transition-colors duration-500 rounded-none"
+                    />
+                  </div>
+                </div>
+
+                {/* Submit */}
+                <div className="pt-5 flex flex-col sm:flex-row sm:items-center justify-between gap-6">
+
+                  <button
+                    type="submit"
+                    className="group inline-flex items-center justify-between gap-8 w-full sm:w-auto px-8 md:px-10 py-4 border border-neutral-900 bg-neutral-900 text-white text-xs uppercase tracking-[0.15em] font-semibold transition-all duration-500 hover:bg-[#B0926A] hover:border-[#B0926A]"
+                  >
+                    <span>
+                      Register Reservation
+                    </span>
+
+                    <span className="text-base transition-transform duration-500 group-hover:translate-x-1 group-hover:-translate-y-1">
+                      ↗
+                    </span>
+                  </button>
+
+                  {regMsg && (
+                    <p
+                      className={`text-[13px] font-light ${
+                        regMsg.includes("successful")
+                          ? "text-[#B0926A]"
+                          : "text-red-500"
+                      }`}
+                    >
+                      {regMsg}
+                    </p>
+                  )}
+                </div>
+              </form>
+            </div>
           </div>
         </section>
       )}
+
+      {/* ============================================================
+          FOOTER DETAIL
+      ============================================================ */}
+      <div className="px-6 md:px-12 lg:px-24">
+        <div className="max-w-[1400px] mx-auto py-8 border-t border-neutral-200 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+          <span className="text-[9px] uppercase tracking-[0.25em] text-neutral-400">
+            Next-Gen Youth Initiative
+          </span>
+
+          <span className="text-[9px] uppercase tracking-[0.25em] text-neutral-400">
+            Agribusiness // Research // Innovation
+          </span>
+        </div>
+      </div>
     </div>
   );
 }

@@ -81,322 +81,275 @@ export default function FeaturedInitiatives() {
   ];
 
   return (
-    <section
-      className="
-        relative
-        w-full
-        overflow-hidden
-        bg-[#88878B]
-        text-white
-        py-28
-        md:py-32
-        lg:py-40
-        px-6
-        md:px-12
-        lg:px-24
-      "
-    >
-      {/* ============================================================
-          BACKGROUND DETAILS
-      ============================================================ */}
-
-      {/* Top hairline - adjusted opacity for the lighter background */}
-      <div
-        className="
-          absolute
-          top-0
-          left-0
-          right-0
-          h-px
-          bg-white/20
-        "
-      />
+    <section className="relative w-full overflow-hidden bg-[#FAF9F6] text-neutral-900 antialiased selection:bg-[#B0926A] selection:text-white">
 
       {/* ============================================================
-          MAIN CONTENT
+          INTRODUCTION
       ============================================================ */}
+      <div className="px-6 md:px-12 lg:px-24 pt-28 md:pt-36 lg:pt-40 pb-24 md:pb-32">
+        <div className="max-w-[1400px] mx-auto">
 
-      <div
-        className="
-          relative
-          z-10
-          max-w-7xl
-          mx-auto
-          flex
-          flex-col
-          gap-28
-          md:gap-36
-          lg:gap-44
-        "
-      >
-        {initiatives.map((initiative, index) => (
-          <article
-            key={initiative.category}
-            className="
-              grid
-              lg:grid-cols-12
-              gap-12
-              lg:gap-16
-              items-center
-            "
-          >
-            {/* ======================================================
-                IMAGE
-            ====================================================== */}
+          {/* Eyebrow */}
+          <div className="flex items-center gap-4 mb-7 md:mb-9">
+            <span className="w-8 h-[1px] bg-[#B0926A]" />
 
-            <div
-              className="
-                lg:col-span-7
-                order-1
-                relative
-                group
-                overflow-hidden
-                bg-[#7A797D]
-              "
-            >
-              <div className="relative overflow-hidden aspect-[16/10]">
-                <img
-                  src={initiative.image}
-                  alt={initiative.alt}
-                  loading={index === 0 ? "eager" : "lazy"}
-                  decoding="async"
-                  className="
-                    absolute
-                    inset-0
-                    w-full
-                    h-full
-                    object-cover
-                    transform-gpu
-                    scale-[1.001]
-                    group-hover:scale-[1.045]
-                    transition-transform
-                    duration-[1400ms]
-                    ease-[cubic-bezier(0.215,0.61,0.355,1)]
-                  "
-                />
-              </div>
+            <span className="text-[10px] md:text-xs uppercase tracking-[0.25em] text-[#B0926A] font-semibold">
+              Featured Initiatives
+            </span>
+          </div>
 
-              {/* Image index - Added subtle shadow for legibility without gradients */}
-              <div
-                className="
-                  absolute
-                  top-6
-                  left-6
-                  flex
-                  items-center
-                  gap-3
-                  text-[9px]
-                  uppercase
-                  tracking-[0.22em]
-                  font-medium
-                  text-white
-                  drop-shadow-md
-                "
-              >
-                <span className="h-px w-5 bg-white shadow-sm" />
-                <span>
-                  0{index + 1}
-                </span>
-              </div>
-            </div>
+          {/* Main heading */}
+          <h1 className="max-w-5xl text-5xl sm:text-6xl md:text-7xl lg:text-[4.5rem] xl:text-[5.5rem] font-medium tracking-tighter leading-[1.02]">
+            Building{" "}
+            <span className="text-neutral-400">
+              What Comes Next.
+            </span>
+          </h1>
 
-            {/* ======================================================
-                TEXT CONTENT
-            ====================================================== */}
-
-            <div
-              className="
-                lg:col-span-5
-                order-2
-                space-y-7
-                lg:pl-6
-                xl:pl-10
-              "
-            >
-              {/* Category */}
-              <div className="flex items-center gap-4">
-                <span
-                  className="
-                    h-px
-                    w-7
-                    bg-white/70
-                  "
-                />
-                <span
-                  className="
-                    text-white/80
-                    text-[10px]
-                    md:text-[11px]
-                    uppercase
-                    tracking-[0.28em]
-                    font-medium
-                  "
-                >
-                  {initiative.category}
-                </span>
-              </div>
-
-              {/* Title */}
-              <h2
-                className="
-                  text-white
-                  text-4xl
-                  sm:text-5xl
-                  lg:text-[54px]
-                  xl:text-[60px]
-                  font-normal
-                  tracking-[-0.025em]
-                  leading-[1.02]
-                "
-              >
-                {initiative.title}
-              </h2>
-
-              {/* Description - Increased opacity for better readability on lighter bg */}
-              <p
-                className="
-                  max-w-xl
-                  text-white/90
-                  font-light
-                  text-[15px]
-                  md:text-base
-                  lg:text-[17px]
-                  leading-[1.75]
-                "
-              >
-                {initiative.description}
-              </p>
-
-              {/* Link */}
-              <div className="pt-2">
-                <Link
-                  to={initiative.link}
-                  className="
-                    group
-                    inline-flex
-                    items-center
-                    gap-4
-                    text-white
-                    text-[10px]
-                    md:text-[11px]
-                    uppercase
-                    tracking-[0.2em]
-                    font-medium
-                    transition-all
-                    duration-300
-                  "
-                >
-                  <span
-                    className="
-                      relative
-                      pb-2
-                    "
-                  >
-                    {initiative.linkText}
-
-                    {/* Animated underline */}
-                    <span
-                      className="
-                        absolute
-                        left-0
-                        bottom-0
-                        h-px
-                        w-full
-                        bg-white/40
-                        origin-left
-                        transition-transform
-                        duration-500
-                        group-hover:scale-x-0
-                      "
-                    />
-                    <span
-                      className="
-                        absolute
-                        left-0
-                        bottom-0
-                        h-px
-                        w-full
-                        bg-white
-                        origin-left
-                        scale-x-0
-                        transition-transform
-                        duration-500
-                        group-hover:scale-x-100
-                      "
-                    />
-                  </span>
-
-                  {/* Arrow */}
-                  <svg
-                    className="
-                      w-4
-                      h-4
-                      transform
-                      group-hover:translate-x-2
-                      transition-transform
-                      duration-500
-                      ease-out
-                    "
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    stroke="currentColor"
-                    strokeWidth="1.5"
-                  >
-                    <path
-                      strokeLinecap="square"
-                      strokeLinejoin="miter"
-                      d="M5 12h14M12 5l7 7-7 7"
-                    />
-                  </svg>
-                </Link>
-              </div>
-            </div>
-          </article>
-        ))}
+          {/* Intro text */}
+          <p className="max-w-2xl mt-8 md:mt-10 text-neutral-500 font-light text-base md:text-lg leading-relaxed">
+            Explore the programs, research systems, and community initiatives
+            shaping sustainable livelihoods through agriculture, technology,
+            innovation, and practical research.
+          </p>
+        </div>
       </div>
 
       {/* ============================================================
-          BOTTOM DECORATIVE LINE
+          INITIATIVES
       ============================================================ */}
+      <div className="px-6 md:px-12 lg:px-24 pb-28 md:pb-36 lg:pb-44">
+        <div className="max-w-[1400px] mx-auto">
 
-      <div
-        className="
-          relative
-          z-10
-          max-w-7xl
-          mx-auto
-          mt-28
-          md:mt-36
-          lg:mt-44
-          pt-8
-          border-t
-          border-white/20
-          flex
-          items-center
-          justify-between
-        "
-      >
-        <span
-          className="
-            text-[9px]
-            uppercase
-            tracking-[0.25em]
-            text-white/60
-          "
-        >
-          Next-Gen Youth Initiative
-        </span>
+          {/* Top line */}
+          <div className="border-t border-neutral-200 pt-8 mb-20 md:mb-28 lg:mb-36">
+            <div className="flex items-center justify-between">
+              <div className="flex items-center gap-4">
+                <span className="w-7 h-[1px] bg-[#B0926A]" />
 
-        <span
-          className="
-            text-[9px]
-            uppercase
-            tracking-[0.25em]
-            text-white/60
-          "
-        >
-          Agribusiness // Research // Innovation
-        </span>
+                <span className="text-[10px] md:text-[11px] uppercase tracking-[0.28em] text-neutral-500 font-medium">
+                  Our Focus Areas
+                </span>
+              </div>
+
+              <span className="hidden sm:block text-[9px] uppercase tracking-[0.25em] text-neutral-400">
+                05 Initiatives
+              </span>
+            </div>
+          </div>
+
+          {/* Initiative list */}
+          <div className="flex flex-col gap-28 md:gap-36 lg:gap-44">
+
+            {initiatives.map((initiative, index) => (
+              <article
+                key={initiative.category}
+                className="grid lg:grid-cols-12 gap-12 lg:gap-16 items-center"
+              >
+
+                {/* ==================================================
+                    IMAGE
+                ================================================== */}
+                <div
+                  className={`
+                    relative group overflow-hidden bg-neutral-100
+                    lg:col-span-7
+                    ${index % 2 === 1 ? "lg:order-2" : "lg:order-1"}
+                  `}
+                >
+                  <div className="relative overflow-hidden aspect-[16/10]">
+
+                    <img
+                      src={initiative.image}
+                      alt={initiative.alt}
+                      loading={index === 0 ? "eager" : "lazy"}
+                      decoding="async"
+                      className="
+                        absolute inset-0
+                        w-full h-full
+                        object-cover
+                        transform-gpu
+                        scale-[1.001]
+                        group-hover:scale-[1.045]
+                        transition-transform
+                        duration-[1400ms]
+                        ease-[cubic-bezier(0.215,0.61,0.355,1)]
+                      "
+                    />
+
+                    {/* Very subtle image overlay */}
+                    <div className="absolute inset-0 bg-black/0 group-hover:bg-black/5 transition-colors duration-700" />
+                  </div>
+
+                  {/* Image number */}
+                  <div className="absolute top-6 left-6 flex items-center gap-3 text-white drop-shadow-md">
+                    <span className="h-px w-5 bg-white" />
+
+                    <span className="text-[9px] uppercase tracking-[0.22em] font-medium">
+                      0{index + 1}
+                    </span>
+                  </div>
+                </div>
+
+                {/* ==================================================
+                    TEXT
+                ================================================== */}
+                <div
+                  className={`
+                    lg:col-span-5
+                    space-y-7
+                    ${index % 2 === 1 ? "lg:order-1 lg:pr-6 xl:pr-10" : "lg:order-2 lg:pl-6 xl:pl-10"}
+                  `}
+                >
+
+                  {/* Category */}
+                  <div className="flex items-center gap-4">
+                    <span className="h-[1px] w-8 bg-[#B0926A]" />
+
+                    <span className="text-[#B0926A] text-[10px] md:text-xs uppercase tracking-[0.25em] font-semibold">
+                      {initiative.category}
+                    </span>
+                  </div>
+
+                  {/* Title */}
+                  <h2
+                    className="
+                      text-neutral-900
+                      text-4xl
+                      sm:text-5xl
+                      lg:text-[4rem]
+                      xl:text-[4.5rem]
+                      font-medium
+                      tracking-tighter
+                      leading-[1.05]
+                    "
+                  >
+                    {initiative.title}
+                  </h2>
+
+                  {/* Description */}
+                  <p
+                    className="
+                      max-w-xl
+                      text-neutral-500
+                      font-light
+                      text-base
+                      md:text-lg
+                      leading-relaxed
+                    "
+                  >
+                    {initiative.description}
+                  </p>
+
+                  {/* CTA */}
+                  <div className="pt-3">
+                    <Link
+                      to={initiative.link}
+                      className="
+                        group
+                        inline-flex
+                        items-center
+                        gap-3
+                        text-neutral-900
+                        text-xs
+                        sm:text-sm
+                        uppercase
+                        tracking-[0.15em]
+                        font-semibold
+                        transition-all
+                        duration-500
+                      "
+                    >
+
+                      {/* Text + underline */}
+                      <span className="relative overflow-hidden pb-1">
+
+                        <span>
+                          {initiative.linkText}
+                        </span>
+
+                        {/* Underline */}
+                        <span
+                          className="
+                            absolute
+                            bottom-0
+                            left-0
+                            w-full
+                            h-[1px]
+                            bg-neutral-900
+                            origin-left
+                            scale-x-0
+                            group-hover:scale-x-100
+                            transition-transform
+                            duration-500
+                          "
+                        />
+                      </span>
+
+                      {/* Arrow circle */}
+                      <span
+                        className="
+                          relative
+                          flex
+                          items-center
+                          justify-center
+                          w-8
+                          h-8
+                          rounded-full
+                          border
+                          border-neutral-200
+                          group-hover:border-[#B0926A]
+                          group-hover:bg-[#B0926A]
+                          transition-all
+                          duration-500
+                        "
+                      >
+                        <svg
+                          className="
+                            w-3.5
+                            h-3.5
+                            text-neutral-900
+                            group-hover:text-white
+                            transform
+                            group-hover:translate-x-0.5
+                            group-hover:-translate-y-0.5
+                            transition-all
+                            duration-500
+                            ease-out
+                          "
+                          fill="none"
+                          viewBox="0 0 24 24"
+                          stroke="currentColor"
+                          strokeWidth="2.5"
+                        >
+                          <path
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                            d="M7 17L17 7M17 7H9M17 7v8"
+                          />
+                        </svg>
+                      </span>
+                    </Link>
+                  </div>
+                </div>
+              </article>
+            ))}
+          </div>
+
+          {/* ========================================================
+              BOTTOM LINE
+          ======================================================== */}
+          <div className="mt-28 md:mt-36 lg:mt-44 pt-8 border-t border-neutral-200 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+
+            <span className="text-[9px] uppercase tracking-[0.25em] text-neutral-400">
+              Next-Gen Youth Initiative
+            </span>
+
+            <span className="text-[9px] uppercase tracking-[0.25em] text-neutral-400">
+              Agribusiness // Research // Innovation
+            </span>
+          </div>
+        </div>
       </div>
     </section>
   );
