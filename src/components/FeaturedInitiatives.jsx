@@ -116,23 +116,23 @@ export default function FeaturedInitiatives() {
       </div>
 
       {/* ============================================================
-          INITIATIVES
+          INITIATIVES (Background changed here)
       ============================================================ */}
-      <div className="px-6 md:px-12 lg:px-24 pb-28 md:pb-36 lg:pb-44">
+      <div className="bg-[#88878B] px-6 md:px-12 lg:px-24 pt-12 md:pt-16 pb-28 md:pb-36 lg:pb-44">
         <div className="max-w-[1400px] mx-auto">
 
           {/* Top line */}
-          <div className="border-t border-neutral-200 pt-8 mb-20 md:mb-28 lg:mb-36">
+          <div className="border-t border-neutral-300 pt-8 mb-20 md:mb-28 lg:mb-36">
             <div className="flex items-center justify-between">
               <div className="flex items-center gap-4">
                 <span className="w-7 h-[1px] bg-[#B0926A]" />
 
-                <span className="text-[10px] md:text-[11px] uppercase tracking-[0.28em] text-neutral-500 font-medium">
+                <span className="text-[10px] md:text-[11px] uppercase tracking-[0.28em] text-neutral-900 font-medium">
                   Our Focus Areas
                 </span>
               </div>
 
-              <span className="hidden sm:block text-[9px] uppercase tracking-[0.25em] text-neutral-400">
+              <span className="hidden sm:block text-[9px] uppercase tracking-[0.25em] text-neutral-900">
                 05 Initiatives
               </span>
             </div>
@@ -206,7 +206,7 @@ export default function FeaturedInitiatives() {
                   <div className="flex items-center gap-4">
                     <span className="h-[1px] w-8 bg-[#B0926A]" />
 
-                    <span className="text-[#B0926A] text-[10px] md:text-xs uppercase tracking-[0.25em] font-semibold">
+                    <span className="text-[#B0926A] text-[10px] md:text-xs uppercase tracking-[0.25em] font-semibold drop-shadow-sm">
                       {initiative.category}
                     </span>
                   </div>
@@ -231,7 +231,7 @@ export default function FeaturedInitiatives() {
                   <p
                     className="
                       max-w-xl
-                      text-neutral-500
+                      text-neutral-800
                       font-light
                       text-base
                       md:text-lg
@@ -297,7 +297,7 @@ export default function FeaturedInitiatives() {
                           h-8
                           rounded-full
                           border
-                          border-neutral-200
+                          border-neutral-900
                           group-hover:border-[#B0926A]
                           group-hover:bg-[#B0926A]
                           transition-all
@@ -339,13 +339,13 @@ export default function FeaturedInitiatives() {
           {/* ========================================================
               BOTTOM LINE
           ======================================================== */}
-          <div className="mt-28 md:mt-36 lg:mt-44 pt-8 border-t border-neutral-200 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+          <div className="mt-28 md:mt-36 lg:mt-44 pt-8 border-t border-neutral-400 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
 
-            <span className="text-[9px] uppercase tracking-[0.25em] text-neutral-400">
+            <span className="text-[9px] uppercase tracking-[0.25em] text-neutral-900">
               Next-Gen Youth Initiative
             </span>
 
-            <span className="text-[9px] uppercase tracking-[0.25em] text-neutral-400">
+            <span className="text-[9px] uppercase tracking-[0.25em] text-neutral-900">
               Agribusiness // Research // Innovation
             </span>
           </div>
