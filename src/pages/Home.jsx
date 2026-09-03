@@ -317,20 +317,33 @@ export default function Home() {
   <div className="max-w-7xl mx-auto px-6 lg:px-12">
     
     {/* Section Header */}
-    <div className="flex flex-col md:flex-row md:items-end justify-between mb-16 gap-6">
-      <div>
-        {/* Updated gold accent here */}
-        <span className="text-[#C0A175] font-medium text-xs uppercase tracking-[0.3em] block mb-3">
-          Future Forward
+    <div className="mb-24 md:mb-32 lg:mb-36">
+
+    {/* Eyebrow */}
+    <div className="flex items-center gap-4 mb-7 md:mb-9">
+      <span className="w-8 h-[1px] bg-[#B0926A]" />
+
+      <span className="text-[10px] md:text-xs uppercase tracking-[0.25em] text-[#B0926A] font-semibold">
+        Future Forward
+      </span>
+    </div>
+
+    {/* Main heading */}
+    <div className="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-8">
+      <h2 className="max-w-5xl text-5xl sm:text-6xl md:text-7xl lg:text-[4.5rem] xl:text-[5.5rem] font-medium tracking-tighter leading-[1.02]">
+        Innovation{" "}
+        <span className="text-neutral-400">
+          Hub.
         </span>
-        <h2 className="text-4xl lg:text-5xl font-light text-neutral-900 tracking-tight">
-          Innovation Hub
-        </h2>
-      </div>
-      <p className="text-neutral-500 max-w-md font-light text-sm sm:text-base leading-relaxed">
-        Youth-led scientific innovations and climate-smart agricultural prototypes shaping the future of farming.
+      </h2>
+
+      <p className="max-w-xl lg:pb-2 text-neutral-500 font-light text-base md:text-lg leading-relaxed">
+        Youth-led scientific innovations and climate-smart agricultural
+        prototypes shaping the future of farming through practical
+        research, technology, and localized systems.
       </p>
     </div>
+  </div>
     
     {/* Burmester Style Cards Grid */}
     <div className="flex flex-col gap-12 mt-12">
