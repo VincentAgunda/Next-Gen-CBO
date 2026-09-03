@@ -313,43 +313,83 @@ export default function Home() {
       </section>
 
       {/* Section 4: Innovation Hub Preview */}
-      <section ref={setSectionRef(5)} className="py-28 lg:py-36 bg-transparent border-b border-neutral-300/50">
-        <div className="max-w-7xl mx-auto px-6 lg:px-12">
-          <div className="flex flex-col md:flex-row md:items-end justify-between mb-16 gap-6">
-            <div>
-              <span className="text-[#B0926A] font-semibold text-xs uppercase tracking-[0.3em] block mb-3">
-                Future Forward
-              </span>
-              <h2 className="text-4xl lg:text-5xl font-normal text-neutral-900 tracking-tight">
-                Innovation Hub
-              </h2>
-            </div>
-            <p className="text-neutral-500 max-w-md font-normal sm:font-light text-sm sm:text-base">
-              Youth-led scientific innovations and climate-smart agricultural prototypes shaping the future of farming.
+      <section ref={setSectionRef(5)} className="py-28 lg:py-36 bg-[#f4f4f4] border-b border-neutral-200">
+  <div className="max-w-7xl mx-auto px-6 lg:px-12">
+    
+    {/* Section Header */}
+    <div className="flex flex-col md:flex-row md:items-end justify-between mb-16 gap-6">
+      <div>
+        {/* Updated gold accent here */}
+        <span className="text-[#C0A175] font-medium text-xs uppercase tracking-[0.3em] block mb-3">
+          Future Forward
+        </span>
+        <h2 className="text-4xl lg:text-5xl font-light text-neutral-900 tracking-tight">
+          Innovation Hub
+        </h2>
+      </div>
+      <p className="text-neutral-500 max-w-md font-light text-sm sm:text-base leading-relaxed">
+        Youth-led scientific innovations and climate-smart agricultural prototypes shaping the future of farming.
+      </p>
+    </div>
+    
+    {/* Burmester Style Cards Grid */}
+    <div className="flex flex-col gap-12 mt-12">
+      {innovations.slice(0, 3).map((inv) => (
+        <div 
+          key={inv.id} 
+          className="bg-white grid grid-cols-1 lg:grid-cols-2 overflow-hidden shadow-sm hover:shadow-md transition-shadow duration-500"
+        >
+          {/* Left Column: Image */}
+          <div className="relative h-72 lg:h-auto min-h-[360px] overflow-hidden bg-neutral-100">
+            <img 
+              src={inv.image || "/api/placeholder/800/600"} 
+              alt={inv.title}
+              className="w-full h-full object-cover transition-transform duration-700 ease-out hover:scale-105"
+            />
+          </div>
+
+          {/* Right Column: Content */}
+          <div className="p-10 sm:p-14 lg:p-20 flex flex-col justify-center items-start text-left">
+            {/* Updated gold accent here for category */}
+            <span className="text-[#C0A175] font-light text-xs uppercase tracking-[0.25em] mb-4 block">
+              {inv.category || "Innovation"}
+            </span>
+            
+            <h3 className="text-3xl lg:text-4xl font-normal text-neutral-900 tracking-tight mb-6 leading-tight">
+              {inv.title}
+            </h3>
+            
+            <p className="text-neutral-500 font-light text-sm lg:text-base leading-relaxed mb-10 max-w-md">
+              {inv.description}
             </p>
-          </div>
-          
-          <div className="grid grid-cols-1 gap-8 mt-12">
-            {innovations.slice(0, 3).map((inv) => (
-              <div key={inv.id} className="border border-neutral-300 bg-white/60 backdrop-blur-sm p-2 hover:border-neutral-900 hover:shadow-lg transition-all duration-700 ease-out">
-                <InnovationCard {...inv} />
-              </div>
-            ))}
-          </div>
-          
-          <div className="text-center mt-16">
+
+            {/* Outlined Box CTA Button, text can also use gold on hover/active if desired */}
             <Link 
-              to="/innovation-hub" 
-              className="group inline-flex items-center gap-3 bg-neutral-900 text-white hover:bg-[#B0926A] px-10 py-5 text-xs uppercase tracking-[0.2em] font-semibold transition-colors duration-500"
+              to={`/innovation-hub/${inv.id}`}
+              className="inline-block border border-neutral-300 hover:border-[#C0A175] text-neutral-900 hover:text-[#C0A175] text-xs uppercase tracking-[0.2em] font-medium px-8 py-4 transition-colors duration-300"
             >
-              <span>Explore All Innovations</span>
-              <svg className="w-4 h-4 transform group-hover:translate-x-2 transition-transform duration-500 ease-out" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
-                <path strokeLinecap="square" strokeLinejoin="miter" d="M5 12h14M12 5l7 7-7 7" />
-              </svg>
+              Explore Innovation
             </Link>
           </div>
         </div>
-      </section>
+      ))}
+    </div>
+    
+    {/* Bottom Hub CTA */}
+    <div className="text-center mt-20">
+      <Link 
+        to="/innovation-hub" 
+        className="group inline-flex items-center gap-3 bg-neutral-900 text-white hover:bg-[#C0A175] px-10 py-5 text-xs uppercase tracking-[0.2em] font-semibold transition-colors duration-300"
+      >
+        <span>Explore All Innovations</span>
+        <svg className="w-4 h-4 transform group-hover:translate-x-2 transition-transform duration-300 ease-out" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="1.5">
+          <path strokeLinecap="square" strokeLinejoin="miter" d="M5 12h14M12 5l7 7-7 7" />
+        </svg>
+      </Link>
+    </div>
+
+  </div>
+</section>
 
       {/* Section 5: Upcoming Events */}
       <section ref={setSectionRef(6)} className="py-28 lg:py-36 px-6 lg:px-12 bg-transparent text-white border-b border-neutral-600/30">
