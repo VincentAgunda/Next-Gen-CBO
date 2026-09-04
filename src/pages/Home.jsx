@@ -11,7 +11,6 @@ import { events } from "../data/events";
 import { partners } from "../data/partners";
 import { Link } from "react-router-dom";
 
-// Moved outside the component so it's not recreated on every render
 const sectionsConfig = [
   { id: "hero", color: "#F5F5F7", dotColor: "bg-black" },
   { id: "who-we-are", color: "#F5F5F7", dotColor: "bg-black" },
@@ -26,7 +25,6 @@ const sectionsConfig = [
 ];
 
 export default function Home() {
-  const containerRef = useRef(null);
   const sectionRefs = useRef([]);
   const dotRefs = useRef([]);
 
@@ -40,12 +38,7 @@ export default function Home() {
             );
             
             if (index !== -1) {
-              // 1. Direct DOM mutation for background color (zero React re-renders)
-              if (containerRef.current) {
-                containerRef.current.style.backgroundColor = sectionsConfig[index].color;
-              }
-              
-              // 2. Direct DOM mutation for navigation dots
+              // Direct DOM mutation for navigation dots only (Background logic removed)
               dotRefs.current.forEach((dot, idx) => {
                 if (dot) {
                   const isActive = idx === index;
@@ -84,11 +77,8 @@ export default function Home() {
   }, []);
 
   return (
-    <div
-      ref={containerRef}
-      className="font-sans text-[#111111] antialiased selection:bg-[#d2b79b] selection:text-black overflow-hidden scroll-smooth transition-colors duration-1000 ease-in-out"
-      style={{ backgroundColor: sectionsConfig[0].color }}
-    >
+    <div className="font-sans text-[#111111] antialiased selection:bg-[#d2b79b] selection:text-black overflow-hidden scroll-smooth bg-[#F5F5F7]">
+      
       {/* Scroll Progress Indicator */}
       <div className="fixed right-6 top-1/2 -translate-y-1/2 z-50 flex flex-col items-end gap-3 pointer-events-none">
         {sectionsConfig.map((config, idx) => (
@@ -102,91 +92,89 @@ export default function Home() {
         ))}
       </div>
 
-      <section ref={setSectionRef(0)} className="bg-transparent">
+      <section ref={setSectionRef(0)} className="bg-[#F5F5F7]">
         <HeroSection />
       </section>
 
-      {/* WHO WE ARE: Added missing ref={setSectionRef(1)} here */}
-      
-<section className="relative py-28 lg:py-40 px-6 md:px-12 lg:px-24 bg-[#F5F5F7] border-b border-neutral-200">
-  <div className="max-w-7xl mx-auto grid lg:grid-cols-12 gap-12 lg:gap-16 items-start">
-    
-    {/* Left Column */}
-    <div className="lg:col-span-5 space-y-6">
-      <div className="flex items-center gap-3">
-        <span className="h-[1px] w-6 bg-[#B0926A]"></span>
-        <span className="block text-[#B0926A] text-xs uppercase tracking-[0.3em] font-semibold">
-          Who We Are
-        </span>
-      </div>
-      
-      <h2 className="text-3xl md:text-5xl lg:text-[56px] font-normal text-[#111111] tracking-tight leading-[1.1]">
-        Transforming communities through youth innovation.
-      </h2>
+      {/* WHO WE ARE */}
+      <section className="relative py-28 lg:py-40 px-6 md:px-12 lg:px-24 bg-[#F5F5F7] border-b border-neutral-200">
+        <div className="max-w-7xl mx-auto grid lg:grid-cols-12 gap-12 lg:gap-16 items-start">
+          
+          {/* Left Column */}
+          <div className="lg:col-span-5 space-y-6">
+            <div className="flex items-center gap-3">
+              <span className="h-[1px] w-6 bg-[#B0926A]"></span>
+              <span className="block text-[#B0926A] text-xs uppercase tracking-[0.3em] font-semibold">
+                Who We Are
+              </span>
+            </div>
+            
+            <h2 className="text-3xl md:text-5xl lg:text-[56px] font-normal text-[#111111] tracking-tight leading-[1.1]">
+              Transforming communities through youth innovation.
+            </h2>
 
-      <div className="pt-6">
-        <Link
-          to="/about"
-          className="inline-flex items-center gap-4 border border-[#111111] px-8 py-4 text-xs font-semibold uppercase tracking-[0.2em] text-[#111111] hover:bg-[#111111] hover:text-white transition-all duration-500 ease-out rounded-none group shadow-sm"
-        >
-          <span>Learn more about us</span>
-          <svg className="w-4 h-4 transform group-hover:translate-x-2 transition-transform duration-500 ease-out" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
-            <path strokeLinecap="square" strokeLinejoin="miter" d="M5 12h14M12 5l7 7-7 7" />
-          </svg>
-        </Link>
-      </div>
-    </div>
+            <div className="pt-6">
+              <Link
+                to="/about"
+                className="inline-flex items-center gap-4 border border-[#111111] px-8 py-4 text-xs font-semibold uppercase tracking-[0.2em] text-[#111111] hover:bg-[#111111] hover:text-white transition-all duration-500 ease-out rounded-none group shadow-sm"
+              >
+                <span>Learn more about us</span>
+                <svg className="w-4 h-4 transform group-hover:translate-x-2 transition-transform duration-500 ease-out" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
+                  <path strokeLinecap="square" strokeLinejoin="miter" d="M5 12h14M12 5l7 7-7 7" />
+                </svg>
+              </Link>
+            </div>
+          </div>
 
-    {/* Right Column: Cards */}
-    <div className="lg:col-span-7 grid md:grid-cols-2 gap-8 items-stretch">
-      
-      {/* Card 01: Grassroots Action */}
-      <div className="group bg-white p-8 md:p-10 border border-neutral-200 flex flex-col justify-between shadow-sm hover:shadow-xl hover:border-neutral-300 hover:-translate-y-1.5 transition-all duration-500 ease-out cursor-pointer">
-        <span className="text-4xl font-normal md:font-light text-[#B0926A] mb-8 block transition-transform duration-500 ease-out group-hover:scale-105 origin-left">
-          01
-        </span>
-        <div>
-          <h3 className="text-lg font-semibold uppercase tracking-wider mb-3 text-[#111111]"> Grassroots Action</h3>
-          <p className="text-neutral-600 font-normal md:font-light text-sm md:text-base leading-relaxed">
-            Next-Generation Youth Agribusiness & Research CBO is a youth-led organization in Makueni County, Kenya, committed to transforming communities through sustainable agriculture, environmental conservation, and youth empowerment.
-          </p>
+          {/* Right Column: Cards */}
+          <div className="lg:col-span-7 grid md:grid-cols-2 gap-8 items-stretch">
+            
+            {/* Card 01: Grassroots Action */}
+            <div className="group bg-white p-8 md:p-10 border border-neutral-200 flex flex-col justify-between shadow-sm hover:shadow-xl hover:border-neutral-300 hover:-translate-y-1.5 transition-all duration-500 ease-out cursor-pointer">
+              <span className="text-4xl font-normal md:font-light text-[#B0926A] mb-8 block transition-transform duration-500 ease-out group-hover:scale-105 origin-left">
+                01
+              </span>
+              <div>
+                <h3 className="text-lg font-semibold uppercase tracking-wider mb-3 text-[#111111]"> Grassroots Action</h3>
+                <p className="text-neutral-600 font-normal md:font-light text-sm md:text-base leading-relaxed">
+                  Next-Generation Youth Agribusiness & Research CBO is a youth-led organization in Makueni County, Kenya, committed to transforming communities through sustainable agriculture, environmental conservation, and youth empowerment.
+                </p>
+              </div>
+            </div>
+
+            {/* Card 02: Evidence-Based */}
+            <div className="group bg-[#B0926A] hover:bg-[#88878B] text-white p-8 md:p-10 border border-[#006400] hover:border-[#004d00] flex flex-col justify-between shadow-sm hover:shadow-xl hover:-translate-y-1.5 transition-all duration-500 ease-out cursor-pointer">
+              <span className="text-4xl font-normal md:font-light text-white mb-8 block transition-transform duration-500 ease-out group-hover:scale-105 origin-left">
+                02
+              </span>
+              <div>
+                <h3 className="text-lg font-semibold uppercase tracking-wider mb-3 text-white">
+                  Evidence-Based
+                </h3>
+                <p className="text-white/90 font-normal md:font-light text-sm md:text-base leading-relaxed">
+                  We unite young innovators, researchers, and entrepreneurs to architect practical solutions to environmental and economic challenges, driving sustainable development and improving regional livelihoods.
+                </p>
+              </div>
+            </div>
+
+          </div>
         </div>
-      </div>
 
-      {/* Card 02: Evidence-Based (Updated Green & Hover) */}
-      <div className="group bg-[#B0926A] hover:bg-[#88878B] text-white p-8 md:p-10 border border-[#006400] hover:border-[#004d00] flex flex-col justify-between shadow-sm hover:shadow-xl hover:-translate-y-1.5 transition-all duration-500 ease-out cursor-pointer">
-        <span className="text-4xl font-normal md:font-light text-white mb-8 block transition-transform duration-500 ease-out group-hover:scale-105 origin-left">
-          02
-        </span>
-        <div>
-          <h3 className="text-lg font-semibold uppercase tracking-wider mb-3 text-white">
-            Evidence-Based
-          </h3>
-          <p className="text-white/90 font-normal md:font-light text-sm md:text-base leading-relaxed">
-            We unite young innovators, researchers, and entrepreneurs to architect practical solutions to environmental and economic challenges, driving sustainable development and improving regional livelihoods.
-          </p>
+        {/* Image Wrapper */}
+        <div className="max-w-7xl mx-auto mt-24 lg:mt-36 overflow-hidden border border-neutral-200 rounded-sm shadow-sm group relative bg-[#1a1a1a]">
+          <img
+            src="/Hero/h4.jpeg"
+            alt="Who We Are Team"
+            loading="lazy"
+            decoding="async"
+            className="w-full h-[40vh] md:h-[50vh] lg:h-[60vh] object-cover object-[center_30%] opacity-80 grayscale contrast-[1.15] transform-gpu will-change-[transform,filter,opacity] group-hover:scale-105 group-hover:grayscale-0 group-hover:opacity-100 group-hover:contrast-100 transition-[transform,filter,opacity] duration-[1000ms] ease-[cubic-bezier(0.215,0.61,0.355,1)]"
+          />
+          <div className="absolute inset-0 bg-gradient-to-b from-transparent via-white/5 to-[#F5F5F7]/20 mix-blend-overlay pointer-events-none group-hover:opacity-0 transition-opacity duration-1000 ease-in-out"></div>
         </div>
-      </div>
-
-    </div>
-
-  </div>
-
-  {/* Image Wrapper */}
-  <div className="max-w-7xl mx-auto mt-24 lg:mt-36 overflow-hidden border border-neutral-200 rounded-sm shadow-sm group relative bg-[#1a1a1a]">
-    <img
-      src="/Hero/h4.jpeg"
-      alt="Who We Are Team"
-      loading="lazy"
-      decoding="async"
-      className="w-full h-[40vh] md:h-[50vh] lg:h-[60vh] object-cover object-[center_30%] opacity-80 grayscale contrast-[1.15] transform-gpu will-change-[transform,filter,opacity] group-hover:scale-105 group-hover:grayscale-0 group-hover:opacity-100 group-hover:contrast-100 transition-[transform,filter,opacity] duration-[1000ms] ease-[cubic-bezier(0.215,0.61,0.355,1)]"
-    />
-    <div className="absolute inset-0 bg-gradient-to-b from-transparent via-white/5 to-[#F5F5F7]/20 mix-blend-overlay pointer-events-none group-hover:opacity-0 transition-opacity duration-1000 ease-in-out"></div>
-  </div>
-</section>
+      </section>
 
       {/* Section 2: Three Pillars */}
-      <section ref={setSectionRef(2)} className="py-28 lg:py-36 bg-transparent border-b border-neutral-300/50">
+      <section ref={setSectionRef(2)} className="py-28 lg:py-36 bg-[#e5e5e5] border-b border-neutral-300/50">
         <div className="max-w-7xl mx-auto px-6 lg:px-12">
           <div className="flex flex-col md:flex-row md:items-end justify-between mb-16 gap-6">
             <div>
@@ -266,8 +254,8 @@ export default function Home() {
         </div>
       </section>
       
-      {/* SECTION 5: Massive Typography Navigation */}
-      <section ref={setSectionRef(3)} className="bg-transparent py-24 px-6 md:px-12 lg:px-24 border-t border-neutral-300/50">
+      {/* SECTION 3: Massive Typography Navigation */}
+      <section ref={setSectionRef(3)} className="bg-[#F5F5F7] py-24 px-6 md:px-12 lg:px-24 border-t border-neutral-300/50">
         <div className="max-w-[1400px] mx-auto divide-y divide-neutral-300">
           <Link
             to="/programs"
@@ -308,104 +296,100 @@ export default function Home() {
       </section>
 
       {/* FEATURED INITIATIVES */}
-      <section ref={setSectionRef(4)} className="bg-transparent">
+      <section ref={setSectionRef(4)} className="bg-[#F5F5F7]">
         <FeaturedInitiatives />
       </section>
 
-      {/* Section 4: Innovation Hub Preview */}
+      {/* Section 5: Innovation Hub Preview */}
       <section ref={setSectionRef(5)} className="py-28 lg:py-36 bg-[#f4f4f4] border-b border-neutral-200">
-  <div className="max-w-7xl mx-auto px-6 lg:px-12">
-    
-    {/* Section Header */}
-    <div className="mb-24 md:mb-32 lg:mb-36">
+        <div className="max-w-7xl mx-auto px-6 lg:px-12">
+          
+          {/* Section Header */}
+          <div className="mb-24 md:mb-32 lg:mb-36">
 
-    {/* Eyebrow */}
-    <div className="flex items-center gap-4 mb-7 md:mb-9">
-      <span className="w-8 h-[1px] bg-[#B0926A]" />
+            {/* Eyebrow */}
+            <div className="flex items-center gap-4 mb-7 md:mb-9">
+              <span className="w-8 h-[1px] bg-[#B0926A]" />
 
-      <span className="text-[10px] md:text-xs uppercase tracking-[0.25em] text-[#B0926A] font-semibold">
-        Future Forward
-      </span>
-    </div>
+              <span className="text-[10px] md:text-xs uppercase tracking-[0.25em] text-[#B0926A] font-semibold">
+                Future Forward
+              </span>
+            </div>
 
-    {/* Main heading */}
-    <div className="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-8">
-      <h2 className="max-w-5xl text-5xl sm:text-6xl md:text-7xl lg:text-[4.5rem] xl:text-[5.5rem] font-medium tracking-tighter leading-[1.02]">
-        Innovation{" "}
-        <span className="text-neutral-400">
-          Hub.
-        </span>
-      </h2>
+            {/* Main heading */}
+            <div className="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-8">
+              <h2 className="max-w-5xl text-5xl sm:text-6xl md:text-7xl lg:text-[4.5rem] xl:text-[5.5rem] font-medium tracking-tighter leading-[1.02]">
+                Innovation{" "}
+                <span className="text-neutral-400">
+                  Hub.
+                </span>
+              </h2>
 
-      <p className="max-w-xl lg:pb-2 text-neutral-500 font-light text-base md:text-lg leading-relaxed">
-        Youth-led scientific innovations and climate-smart agricultural
-        prototypes shaping the future of farming through practical
-        research, technology, and localized systems.
-      </p>
-    </div>
-  </div>
-    
-    {/* Burmester Style Cards Grid */}
-    <div className="flex flex-col gap-12 mt-12">
-      {innovations.slice(0, 3).map((inv) => (
-        <div 
-          key={inv.id} 
-          className="bg-white grid grid-cols-1 lg:grid-cols-2 overflow-hidden shadow-sm hover:shadow-md transition-shadow duration-500"
-        >
-          {/* Left Column: Image */}
-          <div className="relative h-72 lg:h-auto min-h-[360px] overflow-hidden bg-neutral-100">
-            <img 
-              src={inv.image || "/api/placeholder/800/600"} 
-              alt={inv.title}
-              className="w-full h-full object-cover transition-transform duration-700 ease-out hover:scale-105"
-            />
+              <p className="max-w-xl lg:pb-2 text-neutral-500 font-light text-base md:text-lg leading-relaxed">
+               We are a youth-led initiative developing scientific innovations and climate-smart agricultural prototypes to shape the future of farming through practical research, technology, and localized systems.
+              </p>
+            </div>
           </div>
+          
+          {/* Burmester Style Cards Grid */}
+          <div className="flex flex-col gap-12 mt-12">
+            {innovations.slice(0, 3).map((inv) => (
+              <div 
+                key={inv.id} 
+                className="bg-white grid grid-cols-1 lg:grid-cols-2 overflow-hidden shadow-sm hover:shadow-md transition-shadow duration-500"
+              >
+                {/* Left Column: Image */}
+                <div className="relative h-72 lg:h-auto min-h-[360px] overflow-hidden bg-neutral-100">
+                  <img 
+                    src={inv.image || "/api/placeholder/800/600"} 
+                    alt={inv.title}
+                    className="w-full h-full object-cover transition-transform duration-700 ease-out hover:scale-105"
+                  />
+                </div>
 
-          {/* Right Column: Content */}
-          <div className="p-10 sm:p-14 lg:p-20 flex flex-col justify-center items-start text-left">
-            {/* Updated gold accent here for category */}
-            <span className="text-[#C0A175] font-light text-xs uppercase tracking-[0.25em] mb-4 block">
-              {inv.category || "Innovation"}
-            </span>
-            
-            <h3 className="text-3xl lg:text-4xl font-normal text-neutral-900 tracking-tight mb-6 leading-tight">
-              {inv.title}
-            </h3>
-            
-            <p className="text-neutral-500 font-light text-sm lg:text-base leading-relaxed mb-10 max-w-md">
-              {inv.description}
-            </p>
+                {/* Right Column: Content */}
+                <div className="p-10 sm:p-14 lg:p-20 flex flex-col justify-center items-start text-left">
+                  <span className="text-[#C0A175] font-light text-xs uppercase tracking-[0.25em] mb-4 block">
+                    {inv.category || "Innovation"}
+                  </span>
+                  
+                  <h3 className="text-3xl lg:text-4xl font-normal text-neutral-900 tracking-tight mb-6 leading-tight">
+                    {inv.title}
+                  </h3>
+                  
+                  <p className="text-neutral-500 font-light text-sm lg:text-base leading-relaxed mb-10 max-w-md">
+                    {inv.description}
+                  </p>
 
-            {/* Outlined Box CTA Button, text can also use gold on hover/active if desired */}
+                  <Link 
+                    to={`/innovation-hub/${inv.id}`}
+                    className="inline-block border border-neutral-300 hover:border-[#C0A175] text-neutral-900 hover:text-[#C0A175] text-xs uppercase tracking-[0.2em] font-medium px-8 py-4 transition-colors duration-300"
+                  >
+                    Explore Innovation
+                  </Link>
+                </div>
+              </div>
+            ))}
+          </div>
+          
+          {/* Bottom Hub CTA */}
+          <div className="text-center mt-20">
             <Link 
-              to={`/innovation-hub/${inv.id}`}
-              className="inline-block border border-neutral-300 hover:border-[#C0A175] text-neutral-900 hover:text-[#C0A175] text-xs uppercase tracking-[0.2em] font-medium px-8 py-4 transition-colors duration-300"
+              to="/innovation-hub" 
+              className="group inline-flex items-center gap-3 bg-neutral-900 text-white hover:bg-[#C0A175] px-10 py-5 text-xs uppercase tracking-[0.2em] font-semibold transition-colors duration-300"
             >
-              Explore Innovation
+              <span>Explore All Innovations</span>
+              <svg className="w-4 h-4 transform group-hover:translate-x-2 transition-transform duration-300 ease-out" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="1.5">
+                <path strokeLinecap="square" strokeLinejoin="miter" d="M5 12h14M12 5l7 7-7 7" />
+              </svg>
             </Link>
           </div>
+
         </div>
-      ))}
-    </div>
-    
-    {/* Bottom Hub CTA */}
-    <div className="text-center mt-20">
-      <Link 
-        to="/innovation-hub" 
-        className="group inline-flex items-center gap-3 bg-neutral-900 text-white hover:bg-[#C0A175] px-10 py-5 text-xs uppercase tracking-[0.2em] font-semibold transition-colors duration-300"
-      >
-        <span>Explore All Innovations</span>
-        <svg className="w-4 h-4 transform group-hover:translate-x-2 transition-transform duration-300 ease-out" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="1.5">
-          <path strokeLinecap="square" strokeLinejoin="miter" d="M5 12h14M12 5l7 7-7 7" />
-        </svg>
-      </Link>
-    </div>
+      </section>
 
-  </div>
-</section>
-
-      {/* Section 5: Upcoming Events */}
-      <section ref={setSectionRef(6)} className="py-28 lg:py-36 px-6 lg:px-12 bg-transparent text-white border-b border-neutral-600/30">
+      {/* Section 6: Upcoming Events */}
+      <section ref={setSectionRef(6)} className="py-28 lg:py-36 px-6 lg:px-12 bg-[#858689] text-white border-b border-neutral-600/30">
         <div className="max-w-7xl mx-auto">
           <div className="border-b border-white/20 pb-12 mb-12 flex flex-col md:flex-row md:items-end justify-between gap-6">
             <div>
@@ -438,7 +422,7 @@ export default function Home() {
       </section>
 
       {/* MEMBERSHIP CTA */}
-      <section ref={setSectionRef(7)} className="py-32 lg:py-48 px-6 lg:px-24 bg-transparent border-b border-neutral-300/50">
+      <section ref={setSectionRef(7)} className="py-32 lg:py-48 px-6 lg:px-24 bg-[#e5e5e5] border-b border-neutral-300/50">
         <div className="max-w-5xl mx-auto">
           <span className="text-[#B0926A] text-xs uppercase tracking-[0.3em] font-semibold block mb-8">
             Join The Network
@@ -474,8 +458,8 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Section 7: Partners */}
-      <section ref={setSectionRef(8)} className="py-24 lg:py-32 px-6 lg:px-12 bg-transparent text-white border-b border-neutral-600/30">
+      {/* Section 8: Partners */}
+      <section ref={setSectionRef(8)} className="py-24 lg:py-32 px-6 lg:px-12 bg-[#7a787d] text-white border-b border-neutral-600/30">
         <div className="max-w-7xl mx-auto">
           <div className="flex flex-col md:flex-row md:items-end justify-between pb-12 mb-12 border-b border-white/20 gap-6">
             <div>
@@ -516,53 +500,66 @@ export default function Home() {
         </div>
       </section>
 
-      {/* SECTION 8: Membership & Support Call to Action */}
-      <section ref={setSectionRef(9)} className="py-32 lg:py-48 bg-transparent text-white px-6 md:px-12 lg:px-24 relative overflow-hidden border-t border-white/15">
-        <div className="max-w-4xl mx-auto text-center space-y-8 relative z-10">
-          <div className="inline-block w-3 h-3 bg-[#d2b79b] rotate-45 mb-4" />
-          
-          <span className="text-[#d2b79b] font-mono text-xs uppercase tracking-[0.35em] block font-medium">
-            08 / Take Action
-          </span>
-          
-          <h2 className="text-4xl sm:text-6xl lg:text-7xl font-normal lg:font-light tracking-tight leading-[1.08] text-white">
-            Support our mission. <br />
-            <span className="text-neutral-500 font-light sm:font-extralight">Empower the next generation.</span>
-          </h2>
-          
-          <p className="text-neutral-400 text-base sm:text-lg font-normal sm:font-light leading-relaxed max-w-2xl mx-auto pt-4">
-            Whether through direct mentorship, institutional funding, or active community membership, your involvement accelerates sustainable agricultural reform.
-          </p>
-          
-          <div className="pt-8 flex flex-col sm:flex-row items-center justify-center gap-6">
-            <Link
-              to="/support-us"
-              className="group w-full sm:w-auto border border-[#d2b79b] bg-[#d2b79b] text-[#0A0A0A] px-10 py-5 flex items-center justify-center gap-3 text-xs uppercase tracking-[0.25em] font-medium hover:bg-transparent hover:text-[#d2b79b] transition-colors duration-500"
-            >
-              <span>Support Us Today</span>
-              <svg className="w-4 h-4 transform group-hover:translate-x-2 transition-transform duration-500 ease-out" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
-                <path strokeLinecap="square" strokeLinejoin="miter" d="M5 12h14M12 5l7 7-7 7" />
-              </svg>
-            </Link>
-            <Link
-              to="/membership"
-              className="w-full sm:w-auto border border-white/30 bg-transparent text-white px-10 py-5 text-xs uppercase tracking-[0.25em] font-medium hover:border-white hover:bg-white/5 transition-all duration-500 ease-out"
-            >
-              Become A Member
-            </Link>
-          </div>
-        </div>
+      {/* SECTION 9: Membership & Support Call to Action */}
+<section 
+  ref={setSectionRef(9)} 
+  className="py-32 lg:py-48 bg-white text-[#1d1d1f] px-6 md:px-12 lg:px-24 relative overflow-hidden border-t border-[#e5e5ea] font-sans"
+>
+  <div className="max-w-4xl mx-auto text-center space-y-8 relative z-10">
+    
+    {/* Square 90-degree Accent Indicator */}
+    <div className="inline-block w-3 h-3 bg-[#00D959] rounded-none mb-4 shadow-[0_0_12px_rgba(0,217,89,0.5)]" />
+    
+    <span className="text-[#00D959] text-xs uppercase tracking-widest block font-bold">
+      08 / Take Action
+    </span>
+    
+    <h2 className="text-4xl sm:text-6xl lg:text-7xl font-semibold tracking-tight leading-[1.08] text-[#1d1d1f]">
+      Support our mission. <br />
+      <span className="text-[#86868b] font-medium">Empower the next generation.</span>
+    </h2>
+    
+    <p className="text-[#86868b] text-base sm:text-lg font-medium leading-relaxed max-w-2xl mx-auto pt-4">
+      Whether through direct mentorship, institutional funding, or active community membership, your involvement accelerates sustainable agricultural reform.
+    </p>
+    
+    <div className="pt-8 flex flex-col sm:flex-row items-center justify-center gap-4 sm:gap-6">
+      <Link
+        to="/support-us"
+        className="group w-full sm:w-auto bg-[#00D959] text-[#1d1d1f] px-8 py-4 flex items-center justify-center gap-2 text-[15px] font-semibold rounded-none hover:bg-[#d2b79b] transition-colors duration-300 ease-out"
+      >
+        <span>Support Us Today</span>
+        <svg 
+          className="w-4 h-4 transform group-hover:translate-x-1 transition-transform duration-300 ease-out" 
+          fill="none" 
+          viewBox="0 0 24 24" 
+          stroke="currentColor" 
+          strokeWidth="2.5"
+        >
+          <path strokeLinecap="square" strokeLinejoin="miter" d="M5 12h14M12 5l7 7-7 7" />
+        </svg>
+      </Link>
+      
+      <Link
+        to="/membership"
+        className="w-full sm:w-auto border border-[#d2d2d7] bg-transparent text-[#1d1d1f] px-8 py-4 text-[15px] font-semibold rounded-none hover:border-[#d2b79b] hover:bg-[#d2b79b] transition-colors duration-300 ease-out text-center"
+      >
+        Become A Member
+      </Link>
+    </div>
+  </div>
 
-        <div className="max-w-5xl mx-auto mt-20 relative z-10 overflow-hidden border border-white/10 rounded-sm group shadow-2xl">
-          <img
-            src="/Hero/h1.jpeg"
-            alt="Support Our Mission"
-            loading="lazy"
-            decoding="async"
-            className="w-full h-[300px] md:h-[400px] lg:h-[500px] object-cover transform-gpu group-hover:scale-105 transition-transform duration-[1000ms] ease-[cubic-bezier(0.25,1,0.5,1)] opacity-90 group-hover:opacity-100 transition-opacity"
-          />
-        </div>
-      </section>
+  {/* Sharp 90-Degree Cornered Image Container */}
+  <div className="max-w-5xl mx-auto mt-20 relative z-10 overflow-hidden rounded-none group shadow-[0_20px_50px_rgba(0,0,0,0.06)] bg-[#f5f5f7]">
+    <img
+      src="/Hero/h1.jpeg"
+      alt="Support Our Mission"
+      loading="lazy"
+      decoding="async"
+      className="w-full h-[300px] md:h-[400px] lg:h-[500px] object-cover transform-gpu group-hover:scale-[1.02] transition-transform duration-[1000ms] ease-[cubic-bezier(0.25,1,0.5,1)]"
+    />
+  </div>
+</section>
     </div>
   );
 }
