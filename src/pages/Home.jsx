@@ -501,65 +501,52 @@ export default function Home() {
       </section>
 
       {/* SECTION 9: Membership & Support Call to Action */}
-<section 
-  ref={setSectionRef(9)} 
-  className="py-32 lg:py-48 bg-white text-[#1d1d1f] px-6 md:px-12 lg:px-24 relative overflow-hidden border-t border-[#e5e5ea] font-sans"
->
-  <div className="max-w-4xl mx-auto text-center space-y-8 relative z-10">
-    
-    {/* Square 90-degree Accent Indicator */}
-    <div className="inline-block w-3 h-3 bg-[#00D959] rounded-none mb-4 shadow-[0_0_12px_rgba(0,217,89,0.5)]" />
-    
-    <span className="text-[#00D959] text-xs uppercase tracking-widest block font-bold">
-      08 / Take Action
-    </span>
-    
-    <h2 className="text-4xl sm:text-6xl lg:text-7xl font-semibold tracking-tight leading-[1.08] text-[#1d1d1f]">
-      Support our mission. <br />
-      <span className="text-[#86868b] font-medium">Empower the next generation.</span>
-    </h2>
-    
-    <p className="text-[#86868b] text-base sm:text-lg font-medium leading-relaxed max-w-2xl mx-auto pt-4">
-      Whether through direct mentorship, institutional funding, or active community membership, your involvement accelerates sustainable agricultural reform.
-    </p>
-    
-    <div className="pt-8 flex flex-col sm:flex-row items-center justify-center gap-4 sm:gap-6">
-      <Link
-        to="/support-us"
-        className="group w-full sm:w-auto bg-[#00D959] text-[#1d1d1f] px-8 py-4 flex items-center justify-center gap-2 text-[15px] font-semibold rounded-none hover:bg-[#d2b79b] transition-colors duration-300 ease-out"
-      >
-        <span>Support Us Today</span>
-        <svg 
-          className="w-4 h-4 transform group-hover:translate-x-1 transition-transform duration-300 ease-out" 
-          fill="none" 
-          viewBox="0 0 24 24" 
-          stroke="currentColor" 
-          strokeWidth="2.5"
-        >
-          <path strokeLinecap="square" strokeLinejoin="miter" d="M5 12h14M12 5l7 7-7 7" />
-        </svg>
-      </Link>
-      
-      <Link
-        to="/membership"
-        className="w-full sm:w-auto border border-[#d2d2d7] bg-transparent text-[#1d1d1f] px-8 py-4 text-[15px] font-semibold rounded-none hover:border-[#d2b79b] hover:bg-[#d2b79b] transition-colors duration-300 ease-out text-center"
-      >
-        Become A Member
-      </Link>
-    </div>
-  </div>
+      <section ref={setSectionRef(9)} className="py-32 lg:py-48 bg-[#3B3A38] text-white px-6 md:px-12 lg:px-24 relative overflow-hidden border-t border-white/15">
+        <div className="max-w-4xl mx-auto text-center space-y-8 relative z-10">
+          <div className="inline-block w-3 h-3 bg-[#d2b79b] rotate-45 mb-4" />
+          
+          <span className="text-[#d2b79b] font-mono text-xs uppercase tracking-[0.35em] block font-medium">
+            08 / Take Action
+          </span>
+          
+          <h2 className="text-4xl sm:text-6xl lg:text-7xl font-normal lg:font-light tracking-tight leading-[1.08] text-white">
+            Support our mission. <br />
+            <span className="text-neutral-500 font-light sm:font-extralight">Empower the next generation.</span>
+          </h2>
+          
+          <p className="text-neutral-400 text-base sm:text-lg font-normal sm:font-light leading-relaxed max-w-2xl mx-auto pt-4">
+            Whether through direct mentorship, institutional funding, or active community membership, your involvement accelerates sustainable agricultural reform.
+          </p>
+          
+          <div className="pt-8 flex flex-col sm:flex-row items-center justify-center gap-6">
+            <Link
+              to="/support-us"
+              className="group w-full sm:w-auto border border-[#d2b79b] bg-[#d2b79b] text-[#0A0A0A] px-10 py-5 flex items-center justify-center gap-3 text-xs uppercase tracking-[0.25em] font-medium hover:bg-transparent hover:text-[#d2b79b] transition-colors duration-500"
+            >
+              <span>Support Us Today</span>
+              <svg className="w-4 h-4 transform group-hover:translate-x-2 transition-transform duration-500 ease-out" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
+                <path strokeLinecap="square" strokeLinejoin="miter" d="M5 12h14M12 5l7 7-7 7" />
+              </svg>
+            </Link>
+            <Link
+              to="/membership"
+              className="w-full sm:w-auto border border-white/30 bg-transparent text-white px-10 py-5 text-xs uppercase tracking-[0.25em] font-medium hover:border-white hover:bg-white/5 transition-all duration-500 ease-out"
+            >
+              Become A Member
+            </Link>
+          </div>
+        </div>
 
-  {/* Sharp 90-Degree Cornered Image Container */}
-  <div className="max-w-5xl mx-auto mt-20 relative z-10 overflow-hidden rounded-none group shadow-[0_20px_50px_rgba(0,0,0,0.06)] bg-[#f5f5f7]">
-    <img
-      src="/Hero/h1.jpeg"
-      alt="Support Our Mission"
-      loading="lazy"
-      decoding="async"
-      className="w-full h-[300px] md:h-[400px] lg:h-[500px] object-cover transform-gpu group-hover:scale-[1.02] transition-transform duration-[1000ms] ease-[cubic-bezier(0.25,1,0.5,1)]"
-    />
-  </div>
-</section>
+        <div className="max-w-5xl mx-auto mt-20 relative z-10 overflow-hidden border border-white/10 rounded-sm group shadow-2xl">
+          <img
+            src="/Hero/h1.jpeg"
+            alt="Support Our Mission"
+            loading="lazy"
+            decoding="async"
+            className="w-full h-[300px] md:h-[400px] lg:h-[500px] object-cover transform-gpu group-hover:scale-105 transition-transform duration-[1000ms] ease-[cubic-bezier(0.25,1,0.5,1)] opacity-90 group-hover:opacity-100 transition-opacity"
+          />
+        </div>
+      </section>
     </div>
   );
 }

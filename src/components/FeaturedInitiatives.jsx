@@ -1,41 +1,5 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { motion } from "framer-motion";
-
-// ============================================================
-// ANIMATION VARIANTS (Premium Apple-style ease)
-// ============================================================
-const premiumEase = [0.22, 1, 0.36, 1];
-
-const fadeUp = {
-  hidden: { opacity: 0, y: 40 },
-  visible: {
-    opacity: 1,
-    y: 0,
-    transition: { duration: 0.8, ease: premiumEase },
-  },
-};
-
-const fadeUpImage = {
-  hidden: { opacity: 0, y: 60, scale: 0.96 },
-  visible: {
-    opacity: 1,
-    y: 0,
-    scale: 1,
-    transition: { duration: 1.2, ease: premiumEase },
-  },
-};
-
-const staggerContainer = {
-  hidden: { opacity: 0 },
-  visible: {
-    opacity: 1,
-    transition: {
-      staggerChildren: 0.15,
-      delayChildren: 0.1,
-    },
-  },
-};
 
 export default function FeaturedInitiatives() {
   const initiatives = [
@@ -131,16 +95,12 @@ export default function FeaturedInitiatives() {
           INTRODUCTION
       ============================================================ */}
       <div className="px-6 md:px-12 lg:px-24 pt-28 md:pt-36 lg:pt-40 pb-24 md:pb-32">
-        <motion.div 
-          className="max-w-[1400px] mx-auto"
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, margin: "-100px" }}
-          variants={staggerContainer}
-        >
+        <div className="max-w-[1400px] mx-auto">
+
           {/* Eyebrow */}
-          <motion.div variants={fadeUp} className="flex items-center gap-4 mb-7 md:mb-9">
+          <div className="flex items-center gap-4 mb-7 md:mb-9">
             <span className="w-8 h-[1px] bg-[#03A10E]" />
+
             <span
               className="
                 text-[10px] md:text-xs
@@ -152,11 +112,10 @@ export default function FeaturedInitiatives() {
             >
               Featured Initiatives
             </span>
-          </motion.div>
+          </div>
 
           {/* Main heading */}
-          <motion.h1
-            variants={fadeUp}
+          <h1
             className="
               max-w-5xl
               text-5xl
@@ -173,11 +132,10 @@ export default function FeaturedInitiatives() {
             <span className="text-[#03A10E]">
               What Comes Next.
             </span>
-          </motion.h1>
+          </h1>
 
           {/* Intro */}
-          <motion.p
-            variants={fadeUp}
+          <p
             className="
               max-w-2xl
               mt-8 md:mt-10
@@ -190,8 +148,8 @@ export default function FeaturedInitiatives() {
             Explore the programs, research systems, and community initiatives
             shaping sustainable livelihoods through agriculture, technology,
             innovation, and practical research.
-          </motion.p>
-        </motion.div>
+          </p>
+        </div>
       </div>
 
       {/* ============================================================
@@ -206,22 +164,20 @@ export default function FeaturedInitiatives() {
         "
       >
         <div className="max-w-[1400px] mx-auto">
+
           {/* Top line */}
-          <motion.div
-            initial={{ opacity: 0, scaleX: 0 }}
-            whileInView={{ opacity: 1, scaleX: 1 }}
-            viewport={{ once: true, margin: "-100px" }}
-            transition={{ duration: 1, ease: premiumEase }}
+          <div
             className="
               border-t border-neutral-200
               pt-8
               mb-20 md:mb-28 lg:mb-36
-              origin-left
             "
           >
             <div className="flex items-center justify-between">
+
               <div className="flex items-center gap-4">
                 <span className="w-7 h-[1px] bg-[#03A10E]" />
+
                 <span
                   className="
                     text-[10px] md:text-[11px]
@@ -234,6 +190,7 @@ export default function FeaturedInitiatives() {
                   Our Focus Areas
                 </span>
               </div>
+
               <span
                 className="
                   hidden sm:block
@@ -246,19 +203,16 @@ export default function FeaturedInitiatives() {
                 05 Initiatives
               </span>
             </div>
-          </motion.div>
+          </div>
 
           {/* ========================================================
               INITIATIVE LIST
           ======================================================== */}
           <div className="flex flex-col gap-28 md:gap-36 lg:gap-44">
+
             {initiatives.map((initiative, index) => (
-              <motion.article
+              <article
                 key={initiative.category}
-                initial="hidden"
-                whileInView="visible"
-                viewport={{ once: true, amount: 0.2 }} // Triggers when 20% visible
-                variants={staggerContainer}
                 className="
                   grid
                   lg:grid-cols-12
@@ -266,21 +220,24 @@ export default function FeaturedInitiatives() {
                   items-center
                 "
               >
+
                 {/* ==================================================
                     IMAGE
                 ================================================== */}
-                <motion.div
-                  variants={fadeUpImage}
+                <div
                   className={`
                     relative
                     group
                     overflow-hidden
                     bg-neutral-100
                     lg:col-span-7
-                    ${index % 2 === 1 ? "lg:order-2" : "lg:order-1"}
+                    ${index % 2 === 1
+                      ? "lg:order-2"
+                      : "lg:order-1"}
                   `}
                 >
                   <div className="relative overflow-hidden aspect-[16/10]">
+
                     <img
                       src={initiative.image}
                       alt={initiative.alt}
@@ -322,6 +279,7 @@ export default function FeaturedInitiatives() {
                     "
                   >
                     <span className="h-px w-5 bg-white" />
+
                     <span
                       className="
                         text-[9px]
@@ -333,13 +291,12 @@ export default function FeaturedInitiatives() {
                       0{index + 1}
                     </span>
                   </div>
-                </motion.div>
+                </div>
 
                 {/* ==================================================
                     TEXT
                 ================================================== */}
-                <motion.div
-                  variants={staggerContainer}
+                <div
                   className={`
                     lg:col-span-5
                     space-y-7
@@ -350,9 +307,11 @@ export default function FeaturedInitiatives() {
                     }
                   `}
                 >
+
                   {/* Category */}
-                  <motion.div variants={fadeUp} className="flex items-center gap-4">
+                  <div className="flex items-center gap-4">
                     <span className="h-[1px] w-8 bg-[#03A10E]" />
+
                     <span
                       className="
                         text-[#03A10E]
@@ -364,11 +323,10 @@ export default function FeaturedInitiatives() {
                     >
                       {initiative.category}
                     </span>
-                  </motion.div>
+                  </div>
 
                   {/* Title */}
-                  <motion.h2
-                    variants={fadeUp}
+                  <h2
                     className="
                       text-neutral-900
                       text-4xl
@@ -381,11 +339,10 @@ export default function FeaturedInitiatives() {
                     "
                   >
                     {initiative.title}
-                  </motion.h2>
+                  </h2>
 
                   {/* Description */}
-                  <motion.p
-                    variants={fadeUp}
+                  <p
                     className="
                       max-w-xl
                       text-neutral-500
@@ -396,10 +353,10 @@ export default function FeaturedInitiatives() {
                     "
                   >
                     {initiative.description}
-                  </motion.p>
+                  </p>
 
                   {/* CTA */}
-                  <motion.div variants={fadeUp} className="pt-3">
+                  <div className="pt-3">
                     <Link
                       to={initiative.link}
                       className="
@@ -419,6 +376,7 @@ export default function FeaturedInitiatives() {
                     >
                       {/* Text */}
                       <span className="relative overflow-hidden pb-1">
+
                         <span className="inline-block group-hover/cta:text-[#03A10E] transition-colors duration-500">
                           {initiative.linkText}
                         </span>
@@ -485,20 +443,16 @@ export default function FeaturedInitiatives() {
                         </svg>
                       </span>
                     </Link>
-                  </motion.div>
-                </motion.div>
-              </motion.article>
+                  </div>
+                </div>
+              </article>
             ))}
           </div>
 
           {/* ========================================================
               BOTTOM LINE
           ======================================================== */}
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: "-50px" }}
-            transition={{ duration: 0.8, ease: premiumEase }}
+          <div
             className="
               mt-28 md:mt-36 lg:mt-44
               pt-8
@@ -532,7 +486,7 @@ export default function FeaturedInitiatives() {
             >
               Agribusiness // Research // Innovation
             </span>
-          </motion.div>
+          </div>
         </div>
       </div>
     </section>
