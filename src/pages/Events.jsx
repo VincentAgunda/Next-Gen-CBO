@@ -34,7 +34,7 @@ export default function Events() {
   };
 
   return (
-    <div className="min-h-screen w-full bg-[#FAF9F6] text-neutral-900 antialiased selection:bg-[#B0926A] selection:text-white overflow-hidden">
+    <div className="min-h-screen w-full bg-[#FAF9F6] text-neutral-900 antialiased selection:bg-[#03A10E] selection:text-white overflow-hidden">
 
       {/* ============================================================
           HERO / INTRODUCTION
@@ -54,7 +54,7 @@ export default function Events() {
           {/* Main heading */}
           <h1 className="max-w-5xl text-5xl sm:text-6xl md:text-7xl lg:text-[4.5rem] xl:text-[5.5rem] font-medium text-neutral-900 tracking-tighter leading-[1.02]">
             Events &{" "}
-            <span className="text-neutral-400">
+            <span className="text-[#03A10E]">
               Symposia.
             </span>
           </h1>
@@ -90,7 +90,7 @@ export default function Events() {
             <div className="flex items-center gap-4">
               <span className="w-7 h-[1px] bg-[#B0926A]" />
 
-              <span className="text-[10px] md:text-[11px] uppercase tracking-[0.28em] text-neutral-500 font-medium">
+              <span className="text-[10px] md:text-[11px] uppercase tracking-[0.28em] text-[#B0926A] font-semibold">
                 Upcoming Programs
               </span>
             </div>
@@ -101,13 +101,13 @@ export default function Events() {
             {events.map((evt, index) => (
               <article
                 key={evt.id}
-                className="group relative bg-white border border-neutral-200 overflow-hidden transition-all duration-700 hover:border-[#B0926A] hover:-translate-y-1"
+                className="group relative bg-white border border-neutral-200 overflow-hidden transition-all duration-700 hover:border-[#03A10E] hover:-translate-y-1 rounded-none"
               >
                 {/* Event number */}
                 <div className="absolute top-6 left-6 z-10 flex items-center gap-3">
                   <span className="w-5 h-[1px] bg-[#B0926A]" />
 
-                  <span className="text-[9px] uppercase tracking-[0.22em] text-neutral-400 font-medium">
+                  <span className="text-[9px] uppercase tracking-[0.22em] text-[#B0926A] font-semibold">
                     0{index + 1}
                   </span>
                 </div>
@@ -120,12 +120,12 @@ export default function Events() {
                   </div>
 
                   {/* Bottom line */}
-                  <div className="mt-10 pt-5 border-t border-neutral-200 flex items-center justify-between">
-                    <span className="text-[9px] uppercase tracking-[0.22em] text-neutral-400">
+                  <div className="mt-10 pt-5 border-t border-neutral-200 flex items-center justify-between group-hover:border-[#03A10E] transition-colors duration-700">
+                    <span className="text-[9px] uppercase tracking-[0.22em] text-neutral-400 group-hover:text-neutral-900 transition-colors duration-700">
                       Event Registry
                     </span>
 
-                    <span className="text-[#B0926A] text-sm">
+                    <span className="text-[#03A10E] text-sm">
                       ↗
                     </span>
                   </div>
@@ -158,7 +158,7 @@ export default function Events() {
               <h2 className="text-4xl sm:text-5xl md:text-6xl lg:text-[4.5rem] font-medium text-neutral-900 tracking-tighter leading-[1.05]">
                 Secure
                 <br />
-                <span className="text-neutral-400">
+                <span className="text-[#03A10E]">
                   Access Pass.
                 </span>
               </h2>
@@ -177,7 +177,7 @@ export default function Events() {
                 {/* Row 1 */}
                 <div className="grid md:grid-cols-2 gap-8 lg:gap-12">
                   <div>
-                    <label className="block mb-2 text-[9px] uppercase tracking-[0.22em] text-neutral-400">
+                    <label className="block mb-2 text-[9px] uppercase tracking-[0.22em] text-[#B0926A] font-semibold">
                       Full Name
                     </label>
 
@@ -185,19 +185,19 @@ export default function Events() {
                       name="fullName"
                       placeholder="Your full name"
                       required
-                      className="w-full bg-transparent border-b border-neutral-300 py-4 text-[16px] text-neutral-900 placeholder:text-neutral-400 focus:outline-none focus:border-[#B0926A] transition-colors duration-500 rounded-none"
+                      className="w-full bg-transparent border-b border-neutral-300 py-4 text-[16px] text-neutral-900 placeholder:text-neutral-400 focus:outline-none focus:border-[#03A10E] transition-colors duration-500 rounded-none"
                     />
                   </div>
 
                   <div>
-                    <label className="block mb-2 text-[9px] uppercase tracking-[0.22em] text-neutral-400">
+                    <label className="block mb-2 text-[9px] uppercase tracking-[0.22em] text-[#B0926A] font-semibold">
                       Affiliation
                     </label>
 
                     <input
                       name="organization"
                       placeholder="Institution or organization"
-                      className="w-full bg-transparent border-b border-neutral-300 py-4 text-[16px] text-neutral-900 placeholder:text-neutral-400 focus:outline-none focus:border-[#B0926A] transition-colors duration-500 rounded-none"
+                      className="w-full bg-transparent border-b border-neutral-300 py-4 text-[16px] text-neutral-900 placeholder:text-neutral-400 focus:outline-none focus:border-[#03A10E] transition-colors duration-500 rounded-none"
                     />
                   </div>
                 </div>
@@ -205,7 +205,7 @@ export default function Events() {
                 {/* Row 2 */}
                 <div className="grid md:grid-cols-2 gap-8 lg:gap-12">
                   <div>
-                    <label className="block mb-2 text-[9px] uppercase tracking-[0.22em] text-neutral-400">
+                    <label className="block mb-2 text-[9px] uppercase tracking-[0.22em] text-[#B0926A] font-semibold">
                       Phone
                     </label>
 
@@ -214,12 +214,12 @@ export default function Events() {
                       type="tel"
                       placeholder="Mobile number"
                       required
-                      className="w-full bg-transparent border-b border-neutral-300 py-4 text-[16px] text-neutral-900 placeholder:text-neutral-400 focus:outline-none focus:border-[#B0926A] transition-colors duration-500 rounded-none"
+                      className="w-full bg-transparent border-b border-neutral-300 py-4 text-[16px] text-neutral-900 placeholder:text-neutral-400 focus:outline-none focus:border-[#03A10E] transition-colors duration-500 rounded-none"
                     />
                   </div>
 
                   <div>
-                    <label className="block mb-2 text-[9px] uppercase tracking-[0.22em] text-neutral-400">
+                    <label className="block mb-2 text-[9px] uppercase tracking-[0.22em] text-[#B0926A] font-semibold">
                       Email
                     </label>
 
@@ -228,7 +228,7 @@ export default function Events() {
                       type="email"
                       placeholder="Email address"
                       required
-                      className="w-full bg-transparent border-b border-neutral-300 py-4 text-[16px] text-neutral-900 placeholder:text-neutral-400 focus:outline-none focus:border-[#B0926A] transition-colors duration-500 rounded-none"
+                      className="w-full bg-transparent border-b border-neutral-300 py-4 text-[16px] text-neutral-900 placeholder:text-neutral-400 focus:outline-none focus:border-[#03A10E] transition-colors duration-500 rounded-none"
                     />
                   </div>
                 </div>
@@ -238,7 +238,7 @@ export default function Events() {
 
                   <button
                     type="submit"
-                    className="group inline-flex items-center justify-between gap-8 w-full sm:w-auto px-8 md:px-10 py-4 border border-neutral-900 bg-neutral-900 text-white text-xs uppercase tracking-[0.15em] font-semibold transition-all duration-500 hover:bg-[#B0926A] hover:border-[#B0926A]"
+                    className="group inline-flex items-center justify-between gap-8 w-full sm:w-auto px-8 md:px-10 py-4 border border-neutral-900 bg-neutral-900 text-white text-xs uppercase tracking-[0.15em] font-semibold transition-all duration-500 hover:bg-[#03A10E] hover:border-[#03A10E]"
                   >
                     <span>
                       Register Reservation
@@ -251,9 +251,9 @@ export default function Events() {
 
                   {regMsg && (
                     <p
-                      className={`text-[13px] font-light ${
+                      className={`text-[13px] font-medium ${
                         regMsg.includes("successful")
-                          ? "text-[#B0926A]"
+                          ? "text-[#03A10E]"
                           : "text-red-500"
                       }`}
                     >
