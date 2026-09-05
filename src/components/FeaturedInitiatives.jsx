@@ -157,7 +157,7 @@ export default function FeaturedInitiatives() {
       ============================================================ */}
       <div
         className="
-          bg-white
+          bg-[#e4e4e5]
           px-6 md:px-12 lg:px-24
           pt-12 md:pt-16
           pb-28 md:pb-36 lg:pb-44
@@ -168,7 +168,7 @@ export default function FeaturedInitiatives() {
           {/* Top line */}
           <div
             className="
-              border-t border-neutral-200
+              border-t border-neutral-300
               pt-8
               mb-20 md:mb-28 lg:mb-36
             "
@@ -410,7 +410,7 @@ export default function FeaturedInitiatives() {
                           h-8
                           rounded-full
                           border
-                          border-neutral-300
+                          border-neutral-400
                           group-hover/cta:border-[#03A10E]
                           group-hover/cta:bg-[#03A10E]
                           transition-all
@@ -456,7 +456,7 @@ export default function FeaturedInitiatives() {
             className="
               mt-28 md:mt-36 lg:mt-44
               pt-8
-              border-t border-neutral-200
+              border-t border-neutral-300
               flex flex-col
               sm:flex-row
               items-start
@@ -470,7 +470,7 @@ export default function FeaturedInitiatives() {
                 text-[9px]
                 uppercase
                 tracking-[0.25em]
-                text-neutral-400
+                text-neutral-500
               "
             >
               Next-Gen Youth Initiative
@@ -481,7 +481,7 @@ export default function FeaturedInitiatives() {
                 text-[9px]
                 uppercase
                 tracking-[0.25em]
-                text-neutral-400
+                text-neutral-500
               "
             >
               Agribusiness // Research // Innovation
