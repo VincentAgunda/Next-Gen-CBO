@@ -16,12 +16,10 @@ const governance = [
   { role: "Founding Member", name: "Serah Kalekye Peter", image: "/team/serah.png" },
   { role: "Founding Member", name: "Evans Nzomo", image: "/images/governance/evans-nzomo.jpg" },
   { role: "Founding Member", name: "Doreen Wangari", image: "/images/governance/doreen-wangari.jpg" },
-  
   { role: "Founding Member", name: "Daniel kyanui Kituku", image: "/team/kyan.png" },
   { role: "Founding Member", name: "Faith Mutheu Muthini", image: "/team/faith.png" },
   { role: "Founding Member", name: "John waweru Ngigi", image: "/team/john.png" },
   { role: "Founding Member", name: "Purity wavinya Mati", image: "/team/purity.png" },
-
 ];
 
 const coreValues = [
@@ -34,7 +32,6 @@ const coreValues = [
 ];
 
 // --- Animation Configs ---
-// Added willChange hints to prevent CPU bottlenecking
 const fadeInUp = {
   hidden: { opacity: 0, y: 40 },
   visible: { 
@@ -62,7 +59,7 @@ export default function About() {
   }, []);
 
   return (
-    <div className="font-sans text-black bg-[#F5F5F7] antialiased selection:bg-black selection:text-white overflow-hidden min-h-screen">
+    <div className="font-sans text-black bg-[#F5F5F7] antialiased selection:bg-[#03A10E] selection:text-white overflow-hidden min-h-screen">
       
       {/* 01. TYPOGRAPHIC HERO */}
       <motion.header 
@@ -71,12 +68,16 @@ export default function About() {
         variants={staggerContainer}
         className="pt-40 pb-28 px-[6vw] md:px-12 lg:px-24 max-w-[1440px] mx-auto transform-gpu"
       >
-        <motion.span variants={fadeInUp} className="block text-[#757575] text-[13px] font-normal mb-8 uppercase tracking-wider">
-          01 / Framework
-        </motion.span>
+        <motion.div variants={fadeInUp} className="flex items-center gap-4 mb-8">
+          <span className="w-8 h-[1px] bg-[#B0926A]"></span>
+          <span className="block text-[#B0926A] text-[10px] md:text-xs font-semibold uppercase tracking-[0.25em]">
+            01 / Framework
+          </span>
+        </motion.div>
+        
         <motion.h1 variants={fadeInUp} className="text-5xl md:text-7xl lg:text-[110px] font-normal leading-[0.95] tracking-tight text-black mb-12">
           Foundation & <br />
-          Philosophy.
+          <span className="text-[#03A10E]">Philosophy.</span>
         </motion.h1>
         <motion.p variants={fadeInUp} className="max-w-3xl text-black opacity-85 font-normal text-[16px] md:text-[18px] leading-relaxed">
           Formally constituted and registered under the Organization Act (No. 30 of 2022, Laws of Kenya), 
@@ -95,9 +96,13 @@ export default function About() {
             className="flex flex-col border-t border-[#D9D9D9] pt-6 transform-gpu"
             style={{ willChange: "transform, opacity" }}
           >
-            <span className="text-[13px] text-[#757575] mb-8 font-normal uppercase tracking-wider">
-              02.1 / Horizon
-            </span>
+            <div className="flex items-center gap-4 mb-8">
+              <span className="w-6 h-[1px] bg-[#B0926A]"></span>
+              <span className="text-[10px] md:text-xs text-[#B0926A] font-semibold uppercase tracking-[0.25em]">
+                02.1 / Horizon
+              </span>
+            </div>
+            
             <div className="aspect-[16/10] w-full bg-[#E5E5E5] mb-10 overflow-hidden relative group">
               <motion.img 
                 initial={{ scale: 1.15 }}
@@ -106,12 +111,11 @@ export default function About() {
                 transition={{ duration: 1.2, ease: [0.22, 1, 0.36, 1] }}
                 src="/images/about/vision-blueprint.jpg" 
                 alt="Strategic agricultural research fields" 
-                // Removed loading="lazy" to prevent decoding jank at the exact moment of animation
                 className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 will-change-transform"
               />
             </div>
             <h3 className="text-3xl lg:text-[40px] font-normal text-black mb-6 tracking-tight leading-none">
-              The Vision Blueprint
+              The <span className="text-[#03A10E]">Vision</span> Blueprint
             </h3>
             <p className="text-[16px] text-black opacity-75 font-normal leading-relaxed max-w-md">
               To be a leading youth-driven research and innovation group, advancing sustainable agriculture, 
@@ -125,9 +129,12 @@ export default function About() {
             className="flex flex-col border-t border-[#D9D9D9] pt-6 transform-gpu"
             style={{ willChange: "transform, opacity" }}
           >
-            <span className="text-[13px] text-[#757575] mb-8 font-normal uppercase tracking-wider">
-              02.2 / Mandate
-            </span>
+            <div className="flex items-center gap-4 mb-8">
+              <span className="w-6 h-[1px] bg-[#B0926A]"></span>
+              <span className="text-[10px] md:text-xs text-[#B0926A] font-semibold uppercase tracking-[0.25em]">
+                02.2 / Mandate
+              </span>
+            </div>
             <div className="aspect-[16/10] w-full bg-[#E5E5E5] mb-10 overflow-hidden relative group">
               <motion.img 
                 initial={{ scale: 1.15 }}
@@ -140,7 +147,7 @@ export default function About() {
               />
             </div>
             <h3 className="text-3xl lg:text-[40px] font-normal text-black mb-6 tracking-tight leading-none">
-              The Mission Parameter
+              The <span className="text-[#03A10E]">Mission</span> Parameter
             </h3>
             <p className="text-[16px] text-black opacity-75 font-normal leading-relaxed max-w-md">
               To empower young innovators, researchers and communities focused in agribusiness to generate 
@@ -179,25 +186,28 @@ export default function About() {
             initial="hidden" whileInView="visible" viewport={{ once: true, amount: 0.2 }} variants={staggerContainer}
             className="lg:col-span-5 lg:pl-8 flex flex-col justify-center transform-gpu"
           >
-            <motion.span variants={fadeInUp} className="text-[#757575] text-[13px] uppercase block mb-6 font-normal tracking-wider">
-              03 / Statutory Charter
-            </motion.span>
+            <motion.div variants={fadeInUp} className="flex items-center gap-4 mb-6">
+              <span className="w-8 h-[1px] bg-[#B0926A]"></span>
+              <span className="text-[#B0926A] text-[10px] md:text-xs uppercase font-semibold tracking-[0.25em]">
+                03 / Statutory Charter
+              </span>
+            </motion.div>
             
             <motion.h2 variants={fadeInUp} className="text-black text-4xl lg:text-[52px] font-normal mb-10 leading-[1.05] tracking-tight flex items-start gap-3">
-              <span className="translate-y-1.5 select-none text-black">
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round" className="w-8 h-8 lg:w-12 lg:h-12">
+              <span className="translate-y-1.5 select-none text-[#B0926A]">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className="w-8 h-8 lg:w-12 lg:h-12">
                   <path d="M7 17L17 7" />
                   <path d="M7 7h10v10" />
                 </svg>
               </span>
-              <span>Constitutional <br/> Objectives</span>
+              <span>Constitutional <br/> <span className="text-[#03A10E]">Objectives</span></span>
             </motion.h2>
             
             <motion.p variants={fadeInUp} className="text-black opacity-85 text-[16px] leading-relaxed mb-10 font-normal border-b border-[#E5E5E5] pb-8">
               Pursuant to Section 3.3 of our founding charter, NGYAR maps its resource allocation against rigorous scientific benchmarks to ensure sustainable livelihoods and environmental stewardship across local ecosystems.
             </motion.p>
             
-            <motion.ul variants={staggerContainer} className="space-y-4 text-[14px] text-black opacity-75 font-normal">
+            <motion.ul variants={staggerContainer} className="space-y-4 text-[14px] text-black opacity-85 font-normal">
               {[
                 "Promote youth-led research and innovation in sustainable agriculture and climate resilience.",
                 "Conduct and deploy scientific, community-based research for localized development.",
@@ -205,7 +215,7 @@ export default function About() {
                 "Accelerate the adoption of climate-smart, high-yield agricultural technologies."
               ].map((item, i) => (
                 <motion.li variants={fadeInUp} key={i} className="flex gap-4 border-b border-[#f6f6f6] pb-4 last:border-0 last:pb-0">
-                  <span className="opacity-50">0{i + 1}</span>
+                  <span className="text-[#B0926A] font-medium">0{i + 1}</span>
                   <span>{item}</span>
                 </motion.li>
               ))}
@@ -225,14 +235,18 @@ export default function About() {
             initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.8, delay: 0.2 }}
             className="text-3xl md:text-5xl lg:text-[64px] font-normal leading-[1.1] tracking-tight transform-gpu"
           >
-            “To empower young innovators, researchers and communities focused in agribusiness to generate evidence-based solutions that promote sustainable development.”
+            “To empower young innovators, researchers and communities focused in agribusiness to generate <span className="text-[#03A10E]">evidence-based solutions</span> that promote sustainable development.”
           </motion.h2>
-          <motion.span 
+          <motion.div 
             initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} viewport={{ once: true }} transition={{ duration: 1, delay: 0.6 }}
-            className="block mt-12 text-[#858585] text-[13px] uppercase tracking-wider font-normal transform-gpu"
+            className="flex items-center justify-center gap-4 mt-12 transform-gpu"
           >
-            — Section 3.2, National Regulatory Filing
-          </motion.span>
+            <span className="w-8 h-[1px] bg-[#B0926A]/50"></span>
+            <span className="block text-[#B0926A] text-[10px] md:text-xs uppercase tracking-[0.25em] font-semibold">
+              Section 3.2, National Regulatory Filing
+            </span>
+            <span className="w-8 h-[1px] bg-[#B0926A]/50"></span>
+          </motion.div>
         </div>
       </motion.section>
 
@@ -241,11 +255,14 @@ export default function About() {
         <div className="max-w-[1440px] mx-auto">
           
           <motion.div initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeInUp} className="mb-16 transform-gpu">
-            <span className="text-[#757575] text-[13px] uppercase tracking-wider font-normal block mb-4">
-              04 / Ethics
-            </span>
+            <div className="flex items-center gap-4 mb-4">
+              <span className="w-8 h-[1px] bg-[#B0926A]"></span>
+              <span className="text-[#B0926A] text-[10px] md:text-xs uppercase tracking-[0.25em] font-semibold block">
+                04 / Ethics
+              </span>
+            </div>
             <h2 className="text-4xl md:text-[52px] font-normal text-black tracking-tight">
-              Institutional Discipline
+              Institutional <span className="text-[#03A10E]">Discipline</span>
             </h2>
           </motion.div>
 
@@ -257,10 +274,10 @@ export default function About() {
               <motion.div 
                 variants={fadeInUp}
                 key={value.term}
-                className="w-full py-8 lg:py-12 flex flex-col lg:flex-row lg:items-baseline justify-between border-b border-[#D9D9D9] gap-4 lg:gap-12 hover:opacity-60 transition-opacity duration-300 transform-gpu"
+                className="w-full py-8 lg:py-12 flex flex-col lg:flex-row lg:items-baseline justify-between border-b border-[#D9D9D9] gap-4 lg:gap-12 hover:bg-[#FAF9F6] transition-colors duration-300 transform-gpu px-4 lg:px-0 group"
               >
                 <div className="flex items-baseline gap-6 lg:w-1/3">
-                  <span className="text-[13px] text-[#757575] font-normal block min-w-[30px]">
+                  <span className="text-[13px] text-[#B0926A] font-medium block min-w-[30px] group-hover:text-[#03A10E] transition-colors duration-300">
                     0{index + 1}
                   </span>
                   <h3 className="text-3xl md:text-4xl lg:text-[48px] font-normal text-black tracking-tight leading-none">
@@ -285,11 +302,14 @@ export default function About() {
             className="flex flex-col md:flex-row md:justify-between md:items-end mb-16 gap-8 transform-gpu"
           >
             <div>
-              <span className="text-[#757575] text-[13px] uppercase tracking-wider font-normal block mb-4">
-                05 / Leadership
-              </span>
+              <div className="flex items-center gap-4 mb-4">
+                <span className="w-8 h-[1px] bg-[#B0926A]"></span>
+                <span className="text-[#B0926A] text-[10px] md:text-xs uppercase tracking-[0.25em] font-semibold block">
+                  05 / Leadership
+                </span>
+              </div>
               <h2 className="text-4xl md:text-[52px] font-normal text-black tracking-tight">
-                Governance Matrix
+                <span className="text-[#03A10E]">Governance</span> Matrix
               </h2>
             </div>
             <p className="text-[15px] text-black opacity-75 max-w-sm">
@@ -298,7 +318,7 @@ export default function About() {
           </motion.div>
         </div>
 
-        {/* Executive Section */}
+        {/* Executive Section - Kept Original Background */}
         <div className="bg-[#45263C] w-full py-20 px-[6vw] md:px-12 lg:px-24 mb-16">
           <div className="max-w-[1440px] mx-auto">
             <h3 className="text-3xl md:text-4xl font-normal text-white tracking-tight mb-12">
@@ -313,7 +333,7 @@ export default function About() {
                 .filter((person) => person.role !== "Founding Member")
                 .map((person) => (
                   <motion.div variants={fadeInUp} key={person.name} className="flex flex-col border-b border-white/20 pb-8 group transform-gpu">
-                    <div className="w-20 h-20 rounded-full bg-white/10 overflow-hidden mb-6 relative border border-white/10">
+                    <div className="w-20 h-20 rounded-full bg-white/10 overflow-hidden mb-6 relative border border-[#B0926A]/30 group-hover:border-[#B0926A] transition-colors duration-500">
                       <img 
                         src={person.image} 
                         alt={person.name} 
@@ -322,7 +342,7 @@ export default function About() {
                         onError={(e) => { e.target.style.display = 'none'; }}
                       />
                     </div>
-                    <span className="text-[12px] uppercase tracking-wider text-white/70 block font-normal mb-2">
+                    <span className="text-[10px] md:text-xs uppercase tracking-[0.15em] text-[#B0926A] block font-semibold mb-2">
                       {person.role}
                     </span>
                     <h4 className="text-[20px] font-normal text-white tracking-tight mb-2">
@@ -351,7 +371,7 @@ export default function About() {
               .filter((person) => person.role === "Founding Member")
               .map((person) => (
                 <motion.div variants={fadeInUp} key={person.name} className="flex flex-col border-b border-[#E5E5E5] pb-8 group transform-gpu">
-                  <div className="w-20 h-20 rounded-full bg-[#E5E5E5] overflow-hidden mb-6 relative border border-[#E5E5E5]">
+                  <div className="w-20 h-20 rounded-full bg-[#E5E5E5] overflow-hidden mb-6 relative border border-transparent group-hover:border-[#03A10E] transition-colors duration-500">
                     <img 
                       src={person.image} 
                       alt={person.name} 
@@ -360,13 +380,13 @@ export default function About() {
                       onError={(e) => { e.target.style.display = 'none'; }}
                     />
                   </div>
-                  <span className="text-[12px] uppercase tracking-wider text-[#757575] block font-normal mb-2">
+                  <span className="text-[10px] md:text-xs uppercase tracking-[0.15em] text-[#B0926A] block font-semibold mb-2">
                     {person.role}
                   </span>
                   <h4 className="text-[20px] font-normal text-black tracking-tight mb-2">
                     {person.name}
                   </h4>
-                  <span className="text-[11px] uppercase text-[#757575] font-normal block opacity-50">
+                  <span className="text-[11px] uppercase text-[#757575] font-normal block opacity-50 group-hover:text-[#03A10E] transition-colors duration-300">
                     ID: NGYAR-{person.name.substring(0, 3).toUpperCase()}
                   </span>
                 </motion.div>
@@ -391,11 +411,11 @@ export default function About() {
             href="https://res.cloudinary.com/your-cloud/raw/upload/v1/constitution.pdf"
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center justify-between border border-black text-black px-8 py-4 text-[15px] font-normal hover:bg-black hover:text-white transition-colors duration-300 w-full max-w-[320px] group"
+            className="inline-flex items-center justify-between border border-[#B0926A] text-black px-8 py-4 text-[13px] uppercase tracking-[0.15em] font-semibold hover:bg-[#03A10E] hover:border-[#03A10E] hover:text-white transition-all duration-300 w-full max-w-[340px] group"
           >
             <span>Download Constitution</span>
             <span className="leading-none flex items-center justify-center">
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className="w-5 h-5 group-hover:translate-y-1 transition-transform duration-300">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="w-4 h-4 group-hover:translate-y-1 transition-transform duration-300">
                 <path d="M12 5v14" />
                 <path d="M19 12l-7 7-7-7" />
               </svg>

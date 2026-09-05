@@ -28,83 +28,86 @@ const slides = [
 ];
 
 // Custom easing for Apple-like spring/deceleration feel
-const smoothEasting = [0.16, 1, 0.3, 1];
+const smoothEasing = [0.16, 1, 0.3, 1];
 
 const staggerContainer = {
   hidden: { opacity: 0 },
   show: {
     opacity: 1,
     transition: {
-      staggerChildren: 0.15,
+      staggerChildren: 0.1,
       delayChildren: 0.1,
     },
   },
   exit: { 
     opacity: 0,
-    transition: { duration: 0.4, ease: smoothEasting }
+    transition: { duration: 0.2, ease: "easeIn" } // Snappier exit to feel more responsive
   }
 };
 
 const textVariant = {
-  hidden: { opacity: 0, y: 24 },
+  hidden: { opacity: 0, y: 20 },
   show: { 
     opacity: 1, 
     y: 0, 
-    transition: { duration: 1, ease: smoothEasting } 
+    transition: { duration: 0.8, ease: smoothEasing } 
   },
 };
 
 export default function HeroSection() {
   const [current, setCurrent] = useState(0);
 
-  // Preload images for seamless transitions
-  useEffect(() => {
-    slides.forEach((slide) => {
-      const img = new Image();
-      img.src = slide.image;
-    });
-  }, []);
-
-  // Interval logic that resets on manual interaction
+  // Interval logic that resets accurately on manual interaction
   useEffect(() => {
     const timer = setInterval(() => {
       setCurrent((prev) => (prev === slides.length - 1 ? 0 : prev + 1));
     }, 8000);
+    
     return () => clearInterval(timer);
-  }, [current]);
+  }, [current]); // Dependency ensures the 8s timer resets if user manually clicks a slide
 
   return (
     <section className="relative w-full min-h-screen bg-neutral-900 overflow-hidden flex flex-col md:flex-row antialiased selection:bg-[#03A10E] selection:text-white">
       
       {/* RIGHT SIDE: High Fidelity Image Slider */}
+      {/* OPTIMIZATION: Render all images in the DOM for zero-latency crossfading instead of mounting/unmounting */}
       <div className="absolute inset-y-0 right-0 w-full md:w-[60%] h-[55vh] md:h-full z-0 bg-neutral-900">
-        <AnimatePresence initial={false}>
-          <motion.div
-            key={current}
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            transition={{ duration: 1.5, ease: "easeInOut" }} 
-            className="absolute inset-0 overflow-hidden"
-          >
-            <motion.img 
-              initial={{ scale: 1.08 }}
-              animate={{ scale: 1 }}
-              transition={{ duration: 10, ease: "easeOut" }} // Continuous slow zoom
-              src={slides[current].image}
-              alt="Background imagery"
-              loading="lazy"
-              decoding="async"
-              className="absolute inset-0 w-full h-full object-cover opacity-95 brightness-95"
-            />
-          </motion.div>
-        </AnimatePresence>
+        {slides.map((slide, index) => {
+          const isActive = current === index;
+          return (
+            <motion.div
+              key={slide.id}
+              initial={false}
+              animate={{
+                opacity: isActive ? 1 : 0,
+                zIndex: isActive ? 10 : 0,
+              }}
+              transition={{ duration: 1.2, ease: "easeInOut" }} 
+              className="absolute inset-0 overflow-hidden"
+            >
+              <motion.img 
+                initial={false}
+                animate={{
+                  scale: isActive ? 1 : 1.08, // Zooms out slowly while active
+                }}
+                transition={{ 
+                  scale: { duration: 10, ease: "linear" } // Linear feels better for continuous background movement
+                }} 
+                src={slide.image}
+                alt={`Hero background ${index + 1}`}
+                loading={index === 0 ? "eager" : "lazy"} // Optimize FCP
+                decoding="async"
+                className="absolute inset-0 w-full h-full object-cover opacity-95 brightness-95"
+              />
+            </motion.div>
+          );
+        })}
       </div>
 
       {/* LEFT SIDE: Diagonal Background Split */}
       <div 
         className="absolute inset-y-0 left-0 w-full md:w-[58%] bg-[#FAF9F6] z-10 hidden md:block"
-        style={{ clipPath: "polygon(0 0, 100% 0, 85% 100%, 0% 100%)" }}
+        style={{ clipPath: "polygon(0 0, 100% 0, 85% 100%, 0% 100%)", willChange: "transform" }}
       >
         {/* Subtle inner shadow for depth against the image */}
         <div className="absolute inset-0 bg-gradient-to-r from-transparent to-black/5 opacity-50 drop-shadow-2xl"></div>
@@ -117,6 +120,7 @@ export default function HeroSection() {
       <div className="relative z-20 w-full h-full min-h-screen max-w-[1400px] mx-auto flex flex-col md:flex-row pointer-events-none">
         
         <div className="w-full md:w-[52%] flex flex-col justify-center px-6 md:px-12 lg:px-24 h-full min-h-[55vh] md:min-h-screen mt-[45vh] md:mt-0 pointer-events-auto">
+          
           <AnimatePresence mode="wait">
             <motion.div 
               key={`text-${current}`}
@@ -165,7 +169,7 @@ export default function HeroSection() {
                     <span className="absolute bottom-0 left-0 w-full h-[1px] bg-[#B0926A] transform origin-left transition-transform duration-500 group-hover:scale-x-100 scale-x-0"></span>
                   </span>
                   
-                  {/* Hover circle turns green (#03A10E) to match selection and featured initiatives */}
+                  {/* Hover circle turns green to match selection */}
                   <span className="relative flex items-center justify-center w-8 h-8 rounded-full border border-neutral-200 group-hover:border-[#03A10E] group-hover:bg-[#03A10E] transition-colors duration-500">
                     <svg 
                       className="w-3.5 h-3.5 text-neutral-900 group-hover:text-white transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-all duration-500 ease-out" 
