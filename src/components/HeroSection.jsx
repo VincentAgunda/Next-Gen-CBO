@@ -7,7 +7,11 @@ const slides = [
     id: 1,
     image: "/Hero/h7.png", 
     subtitle: "NEXT-GEN YOUTH INITIATIVE",
-    title: "Empowering The Future.",
+    title: (
+      <>
+        Empowering The <span className="text-[#03A10E]">Future.</span>
+      </>
+    ),
     description: "A youth-led initiative focused on building sustainable farming businesses and conducting careful, hands-on research for a better future.",
     buttonText: "DISCOVER MATRIX",
     link: "/about"
@@ -16,7 +20,7 @@ const slides = [
     id: 2,
     image: "/Hero/h1.jpeg", 
     subtitle: "AGRIBUSINESS OPTIMIZATION",
-    title: "Cultivating Growth.",
+    title: <span className="text-[#03A10E]">Cultivating Growth.</span>,
     description: "Providing young leaders with the practical skills, tools, and business models they need to create profitable and lasting agricultural communities.",
     buttonText: "SYSTEM INDEX",
     link: "/programs"
@@ -70,7 +74,7 @@ export default function HeroSection() {
   }, [current]);
 
   return (
-    <section className="relative w-full min-h-screen bg-neutral-900 overflow-hidden flex flex-col md:flex-row antialiased selection:bg-[#B0926A] selection:text-white">
+    <section className="relative w-full min-h-screen bg-neutral-900 overflow-hidden flex flex-col md:flex-row antialiased selection:bg-[#03A10E] selection:text-white">
       
       {/* RIGHT SIDE: High Fidelity Image Slider */}
       <div className="absolute inset-y-0 right-0 w-full md:w-[60%] h-[55vh] md:h-full z-0 bg-neutral-900">
@@ -88,10 +92,9 @@ export default function HeroSection() {
               animate={{ scale: 1 }}
               transition={{ duration: 10, ease: "easeOut" }} // Continuous slow zoom
               src={slides[current].image}
-              alt={slides[current].title}
+              alt="Background imagery"
               loading="lazy"
               decoding="async"
-              // Removed mix-blend-luminosity to restore full color
               className="absolute inset-0 w-full h-full object-cover opacity-95 brightness-95"
             />
           </motion.div>
@@ -123,7 +126,7 @@ export default function HeroSection() {
               exit="exit"
               className="max-w-xl flex flex-col gap-6 pt-12 md:pt-0"
             >
-              {/* Eyebrow Subtitle */}
+              {/* Eyebrow Subtitle (Gold Accent) */}
               <motion.div variants={textVariant} className="flex items-center gap-4">
                 <span className="w-8 h-[1px] bg-[#B0926A]"></span>
                 <span className="inline-block text-[10px] md:text-xs uppercase tracking-[0.25em] text-[#B0926A] font-semibold">
@@ -154,12 +157,16 @@ export default function HeroSection() {
                   className="group inline-flex items-center gap-3 text-neutral-900 text-xs sm:text-sm uppercase tracking-[0.15em] font-semibold transition-all"
                 >
                   <span className="relative overflow-hidden pb-1">
-                    {slides[current].buttonText}
-                    {/* Hover animated underline */}
-                    <span className="absolute bottom-0 left-0 w-full h-[1px] bg-neutral-900 transform origin-left transition-transform duration-500 group-hover:scale-x-100 scale-x-0"></span>
+                    {/* Hover text turns gold to blend palettes */}
+                    <span className="inline-block group-hover:text-[#B0926A] transition-colors duration-500">
+                      {slides[current].buttonText}
+                    </span>
+                    {/* Hover animated underline (Gold) */}
+                    <span className="absolute bottom-0 left-0 w-full h-[1px] bg-[#B0926A] transform origin-left transition-transform duration-500 group-hover:scale-x-100 scale-x-0"></span>
                   </span>
                   
-                  <span className="relative flex items-center justify-center w-8 h-8 rounded-full border border-neutral-200 group-hover:border-[#B0926A] group-hover:bg-[#B0926A] transition-colors duration-500">
+                  {/* Hover circle turns green (#03A10E) to match selection and featured initiatives */}
+                  <span className="relative flex items-center justify-center w-8 h-8 rounded-full border border-neutral-200 group-hover:border-[#03A10E] group-hover:bg-[#03A10E] transition-colors duration-500">
                     <svg 
                       className="w-3.5 h-3.5 text-neutral-900 group-hover:text-white transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-all duration-500 ease-out" 
                       fill="none" 
@@ -175,7 +182,7 @@ export default function HeroSection() {
             </motion.div>
           </AnimatePresence>
 
-          {/* Animated Progress Indicators */}
+          {/* Animated Progress Indicators (Green Accent) */}
           <div className="absolute bottom-8 md:bottom-16 left-6 md:left-12 lg:left-24 flex gap-4 pointer-events-auto">
             {slides.map((_, index) => (
               <button
@@ -190,7 +197,7 @@ export default function HeroSection() {
                       initial={{ width: "0%" }}
                       animate={{ width: "100%" }}
                       transition={{ duration: 8, ease: "linear" }}
-                      className="absolute top-0 left-0 h-full bg-[#B0926A]"
+                      className="absolute top-0 left-0 h-full bg-[#03A10E]"
                     />
                   )}
                 </div>

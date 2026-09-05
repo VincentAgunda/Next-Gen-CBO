@@ -97,30 +97,33 @@ export default function Home() {
       </section>
 
       {/* WHO WE ARE */}
-      <section className="relative py-28 lg:py-40 px-6 md:px-12 lg:px-24 bg-[#F5F5F7] border-b border-neutral-200">
+      <section className="relative py-28 lg:py-40 px-6 md:px-12 lg:px-24 bg-[#FAF9F6] border-b border-neutral-200 antialiased selection:bg-[#03A10E] selection:text-white">
         <div className="max-w-7xl mx-auto grid lg:grid-cols-12 gap-12 lg:gap-16 items-start">
           
           {/* Left Column */}
-          <div className="lg:col-span-5 space-y-6">
-            <div className="flex items-center gap-3">
-              <span className="h-[1px] w-6 bg-[#B0926A]"></span>
-              <span className="block text-[#B0926A] text-xs uppercase tracking-[0.3em] font-semibold">
+          <div className="lg:col-span-5 space-y-6 pt-2">
+            {/* Eyebrow Subtitle (Gold Accent Maintained) */}
+            <div className="flex items-center gap-4">
+              <span className="h-[1px] w-8 bg-[#B0926A]"></span>
+              <span className="block text-[#B0926A] text-[10px] md:text-xs uppercase tracking-[0.25em] font-semibold">
                 Who We Are
               </span>
             </div>
             
-            <h2 className="text-3xl md:text-5xl lg:text-[56px] font-normal text-[#111111] tracking-tight leading-[1.1]">
-              Transforming communities through youth innovation.
+            {/* Title (Matched Hero Font, Weight, and Green Highlight) */}
+            <h2 className="text-4xl md:text-5xl lg:text-[56px] font-medium text-neutral-900 tracking-tighter leading-[1.05]">
+              Transforming communities through <span className="text-[#03A10E]">youth innovation.</span>
             </h2>
 
             <div className="pt-6">
+              {/* Button (Updated to match theme, hovers into Green) */}
               <Link
                 to="/about"
-                className="inline-flex items-center gap-4 border border-[#111111] px-8 py-4 text-xs font-semibold uppercase tracking-[0.2em] text-[#111111] hover:bg-[#111111] hover:text-white transition-all duration-500 ease-out rounded-none group shadow-sm"
+                className="inline-flex items-center gap-4 border border-neutral-900 px-8 py-4 text-xs font-semibold uppercase tracking-[0.15em] text-neutral-900 hover:bg-[#03A10E] hover:border-[#03A10E] hover:text-white transition-all duration-500 ease-out rounded-none group shadow-sm"
               >
                 <span>Learn more about us</span>
-                <svg className="w-4 h-4 transform group-hover:translate-x-2 transition-transform duration-500 ease-out" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
-                  <path strokeLinecap="square" strokeLinejoin="miter" d="M5 12h14M12 5l7 7-7 7" />
+                <svg className="w-4 h-4 transform group-hover:translate-x-2 transition-transform duration-500 ease-out" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2.5">
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M5 12h14M12 5l7 7-7 7" />
                 </svg>
               </Link>
             </div>
@@ -129,29 +132,31 @@ export default function Home() {
           {/* Right Column: Cards */}
           <div className="lg:col-span-7 grid md:grid-cols-2 gap-8 items-stretch">
             
-            {/* Card 01: Grassroots Action */}
+            {/* Card 01: Grassroots Action (White & Gold) */}
             <div className="group bg-white p-8 md:p-10 border border-neutral-200 flex flex-col justify-between shadow-sm hover:shadow-xl hover:border-neutral-300 hover:-translate-y-1.5 transition-all duration-500 ease-out cursor-pointer">
-              <span className="text-4xl font-normal md:font-light text-[#B0926A] mb-8 block transition-transform duration-500 ease-out group-hover:scale-105 origin-left">
+              {/* Gold Number */}
+              <span className="text-4xl font-light text-[#B0926A] mb-8 block transition-transform duration-500 ease-out group-hover:scale-105 origin-left">
                 01
               </span>
               <div>
-                <h3 className="text-lg font-semibold uppercase tracking-wider mb-3 text-[#111111]"> Grassroots Action</h3>
-                <p className="text-neutral-600 font-normal md:font-light text-sm md:text-base leading-relaxed">
+                <h3 className="text-lg font-semibold uppercase tracking-wider mb-3 text-neutral-900">Grassroots Action</h3>
+                {/* Matched Hero Body Text */}
+                <p className="text-neutral-500 font-light text-sm md:text-base leading-relaxed">
                   Next-Generation Youth Agribusiness & Research CBO is a youth-led organization in Makueni County, Kenya, committed to transforming communities through sustainable agriculture, environmental conservation, and youth empowerment.
                 </p>
               </div>
             </div>
 
-            {/* Card 02: Evidence-Based */}
-            <div className="group bg-[#B0926A] hover:bg-[#88878B] text-white p-8 md:p-10 border border-[#006400] hover:border-[#004d00] flex flex-col justify-between shadow-sm hover:shadow-xl hover:-translate-y-1.5 transition-all duration-500 ease-out cursor-pointer">
-              <span className="text-4xl font-normal md:font-light text-white mb-8 block transition-transform duration-500 ease-out group-hover:scale-105 origin-left">
+            {/* Card 02: Evidence-Based (Green Theme Shift) */}
+            <div className="group bg-[#03A10E] hover:bg-[#028A0C] text-white p-8 md:p-10 border border-[#03A10E] hover:border-[#028A0C] flex flex-col justify-between shadow-sm hover:shadow-xl hover:-translate-y-1.5 transition-all duration-500 ease-out cursor-pointer">
+              <span className="text-4xl font-light text-white mb-8 block transition-transform duration-500 ease-out group-hover:scale-105 origin-left">
                 02
               </span>
               <div>
                 <h3 className="text-lg font-semibold uppercase tracking-wider mb-3 text-white">
                   Evidence-Based
                 </h3>
-                <p className="text-white/90 font-normal md:font-light text-sm md:text-base leading-relaxed">
+                <p className="text-white/90 font-light text-sm md:text-base leading-relaxed">
                   We unite young innovators, researchers, and entrepreneurs to architect practical solutions to environmental and economic challenges, driving sustainable development and improving regional livelihoods.
                 </p>
               </div>
@@ -169,7 +174,7 @@ export default function Home() {
             decoding="async"
             className="w-full h-[40vh] md:h-[50vh] lg:h-[60vh] object-cover object-[center_30%] opacity-80 grayscale contrast-[1.15] transform-gpu will-change-[transform,filter,opacity] group-hover:scale-105 group-hover:grayscale-0 group-hover:opacity-100 group-hover:contrast-100 transition-[transform,filter,opacity] duration-[1000ms] ease-[cubic-bezier(0.215,0.61,0.355,1)]"
           />
-          <div className="absolute inset-0 bg-gradient-to-b from-transparent via-white/5 to-[#F5F5F7]/20 mix-blend-overlay pointer-events-none group-hover:opacity-0 transition-opacity duration-1000 ease-in-out"></div>
+          <div className="absolute inset-0 bg-gradient-to-b from-transparent via-white/5 to-[#FAF9F6]/20 mix-blend-overlay pointer-events-none group-hover:opacity-0 transition-opacity duration-1000 ease-in-out"></div>
         </div>
       </section>
 
