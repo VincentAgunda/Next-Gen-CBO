@@ -79,7 +79,7 @@ export default function InnovationHub() {
           <div className="max-w-xl">
             <motion.div variants={fadeInUp} className="flex items-center gap-4 mb-4">
               <span className="w-8 h-[1px] bg-[#B0926A]"></span>
-              <span className="block text-[#B0926A] text-[10px] md:text-xs font-semibold uppercase tracking-[0.25em]">
+              <span className="block text-[#B0926A] text-[10px] md:text-xs font-normal uppercase tracking-[0.25em]">
                 Technical Directory
               </span>
             </motion.div>
