@@ -3,6 +3,7 @@ import { collection, addDoc, query, where, onSnapshot } from "firebase/firestore
 import { db } from "../firebase/config";
 import InnovationCard from "../components/InnovationCard";
 import { useForm } from "react-hook-form";
+import { motion, AnimatePresence } from "framer-motion";
 
 // Permanent Flagship Project Data with Official Attribution
 const FLAGSHIP_MUSHROOM_PROJECT = {
@@ -13,6 +14,27 @@ const FLAGSHIP_MUSHROOM_PROJECT = {
   image: "/Innovation/mush4.png",
   status: "Deployed Protocol",
   category: "Mycology Automation"
+};
+
+// --- Animation Configs ---
+const fadeInUp = {
+  hidden: { opacity: 0, y: 40 },
+  visible: { 
+    opacity: 1, 
+    y: 0, 
+    transition: { duration: 0.8, ease: [0.22, 1, 0.36, 1] } 
+  }
+};
+
+const staggerContainer = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.15,
+      delayChildren: 0.1,
+    }
+  }
 };
 
 export default function InnovationHub() {
@@ -44,127 +66,155 @@ export default function InnovationHub() {
   };
 
   return (
-    <div className="bg-[#f4f4f4] min-h-screen py-28 px-6 lg:px-12 text-neutral-900">
-      <div className="max-w-[1400px] mx-auto">
+    <div className="font-sans text-black bg-[#f4f4f4] antialiased selection:bg-[#03A10E] selection:text-white overflow-hidden min-h-screen py-28 px-[6vw] md:px-12 lg:px-24">
+      <div className="max-w-[1440px] mx-auto">
         
         {/* Header & Submit Control Header */}
-        <div className="flex flex-col md:flex-row justify-between items-start md:items-end gap-8 mb-20 pb-8 border-b border-neutral-200">
+        <motion.div 
+          initial="hidden"
+          animate="visible"
+          variants={staggerContainer}
+          className="flex flex-col md:flex-row justify-between items-start md:items-end gap-8 mb-20 pb-8 border-b border-[#E5E5E5] transform-gpu"
+        >
           <div className="max-w-xl">
-            <span className="text-[#C0A175] font-medium text-xs uppercase tracking-[0.3em] block mb-3">
-              Technical Directory
-            </span>
-            <h1 className="text-4xl lg:text-5xl font-light text-neutral-900 tracking-tight mb-4">
-              Innovation Hub
-            </h1>
-            <p className="text-neutral-500 font-light text-sm sm:text-base leading-relaxed">
+            <motion.div variants={fadeInUp} className="flex items-center gap-4 mb-4">
+              <span className="w-8 h-[1px] bg-[#B0926A]"></span>
+              <span className="block text-[#B0926A] text-[10px] md:text-xs font-semibold uppercase tracking-[0.25em]">
+                Technical Directory
+              </span>
+            </motion.div>
+            
+            <motion.h1 variants={fadeInUp} className="text-5xl md:text-7xl font-normal leading-[0.95] tracking-tight text-black mb-6">
+              Innovation <br />
+              <span className="text-[#03A10E]">Hub.</span>
+            </motion.h1>
+            
+            <motion.p variants={fadeInUp} className="text-black opacity-85 font-normal text-[16px] md:text-[18px] leading-relaxed">
               Pioneering systems and hardware architectures driving deep agricultural automation.
-            </p>
+            </motion.p>
           </div>
 
-          <button
+          <motion.button
+            variants={fadeInUp}
             onClick={() => setShowForm(!showForm)}
-            className="inline-block border border-neutral-900 bg-neutral-900 text-white hover:bg-[#C0A175] hover:border-[#C0A175] text-xs uppercase tracking-[0.2em] font-semibold px-8 py-4 transition-colors duration-300"
+            className="inline-block border border-black bg-black text-white hover:bg-[#B0926A] hover:border-[#B0926A] text-[10px] md:text-xs uppercase tracking-[0.25em] font-semibold px-8 py-4 transition-colors duration-300"
           >
             {showForm ? "Close Form Protocol" : "Submit Enterprise Spec"}
-          </button>
-        </div>
+          </motion.button>
+        </motion.div>
 
         {/* Enterprise Spec Submission Form */}
-        {showForm && (
-          <div className="bg-white p-10 lg:p-16 border border-neutral-200 max-w-3xl mx-auto mb-20 shadow-sm transition-all duration-500">
-            <span className="text-[#C0A175] font-medium text-xs uppercase tracking-[0.3em] block mb-2">
-              Blueprint Submission
-            </span>
-            <h3 className="text-2xl lg:text-3xl font-light text-neutral-900 tracking-tight mb-8">
-              Propose New Agricultural System
-            </h3>
+        <AnimatePresence>
+          {showForm && (
+            <motion.div 
+              initial={{ opacity: 0, height: 0, y: -20 }}
+              animate={{ opacity: 1, height: "auto", y: 0 }}
+              exit={{ opacity: 0, height: 0, y: -20 }}
+              transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
+              className="overflow-hidden"
+            >
+              <div className="bg-white p-10 lg:p-16 border border-[#E5E5E5] max-w-3xl mx-auto mb-20 shadow-sm">
+                <span className="text-[#B0926A] font-semibold text-[10px] md:text-xs uppercase tracking-[0.25em] block mb-2">
+                  Blueprint Submission
+                </span>
+                <h3 className="text-2xl lg:text-3xl font-normal text-black tracking-tight mb-8">
+                  Propose New Agricultural System
+                </h3>
 
-            <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
-              <div>
-                <label className="block text-[#C0A175] font-medium text-xs uppercase tracking-[0.25em] mb-2">
-                  Innovation Name
-                </label>
-                <input 
-                  {...register("title", { required: true })} 
-                  placeholder="e.g., Automated Ambient Moisture Controller" 
-                  className="w-full bg-[#fbfbfb] border border-neutral-300 p-4 text-sm font-light text-neutral-900 placeholder-neutral-400 focus:outline-none focus:border-[#C0A175] transition-colors" 
-                />
-                {errors.title && <span className="text-red-500 text-xs mt-2 block">Field mandatory</span>}
+                <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
+                  <div>
+                    <label className="block text-[#B0926A] font-semibold text-[10px] md:text-xs uppercase tracking-[0.25em] mb-3">
+                      Innovation Name
+                    </label>
+                    <input 
+                      {...register("title", { required: true })} 
+                      placeholder="e.g., Automated Ambient Moisture Controller" 
+                      className="w-full bg-white border border-[#E5E5E5] p-4 text-sm font-normal text-black placeholder-[#757575] focus:outline-none focus:border-[#B0926A] transition-colors" 
+                    />
+                    {errors.title && <span className="text-red-500 text-xs mt-2 block">Field mandatory</span>}
+                  </div>
+
+                  <div>
+                    <label className="block text-[#B0926A] font-semibold text-[10px] md:text-xs uppercase tracking-[0.25em] mb-3">
+                      Technical Abstract
+                    </label>
+                    <textarea 
+                      {...register("description", { required: true })} 
+                      rows={4} 
+                      placeholder="Comprehensive description of process workflows and technical metrics..." 
+                      className="w-full bg-white border border-[#E5E5E5] p-4 text-sm font-normal text-black placeholder-[#757575] focus:outline-none focus:border-[#B0926A] transition-colors resize-none" 
+                    />
+                    {errors.description && <span className="text-red-500 text-xs mt-2 block">Abstract mandatory</span>}
+                  </div>
+
+                  <div>
+                    <label className="block text-[#B0926A] font-semibold text-[10px] md:text-xs uppercase tracking-[0.25em] mb-3">
+                      Core Problem Solved
+                    </label>
+                    <input 
+                      {...register("problemSolved")} 
+                      placeholder="e.g., High regional temperature shock mitigation" 
+                      className="w-full bg-white border border-[#E5E5E5] p-4 text-sm font-normal text-black placeholder-[#757575] focus:outline-none focus:border-[#B0926A] transition-colors" 
+                    />
+                  </div>
+
+                  <div className="grid md:grid-cols-2 gap-6">
+                    <div>
+                      <label className="block text-[#B0926A] font-semibold text-[10px] md:text-xs uppercase tracking-[0.25em] mb-3">
+                        Lead Innovator Name
+                      </label>
+                      <input 
+                        {...register("innovator", { required: true })} 
+                        placeholder="Full Authorized Legal Name" 
+                        className="w-full bg-white border border-[#E5E5E5] p-4 text-sm font-normal text-black placeholder-[#757575] focus:outline-none focus:border-[#B0926A] transition-colors" 
+                      />
+                    </div>
+                    <div>
+                      <label className="block text-[#B0926A] font-semibold text-[10px] md:text-xs uppercase tracking-[0.25em] mb-3">
+                        System Classification
+                      </label>
+                      <input 
+                        {...register("category")} 
+                        placeholder="e.g., Mycology Automation" 
+                        className="w-full bg-white border border-[#E5E5E5] p-4 text-sm font-normal text-black placeholder-[#757575] focus:outline-none focus:border-[#B0926A] transition-colors" 
+                      />
+                    </div>
+                  </div>
+
+                  <div>
+                    <label className="block text-[#B0926A] font-semibold text-[10px] md:text-xs uppercase tracking-[0.25em] mb-3">
+                      Schematic Image URL
+                    </label>
+                    <input 
+                      {...register("image")} 
+                      placeholder="Cloudinary Asset Reference URL" 
+                      className="w-full bg-white border border-[#E5E5E5] p-4 text-sm font-normal text-black placeholder-[#757575] focus:outline-none focus:border-[#B0926A] transition-colors" 
+                    />
+                  </div>
+
+                  <button 
+                    type="submit" 
+                    className="w-full border border-black bg-black text-white hover:bg-[#03A10E] hover:border-[#03A10E] py-5 text-[10px] md:text-xs uppercase tracking-[0.25em] font-semibold transition-colors duration-300 mt-4"
+                  >
+                    Deploy System Blueprint for Authorization
+                  </button>
+                </form>
               </div>
-
-              <div>
-                <label className="block text-[#C0A175] font-medium text-xs uppercase tracking-[0.25em] mb-2">
-                  Technical Abstract
-                </label>
-                <textarea 
-                  {...register("description", { required: true })} 
-                  rows={4} 
-                  placeholder="Comprehensive description of process workflows and technical metrics..." 
-                  className="w-full bg-[#fbfbfb] border border-neutral-300 p-4 text-sm font-light text-neutral-900 placeholder-neutral-400 focus:outline-none focus:border-[#C0A175] transition-colors" 
-                />
-                {errors.description && <span className="text-red-500 text-xs mt-2 block">Abstract mandatory</span>}
-              </div>
-
-              <div>
-                <label className="block text-[#C0A175] font-medium text-xs uppercase tracking-[0.25em] mb-2">
-                  Core Problem Solved
-                </label>
-                <input 
-                  {...register("problemSolved")} 
-                  placeholder="e.g., High regional temperature shock mitigation" 
-                  className="w-full bg-[#fbfbfb] border border-neutral-300 p-4 text-sm font-light text-neutral-900 placeholder-neutral-400 focus:outline-none focus:border-[#C0A175] transition-colors" 
-                />
-              </div>
-
-              <div className="grid md:grid-cols-2 gap-6">
-                <div>
-                  <label className="block text-[#C0A175] font-medium text-xs uppercase tracking-[0.25em] mb-2">
-                    Lead Innovator Name
-                  </label>
-                  <input 
-                    {...register("innovator", { required: true })} 
-                    placeholder="Full Authorized Legal Name" 
-                    className="w-full bg-[#fbfbfb] border border-neutral-300 p-4 text-sm font-light text-neutral-900 placeholder-neutral-400 focus:outline-none focus:border-[#C0A175] transition-colors" 
-                  />
-                </div>
-                <div>
-                  <label className="block text-[#C0A175] font-medium text-xs uppercase tracking-[0.25em] mb-2">
-                    System Classification Category
-                  </label>
-                  <input 
-                    {...register("category")} 
-                    placeholder="e.g., Mycology Automation" 
-                    className="w-full bg-[#fbfbfb] border border-neutral-300 p-4 text-sm font-light text-neutral-900 placeholder-neutral-400 focus:outline-none focus:border-[#C0A175] transition-colors" 
-                  />
-                </div>
-              </div>
-
-              <div>
-                <label className="block text-[#C0A175] font-medium text-xs uppercase tracking-[0.25em] mb-2">
-                  Schematic Image URL
-                </label>
-                <input 
-                  {...register("image")} 
-                  placeholder="Cloudinary Asset Reference URL" 
-                  className="w-full bg-[#fbfbfb] border border-neutral-300 p-4 text-sm font-light text-neutral-900 placeholder-neutral-400 focus:outline-none focus:border-[#C0A175] transition-colors" 
-                />
-              </div>
-
-              <button 
-                type="submit" 
-                className="w-full border border-neutral-900 bg-neutral-900 text-white hover:bg-[#C0A175] hover:border-[#C0A175] py-4 text-xs uppercase tracking-[0.2em] font-semibold transition-colors duration-300 mt-4"
-              >
-                Deploy System Blueprint for Authorization
-              </button>
-            </form>
-          </div>
-        )}
+            </motion.div>
+          )}
+        </AnimatePresence>
 
         {/* SECTION 1: FLAGSHIP PROJECT */}
-        <div className="mb-20">
-          <div className="flex items-center gap-3 mb-8">
-            <span className="h-[1px] w-8 bg-[#C0A175]"></span>
-            <span className="text-[#C0A175] font-medium text-xs uppercase tracking-[0.25em]">
+        <motion.div 
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-100px" }}
+          transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
+          className="mb-24"
+        >
+          <div className="flex items-center gap-4 mb-10">
+            <span className="h-[1px] w-12 bg-[#B0926A]"></span>
+            <span className="text-[#B0926A] font-semibold text-[10px] md:text-xs uppercase tracking-[0.25em]">
               Flagship R&D Architecture
             </span>
           </div>
@@ -177,33 +227,54 @@ export default function InnovationHub() {
             status={FLAGSHIP_MUSHROOM_PROJECT.status}
             category={FLAGSHIP_MUSHROOM_PROJECT.category}
           />
-        </div>
+        </motion.div>
 
         {/* SECTION 2: COMMUNITY SUBMISSIONS */}
-        <div className="flex items-center gap-3 mb-8 pt-12 border-t border-neutral-200">
-          <span className="h-[1px] w-8 bg-neutral-400"></span>
-          <span className="text-neutral-400 font-medium text-xs uppercase tracking-[0.25em]">
+        <motion.div 
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.8 }}
+          className="flex items-center gap-4 mb-12 pt-16 border-t border-[#E5E5E5]"
+        >
+          <span className="h-[1px] w-12 bg-[#757575]"></span>
+          <span className="text-[#757575] font-semibold text-[10px] md:text-xs uppercase tracking-[0.25em]">
             Authenticated Community Ledgers ({innovations.length})
           </span>
-        </div>
+        </motion.div>
 
         <div className="flex flex-col gap-12 lg:gap-16 items-center w-full">
           {innovations.length === 0 ? (
-            <div className="w-full bg-white border border-neutral-200 p-16 text-center text-neutral-500 font-light text-sm lg:text-base">
+            <motion.div 
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              className="w-full bg-white border border-[#E5E5E5] p-16 text-center text-[#757575] font-normal text-[16px]"
+            >
               No additional community innovations verified on ledger yet. Submit a system specification above to initiate technical review.
-            </div>
+            </motion.div>
           ) : (
-            innovations.map((inv) => (
-              <InnovationCard 
-                key={inv.id} 
-                title={inv.title}
-                description={inv.description}
-                innovator={inv.innovator}
-                image={inv.image || "https://images.unsplash.com/photo-1516253593875-bd7ba052fbc5?auto=format&fit=crop&q=80&w=800"} 
-                status={inv.status === "approved" ? "Verified System" : (inv.category || "Active Prototype")} 
-                category={inv.category}
-              />
-            ))
+            <AnimatePresence>
+              {innovations.map((inv) => (
+                <motion.div
+                  key={inv.id}
+                  layout
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, scale: 0.95 }}
+                  transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
+                  className="w-full"
+                >
+                  <InnovationCard 
+                    title={inv.title}
+                    description={inv.description}
+                    innovator={inv.innovator}
+                    image={inv.image || "https://images.unsplash.com/photo-1516253593875-bd7ba052fbc5?auto=format&fit=crop&q=80&w=800"} 
+                    status={inv.status === "approved" ? "Verified System" : (inv.category || "Active Prototype")} 
+                    category={inv.category}
+                  />
+                </motion.div>
+              ))}
+            </AnimatePresence>
           )}
         </div>
 
