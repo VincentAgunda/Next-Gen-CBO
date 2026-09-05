@@ -97,7 +97,7 @@ export default function Home() {
       </section>
 
       {/* WHO WE ARE */}
-      <section className="relative py-28 lg:py-40 px-6 md:px-12 lg:px-24 bg-[#FAF9F6] border-b border-neutral-200 antialiased selection:bg-[#03A10E] selection:text-white">
+      <section className="relative py-28 lg:py-40 px-6 md:px-12 lg:px-24 bg-[#F5F5F7] border-b border-neutral-200 antialiased selection:bg-[#03A10E] selection:text-white">
         <div className="max-w-7xl mx-auto grid lg:grid-cols-12 gap-12 lg:gap-16 items-start">
           
           {/* Left Column */}
