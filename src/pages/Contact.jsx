@@ -57,12 +57,12 @@ export default function Contact() {
           </span>
         </motion.div>
 
-        <motion.h1 variants={fadeInUp} className="text-5xl md:text-7xl lg:text-[110px] font-normal leading-[0.95] tracking-tight text-black mb-12">
-          Contact <br />
+        <motion.h1 variants={fadeInUp} className="max-w-5xl text-5xl sm:text-6xl md:text-7xl lg:text-[4.5rem] xl:text-[5.5rem] font-medium text-neutral-900 tracking-tighter leading-[1.02]">
+          Contact {" "}
           <span className="text-[#03A10E]">Secretariat.</span>
         </motion.h1>
         
-        <motion.p variants={fadeInUp} className="max-w-3xl text-black opacity-85 font-normal text-[16px] md:text-[18px] leading-relaxed">
+        <motion.p variants={fadeInUp} className="max-w-2xl mt-8 md:mt-10 text-neutral-600 font-normal text-base md:text-lg leading-relaxed">
           Route structural ecosystem questions or operational ledger verifications directly to our registered Makueni office location.
         </motion.p>
       </motion.header>

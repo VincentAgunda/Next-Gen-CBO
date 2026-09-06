@@ -60,7 +60,7 @@ export default function Events() {
           </h1>
 
           {/* Description */}
-          <p className="max-w-2xl mt-8 md:mt-10 text-neutral-500 font-light text-base md:text-lg leading-relaxed">
+          <p className="max-w-2xl mt-8 md:mt-10 text-neutral-600 font-normal text-base md:text-lg leading-relaxed">
             Join our structured field workshops, technology-transfer
             briefings, research presentations, and community forums designed
             to connect ideas with practical action.
