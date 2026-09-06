@@ -107,7 +107,7 @@ const InitiativeItem = ({ initiative, index }) => {
               transition={{ duration: 0.6, ease: premiumEasing }}
               className="overflow-hidden"
             >
-              <p className="max-w-xl text-neutral-500 font-light text-base md:text-lg leading-relaxed pt-2 pb-6">
+              <p className="max-w-xl text-neutral-500 font-normal text-base md:text-lg leading-relaxed pt-2 pb-6">
                 {initiative.description}
               </p>
               
@@ -247,7 +247,7 @@ export default function FeaturedInitiatives() {
           </h1>
 
           {/* Intro */}
-          <p className="max-w-2xl mt-8 md:mt-10 text-neutral-500 font-light text-base md:text-lg leading-relaxed">
+          <p className="max-w-2xl mt-8 md:mt-10 text-neutral-500 font-normal text-base md:text-lg leading-relaxed">
             Explore the programs, research systems, and community initiatives
             shaping sustainable livelihoods through agriculture, technology,
             innovation, and practical research.
