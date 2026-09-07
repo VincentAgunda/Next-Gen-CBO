@@ -27,12 +27,11 @@ const slides = [
   }
 ];
 
-// 1. Replaced static easing with a dynamic, highly-polished bouncy spring
-const bouncySpring = {
+const smoothSpring = {
   type: "spring",
-  stiffness: 120, // Higher stiffness = faster snap
-  damping: 12,    // Lower damping = more bounce/oscillation
-  mass: 0.9,      // Slight weight for realism
+  stiffness: 80, 
+  damping: 15,    
+  mass: 0.8,      
   restDelta: 0.001
 };
 
@@ -41,36 +40,33 @@ const staggerContainer = {
   show: {
     opacity: 1,
     transition: {
-      staggerChildren: 0.15,
-      delayChildren: 0.1,
+      staggerChildren: 0.1,
+      delayChildren: 0.05,
     },
   },
   exit: { 
     opacity: 0,
-    transition: { duration: 0.3, ease: "easeOut" }
+    transition: { duration: 0.2, ease: "easeOut" }
   }
 };
 
-// 2. Added a slight scale down to the hidden state to amplify the bounce effect on reveal
 const textVariant = {
-  hidden: { opacity: 0, y: 50, scale: 0.95 },
+  hidden: { opacity: 0, y: 30, scale: 0.98 },
   show: { 
     opacity: 1, 
     y: 0, 
     scale: 1,
-    transition: bouncySpring 
+    transition: smoothSpring 
   },
 };
 
 export default function HeroSection() {
   const [current, setCurrent] = useState(0);
 
-  // Interval logic that resets accurately on manual interaction
   useEffect(() => {
     const timer = setInterval(() => {
       setCurrent((prev) => (prev === slides.length - 1 ? 0 : prev + 1));
     }, 8000);
-    
     return () => clearInterval(timer);
   }, [current]);
 
@@ -87,26 +83,30 @@ export default function HeroSection() {
               initial={false}
               animate={{
                 opacity: isActive ? 1 : 0,
-                zIndex: isActive ? 10 : 0,
+                // FIX 1: Active goes to 10, inactive goes to 1 (not 0) so it never falls completely behind the background
+                zIndex: isActive ? 10 : 1, 
               }}
-              // Smoothed the crossfade to blend perfectly with the bouncy text
-              transition={{ duration: 0.8, ease: "easeInOut" }} 
-              className="absolute inset-0 overflow-hidden"
+              transition={{ 
+                // FIX 2: Delay the fade-out of the old slide by 0.4s to prevent white background bleed.
+                opacity: { duration: 0.8, ease: "easeInOut", delay: isActive ? 0 : 0.4 },
+                // FIX 3: Instantly update Z-index so the new image sits cleanly on top
+                zIndex: { duration: 0 } 
+              }} 
+              className="absolute inset-0 overflow-hidden bg-neutral-900" // Added dark undercoat for safety
             >
               <motion.img 
                 initial={false}
-                animate={{
-                  scale: isActive ? 1 : 1.15, // Increased scale difference for a more dramatic, smooth settle
-                }}
+                animate={{ scale: isActive ? 1 : 1.15 }}
                 transition={{ 
-                  // Adding a slow, heavy spring to the image scale creates a luxurious feel
-                  scale: isActive 
-                    ? { type: "spring", stiffness: 40, damping: 20, mass: 2 }
-                    : { duration: 1.5, ease: "easeOut" }
+                  scale: { duration: 1.4, ease: [0.16, 1, 0.3, 1] } 
                 }} 
+                style={{
+                  transform: "translateZ(0)", 
+                }}
                 src={slide.image}
                 alt={`Hero background ${index + 1}`}
-                loading={index === 0 ? "eager" : "lazy"} 
+                // FIX 4: Removed lazy loading entirely. Both images will preload, stopping network flashes.
+                loading="eager" 
                 decoding="async"
                 className="absolute inset-0 w-full h-full object-cover opacity-95 brightness-95 origin-center"
               />
@@ -115,11 +115,12 @@ export default function HeroSection() {
         })}
       </div>
 
-      {/* LEFT SIDE: Diagonal Background Split (Premium & Sharp) */}
+      {/* LEFT SIDE: Diagonal Background Split */}
       <div 
         className="absolute inset-y-0 left-0 w-full md:w-[58%] z-10 hidden md:block"
         style={{ 
-          filter: "drop-shadow(15px 0px 25px rgba(0, 0, 0, 0.25))" 
+          filter: "drop-shadow(15px 0px 25px rgba(0, 0, 0, 0.15))", 
+          WebkitTransform: "translate3d(0,0,0)" 
         }}
       >
         <div 
@@ -146,8 +147,9 @@ export default function HeroSection() {
               animate="show"
               exit="exit"
               className="max-w-xl flex flex-col gap-6 pt-12 md:pt-0"
+              style={{ willChange: "opacity, transform" }}
             >
-              {/* Eyebrow Subtitle (Gold Accent) */}
+              {/* Eyebrow Subtitle */}
               <motion.div variants={textVariant} className="flex items-center gap-4">
                 <span className="w-8 h-[1px] bg-[#B0926A]"></span>
                 <span className="inline-block text-[10px] md:text-xs uppercase tracking-[0.25em] text-[#B0926A] font-semibold">
@@ -172,13 +174,12 @@ export default function HeroSection() {
               </motion.p>
               
               {/* Interactive Button */}
-              {/* 3. Added whileHover and whileTap spring properties to the button wrapper */}
               <motion.div 
                 variants={textVariant} 
                 className="pt-4 pb-12 md:pb-0 origin-left inline-block"
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
-                transition={{ type: "spring", stiffness: 400, damping: 10 }}
+                transition={{ type: "spring", stiffness: 300, damping: 15 }} 
               >
                 <Link
                   to={slides[current].link}
@@ -207,7 +208,7 @@ export default function HeroSection() {
             </motion.div>
           </AnimatePresence>
 
-          {/* Animated Progress Indicators (Green Accent) */}
+          {/* Animated Progress Indicators */}
           <div className="absolute bottom-8 md:bottom-16 left-6 md:left-12 lg:left-24 flex gap-4 pointer-events-auto">
             {slides.map((_, index) => (
               <motion.button
@@ -215,10 +216,9 @@ export default function HeroSection() {
                 onClick={() => setCurrent(index)}
                 className="group py-4 flex items-center focus:outline-none origin-center"
                 aria-label={`Go to slide ${index + 1}`}
-                // 4. Added tiny interaction springs to the navigation dots
-                whileHover={{ scale: 1.1, y: -2 }}
-                whileTap={{ scale: 0.9 }}
-                transition={{ type: "spring", stiffness: 400, damping: 10 }}
+                whileHover={{ scale: 1.05, y: -2 }}
+                whileTap={{ scale: 0.95 }}
+                transition={{ duration: 0.2 }}
               >
                 <div className="h-[2px] w-12 md:w-16 bg-neutral-200 relative overflow-hidden rounded-full">
                   {current === index && (
@@ -227,6 +227,7 @@ export default function HeroSection() {
                       animate={{ width: "100%" }}
                       transition={{ duration: 8, ease: "linear" }}
                       className="absolute top-0 left-0 h-full bg-[#03A10E]"
+                      style={{ willChange: "width" }}
                     />
                   )}
                 </div>
