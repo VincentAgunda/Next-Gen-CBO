@@ -27,30 +27,38 @@ const slides = [
   }
 ];
 
-// Custom easing for Apple-like spring/deceleration feel
-const smoothEasing = [0.16, 1, 0.3, 1];
+// 1. Replaced static easing with a dynamic, highly-polished bouncy spring
+const bouncySpring = {
+  type: "spring",
+  stiffness: 120, // Higher stiffness = faster snap
+  damping: 12,    // Lower damping = more bounce/oscillation
+  mass: 0.9,      // Slight weight for realism
+  restDelta: 0.001
+};
 
 const staggerContainer = {
   hidden: { opacity: 0 },
   show: {
     opacity: 1,
     transition: {
-      staggerChildren: 0.1,
+      staggerChildren: 0.15,
       delayChildren: 0.1,
     },
   },
   exit: { 
     opacity: 0,
-    transition: { duration: 0.2, ease: "easeIn" }
+    transition: { duration: 0.3, ease: "easeOut" }
   }
 };
 
+// 2. Added a slight scale down to the hidden state to amplify the bounce effect on reveal
 const textVariant = {
-  hidden: { opacity: 0, y: 20 },
+  hidden: { opacity: 0, y: 50, scale: 0.95 },
   show: { 
     opacity: 1, 
     y: 0, 
-    transition: { duration: 0.8, ease: smoothEasing } 
+    scale: 1,
+    transition: bouncySpring 
   },
 };
 
@@ -81,22 +89,26 @@ export default function HeroSection() {
                 opacity: isActive ? 1 : 0,
                 zIndex: isActive ? 10 : 0,
               }}
-              transition={{ duration: 1.2, ease: "easeInOut" }} 
+              // Smoothed the crossfade to blend perfectly with the bouncy text
+              transition={{ duration: 0.8, ease: "easeInOut" }} 
               className="absolute inset-0 overflow-hidden"
             >
               <motion.img 
                 initial={false}
                 animate={{
-                  scale: isActive ? 1 : 1.08, // Zooms out slowly while active
+                  scale: isActive ? 1 : 1.15, // Increased scale difference for a more dramatic, smooth settle
                 }}
                 transition={{ 
-                  scale: { duration: 10, ease: "linear" }
+                  // Adding a slow, heavy spring to the image scale creates a luxurious feel
+                  scale: isActive 
+                    ? { type: "spring", stiffness: 40, damping: 20, mass: 2 }
+                    : { duration: 1.5, ease: "easeOut" }
                 }} 
                 src={slide.image}
                 alt={`Hero background ${index + 1}`}
-                loading={index === 0 ? "eager" : "lazy"} // Optimize FCP
+                loading={index === 0 ? "eager" : "lazy"} 
                 decoding="async"
-                className="absolute inset-0 w-full h-full object-cover opacity-95 brightness-95"
+                className="absolute inset-0 w-full h-full object-cover opacity-95 brightness-95 origin-center"
               />
             </motion.div>
           );
@@ -107,7 +119,6 @@ export default function HeroSection() {
       <div 
         className="absolute inset-y-0 left-0 w-full md:w-[58%] z-10 hidden md:block"
         style={{ 
-          // Applies a crisp, realistic shadow exactly along the diagonal cut
           filter: "drop-shadow(15px 0px 25px rgba(0, 0, 0, 0.25))" 
         }}
       >
@@ -115,7 +126,6 @@ export default function HeroSection() {
           className="w-full h-full bg-white relative overflow-hidden"
           style={{ clipPath: "polygon(0 0, 100% 0, 85% 100%, 0% 100%)", willChange: "transform" }}
         >
-          {/* Extremely subtle linear gradient for a polished "matte" sheen instead of a muddy shadow */}
           <div className="absolute inset-0 bg-gradient-to-br from-white via-white to-neutral-100 opacity-60"></div>
         </div>
       </div>
@@ -156,27 +166,31 @@ export default function HeroSection() {
               {/* Body Text */}
               <motion.p 
                 variants={textVariant}
-                className="max-w-md text-neutral-500 font-light text-base md:text-lg leading-relaxed"
+                className="max-w-md text-neutral-500 font-normal text-base md:text-lg leading-relaxed"
               >
                 {slides[current].description}
               </motion.p>
               
               {/* Interactive Button */}
-              <motion.div variants={textVariant} className="pt-4 pb-12 md:pb-0">
+              {/* 3. Added whileHover and whileTap spring properties to the button wrapper */}
+              <motion.div 
+                variants={textVariant} 
+                className="pt-4 pb-12 md:pb-0 origin-left inline-block"
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+                transition={{ type: "spring", stiffness: 400, damping: 10 }}
+              >
                 <Link
                   to={slides[current].link}
                   className="group inline-flex items-center gap-3 text-neutral-900 text-xs sm:text-sm uppercase tracking-[0.15em] font-semibold transition-all"
                 >
                   <span className="relative overflow-hidden pb-1">
-                    {/* Hover text turns gold to blend palettes */}
                     <span className="inline-block group-hover:text-[#B0926A] transition-colors duration-500">
                       {slides[current].buttonText}
                     </span>
-                    {/* Hover animated underline (Gold) */}
                     <span className="absolute bottom-0 left-0 w-full h-[1px] bg-[#B0926A] transform origin-left transition-transform duration-500 group-hover:scale-x-100 scale-x-0"></span>
                   </span>
                   
-                  {/* Hover circle turns green to match selection */}
                   <span className="relative flex items-center justify-center w-8 h-8 rounded-full border border-neutral-200 group-hover:border-[#03A10E] group-hover:bg-[#03A10E] transition-colors duration-500">
                     <svg 
                       className="w-3.5 h-3.5 text-neutral-900 group-hover:text-white transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-all duration-500 ease-out" 
@@ -196,11 +210,15 @@ export default function HeroSection() {
           {/* Animated Progress Indicators (Green Accent) */}
           <div className="absolute bottom-8 md:bottom-16 left-6 md:left-12 lg:left-24 flex gap-4 pointer-events-auto">
             {slides.map((_, index) => (
-              <button
+              <motion.button
                 key={index}
                 onClick={() => setCurrent(index)}
-                className="group py-4 flex items-center focus:outline-none"
+                className="group py-4 flex items-center focus:outline-none origin-center"
                 aria-label={`Go to slide ${index + 1}`}
+                // 4. Added tiny interaction springs to the navigation dots
+                whileHover={{ scale: 1.1, y: -2 }}
+                whileTap={{ scale: 0.9 }}
+                transition={{ type: "spring", stiffness: 400, damping: 10 }}
               >
                 <div className="h-[2px] w-12 md:w-16 bg-neutral-200 relative overflow-hidden rounded-full">
                   {current === index && (
@@ -212,7 +230,7 @@ export default function HeroSection() {
                     />
                   )}
                 </div>
-              </button>
+              </motion.button>
             ))}
           </div>
 
