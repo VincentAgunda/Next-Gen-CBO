@@ -26,6 +26,13 @@ const sectionsConfig = [
   { id: "action", color: "#3B3A38", dotColor: "bg-white" },
 ];
 
+// Navigation Links for Massive Typography Section
+const massiveTypographyLinks = [
+  { title: "Explore All Programs", path: "/programs" },
+  { title: "The Innovation Hub", path: "/innovation-hub" },
+  { title: "Become A Member", path: "/membership" },
+];
+
 export default function Home() {
   const sectionRefs = useRef([]);
   const dotRefs = useRef([]);
@@ -53,6 +60,7 @@ export default function Home() {
     return () => unsubscribe();
   }, []);
 
+  // Intersection Observer for dot navigation
   useEffect(() => {
     const observer = new IntersectionObserver(
       (entries) => {
@@ -104,7 +112,7 @@ export default function Home() {
     <div className="font-sans text-[#111111] antialiased selection:bg-[#d2b79b] selection:text-black overflow-hidden scroll-smooth bg-[#F5F5F7]">
       
       {/* Scroll Progress Indicator */}
-      <div className="fixed right-6 top-1/2 -translate-y-1/2 z-50 flex flex-col items-end gap-3 pointer-events-none">
+      <div className="fixed right-6 top-1/2 -translate-y-1/2 z-50 flex flex-col items-end gap-3 pointer-events-none hidden md:flex">
         {sectionsConfig.map((config, idx) => (
           <div
             key={idx}
@@ -116,13 +124,15 @@ export default function Home() {
         ))}
       </div>
 
+      {/* SECTION 0: Hero */}
       <section ref={setSectionRef(0)} className="bg-[#F5F5F7]">
         <HeroSection />
       </section>
 
-      {/* WHO WE ARE */}
-      <section className="relative py-28 lg:py-40 px-6 md:px-12 lg:px-24 bg-[#F5F5F7] border-b border-neutral-200 antialiased selection:bg-[#03A10E] selection:text-white">
+      {/* SECTION 1: WHO WE ARE */}
+      <section ref={setSectionRef(1)} className="relative py-28 lg:py-40 px-6 md:px-12 lg:px-24 bg-[#F5F5F7] border-b border-neutral-200 selection:bg-[#03A10E] selection:text-white">
         <div className="max-w-7xl mx-auto grid lg:grid-cols-12 gap-12 lg:gap-16 items-start">
+          
           {/* Left Column */}
           <div className="lg:col-span-5 space-y-6 pt-2">
             <div className="flex items-center gap-4">
@@ -192,7 +202,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Section 2: Three Pillars */}
+      {/* SECTION 2: Three Pillars */}
       <section ref={setSectionRef(2)} className="py-28 lg:py-36 bg-[#e5e5e5] border-b border-neutral-300/50">
         <div className="max-w-7xl mx-auto px-6 lg:px-12">
           <div className="flex flex-col md:flex-row md:items-end justify-between mb-16 gap-6">
@@ -216,6 +226,8 @@ export default function Home() {
           </div>
           
           <div className="grid md:grid-cols-3 gap-px bg-neutral-400 border border-neutral-400 shadow-sm overflow-hidden rounded-none">
+            
+            {/* Pillar 1 */}
             <div className="bg-[#f0f0f0]/90 backdrop-blur-sm hover:bg-white p-8 lg:p-12 flex flex-col justify-between min-h-[340px] group transition-colors duration-700 ease-out">
               <div>
                 <span className="text-xs font-mono text-[#B0926A] block mb-6">01 // PILLAR</span>
@@ -234,6 +246,7 @@ export default function Home() {
               </div>
             </div>
 
+            {/* Pillar 2 */}
             <div className="bg-[#f0f0f0]/90 backdrop-blur-sm hover:bg-white p-8 lg:p-12 flex flex-col justify-between min-h-[340px] group transition-colors duration-700 ease-out">
               <div>
                 <span className="text-xs font-mono text-[#B0926A] block mb-6">02 // PILLAR</span>
@@ -252,6 +265,7 @@ export default function Home() {
               </div>
             </div>
 
+            {/* Pillar 3 */}
             <div className="bg-[#f0f0f0]/90 backdrop-blur-sm hover:bg-white p-8 lg:p-12 flex flex-col justify-between min-h-[340px] group transition-colors duration-700 ease-out">
               <div>
                 <span className="text-xs font-mono text-[#B0926A] block mb-6">03 // PILLAR</span>
@@ -269,57 +283,43 @@ export default function Home() {
                 </svg>
               </div>
             </div>
+
           </div>
         </div>
       </section>
       
-      {/* SECTION 3: Massive Typography Navigation */}
-      <section ref={setSectionRef(3)} className="bg-[#F5F5F7] py-24 px-6 md:px-12 lg:px-24 border-t border-neutral-300/50">
-        <div className="max-w-[1400px] mx-auto divide-y divide-neutral-300">
-          <Link
-            to="/programs"
-            className="group py-12 flex items-center justify-between transition-all duration-500 ease-out hover:px-8"
-          >
-            <span className="text-4xl sm:text-6xl lg:text-7xl font-medium sm:font-normal lg:font-light text-neutral-900 group-hover:text-[#B0926A] transition-colors duration-500 tracking-tight">
-              Explore All Programs
-            </span>
-            <svg className="w-10 h-10 sm:w-12 sm:h-12 lg:w-16 lg:h-16 text-neutral-400 group-hover:text-[#B0926A] transform group-hover:translate-x-4 group-hover:-translate-y-4 transition-all duration-500 ease-out" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
-              <path strokeLinecap="square" strokeLinejoin="miter" d="M7 17L17 7M17 7H9M17 7v8" />
-            </svg>
-          </Link>
-
-          <Link
-            to="/innovation-hub"
-            className="group py-12 flex items-center justify-between transition-all duration-500 ease-out hover:px-8"
-          >
-            <span className="text-4xl sm:text-6xl lg:text-7xl font-medium sm:font-normal lg:font-light text-neutral-900 group-hover:text-[#B0926A] transition-colors duration-500 tracking-tight">
-              The Innovation Hub
-            </span>
-            <svg className="w-10 h-10 sm:w-12 sm:h-12 lg:w-16 lg:h-16 text-neutral-400 group-hover:text-[#B0926A] transform group-hover:translate-x-4 group-hover:-translate-y-4 transition-all duration-500 ease-out" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
-              <path strokeLinecap="square" strokeLinejoin="miter" d="M7 17L17 7M17 7H9M17 7v8" />
-            </svg>
-          </Link>
-
-          <Link
-            to="/membership"
-            className="group py-12 flex items-center justify-between transition-all duration-500 ease-out hover:px-8"
-          >
-            <span className="text-4xl sm:text-6xl lg:text-7xl font-medium sm:font-normal lg:font-light text-neutral-900 group-hover:text-[#B0926A] transition-colors duration-500 tracking-tight">
-              Become A Member
-            </span>
-            <svg className="w-10 h-10 sm:w-12 sm:h-12 lg:w-16 lg:h-16 text-neutral-400 group-hover:text-[#B0926A] transform group-hover:translate-x-4 group-hover:-translate-y-4 transition-all duration-500 ease-out" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
-              <path strokeLinecap="square" strokeLinejoin="miter" d="M7 17L17 7M17 7H9M17 7v8" />
-            </svg>
-          </Link>
+      {/* SECTION 3: Massive Typography Navigation (ULTRA CLEAN VERSION) */}
+      <section ref={setSectionRef(3)} className="bg-[#F5F5F7] py-32 px-6 md:px-12 lg:px-24">
+        <div className="max-w-[1400px] mx-auto flex flex-col w-full border-t border-neutral-200">
+          {massiveTypographyLinks.map((link, i) => (
+            <Link
+              key={i}
+              to={link.path}
+              className="group py-12 md:py-16 flex items-center justify-between border-b border-neutral-200 transition-all duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] hover:px-8 hover:bg-white/40"
+            >
+              <span className="text-4xl sm:text-6xl lg:text-[6rem] font-light text-neutral-900 tracking-tighter leading-none transition-colors duration-500 group-hover:text-[#B0926A]">
+                {link.title}
+              </span>
+              <svg 
+                className="w-10 h-10 md:w-16 md:h-16 text-neutral-300 transform transition-all duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:text-[#B0926A] group-hover:translate-x-4 group-hover:-translate-y-4" 
+                fill="none" 
+                viewBox="0 0 24 24" 
+                stroke="currentColor" 
+                strokeWidth="1.5"
+              >
+                <path strokeLinecap="square" strokeLinejoin="miter" d="M7 17L17 7M17 7H9M17 7v8" />
+              </svg>
+            </Link>
+          ))}
         </div>
       </section>
 
-      {/* FEATURED INITIATIVES */}
+      {/* SECTION 4: FEATURED INITIATIVES */}
       <section ref={setSectionRef(4)} className="bg-[#F5F5F7]">
         <FeaturedInitiatives />
       </section>
 
-      {/* Section 6: Upcoming Events (Skipped in CallAction, Rendered Here) */}
+      {/* Section 6: Upcoming Events */}
       <section ref={setSectionRef(6)} className="py-28 lg:py-36 px-6 lg:px-12 bg-[#858689] text-white border-b border-neutral-600/30">
         <div className="max-w-7xl mx-auto">
           <div className="border-b border-white/20 pb-12 mb-12 flex flex-col md:flex-row md:items-end justify-between gap-6">
