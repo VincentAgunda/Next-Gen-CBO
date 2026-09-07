@@ -41,7 +41,7 @@ const staggerContainer = {
   },
   exit: { 
     opacity: 0,
-    transition: { duration: 0.2, ease: "easeIn" } 
+    transition: { duration: 0.2, ease: "easeIn" }
   }
 };
 
@@ -57,20 +57,20 @@ const textVariant = {
 export default function HeroSection() {
   const [current, setCurrent] = useState(0);
 
+  // Interval logic that resets accurately on manual interaction
   useEffect(() => {
     const timer = setInterval(() => {
       setCurrent((prev) => (prev === slides.length - 1 ? 0 : prev + 1));
     }, 8000);
     
     return () => clearInterval(timer);
-  }, [current]); 
+  }, [current]);
 
   return (
-    <section className="relative w-full min-h-screen bg-[#F8F9FA] overflow-hidden flex flex-col md:flex-row antialiased selection:bg-[#03A10E] selection:text-white">
+    <section className="relative w-full min-h-screen bg-neutral-900 overflow-hidden flex flex-col md:flex-row antialiased selection:bg-[#03A10E] selection:text-white">
       
       {/* RIGHT SIDE: High Fidelity Image Slider */}
-      {/* Adjusted to 45% width for a sophisticated editorial split */}
-      <div className="absolute inset-y-0 right-0 w-full md:w-[45%] h-[55vh] md:h-full z-0 bg-neutral-900">
+      <div className="absolute inset-y-0 right-0 w-full md:w-[60%] h-[55vh] md:h-full z-0 bg-[#FAFAFA]">
         {slides.map((slide, index) => {
           const isActive = current === index;
           return (
@@ -87,14 +87,14 @@ export default function HeroSection() {
               <motion.img 
                 initial={false}
                 animate={{
-                  scale: isActive ? 1 : 1.05, 
+                  scale: isActive ? 1 : 1.08, // Zooms out slowly while active
                 }}
                 transition={{ 
-                  scale: { duration: 10, ease: "linear" } 
+                  scale: { duration: 10, ease: "linear" }
                 }} 
                 src={slide.image}
                 alt={`Hero background ${index + 1}`}
-                loading={index === 0 ? "eager" : "lazy"} 
+                loading={index === 0 ? "eager" : "lazy"} // Optimize FCP
                 decoding="async"
                 className="absolute inset-0 w-full h-full object-cover opacity-95 brightness-95"
               />
@@ -103,18 +103,30 @@ export default function HeroSection() {
         })}
       </div>
 
-      {/* LEFT SIDE: Sharp, Premium Background Split */}
-      {/* Removed diagonal clip-path and heavy shadows. Added a subtle border for a crisp edge. */}
-      <div className="absolute inset-y-0 left-0 w-full md:w-[55%] bg-[#F8F9FA] z-10 hidden md:block border-r border-neutral-200/60"></div>
+      {/* LEFT SIDE: Diagonal Background Split (Premium & Sharp) */}
+      <div 
+        className="absolute inset-y-0 left-0 w-full md:w-[58%] z-10 hidden md:block"
+        style={{ 
+          // Applies a crisp, realistic shadow exactly along the diagonal cut
+          filter: "drop-shadow(15px 0px 25px rgba(0, 0, 0, 0.25))" 
+        }}
+      >
+        <div 
+          className="w-full h-full bg-white relative overflow-hidden"
+          style={{ clipPath: "polygon(0 0, 100% 0, 85% 100%, 0% 100%)", willChange: "transform" }}
+        >
+          {/* Extremely subtle linear gradient for a polished "matte" sheen instead of a muddy shadow */}
+          <div className="absolute inset-0 bg-gradient-to-br from-white via-white to-neutral-100 opacity-60"></div>
+        </div>
+      </div>
       
-      {/* Mobile background fallback - Cleaned up to be solid */}
-      <div className="absolute top-[45vh] bottom-0 left-0 w-full bg-[#F8F9FA] z-10 md:hidden"></div>
+      {/* Mobile background fallback */}
+      <div className="absolute top-[45vh] bottom-0 left-0 w-full bg-white z-10 md:hidden bg-gradient-to-t from-white via-white to-transparent"></div>
 
       {/* CONTENT OVERLAY */}
-      <div className="relative z-20 w-full h-full min-h-screen max-w-[1600px] mx-auto flex flex-col md:flex-row pointer-events-none">
+      <div className="relative z-20 w-full h-full min-h-screen max-w-[1400px] mx-auto flex flex-col md:flex-row pointer-events-none">
         
-        {/* Increased horizontal padding (px-16 to px-28) to create premium whitespace */}
-        <div className="w-full md:w-[55%] flex flex-col justify-center px-8 md:px-16 lg:px-28 xl:px-32 h-full min-h-[55vh] md:min-h-screen mt-[45vh] md:mt-0 pointer-events-auto">
+        <div className="w-full md:w-[52%] flex flex-col justify-center px-6 md:px-12 lg:px-24 h-full min-h-[55vh] md:min-h-screen mt-[45vh] md:mt-0 pointer-events-auto">
           
           <AnimatePresence mode="wait">
             <motion.div 
@@ -123,11 +135,12 @@ export default function HeroSection() {
               initial="hidden"
               animate="show"
               exit="exit"
-              className="max-w-xl flex flex-col gap-8 pt-12 md:pt-0"
+              className="max-w-xl flex flex-col gap-6 pt-12 md:pt-0"
             >
-              {/* Eyebrow Subtitle */}
+              {/* Eyebrow Subtitle (Gold Accent) */}
               <motion.div variants={textVariant} className="flex items-center gap-4">
-                <span className="inline-block text-[10px] md:text-xs uppercase tracking-[0.3em] text-[#B0926A] font-semibold">
+                <span className="w-8 h-[1px] bg-[#B0926A]"></span>
+                <span className="inline-block text-[10px] md:text-xs uppercase tracking-[0.25em] text-[#B0926A] font-semibold">
                   {slides[current].subtitle}
                 </span>
               </motion.div>
@@ -135,7 +148,7 @@ export default function HeroSection() {
               {/* Title */}
               <motion.h1 
                 variants={textVariant}
-                className="text-4xl sm:text-5xl lg:text-[4rem] font-medium text-neutral-900 tracking-tight leading-[1.1]"
+                className="text-4xl sm:text-6xl lg:text-[4.5rem] font-medium text-neutral-900 tracking-tighter leading-[1.05]"
               >
                 {slides[current].title}
               </motion.h1>
@@ -149,25 +162,28 @@ export default function HeroSection() {
               </motion.p>
               
               {/* Interactive Button */}
-              <motion.div variants={textVariant} className="pt-2 pb-12 md:pb-0">
+              <motion.div variants={textVariant} className="pt-4 pb-12 md:pb-0">
                 <Link
                   to={slides[current].link}
-                  className="group inline-flex items-center gap-4 text-neutral-900 text-xs sm:text-sm uppercase tracking-[0.2em] font-medium transition-all"
+                  className="group inline-flex items-center gap-3 text-neutral-900 text-xs sm:text-sm uppercase tracking-[0.15em] font-semibold transition-all"
                 >
                   <span className="relative overflow-hidden pb-1">
+                    {/* Hover text turns gold to blend palettes */}
                     <span className="inline-block group-hover:text-[#B0926A] transition-colors duration-500">
                       {slides[current].buttonText}
                     </span>
+                    {/* Hover animated underline (Gold) */}
                     <span className="absolute bottom-0 left-0 w-full h-[1px] bg-[#B0926A] transform origin-left transition-transform duration-500 group-hover:scale-x-100 scale-x-0"></span>
                   </span>
                   
-                  <span className="relative flex items-center justify-center w-10 h-10 rounded-full border border-neutral-300 group-hover:border-[#03A10E] group-hover:bg-[#03A10E] transition-colors duration-500">
+                  {/* Hover circle turns green to match selection */}
+                  <span className="relative flex items-center justify-center w-8 h-8 rounded-full border border-neutral-200 group-hover:border-[#03A10E] group-hover:bg-[#03A10E] transition-colors duration-500">
                     <svg 
-                      className="w-4 h-4 text-neutral-900 group-hover:text-white transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-all duration-500 ease-out" 
+                      className="w-3.5 h-3.5 text-neutral-900 group-hover:text-white transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-all duration-500 ease-out" 
                       fill="none" 
                       viewBox="0 0 24 24" 
                       stroke="currentColor" 
-                      strokeWidth="2"
+                      strokeWidth="2.5"
                     >
                       <path strokeLinecap="round" strokeLinejoin="round" d="M7 17L17 7M17 7H9M17 7v8" />
                     </svg>
@@ -177,8 +193,8 @@ export default function HeroSection() {
             </motion.div>
           </AnimatePresence>
 
-          {/* Animated Progress Indicators */}
-          <div className="absolute bottom-8 md:bottom-12 left-8 md:left-16 lg:left-28 xl:left-32 flex gap-4 pointer-events-auto">
+          {/* Animated Progress Indicators (Green Accent) */}
+          <div className="absolute bottom-8 md:bottom-16 left-6 md:left-12 lg:left-24 flex gap-4 pointer-events-auto">
             {slides.map((_, index) => (
               <button
                 key={index}
@@ -186,7 +202,7 @@ export default function HeroSection() {
                 className="group py-4 flex items-center focus:outline-none"
                 aria-label={`Go to slide ${index + 1}`}
               >
-                <div className="h-[2px] w-12 md:w-16 bg-neutral-300 relative overflow-hidden rounded-full">
+                <div className="h-[2px] w-12 md:w-16 bg-neutral-200 relative overflow-hidden rounded-full">
                   {current === index && (
                     <motion.div
                       initial={{ width: "0%" }}
