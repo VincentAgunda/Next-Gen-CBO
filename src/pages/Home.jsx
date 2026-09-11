@@ -14,7 +14,7 @@ import { motion } from "framer-motion"; // Added framer-motion
 import { collection, onSnapshot, query, orderBy, limit } from "firebase/firestore";
 import { db } from "../firebase/config"; // Ensure this matches your project structure
 
-// --- NEW PILLARS ANIMATION CONFIG & DATA ---
+// --- PILLARS & SECTIONS ANIMATION CONFIG & DATA ---
 const customEase = [0.16, 1, 0.3, 1];
 
 const staggerContainer = {
@@ -176,80 +176,119 @@ export default function Home() {
         <HeroSection />
       </section>
 
-      {/* SECTION 1: WHO WE ARE */}
-      <section ref={setSectionRef(1)} className="relative py-28 lg:py-40 px-6 md:px-12 lg:px-24 bg-[#F5F5F7] border-b border-neutral-200">
-        <div className="max-w-7xl mx-auto grid lg:grid-cols-12 gap-12 lg:gap-16 items-start">
-          
-          {/* Left Column */}
-          <div className="lg:col-span-5 space-y-6 pt-2">
-            <div className="flex items-center gap-4">
-              <span className="h-[1px] w-8 bg-[#B0926A]"></span>
-              <span className="block text-[#B0926A] text-[10px] md:text-xs uppercase tracking-[0.25em] font-semibold">
-                Who We Are
-              </span>
-            </div>
-            
-            <h2 className="text-4xl md:text-5xl lg:text-[56px] font-medium text-neutral-900 tracking-tighter leading-[1.05]">
-              Transforming communities through <span className="text-[#03A10E]">youth innovation.</span>
-            </h2>
+      {/* SECTION 1: WHO WE ARE (Updated to match Apple-like Section 2 Theme) */}
+      <section ref={setSectionRef(1)} className="py-28 lg:py-36 bg-[#F5F5F7] border-b border-neutral-200/60 overflow-hidden">
+        <div className="max-w-[1400px] mx-auto px-6 md:px-12 lg:px-24">
+          <motion.div 
+            variants={staggerContainer}
+            initial="hidden"
+            whileInView="show"
+            viewport={{ once: true, margin: "-100px" }}
+            className="grid lg:grid-cols-12 gap-12 lg:gap-16 items-start"
+          >
+            {/* Left Column */}
+            <div className="lg:col-span-5 flex flex-col gap-6 pt-2">
+              <div className="flex flex-col gap-3">
+                <motion.span 
+                  variants={itemVariant}
+                  className="inline-block text-[10px] md:text-xs uppercase tracking-[0.25em] text-[#B0926A] font-medium"
+                >
+                  Who We Are
+                </motion.span>
+                <motion.h2 
+                  variants={itemVariant}
+                  className="text-4xl sm:text-5xl lg:text-[3.5rem] font-light text-neutral-800 tracking-tight leading-[1.1]"
+                >
+                  Transforming communities through <span className="text-[#03A10E] font-normal">youth innovation.</span>
+                </motion.h2>
+              </div>
 
-            <div className="pt-6">
-              <Link
-                to="/about"
-                className="inline-flex items-center gap-4 border border-neutral-900 px-8 py-4 text-xs font-semibold uppercase tracking-[0.15em] text-neutral-900 hover:bg-[#03A10E] hover:border-[#03A10E] hover:text-white transition-all duration-500 ease-out rounded-none group shadow-sm"
+              <motion.div variants={itemVariant} className="pt-6">
+                <Link
+                  to="/about"
+                  className="group inline-flex items-center gap-3 text-[11px] uppercase tracking-[0.2em] font-medium text-neutral-500 hover:text-neutral-900 transition-colors duration-300"
+                >
+                  <span>Learn more about us</span>
+                  <div className="w-8 h-[1px] bg-neutral-300 group-hover:bg-[#03A10E] group-hover:w-12 transition-all duration-500 ease-out relative">
+                    <svg 
+                      className="absolute -right-1 -top-[5px] w-3 h-3 text-transparent group-hover:text-[#03A10E] transform translate-x-[-10px] opacity-0 group-hover:translate-x-0 group-hover:opacity-100 transition-all duration-500 ease-out" 
+                      fill="none" 
+                      viewBox="0 0 24 24" 
+                      stroke="currentColor" 
+                      strokeWidth="2"
+                    >
+                      <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />
+                    </svg>
+                  </div>
+                </Link>
+              </motion.div>
+            </div>
+
+            {/* Right Column: Cards */}
+            <div className="lg:col-span-7 grid md:grid-cols-2 gap-[1px] bg-neutral-200/70 overflow-hidden shadow-sm shadow-black/5 rounded-2xl md:rounded-none">
+              
+              {/* Card 1 */}
+              <motion.div 
+                variants={itemVariant}
+                className="bg-[#F5F5F7] hover:bg-white p-10 lg:p-14 flex flex-col justify-between min-h-[380px] group transition-colors duration-[0.8s] ease-[cubic-bezier(0.16,1,0.3,1)]"
               >
-                <span>Learn more about us</span>
-                <svg className="w-4 h-4 transform group-hover:translate-x-2 transition-transform duration-500 ease-out" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2.5">
-                  <path strokeLinecap="round" strokeLinejoin="round" d="M5 12h14M12 5l7 7-7 7" />
-                </svg>
-              </Link>
-            </div>
-          </div>
+                <div>
+                  <span className="text-[10px] font-mono text-neutral-400 group-hover:text-[#B0926A] block mb-8 transition-colors duration-500 tracking-widest">
+                    01 // ACTION
+                  </span>
+                  <h3 className="text-2xl lg:text-3xl font-light text-neutral-800 mb-5 tracking-tight leading-snug group-hover:text-neutral-900 transition-colors duration-500">
+                    Grassroots Action
+                  </h3>
+                  <p className="text-neutral-500 font-light text-sm lg:text-[1.05rem] leading-[1.8] group-hover:text-neutral-600 transition-colors duration-500">
+                    Next-Generation Youth Agribusiness & Research CBO is a youth-led organization in Makueni County, Kenya, committed to transforming communities through sustainable agriculture, environmental conservation, and youth empowerment.
+                  </p>
+                </div>
+              </motion.div>
 
-          {/* Right Column: Cards */}
-          <div className="lg:col-span-7 grid md:grid-cols-2 gap-8 items-stretch">
-            <div className="group bg-white p-8 md:p-10 border border-neutral-200 flex flex-col justify-between shadow-sm hover:shadow-xl hover:border-neutral-300 hover:-translate-y-1.5 transition-all duration-500 ease-out cursor-pointer rounded-none">
-              <span className="text-4xl font-light text-[#B0926A] mb-8 block transition-transform duration-500 ease-out group-hover:scale-105 origin-left">
-                01
-              </span>
-              <div>
-                <h3 className="text-lg font-semibold uppercase tracking-wider mb-3 text-neutral-900">Grassroots Action</h3>
-                <p className="text-neutral-500 font-light text-sm md:text-base leading-relaxed">
-                  Next-Generation Youth Agribusiness & Research CBO is a youth-led organization in Makueni County, Kenya, committed to transforming communities through sustainable agriculture, environmental conservation, and youth empowerment.
-                </p>
-              </div>
-            </div>
+              {/* Card 2 */}
+              <motion.div 
+                variants={itemVariant}
+                className="bg-[#F5F5F7] hover:bg-white p-10 lg:p-14 flex flex-col justify-between min-h-[380px] group transition-colors duration-[0.8s] ease-[cubic-bezier(0.16,1,0.3,1)]"
+              >
+                <div>
+                  <span className="text-[10px] font-mono text-neutral-400 group-hover:text-[#B0926A] block mb-8 transition-colors duration-500 tracking-widest">
+                    02 // METHOD
+                  </span>
+                  <h3 className="text-2xl lg:text-3xl font-light text-neutral-800 mb-5 tracking-tight leading-snug group-hover:text-neutral-900 transition-colors duration-500">
+                    Evidence-Based
+                  </h3>
+                  <p className="text-neutral-500 font-light text-sm lg:text-[1.05rem] leading-[1.8] group-hover:text-neutral-600 transition-colors duration-500">
+                    We unite young innovators, researchers, and entrepreneurs to architect practical solutions to environmental and economic challenges, driving sustainable development and improving regional livelihoods.
+                  </p>
+                </div>
+              </motion.div>
 
-            <div className="group bg-white p-8 md:p-10 border border-neutral-200 flex flex-col justify-between shadow-sm hover:shadow-xl hover:border-neutral-300 hover:-translate-y-1.5 transition-all duration-500 ease-out cursor-pointer rounded-none">
-              <span className="text-4xl font-light text-[#B0926A] mb-8 block transition-transform duration-500 ease-out group-hover:scale-105 origin-left">
-                02
-              </span>
-              <div>
-                <h3 className="text-lg font-semibold uppercase tracking-wider mb-3 text-neutral-900">
-                  Evidence-Based
-                </h3>
-                <p className="text-neutral-500 font-light text-sm md:text-base leading-relaxed">
-                  We unite young innovators, researchers, and entrepreneurs to architect practical solutions to environmental and economic challenges, driving sustainable development and improving regional livelihoods.
-                </p>
-              </div>
             </div>
-          </div>
-        </div>
+          </motion.div>
 
-        {/* Image Wrapper */}
-        <div className="max-w-7xl mx-auto mt-24 lg:mt-36 overflow-hidden border border-neutral-200 rounded-sm shadow-sm group relative bg-[#1a1a1a]">
-          <img
-            src="/Hero/h4.jpeg"
-            alt="Who We Are Team"
-            loading="lazy"
-            decoding="async"
-            className="w-full h-[40vh] md:h-[50vh] lg:h-[60vh] object-cover object-[center_30%] opacity-80 grayscale contrast-[1.15] transform-gpu will-change-[transform,filter,opacity] group-hover:scale-105 group-hover:grayscale-0 group-hover:opacity-100 group-hover:contrast-100 transition-[transform,filter,opacity] duration-[1000ms] ease-[cubic-bezier(0.215,0.61,0.355,1)]"
-          />
-          <div className="absolute inset-0 bg-gradient-to-b from-transparent via-white/5 to-[#FAF9F6]/20 mix-blend-overlay pointer-events-none group-hover:opacity-0 transition-opacity duration-1000 ease-in-out"></div>
+          {/* Image Wrapper */}
+          <motion.div 
+            variants={staggerContainer}
+            initial="hidden"
+            whileInView="show"
+            viewport={{ once: true, margin: "-100px" }}
+            className="mt-24 lg:mt-36"
+          >
+            <motion.div variants={itemVariant} className="overflow-hidden border border-neutral-200 rounded-sm shadow-sm group relative bg-[#1a1a1a]">
+              <img
+                src="/Hero/h4.jpeg"
+                alt="Who We Are Team"
+                loading="lazy"
+                decoding="async"
+                className="w-full h-[40vh] md:h-[50vh] lg:h-[60vh] object-cover object-[center_30%] opacity-80 grayscale contrast-[1.15] transform-gpu will-change-[transform,filter,opacity] group-hover:scale-105 group-hover:grayscale-0 group-hover:opacity-100 group-hover:contrast-100 transition-[transform,filter,opacity] duration-[1000ms] ease-[cubic-bezier(0.215,0.61,0.355,1)]"
+              />
+              <div className="absolute inset-0 bg-gradient-to-b from-transparent via-white/5 to-[#FAF9F6]/20 mix-blend-overlay pointer-events-none group-hover:opacity-0 transition-opacity duration-1000 ease-in-out"></div>
+            </motion.div>
+          </motion.div>
         </div>
       </section>
 
-      {/* SECTION 2: THREE PILLARS (UPDATED APPLE-LIKE DESIGN) */}
+      {/* SECTION 2: THREE PILLARS */}
       <section ref={setSectionRef(2)} className="py-28 lg:py-36 bg-[#FAFAFA] border-b border-neutral-200/60 overflow-hidden">
         <div className="max-w-[1400px] mx-auto px-6 md:px-12 lg:px-24">
           
