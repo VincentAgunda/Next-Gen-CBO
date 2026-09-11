@@ -15,7 +15,7 @@ export default function ResearchCenter() {
   };
 
   return (
-    <div className="font-sans text-black bg-[#F5F5F7] antialiased selection:bg-[#03A10E] selection:text-white overflow-hidden min-h-screen">
+    <div className="font-sans text-black bg-[#F5F5F7] antialiased selection:bg-[#03A10E] selection:text-white overflow-hidden min-h-screen rounded-none">
       
       {/* TYPOGRAPHIC HERO */}
       <header className="pt-40 pb-28 px-[6vw] md:px-12 lg:px-24 max-w-[1440px] mx-auto border-b border-[#E5E5E5]">
@@ -35,7 +35,7 @@ export default function ResearchCenter() {
       </header>
 
       {/* PUBLICATIONS LIST (Structural Data Layout) */}
-      <section className="py-28 px-[6vw] md:px-12 lg:px-24 bg-white">
+      <section className="py-28 px-[6vw] md:px-12 lg:px-24 bg-white rounded-none">
         <div className="max-w-[1440px] mx-auto">
           
           <div className="mb-16">
@@ -57,7 +57,7 @@ export default function ResearchCenter() {
                 href={pub.link}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="w-full py-10 lg:py-12 flex flex-col lg:flex-row lg:items-start justify-between border-b border-[#D9D9D9] gap-6 lg:gap-12 hover:bg-[#f6f6f6] transition-colors duration-300 group px-4 -mx-4"
+                className="w-full py-10 lg:py-12 flex flex-col lg:flex-row lg:items-start justify-between border-b border-[#D9D9D9] gap-6 lg:gap-12 hover:bg-[#f6f6f6] transition-colors duration-300 group px-4 -mx-4 transform-gpu backface-hidden"
               >
                 <div className="flex flex-col gap-2 lg:w-1/4 pt-1">
                   <span className="text-[10px] md:text-[11px] text-[#B0926A] uppercase tracking-[0.25em] font-semibold block">
@@ -69,7 +69,7 @@ export default function ResearchCenter() {
                 </div>
                 
                 <div className="lg:w-1/2">
-                  <h3 className="text-2xl md:text-3xl lg:text-[32px] font-normal text-black tracking-tight leading-tight mb-4 group-hover:text-[#03A10E] transition-colors duration-300">
+                  <h3 className="text-2xl md:text-3xl lg:text-[32px] font-normal text-black tracking-tight leading-tight mb-4 group-hover:text-[#03A10E] transition-colors duration-300 transform-gpu backface-hidden">
                     {pub.title}
                   </h3>
                   <p className="text-[16px] text-black opacity-75 font-normal leading-relaxed">
@@ -87,9 +87,9 @@ export default function ResearchCenter() {
                         fill="none" 
                         stroke="currentColor" 
                         strokeWidth="1.5" 
-                        strokeLinecap="round" 
-                        strokeLinejoin="round" 
-                        className="w-4 h-4 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform duration-300"
+                        strokeLinecap="square" 
+                        strokeLinejoin="miter" 
+                        className="w-4 h-4 group-hover:translate-x-1 group-hover:-translate-y-1 transform-gpu transition-transform duration-300"
                       >
                         <path d="M7 17L17 7" />
                         <path d="M7 7h10v10" />
@@ -104,10 +104,10 @@ export default function ResearchCenter() {
       </section>
 
       {/* COLLABORATION FORM */}
-      <section className="py-28 bg-[#f6f6f6] px-[6vw] md:px-12 lg:px-24 border-t border-[#E5E5E5]">
+      <section className="py-28 bg-[#f6f6f6] px-[6vw] md:px-12 lg:px-24 border-t border-[#E5E5E5] rounded-none">
         <div className="max-w-[1440px] mx-auto grid lg:grid-cols-12 gap-16 lg:gap-24 items-start">
           
-          <div className="lg:col-span-5">
+          <div className="lg:col-span-5 transform-gpu backface-hidden">
             <div className="flex items-center gap-4 mb-4">
               <span className="w-8 h-[1px] bg-[#B0926A]"></span>
               <span className="text-[#B0926A] text-[10px] md:text-xs uppercase tracking-[0.25em] font-semibold block">
@@ -123,7 +123,7 @@ export default function ResearchCenter() {
           </div>
 
           <div className="lg:col-span-7 pt-4">
-            <form onSubmit={handleSubmit(onCollaborate)} className="space-y-8 border-t border-[#D9D9D9] pt-12">
+            <form onSubmit={handleSubmit(onCollaborate)} className="space-y-8 border-t border-[#D9D9D9] pt-12 transform-gpu backface-hidden">
               <div className="grid md:grid-cols-2 gap-8 lg:gap-12">
                 <input 
                   {...register("name")} 
@@ -154,7 +154,7 @@ export default function ResearchCenter() {
               />
               
               <div className="pt-8 flex flex-col sm:flex-row items-center justify-between gap-6">
-                <button className="w-full sm:w-auto inline-flex items-center justify-between border border-black text-black px-10 py-5 text-[15px] font-normal hover:bg-[#03A10E] hover:border-[#03A10E] hover:text-white transition-colors duration-300 group">
+                <button className="w-full sm:w-auto inline-flex items-center justify-between border border-black text-black px-10 py-5 text-[15px] font-normal hover:bg-[#03A10E] hover:border-[#03A10E] hover:text-white transition-colors duration-300 group rounded-none">
                   <span>Submit Proposal</span>
                   <span className="ml-8 leading-none flex items-center justify-center">
                     <svg 
@@ -163,9 +163,9 @@ export default function ResearchCenter() {
                       fill="none" 
                       stroke="currentColor" 
                       strokeWidth="1.5" 
-                      strokeLinecap="round" 
-                      strokeLinejoin="round" 
-                      className="w-5 h-5 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform duration-300"
+                      strokeLinecap="square" 
+                      strokeLinejoin="miter" 
+                      className="w-5 h-5 group-hover:translate-x-1 group-hover:-translate-y-1 transform-gpu transition-transform duration-300"
                     >
                       <path d="M7 17L17 7" />
                       <path d="M7 7h10v10" />

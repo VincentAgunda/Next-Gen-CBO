@@ -66,7 +66,7 @@ export default function InnovationHub() {
   };
 
   return (
-    <div className="font-sans text-black bg-[#f4f4f4] antialiased selection:bg-[#03A10E] selection:text-white overflow-hidden min-h-screen py-28 px-[6vw] md:px-12 lg:px-24">
+    <div className="font-sans text-black bg-[#f4f4f4] antialiased selection:bg-[#03A10E] selection:text-white overflow-hidden min-h-screen py-28 px-[6vw] md:px-12 lg:px-24 rounded-none">
       <div className="max-w-[1440px] mx-auto">
         
         {/* Header & Submit Control Header */}
@@ -74,22 +74,22 @@ export default function InnovationHub() {
           initial="hidden"
           animate="visible"
           variants={staggerContainer}
-          className="flex flex-col md:flex-row justify-between items-start md:items-end gap-8 mb-20 pb-8 border-b border-[#E5E5E5] transform-gpu"
+          className="flex flex-col md:flex-row justify-between items-start md:items-end gap-8 mb-20 pb-8 border-b border-[#E5E5E5] transform-gpu backface-hidden"
         >
           <div className="max-w-xl">
-            <motion.div variants={fadeInUp} className="flex items-center gap-4 mb-4">
+            <motion.div variants={fadeInUp} className="flex items-center gap-4 mb-4 transform-gpu">
               <span className="w-8 h-[1px] bg-[#B0926A]"></span>
-              <span className="block text-[#B0926A] text-[13x] md:text-xs font-normal uppercase tracking-[0.25em]">
+              <span className="block text-[#B0926A] text-[13px] md:text-xs font-normal uppercase tracking-[0.25em]">
                 Technical Directory
               </span>
             </motion.div>
             
-            <motion.h1 variants={fadeInUp} className="text-5xl md:text-7xl font-normal leading-[0.95] tracking-tight text-black mb-6">
+            <motion.h1 variants={fadeInUp} className="text-5xl md:text-7xl font-normal leading-[0.95] tracking-tight text-black mb-6 transform-gpu">
               Innovation <br />
               <span className="text-[#03A10E]">Hub.</span>
             </motion.h1>
             
-            <motion.p variants={fadeInUp} className="text-black opacity-85 font-normal text-[16px] md:text-[18px] leading-relaxed">
+            <motion.p variants={fadeInUp} className="text-black opacity-85 font-normal text-[16px] md:text-[18px] leading-relaxed transform-gpu">
               Pioneering systems and hardware architectures driving deep agricultural automation.
             </motion.p>
           </div>
@@ -97,7 +97,7 @@ export default function InnovationHub() {
           <motion.button
             variants={fadeInUp}
             onClick={() => setShowForm(!showForm)}
-            className="inline-block border border-black bg-black text-white hover:bg-[#B0926A] hover:border-[#B0926A] text-[10px] md:text-xs uppercase tracking-[0.25em] font-semibold px-8 py-4 transition-colors duration-300"
+            className="inline-block border border-black bg-black text-white hover:bg-[#B0926A] hover:border-[#B0926A] text-[10px] md:text-xs uppercase tracking-[0.25em] font-semibold px-8 py-4 transition-colors duration-300 rounded-none transform-gpu"
           >
             {showForm ? "Close Form Protocol" : "Submit Enterprise Spec"}
           </motion.button>
@@ -111,9 +111,9 @@ export default function InnovationHub() {
               animate={{ opacity: 1, height: "auto", y: 0 }}
               exit={{ opacity: 0, height: 0, y: -20 }}
               transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
-              className="overflow-hidden"
+              className="overflow-hidden transform-gpu backface-hidden"
             >
-              <div className="bg-white p-10 lg:p-16 border border-[#E5E5E5] max-w-3xl mx-auto mb-20 shadow-sm">
+              <div className="bg-white p-10 lg:p-16 border border-[#E5E5E5] max-w-3xl mx-auto mb-20 shadow-sm rounded-none">
                 <span className="text-[#B0926A] font-semibold text-[10px] md:text-xs uppercase tracking-[0.25em] block mb-2">
                   Blueprint Submission
                 </span>
@@ -129,7 +129,7 @@ export default function InnovationHub() {
                     <input 
                       {...register("title", { required: true })} 
                       placeholder="e.g., Automated Ambient Moisture Controller" 
-                      className="w-full bg-white border border-[#E5E5E5] p-4 text-sm font-normal text-black placeholder-[#757575] focus:outline-none focus:border-[#B0926A] transition-colors" 
+                      className="w-full bg-white border border-[#E5E5E5] p-4 text-sm font-normal text-black placeholder-[#757575] focus:outline-none focus:border-[#B0926A] transition-colors rounded-none" 
                     />
                     {errors.title && <span className="text-red-500 text-xs mt-2 block">Field mandatory</span>}
                   </div>
@@ -142,7 +142,7 @@ export default function InnovationHub() {
                       {...register("description", { required: true })} 
                       rows={4} 
                       placeholder="Comprehensive description of process workflows and technical metrics..." 
-                      className="w-full bg-white border border-[#E5E5E5] p-4 text-sm font-normal text-black placeholder-[#757575] focus:outline-none focus:border-[#B0926A] transition-colors resize-none" 
+                      className="w-full bg-white border border-[#E5E5E5] p-4 text-sm font-normal text-black placeholder-[#757575] focus:outline-none focus:border-[#B0926A] transition-colors resize-none rounded-none" 
                     />
                     {errors.description && <span className="text-red-500 text-xs mt-2 block">Abstract mandatory</span>}
                   </div>
@@ -154,7 +154,7 @@ export default function InnovationHub() {
                     <input 
                       {...register("problemSolved")} 
                       placeholder="e.g., High regional temperature shock mitigation" 
-                      className="w-full bg-white border border-[#E5E5E5] p-4 text-sm font-normal text-black placeholder-[#757575] focus:outline-none focus:border-[#B0926A] transition-colors" 
+                      className="w-full bg-white border border-[#E5E5E5] p-4 text-sm font-normal text-black placeholder-[#757575] focus:outline-none focus:border-[#B0926A] transition-colors rounded-none" 
                     />
                   </div>
 
@@ -166,7 +166,7 @@ export default function InnovationHub() {
                       <input 
                         {...register("innovator", { required: true })} 
                         placeholder="Full Authorized Legal Name" 
-                        className="w-full bg-white border border-[#E5E5E5] p-4 text-sm font-normal text-black placeholder-[#757575] focus:outline-none focus:border-[#B0926A] transition-colors" 
+                        className="w-full bg-white border border-[#E5E5E5] p-4 text-sm font-normal text-black placeholder-[#757575] focus:outline-none focus:border-[#B0926A] transition-colors rounded-none" 
                       />
                     </div>
                     <div>
@@ -176,7 +176,7 @@ export default function InnovationHub() {
                       <input 
                         {...register("category")} 
                         placeholder="e.g., Mycology Automation" 
-                        className="w-full bg-white border border-[#E5E5E5] p-4 text-sm font-normal text-black placeholder-[#757575] focus:outline-none focus:border-[#B0926A] transition-colors" 
+                        className="w-full bg-white border border-[#E5E5E5] p-4 text-sm font-normal text-black placeholder-[#757575] focus:outline-none focus:border-[#B0926A] transition-colors rounded-none" 
                       />
                     </div>
                   </div>
@@ -188,13 +188,13 @@ export default function InnovationHub() {
                     <input 
                       {...register("image")} 
                       placeholder="Cloudinary Asset Reference URL" 
-                      className="w-full bg-white border border-[#E5E5E5] p-4 text-sm font-normal text-black placeholder-[#757575] focus:outline-none focus:border-[#B0926A] transition-colors" 
+                      className="w-full bg-white border border-[#E5E5E5] p-4 text-sm font-normal text-black placeholder-[#757575] focus:outline-none focus:border-[#B0926A] transition-colors rounded-none" 
                     />
                   </div>
 
                   <button 
                     type="submit" 
-                    className="w-full border border-black bg-black text-white hover:bg-[#03A10E] hover:border-[#03A10E] py-5 text-[10px] md:text-xs uppercase tracking-[0.25em] font-semibold transition-colors duration-300 mt-4"
+                    className="w-full border border-black bg-black text-white hover:bg-[#03A10E] hover:border-[#03A10E] py-5 text-[10px] md:text-xs uppercase tracking-[0.25em] font-semibold transition-colors duration-300 mt-4 rounded-none transform-gpu"
                   >
                     Deploy System Blueprint for Authorization
                   </button>
@@ -210,7 +210,7 @@ export default function InnovationHub() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-100px" }}
           transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
-          className="mb-24"
+          className="mb-24 transform-gpu backface-hidden"
         >
           <div className="flex items-center gap-4 mb-10">
             <span className="h-[1px] w-12 bg-[#B0926A]"></span>
@@ -235,7 +235,7 @@ export default function InnovationHub() {
           whileInView={{ opacity: 1 }}
           viewport={{ once: true }}
           transition={{ duration: 0.8 }}
-          className="flex items-center gap-4 mb-12 pt-16 border-t border-[#E5E5E5]"
+          className="flex items-center gap-4 mb-12 pt-16 border-t border-[#E5E5E5] transform-gpu"
         >
           <span className="h-[1px] w-12 bg-[#757575]"></span>
           <span className="text-[#757575] font-semibold text-[10px] md:text-xs uppercase tracking-[0.25em]">
@@ -248,7 +248,7 @@ export default function InnovationHub() {
             <motion.div 
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
-              className="w-full bg-white border border-[#E5E5E5] p-16 text-center text-[#757575] font-normal text-[16px]"
+              className="w-full bg-white border border-[#E5E5E5] p-16 text-center text-[#757575] font-normal text-[16px] rounded-none transform-gpu"
             >
               No additional community innovations verified on ledger yet. Submit a system specification above to initiate technical review.
             </motion.div>
@@ -262,7 +262,7 @@ export default function InnovationHub() {
                   animate={{ opacity: 1, y: 0 }}
                   exit={{ opacity: 0, scale: 0.95 }}
                   transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
-                  className="w-full"
+                  className="w-full transform-gpu backface-hidden"
                 >
                   <InnovationCard 
                     title={inv.title}

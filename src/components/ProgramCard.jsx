@@ -10,12 +10,12 @@ export default function ProgramCard({ title, description, image, category }) {
       transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
       className="group relative w-full h-full antialiased"
     >
-      <div className="relative flex flex-col w-full h-full min-h-[460px] overflow-hidden rounded-none bg-white border border-neutral-200 transition-all duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] hover:-translate-y-1.5 hover:border-[#03A10E] cursor-pointer">
+      <div className="relative flex flex-col w-full h-full min-h-[460px] overflow-hidden rounded-none bg-white border border-neutral-200 transition-all duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] hover:-translate-y-2 hover:border-[#03A10E] cursor-pointer transform-gpu backface-hidden">
         
         {/* ============================================================
             IMAGE SECTION
         ============================================================ */}
-        <div className="relative overflow-hidden aspect-[16/10] bg-neutral-100 border-b border-neutral-200 group-hover:border-[#03A10E]/20 transition-colors duration-700">
+        <div className="relative overflow-hidden aspect-[16/10] bg-neutral-100 border-b border-neutral-200 group-hover:border-[#03A10E]/20 transition-colors duration-700 rounded-none">
           <img 
             src={image || "/api/placeholder/800/500"} 
             alt={title} 
@@ -23,13 +23,13 @@ export default function ProgramCard({ title, description, image, category }) {
             className="h-full w-full object-cover transform-gpu transition-transform duration-[1000ms] ease-[cubic-bezier(0.25,1,0.5,1)] group-hover:scale-105" 
           />
           {/* Subtle overlay that fades out on hover */}
-          <div className="absolute inset-0 bg-neutral-900/[0.03] group-hover:bg-transparent transition-colors duration-700" />
+          <div className="absolute inset-0 bg-neutral-900/[0.03] group-hover:bg-transparent transition-colors duration-700 rounded-none" />
         </div>
 
         {/* ============================================================
             CONTENT CONTAINER
         ============================================================ */}
-        <div className="relative z-10 flex flex-col flex-grow p-8 sm:p-10">
+        <div className="relative z-10 flex flex-col flex-grow p-8 sm:p-10 transform-gpu backface-hidden">
           
           {/* ----------------------------------------------------------
               CATEGORY META
@@ -44,7 +44,7 @@ export default function ProgramCard({ title, description, image, category }) {
               MAIN TITLE
           ----------------------------------------------------------- */}
           <div className="mb-5">
-            <h3 className="text-2xl sm:text-3xl font-medium text-neutral-900 tracking-tighter leading-[1.05] transition-transform duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:translate-x-1 group-hover:text-[#03A10E]">
+            <h3 className="text-2xl sm:text-3xl font-medium text-neutral-900 tracking-tighter leading-[1.05] transition-transform duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:translate-x-1 group-hover:text-[#03A10E] transform-gpu backface-hidden">
               {title}
             </h3>
           </div>
@@ -73,7 +73,7 @@ export default function ProgramCard({ title, description, image, category }) {
             {/* ACTION ARROW */}
             <div className="flex-shrink-0">
               <svg 
-                className="w-4 h-4 text-neutral-900 transition-all duration-500 ease-out group-hover:text-[#03A10E] group-hover:translate-x-1.5" 
+                className="w-4 h-4 text-neutral-900 transition-all duration-500 ease-out group-hover:text-[#03A10E] group-hover:translate-x-1 transform-gpu" 
                 fill="none" 
                 viewBox="0 0 24 24" 
                 stroke="currentColor" 
@@ -89,7 +89,7 @@ export default function ProgramCard({ title, description, image, category }) {
         {/* ============================================================
             BOTTOM ACCENT
         ============================================================ */}
-        <div className="absolute left-0 bottom-0 w-0 h-[2px] bg-[#03A10E] transition-all duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:w-full z-20" />
+        <div className="absolute left-0 bottom-0 w-0 h-[2px] bg-[#03A10E] transition-all duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:w-full z-20 rounded-none" />
       </div>
     </motion.article>
   );
