@@ -5,7 +5,7 @@ import { motion, AnimatePresence } from "framer-motion";
 const slides = [
   {
     id: 1,
-    image: "/Hero/h7.png", 
+    image: "/Hero/h12.png", 
     subtitle: "NEXT-GEN YOUTH INITIATIVE",
     title: (
       <>
