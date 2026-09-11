@@ -236,10 +236,10 @@ export default function Home() {
                   <span className="text-[10px] font-mono text-neutral-400 group-hover:text-[#B0926A] block mb-8 transition-colors duration-500 tracking-widest">
                     01 // ACTION
                   </span>
-                  <h3 className="text-2xl lg:text-3xl font-light text-neutral-800 mb-5 tracking-tight leading-snug group-hover:text-neutral-900 transition-colors duration-500">
+                  <h3 className="text-2xl lg:text-3xl font-normal text-neutral-800 mb-5 tracking-tight leading-snug group-hover:text-neutral-900 transition-colors duration-500">
                     Grassroots Action
                   </h3>
-                  <p className="text-neutral-500 font-light text-sm lg:text-[1.05rem] leading-[1.8] group-hover:text-neutral-600 transition-colors duration-500">
+                  <p className="text-neutral-500 font-normal text-sm lg:text-[1.05rem] leading-[1.8] group-hover:text-neutral-600 transition-colors duration-500">
                     Next-Generation Youth Agribusiness & Research CBO is a youth-led organization in Makueni County, Kenya, committed to transforming communities through sustainable agriculture, environmental conservation, and youth empowerment.
                   </p>
                 </div>
@@ -254,10 +254,10 @@ export default function Home() {
                   <span className="text-[10px] font-mono text-neutral-400 group-hover:text-[#B0926A] block mb-8 transition-colors duration-500 tracking-widest">
                     02 // METHOD
                   </span>
-                  <h3 className="text-2xl lg:text-3xl font-light text-neutral-800 mb-5 tracking-tight leading-snug group-hover:text-neutral-900 transition-colors duration-500">
+                  <h3 className="text-2xl lg:text-3xl font-normal text-neutral-800 mb-5 tracking-tight leading-snug group-hover:text-neutral-900 transition-colors duration-500">
                     Evidence-Based
                   </h3>
-                  <p className="text-neutral-500 font-light text-sm lg:text-[1.05rem] leading-[1.8] group-hover:text-neutral-600 transition-colors duration-500">
+                  <p className="text-neutral-500 font-normal text-sm lg:text-[1.05rem] leading-[1.8] group-hover:text-neutral-600 transition-colors duration-500">
                     We unite young innovators, researchers, and entrepreneurs to architect practical solutions to environmental and economic challenges, driving sustainable development and improving regional livelihoods.
                   </p>
                 </div>
@@ -354,10 +354,10 @@ export default function Home() {
                   <span className="text-[10px] font-mono text-neutral-400 group-hover:text-[#B0926A] block mb-8 transition-colors duration-500 tracking-widest">
                     {pillar.id} // PILLAR
                   </span>
-                  <h3 className="text-2xl lg:text-3xl font-light text-neutral-800 mb-5 tracking-tight leading-snug group-hover:text-neutral-900 transition-colors duration-500">
+                  <h3 className="text-2xl lg:text-3xl font-normal text-neutral-800 mb-5 tracking-tight leading-snug group-hover:text-neutral-900 transition-colors duration-500">
                     {pillar.title}
                   </h3>
-                  <p className="text-neutral-500 font-light text-sm lg:text-[1.05rem] leading-[1.8] group-hover:text-neutral-600 transition-colors duration-500">
+                  <p className="text-neutral-500 font-normal text-sm lg:text-[1.05rem] leading-[1.8] group-hover:text-neutral-600 transition-colors duration-500">
                     {pillar.description}
                   </p>
                 </div>
