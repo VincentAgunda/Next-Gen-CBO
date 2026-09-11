@@ -180,7 +180,7 @@ export default function HeroSection() {
                 {/* Body Text */}
                 <motion.p 
                   variants={textVariant}
-                  className="max-w-md text-neutral-500 font-light text-base md:text-[1.05rem] leading-[1.8]"
+                  className="max-w-md text-neutral-500 font-normal text-base md:text-[1.05rem] leading-[1.8]"
                 >
                   {slides[current].description}
                 </motion.p>
