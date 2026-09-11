@@ -181,7 +181,7 @@ export default function HeroSection() {
                 >
                   <Link
                     to={slides[current].link}
-                    className="group inline-flex items-center gap-2 bg-[#bda887] text-white px-6 py-3.5 rounded-full text-sm font-medium hover:bg-[#a69375] transition-colors shadow-lg shadow-[#bda887]/30"
+                    className="group inline-flex items-center gap-2 bg-[#B0926A] text-white px-6 py-3.5 rounded-full text-sm font-medium hover:bg-[#a69375] transition-colors shadow-lg shadow-[#B0926A]/30"
                   >
                     <span>{slides[current].buttonText}</span>
                     <svg 
