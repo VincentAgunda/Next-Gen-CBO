@@ -394,7 +394,7 @@ export default function Home() {
               to={link.path}
               className="group py-12 md:py-16 flex items-center justify-between border-b border-neutral-200 transition-all duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] hover:px-8 hover:bg-white/40"
             >
-              <span className="text-4xl sm:text-6xl lg:text-[6rem] font-light text-neutral-900 tracking-tighter leading-none transition-colors duration-500 group-hover:text-[#B0926A]">
+              <span className="text-4xl sm:text-6xl lg:text-[6rem] font-normal text-neutral-900 tracking-tighter leading-none transition-colors duration-500 group-hover:text-[#B0926A]">
                 {link.title}
               </span>
               <svg 
