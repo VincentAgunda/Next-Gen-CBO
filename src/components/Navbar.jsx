@@ -115,9 +115,12 @@ export default function Navbar() {
           className="group flex items-center gap-3 shrink-0"
           aria-label="NGYAR Home"
         >
-          <span className="text-[21px] md:text-[23px] font-serif italic tracking-[-0.03em] text-[#0a0a0a] transition-opacity duration-300 group-hover:opacity-60">
-            NGYAR
-          </span>
+          {/* Replaced text with backgroundless image */}
+          <img 
+            src="/assets/navbar/nav1.png" 
+            alt="NGYAR Logo" 
+            className="h-10 md:h-12 w-auto object-contain transition-opacity duration-300 group-hover:opacity-60"
+          />
 
           <span className="hidden sm:block w-px h-4 bg-[#d8d8d5]" />
 
@@ -207,7 +210,7 @@ export default function Navbar() {
             to="/support-us"
             className="ml-2 xl:ml-3 relative overflow-hidden bg-[#bda887] text-white px-5 xl:px-6 py-3 text-[10px] uppercase tracking-[0.19em] font-medium transition-all duration-500 hover:-translate-y-[1px] group"
           >
-            <span className="relative z-10 transition-colors duration-500 group-hover:text-[#111]" >
+            <span className="relative z-10 transition-colors duration-500 group-hover:text-[#111]">
               Support Us
             </span>
 
