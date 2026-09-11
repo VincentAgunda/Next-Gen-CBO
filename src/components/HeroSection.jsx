@@ -27,13 +27,8 @@ const slides = [
   }
 ];
 
-const smoothSpring = {
-  type: "spring",
-  stiffness: 80, 
-  damping: 15,    
-  mass: 0.8,      
-  restDelta: 0.001
-};
+// Apple-like sleek cubic-bezier easing
+const customEase = [0.16, 1, 0.3, 1];
 
 const staggerContainer = {
   hidden: { opacity: 0 },
@@ -41,30 +36,49 @@ const staggerContainer = {
     opacity: 1,
     transition: {
       staggerChildren: 0.1,
-      delayChildren: 0.05,
+      delayChildren: 0.1, // Reduced delay for snappier entry
     },
   },
   exit: { 
     opacity: 0,
-    transition: { duration: 0.2, ease: "easeOut" }
+    transition: { 
+      staggerChildren: 0.05, 
+      staggerDirection: -1, 
+      duration: 0.2, 
+      ease: "easeOut" 
+    }
   }
 };
 
 const textVariant = {
-  hidden: { opacity: 0, y: 30, scale: 0.98 },
+  hidden: { opacity: 0, y: 24, filter: "blur(4px)" },
   show: { 
     opacity: 1, 
     y: 0, 
-    scale: 1,
-    transition: smoothSpring 
+    filter: "blur(0px)",
+    transition: { duration: 0.8, ease: customEase } 
   },
+  exit: { 
+    opacity: 0, 
+    y: -12, 
+    filter: "blur(4px)",
+    transition: { duration: 0.2, ease: "easeIn" } 
+  }
 };
 
 export default function HeroSection() {
   const [current, setCurrent] = useState(0);
   const [isPlaying, setIsPlaying] = useState(true);
 
-  // Autoplay functionality
+  // 1. Preload images to prevent lag/flashing on first slide change
+  useEffect(() => {
+    slides.forEach((slide) => {
+      const img = new Image();
+      img.src = slide.image;
+    });
+  }, []);
+
+  // 2. Autoplay functionality
   useEffect(() => {
     if (!isPlaying) return;
     
@@ -90,25 +104,26 @@ export default function HeroSection() {
                 zIndex: isActive ? 10 : 1, 
               }}
               transition={{ 
-                opacity: { duration: 0.8, ease: "easeInOut", delay: isActive ? 0 : 0.4 },
+                opacity: { duration: 1.2, ease: customEase }, // Extended fade duration for premium feel
                 zIndex: { duration: 0 } 
               }} 
-              className="absolute inset-0 overflow-hidden bg-neutral-900"
+              className="absolute inset-0 overflow-hidden bg-neutral-900 will-change-[opacity]"
             >
               <motion.img 
-                initial={false}
+                initial={{ scale: 1.15 }}
                 animate={{ scale: isActive ? 1 : 1.15 }}
                 transition={{ 
-                  scale: { duration: 1.4, ease: [0.16, 1, 0.3, 1] } 
+                  scale: { 
+                    duration: isActive ? 10 : 1.2, // Slow continuous zoom while active
+                    ease: isActive ? "linear" : customEase 
+                  } 
                 }} 
-                style={{
-                  transform: "translateZ(0)", 
-                }}
+                style={{ WebkitTransform: "translateZ(0)" }} // Force GPU acceleration
                 src={slide.image}
                 alt={`Hero background ${index + 1}`}
-                loading="eager" 
+                loading={index === 0 ? "eager" : "lazy"} 
                 decoding="async"
-                className="absolute inset-0 w-full h-full object-cover opacity-95 brightness-95 origin-center"
+                className="absolute inset-0 w-full h-full object-cover opacity-95 brightness-95 origin-center will-change-transform"
               />
             </motion.div>
           );
@@ -117,22 +132,19 @@ export default function HeroSection() {
 
       {/* LEFT SIDE: Diagonal Background Split */}
       <div 
-        className="absolute inset-y-0 left-0 w-full md:w-[58%] z-10 hidden md:block"
-        style={{ 
-          filter: "drop-shadow(15px 0px 25px rgba(0, 0, 0, 0.15))", 
-          WebkitTransform: "translate3d(0,0,0)" 
-        }}
+        className="absolute inset-y-0 left-0 w-full md:w-[58%] z-10 hidden md:block pointer-events-none"
+        style={{ filter: "drop-shadow(15px 0px 25px rgba(0, 0, 0, 0.15))" }}
       >
         <div 
-          className="w-full h-full bg-white relative overflow-hidden"
-          style={{ clipPath: "polygon(0 0, 100% 0, 85% 100%, 0% 100%)", willChange: "transform" }}
+          className="w-full h-full bg-white relative overflow-hidden will-change-transform"
+          style={{ clipPath: "polygon(0 0, 100% 0, 85% 100%, 0% 100%)" }}
         >
           <div className="absolute inset-0 bg-gradient-to-br from-white via-white to-neutral-50 opacity-80"></div>
         </div>
       </div>
       
       {/* Mobile background fallback */}
-      <div className="absolute top-[45vh] bottom-0 left-0 w-full bg-white z-10 md:hidden bg-gradient-to-t from-white via-white to-transparent"></div>
+      <div className="absolute top-[45vh] bottom-0 left-0 w-full bg-white z-10 md:hidden bg-gradient-to-t from-white via-white to-transparent pointer-events-none"></div>
 
       {/* CONTENT OVERLAY */}
       <div className="relative z-20 w-full h-full min-h-screen max-w-[1400px] mx-auto flex flex-col md:flex-row pointer-events-none">
@@ -148,17 +160,16 @@ export default function HeroSection() {
                 initial="hidden"
                 animate="show"
                 exit="exit"
-                className="max-w-xl flex flex-col gap-6"
-                style={{ willChange: "opacity, transform" }}
+                className="max-w-xl flex flex-col gap-6 will-change-[opacity,transform]"
               >
-                {/* Eyebrow Subtitle - Lighter weight, more tracking */}
+                {/* Eyebrow Subtitle */}
                 <motion.div variants={textVariant} className="flex items-center gap-4">
                   <span className="inline-block text-[10px] md:text-xs uppercase tracking-[0.25em] text-neutral-400 font-medium">
                     {slides[current].subtitle}
                   </span>
                 </motion.div>
                 
-                {/* Title - Changed to font-light for a sleek, premium, less bulky feel */}
+                {/* Title */}
                 <motion.h1 
                   variants={textVariant}
                   className="text-4xl sm:text-5xl lg:text-[4.25rem] font-light text-neutral-800 tracking-tight leading-[1.1]"
@@ -166,7 +177,7 @@ export default function HeroSection() {
                   {slides[current].title}
                 </motion.h1>
                 
-                {/* Body Text - Lighter weight and looser leading for editorial look */}
+                {/* Body Text */}
                 <motion.p 
                   variants={textVariant}
                   className="max-w-md text-neutral-500 font-light text-base md:text-[1.05rem] leading-[1.8]"
@@ -181,7 +192,7 @@ export default function HeroSection() {
                 >
                   <Link
                     to={slides[current].link}
-                    className="group inline-flex items-center gap-2 bg-[#B0926A] text-white px-7 py-3.5 rounded-full text-sm font-medium hover:bg-[#a69375] transition-all shadow-lg shadow-[#B0926A]/20 hover:shadow-[#B0926A]/40"
+                    className="group inline-flex items-center gap-2 bg-[#B0926A] text-white px-7 py-3.5 rounded-full text-sm font-medium hover:bg-[#a69375] transition-all duration-300 shadow-lg shadow-[#B0926A]/20 hover:shadow-[#B0926A]/40 hover:-translate-y-0.5"
                   >
                     <span>{slides[current].buttonText}</span>
                     <svg 
@@ -199,7 +210,7 @@ export default function HeroSection() {
             </AnimatePresence>
           </div>
 
-          {/* APPLE STYLE PROGRESS INDICATORS */}
+          {/* PROGRESS INDICATORS */}
           <div className="pb-8 md:pb-16 flex items-center gap-3 shrink-0 pointer-events-auto">
             
             {/* Pill Container for Dots */}
@@ -209,11 +220,11 @@ export default function HeroSection() {
                   key={index}
                   onClick={() => {
                     setCurrent(index);
-                    setIsPlaying(false);
+                    setIsPlaying(false); // Pause on manual interaction
                   }}
                   className={`rounded-full transition-all duration-500 ease-out focus:outline-none ${
                     current === index
-                      ? "w-7 h-2 bg-neutral-500" 
+                      ? "w-7 h-2 bg-neutral-600" 
                       : "w-2 h-2 bg-neutral-400 hover:bg-neutral-500" 
                   }`}
                   aria-label={`Go to slide ${index + 1}`}
@@ -224,15 +235,15 @@ export default function HeroSection() {
             {/* Play/Pause Button */}
             <button
               onClick={() => setIsPlaying(!isPlaying)}
-              className="flex items-center justify-center w-10 h-10 bg-neutral-200/60 backdrop-blur-md rounded-full border border-white/40 shadow-sm text-neutral-800 hover:bg-neutral-300/60 transition-colors focus:outline-none"
+              className="flex items-center justify-center w-10 h-10 bg-neutral-200/60 backdrop-blur-md rounded-full border border-white/40 shadow-sm text-neutral-800 hover:bg-neutral-300/60 transition-colors focus:outline-none group"
               aria-label={isPlaying ? "Pause slider" : "Play slider"}
             >
               {isPlaying ? (
-                <svg className="w-3.5 h-3.5" fill="currentColor" viewBox="0 0 24 24">
+                <svg className="w-3.5 h-3.5 text-neutral-600 group-hover:text-neutral-800 transition-colors" fill="currentColor" viewBox="0 0 24 24">
                   <path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z" />
                 </svg>
               ) : (
-                <svg className="w-4 h-4 ml-0.5" fill="currentColor" viewBox="0 0 24 24">
+                <svg className="w-4 h-4 ml-0.5 text-neutral-600 group-hover:text-neutral-800 transition-colors" fill="currentColor" viewBox="0 0 24 24">
                   <path d="M8 5v14l11-7z" />
                 </svg>
               )}

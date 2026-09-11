@@ -8,15 +8,62 @@ import FeaturedInitiatives from "../components/FeaturedInitiatives";
 import CallAction from "./call-action"; 
 import { programs } from "../data/programs";
 import { Link } from "react-router-dom";
+import { motion } from "framer-motion"; // Added framer-motion
 
 // Firebase imports
 import { collection, onSnapshot, query, orderBy, limit } from "firebase/firestore";
 import { db } from "../firebase/config"; // Ensure this matches your project structure
 
+// --- NEW PILLARS ANIMATION CONFIG & DATA ---
+const customEase = [0.16, 1, 0.3, 1];
+
+const staggerContainer = {
+  hidden: { opacity: 0 },
+  show: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.15,
+      delayChildren: 0.1,
+    },
+  },
+};
+
+const itemVariant = {
+  hidden: { opacity: 0, y: 24, filter: "blur(4px)" },
+  show: { 
+    opacity: 1, 
+    y: 0, 
+    filter: "blur(0px)",
+    transition: { duration: 0.8, ease: customEase } 
+  },
+};
+
+const pillars = [
+  {
+    id: "01",
+    title: "Agribusiness Development",
+    description: "Supporting sustainable agricultural enterprises, modern farming techniques, and income-generating opportunities for rural youth.",
+    link: "/programs"
+  },
+  {
+    id: "02",
+    title: "Youth Empowerment",
+    description: "Building future leaders through rigorous technical training, mentorship, leadership development, and hands-on entrepreneurship.",
+    link: "/programs"
+  },
+  {
+    id: "03",
+    title: "Research & Innovation",
+    description: "Driving evidence-based agricultural solutions, climate-smart technologies, and supporting scalable youth-led innovations.",
+    link: "/programs"
+  }
+];
+
+// Updated sections config (Pillars color matched to #FAFAFA)
 const sectionsConfig = [
   { id: "hero", color: "#F5F5F7", dotColor: "bg-black" },
   { id: "who-we-are", color: "#F5F5F7", dotColor: "bg-black" },
-  { id: "pillars", color: "#e5e5e5", dotColor: "bg-black" },
+  { id: "pillars", color: "#FAFAFA", dotColor: "bg-black" },
   { id: "typography", color: "#F5F5F7", dotColor: "bg-black" },
   { id: "featured", color: "#F5F5F7", dotColor: "bg-black" },
   { id: "innovation", color: "#F5F5F7", dotColor: "bg-black" },
@@ -109,7 +156,7 @@ export default function Home() {
   }, []);
 
   return (
-    <div className="font-sans text-[#111111] antialiased selection:bg-[#d2b79b] selection:text-black overflow-hidden scroll-smooth bg-[#F5F5F7]">
+    <div className="font-sans text-[#111111] antialiased selection:bg-[#03A10E] selection:text-white overflow-hidden scroll-smooth bg-[#F5F5F7]">
       
       {/* Scroll Progress Indicator */}
       <div className="fixed right-6 top-1/2 -translate-y-1/2 z-50 flex flex-col items-end gap-3 pointer-events-none hidden md:flex">
@@ -130,7 +177,7 @@ export default function Home() {
       </section>
 
       {/* SECTION 1: WHO WE ARE */}
-      <section ref={setSectionRef(1)} className="relative py-28 lg:py-40 px-6 md:px-12 lg:px-24 bg-[#F5F5F7] border-b border-neutral-200 selection:bg-[#03A10E] selection:text-white">
+      <section ref={setSectionRef(1)} className="relative py-28 lg:py-40 px-6 md:px-12 lg:px-24 bg-[#F5F5F7] border-b border-neutral-200">
         <div className="max-w-7xl mx-auto grid lg:grid-cols-12 gap-12 lg:gap-16 items-start">
           
           {/* Left Column */}
@@ -202,93 +249,104 @@ export default function Home() {
         </div>
       </section>
 
-      {/* SECTION 2: Three Pillars */}
-      <section ref={setSectionRef(2)} className="py-28 lg:py-36 bg-[#e5e5e5] border-b border-neutral-300/50">
-        <div className="max-w-7xl mx-auto px-6 lg:px-12">
-          <div className="flex flex-col md:flex-row md:items-end justify-between mb-16 gap-6">
-            <div>
-              <span className="text-[#B0926A] font-semibold text-xs uppercase tracking-[0.3em] block mb-3">
-                Our Foundation
-              </span>
-              <h2 className="text-4xl lg:text-5xl font-normal text-neutral-900 tracking-tight">
-                Strategic Pillars
-              </h2>
-            </div>
-            <Link 
-              to="/programs" 
-              className="group inline-flex items-center gap-2 text-xs uppercase tracking-[0.2em] font-semibold text-neutral-900 hover:text-[#B0926A] transition-colors duration-300"
-            >
-              <span>Explore All Programs</span>
-              <svg className="w-4 h-4 transform group-hover:translate-x-2 transition-transform duration-500 ease-out" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
-                <path strokeLinecap="square" strokeLinejoin="miter" d="M5 12h14M12 5l7 7-7 7" />
-              </svg>
-            </Link>
-          </div>
+      {/* SECTION 2: THREE PILLARS (UPDATED APPLE-LIKE DESIGN) */}
+      <section ref={setSectionRef(2)} className="py-28 lg:py-36 bg-[#FAFAFA] border-b border-neutral-200/60 overflow-hidden">
+        <div className="max-w-[1400px] mx-auto px-6 md:px-12 lg:px-24">
           
-          <div className="grid md:grid-cols-3 gap-px bg-neutral-400 border border-neutral-400 shadow-sm overflow-hidden rounded-none">
-            
-            {/* Pillar 1 */}
-            <div className="bg-[#f0f0f0]/90 backdrop-blur-sm hover:bg-white p-8 lg:p-12 flex flex-col justify-between min-h-[340px] group transition-colors duration-700 ease-out">
-              <div>
-                <span className="text-xs font-mono text-[#B0926A] block mb-6">01 // PILLAR</span>
-                <h3 className="text-2xl lg:text-3xl font-medium md:font-normal text-neutral-900 mb-4 tracking-tight leading-snug">
-                  Agribusiness Development
-                </h3>
-                <p className="text-neutral-600 font-normal lg:font-light text-sm lg:text-base leading-relaxed">
-                  Supporting sustainable agricultural enterprises, modern farming techniques, and income-generating opportunities for rural youth.
-                </p>
-              </div>
-              <div className="pt-8 flex items-center justify-between border-t border-neutral-300 mt-8">
-                <span className="text-[11px] uppercase tracking-widest font-semibold text-neutral-500 group-hover:text-neutral-900 transition-colors duration-500">Learn more</span>
-                <svg className="w-5 h-5 text-neutral-400 group-hover:text-neutral-900 transform group-hover:translate-x-2 group-hover:-translate-y-2 transition-all duration-500 ease-out" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
-                  <path strokeLinecap="square" strokeLinejoin="miter" d="M7 17L17 7M17 7H9M17 7v8" />
-                </svg>
-              </div>
+          {/* HEADER SECTION */}
+          <motion.div 
+            variants={staggerContainer}
+            initial="hidden"
+            whileInView="show"
+            viewport={{ once: true, margin: "-100px" }}
+            className="flex flex-col md:flex-row md:items-end justify-between mb-16 gap-8"
+          >
+            <div className="flex flex-col gap-3">
+              <motion.span 
+                variants={itemVariant}
+                className="inline-block text-[10px] md:text-xs uppercase tracking-[0.25em] text-[#B0926A] font-medium"
+              >
+                Our Foundation
+              </motion.span>
+              <motion.h2 
+                variants={itemVariant}
+                className="text-4xl sm:text-5xl lg:text-[3.5rem] font-light text-neutral-800 tracking-tight leading-[1.1]"
+              >
+                Strategic <span className="text-[#03A10E] font-normal">Pillars.</span>
+              </motion.h2>
             </div>
 
-            {/* Pillar 2 */}
-            <div className="bg-[#f0f0f0]/90 backdrop-blur-sm hover:bg-white p-8 lg:p-12 flex flex-col justify-between min-h-[340px] group transition-colors duration-700 ease-out">
-              <div>
-                <span className="text-xs font-mono text-[#B0926A] block mb-6">02 // PILLAR</span>
-                <h3 className="text-2xl lg:text-3xl font-medium md:font-normal text-neutral-900 mb-4 tracking-tight leading-snug">
-                  Youth Empowerment
-                </h3>
-                <p className="text-neutral-600 font-normal lg:font-light text-sm lg:text-base leading-relaxed">
-                  Building future leaders through rigorous technical training, mentorship, leadership development, and hands-on entrepreneurship.
-                </p>
-              </div>
-              <div className="pt-8 flex items-center justify-between border-t border-neutral-300 mt-8">
-                <span className="text-[11px] uppercase tracking-widest font-semibold text-neutral-500 group-hover:text-neutral-900 transition-colors duration-500">Learn more</span>
-                <svg className="w-5 h-5 text-neutral-400 group-hover:text-neutral-900 transform group-hover:translate-x-2 group-hover:-translate-y-2 transition-all duration-500 ease-out" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
-                  <path strokeLinecap="square" strokeLinejoin="miter" d="M7 17L17 7M17 7H9M17 7v8" />
-                </svg>
-              </div>
-            </div>
+            <motion.div variants={itemVariant} className="pb-2">
+              <Link 
+                to="/programs" 
+                className="group inline-flex items-center gap-3 text-[11px] uppercase tracking-[0.2em] font-medium text-neutral-500 hover:text-neutral-900 transition-colors duration-300"
+              >
+                <span>Explore All Programs</span>
+                <div className="w-8 h-[1px] bg-neutral-300 group-hover:bg-[#03A10E] group-hover:w-12 transition-all duration-500 ease-out relative">
+                  <svg 
+                    className="absolute -right-1 -top-[5px] w-3 h-3 text-transparent group-hover:text-[#03A10E] transform translate-x-[-10px] opacity-0 group-hover:translate-x-0 group-hover:opacity-100 transition-all duration-500 ease-out" 
+                    fill="none" 
+                    viewBox="0 0 24 24" 
+                    stroke="currentColor" 
+                    strokeWidth="2"
+                  >
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />
+                  </svg>
+                </div>
+              </Link>
+            </motion.div>
+          </motion.div>
+          
+          {/* PILLARS GRID */}
+          <motion.div 
+            variants={staggerContainer}
+            initial="hidden"
+            whileInView="show"
+            viewport={{ once: true, margin: "-100px" }}
+            className="grid md:grid-cols-3 gap-[1px] bg-neutral-200/70 overflow-hidden shadow-sm shadow-black/5 rounded-2xl md:rounded-none"
+          >
+            {pillars.map((pillar) => (
+              <motion.div 
+                key={pillar.id}
+                variants={itemVariant}
+                className="bg-[#FAFAFA] hover:bg-white p-10 lg:p-14 flex flex-col justify-between min-h-[380px] group transition-colors duration-[0.8s] ease-[cubic-bezier(0.16,1,0.3,1)]"
+              >
+                <div>
+                  <span className="text-[10px] font-mono text-neutral-400 group-hover:text-[#B0926A] block mb-8 transition-colors duration-500 tracking-widest">
+                    {pillar.id} // PILLAR
+                  </span>
+                  <h3 className="text-2xl lg:text-3xl font-light text-neutral-800 mb-5 tracking-tight leading-snug group-hover:text-neutral-900 transition-colors duration-500">
+                    {pillar.title}
+                  </h3>
+                  <p className="text-neutral-500 font-light text-sm lg:text-[1.05rem] leading-[1.8] group-hover:text-neutral-600 transition-colors duration-500">
+                    {pillar.description}
+                  </p>
+                </div>
+                
+                <Link to={pillar.link} className="pt-10 flex items-center justify-between border-t border-neutral-200 mt-10 group-hover:border-neutral-300 transition-colors duration-500">
+                  <span className="text-[10px] md:text-[11px] uppercase tracking-[0.2em] font-medium text-neutral-400 group-hover:text-[#03A10E] transition-colors duration-500">
+                    Learn more
+                  </span>
+                  <div className="w-10 h-10 rounded-full flex items-center justify-center bg-transparent group-hover:bg-neutral-100 transition-all duration-500 ease-out overflow-hidden">
+                    <svg 
+                      className="w-5 h-5 text-neutral-300 group-hover:text-[#03A10E] transform group-hover:translate-x-1 group-hover:-translate-y-1 transition-all duration-500 ease-[cubic-bezier(0.16,1,0.3,1)]" 
+                      fill="none" 
+                      viewBox="0 0 24 24" 
+                      stroke="currentColor" 
+                      strokeWidth="1.5"
+                    >
+                      <path strokeLinecap="round" strokeLinejoin="round" d="M4.5 19.5l15-15m0 0H8.25m11.25 0v11.25" />
+                    </svg>
+                  </div>
+                </Link>
+              </motion.div>
+            ))}
+          </motion.div>
 
-            {/* Pillar 3 */}
-            <div className="bg-[#f0f0f0]/90 backdrop-blur-sm hover:bg-white p-8 lg:p-12 flex flex-col justify-between min-h-[340px] group transition-colors duration-700 ease-out">
-              <div>
-                <span className="text-xs font-mono text-[#B0926A] block mb-6">03 // PILLAR</span>
-                <h3 className="text-2xl lg:text-3xl font-medium md:font-normal text-neutral-900 mb-4 tracking-tight leading-snug">
-                  Research & Innovation
-                </h3>
-                <p className="text-neutral-600 font-normal lg:font-light text-sm lg:text-base leading-relaxed">
-                  Driving evidence-based agricultural solutions, climate-smart technologies, and supporting scalable youth-led innovations.
-                </p>
-              </div>
-              <div className="pt-8 flex items-center justify-between border-t border-neutral-300 mt-8">
-                <span className="text-[11px] uppercase tracking-widest font-semibold text-neutral-500 group-hover:text-neutral-900 transition-colors duration-500">Learn more</span>
-                <svg className="w-5 h-5 text-neutral-400 group-hover:text-neutral-900 transform group-hover:translate-x-2 group-hover:-translate-y-2 transition-all duration-500 ease-out" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
-                  <path strokeLinecap="square" strokeLinejoin="miter" d="M7 17L17 7M17 7H9M17 7v8" />
-                </svg>
-              </div>
-            </div>
-
-          </div>
         </div>
       </section>
       
-      {/* SECTION 3: Massive Typography Navigation (ULTRA CLEAN VERSION) */}
+      {/* SECTION 3: Massive Typography Navigation */}
       <section ref={setSectionRef(3)} className="bg-[#F5F5F7] py-32 px-6 md:px-12 lg:px-24">
         <div className="max-w-[1400px] mx-auto flex flex-col w-full border-t border-neutral-200">
           {massiveTypographyLinks.map((link, i) => (
