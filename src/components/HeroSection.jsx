@@ -9,7 +9,7 @@ const slides = [
     subtitle: "NEXT-GEN YOUTH INITIATIVE",
     title: (
       <>
-        Empowering The <span className="text-[#03A10E]">Future.</span>
+        Empowering The <span className="text-[#03A10E] font-normal">Future.</span>
       </>
     ),
     description: "A youth-led initiative focused on building sustainable farming businesses and conducting careful, hands-on research for a better future.",
@@ -20,7 +20,7 @@ const slides = [
     id: 2,
     image: "/Hero/h10.png", 
     subtitle: "AGRIBUSINESS OPTIMIZATION",
-    title: <span className="text-[#03A10E]">Cultivating Growth.</span>,
+    title: <span className="text-[#03A10E] font-normal">Cultivating Growth.</span>,
     description: "Providing young leaders with the practical skills, tools, and business models they need to create profitable and lasting agricultural communities.",
     buttonText: "System Index",
     link: "/programs"
@@ -151,37 +151,37 @@ export default function HeroSection() {
                 className="max-w-xl flex flex-col gap-6"
                 style={{ willChange: "opacity, transform" }}
               >
-                {/* Eyebrow Subtitle */}
+                {/* Eyebrow Subtitle - Lighter weight, more tracking */}
                 <motion.div variants={textVariant} className="flex items-center gap-4">
-                  <span className="inline-block text-[10px] md:text-xs uppercase tracking-[0.2em] text-neutral-400 font-semibold">
+                  <span className="inline-block text-[10px] md:text-xs uppercase tracking-[0.25em] text-neutral-400 font-medium">
                     {slides[current].subtitle}
                   </span>
                 </motion.div>
                 
-                {/* Title */}
+                {/* Title - Changed to font-light for a sleek, premium, less bulky feel */}
                 <motion.h1 
                   variants={textVariant}
-                  className="text-4xl sm:text-6xl lg:text-[4.5rem] font-semibold text-neutral-900 tracking-tight leading-[1.05]"
+                  className="text-4xl sm:text-5xl lg:text-[4.25rem] font-light text-neutral-800 tracking-tight leading-[1.1]"
                 >
                   {slides[current].title}
                 </motion.h1>
                 
-                {/* Body Text */}
+                {/* Body Text - Lighter weight and looser leading for editorial look */}
                 <motion.p 
                   variants={textVariant}
-                  className="max-w-md text-neutral-500 font-normal text-base md:text-lg leading-relaxed"
+                  className="max-w-md text-neutral-500 font-light text-base md:text-[1.05rem] leading-[1.8]"
                 >
                   {slides[current].description}
                 </motion.p>
                 
-                {/* Premium Apple-style Button (Updated with #bda887) */}
+                {/* Premium Button */}
                 <motion.div 
                   variants={textVariant} 
                   className="pt-4 origin-left inline-block"
                 >
                   <Link
                     to={slides[current].link}
-                    className="group inline-flex items-center gap-2 bg-[#B0926A] text-white px-6 py-3.5 rounded-full text-sm font-medium hover:bg-[#a69375] transition-colors shadow-lg shadow-[#B0926A]/30"
+                    className="group inline-flex items-center gap-2 bg-[#B0926A] text-white px-7 py-3.5 rounded-full text-sm font-medium hover:bg-[#a69375] transition-all shadow-lg shadow-[#B0926A]/20 hover:shadow-[#B0926A]/40"
                   >
                     <span>{slides[current].buttonText}</span>
                     <svg 
