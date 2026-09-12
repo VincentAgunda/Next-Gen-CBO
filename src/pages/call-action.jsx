@@ -1,41 +1,49 @@
-import React, { useRef } from "react";
+import React, { useRef, useState } from "react";
 import { Link } from "react-router-dom";
 import { motion, useScroll, useTransform, useSpring } from "framer-motion";
 import { innovations } from "../data/innovations";
 import { partners } from "../data/partners";
 
 // Hardware-accelerated, physics-based parallax component
-const PhysicsImage = ({ src, alt, className }) => {
+const PhysicsImage = ({ src, alt, className = "" }) => {
   const ref = useRef(null);
+  const [isLoaded, setIsLoaded] = useState(false);
+
   const { scrollYProgress } = useScroll({
     target: ref,
     offset: ["start end", "end start"],
   });
 
-  // Spring physics configuration for buttery smoothness
+  // Optimized spring physics for buttery smooth scrolling
+  // Lower mass and tighter damping prevents bouncing and jitter
   const smoothY = useSpring(scrollYProgress, {
-    stiffness: 50,
-    damping: 20,
-    mass: 0.5,
+    stiffness: 40,
+    damping: 25,
+    mass: 0.1,
   });
 
-  // Move image from -10% to 10% on the Y axis as you scroll
+  // JS Handles the Parallax Y movement exclusively
   const y = useTransform(smoothY, [0, 1], ["-10%", "10%"]);
 
   return (
-    <div
-      ref={ref}
-      className="relative w-full h-full overflow-hidden transform-gpu will-change-transform"
-    >
-      <motion.img
-        src={src}
-        alt={alt}
+    <div ref={ref} className="relative w-full h-full overflow-hidden bg-neutral-200">
+      {/* Wrapper handles the Framer Motion Y-axis translation */}
+      <motion.div
         style={{ y }}
-        loading="lazy"
-        decoding="async"
-        // h-[120%] ensures we have extra room for the parallax movement without revealing the background
-        className={`absolute inset-0 w-full h-[120%] -top-[10%] object-cover transform-gpu will-change-transform ${className}`}
-      />
+        className="absolute inset-0 w-full h-[120%] -top-[10%] will-change-transform"
+      >
+        {/* CSS handles the hover scale and fade-in to prevent clashing with the Y movement */}
+        <img
+          src={src}
+          alt={alt}
+          loading="lazy"
+          decoding="async"
+          onLoad={() => setIsLoaded(true)}
+          className={`w-full h-full object-cover transition-all duration-[1200ms] ease-[cubic-bezier(0.215,0.61,0.355,1)] ${
+            isLoaded ? "opacity-100" : "opacity-0"
+          } ${className}`}
+        />
+      </motion.div>
     </div>
   );
 };
@@ -61,12 +69,11 @@ export default function CallAction({ setSectionRef }) {
             </div>
 
             <div className="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-8">
-              <h2 className="max-w-5xl text-5xl sm:text-6xl md:text-7xl lg:text-[4.5rem] xl:text-[5.5rem] font-medium tracking-tighter leading-[1.02] transform-gpu">
-                Innovation{" "}
-                <span className="text-neutral-400">Hub.</span>
+              <h2 className="max-w-5xl text-5xl sm:text-6xl md:text-7xl lg:text-[4.5rem] xl:text-[5.5rem] font-medium tracking-tighter leading-[1.02]">
+                Innovation <span className="text-neutral-400">Hub.</span>
               </h2>
 
-              <p className="max-w-xl lg:pb-2 text-neutral-500 font-light text-base md:text-lg leading-relaxed transform-gpu">
+              <p className="max-w-xl lg:pb-2 text-neutral-500 font-light text-base md:text-lg leading-relaxed">
                 We are a youth-led initiative developing scientific innovations
                 and climate-smart agricultural prototypes to shape the future of
                 farming through practical research, technology, and localized
@@ -84,19 +91,19 @@ export default function CallAction({ setSectionRef }) {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, margin: "-100px" }}
                 transition={{ duration: 0.8, ease: [0.215, 0.61, 0.355, 1] }}
-                className="bg-white grid grid-cols-1 lg:grid-cols-2 overflow-hidden shadow-sm hover:shadow-md transition-shadow duration-500 rounded-none transform-gpu will-change-transform"
+                className="bg-white grid grid-cols-1 lg:grid-cols-2 overflow-hidden shadow-sm hover:shadow-md transition-shadow duration-500 rounded-none group"
               >
                 {/* Left Column: Image with Physics Parallax */}
-                <div className="relative h-72 lg:h-auto min-h-[360px] overflow-hidden bg-neutral-100 transform-gpu">
+                <div className="relative h-72 lg:h-auto min-h-[360px] overflow-hidden bg-neutral-100">
                   <PhysicsImage
                     src={inv.image || "/api/placeholder/800/600"}
                     alt={inv.title}
-                    className="hover:scale-105 transition-transform duration-[1500ms] ease-[cubic-bezier(0.215,0.61,0.355,1)]"
+                    className="group-hover:scale-105"
                   />
                 </div>
 
                 {/* Right Column: Content */}
-                <div className="p-10 sm:p-14 lg:p-20 flex flex-col justify-center items-start text-left transform-gpu">
+                <div className="p-10 sm:p-14 lg:p-20 flex flex-col justify-center items-start text-left">
                   <span className="text-[#C0A175] font-light text-xs uppercase tracking-[0.25em] mb-4 block">
                     {inv.category || "Innovation"}
                   </span>
@@ -121,14 +128,14 @@ export default function CallAction({ setSectionRef }) {
           </div>
 
           {/* Bottom Hub CTA */}
-          <div className="text-center mt-20 transform-gpu">
+          <div className="text-center mt-20">
             <Link
               to="/innovation-hub"
               className="group inline-flex items-center gap-3 bg-neutral-900 text-white hover:bg-[#C0A175] px-10 py-5 text-xs uppercase tracking-[0.2em] font-semibold transition-colors duration-300 rounded-none"
             >
               <span>Explore All Innovations</span>
               <svg
-                className="w-4 h-4 transform group-hover:translate-x-2 transition-transform duration-300 ease-out will-change-transform"
+                className="w-4 h-4 transform group-hover:translate-x-2 transition-transform duration-300 ease-out"
                 fill="none"
                 viewBox="0 0 24 24"
                 stroke="currentColor"
@@ -144,7 +151,7 @@ export default function CallAction({ setSectionRef }) {
       {/* MEMBERSHIP CTA (Section 7) */}
       <section
         ref={setRef(7)}
-        className="py-32 lg:py-48 px-6 lg:px-24 bg-[#e5e5e5] border-b border-neutral-300/50 transform-gpu will-change-transform"
+        className="py-32 lg:py-48 px-6 lg:px-24 bg-[#e5e5e5] border-b border-neutral-300/50"
       >
         <div className="max-w-5xl mx-auto">
           <span className="text-[#B0926A] text-xs uppercase tracking-[0.3em] font-semibold block mb-8">
@@ -164,7 +171,7 @@ export default function CallAction({ setSectionRef }) {
             >
               <span>Join our community now</span>
               <svg
-                className="w-4 h-4 transform group-hover:translate-x-2 transition-transform duration-500 ease-out will-change-transform"
+                className="w-4 h-4 transform group-hover:translate-x-2 transition-transform duration-500 ease-out"
                 fill="none"
                 viewBox="0 0 24 24"
                 stroke="currentColor"
@@ -180,7 +187,7 @@ export default function CallAction({ setSectionRef }) {
             >
               <span>Explore benefits</span>
               <svg
-                className="w-4 h-4 transform group-hover:translate-x-2 transition-transform duration-500 ease-out will-change-transform"
+                className="w-4 h-4 transform group-hover:translate-x-2 transition-transform duration-500 ease-out"
                 fill="none"
                 viewBox="0 0 24 24"
                 stroke="currentColor"
@@ -196,7 +203,7 @@ export default function CallAction({ setSectionRef }) {
       {/* Section 8: Partners */}
       <section
         ref={setRef(8)}
-        className="py-24 lg:py-32 px-6 lg:px-12 bg-[#7a787d] text-white border-b border-neutral-600/30 transform-gpu"
+        className="py-24 lg:py-32 px-6 lg:px-12 bg-[#7a787d] text-white border-b border-neutral-600/30"
       >
         <div className="max-w-7xl mx-auto">
           <div className="flex flex-col md:flex-row md:items-end justify-between pb-12 mb-12 border-b border-white/20 gap-6">
@@ -214,7 +221,7 @@ export default function CallAction({ setSectionRef }) {
             >
               <span>Become a Partner</span>
               <svg
-                className="w-4 h-4 transform group-hover:translate-x-2 group-hover:-translate-y-2 transition-transform duration-500 ease-out will-change-transform"
+                className="w-4 h-4 transform group-hover:translate-x-2 group-hover:-translate-y-2 transition-transform duration-500 ease-out"
                 fill="none"
                 viewBox="0 0 24 24"
                 stroke="currentColor"
@@ -225,7 +232,7 @@ export default function CallAction({ setSectionRef }) {
             </Link>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-px bg-white/20 border border-white/20 overflow-hidden rounded-none transform-gpu">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-px bg-white/20 border border-white/20 overflow-hidden rounded-none">
             {partners.slice(0, 2).map((p, i) => (
               <div
                 key={i}
@@ -236,7 +243,7 @@ export default function CallAction({ setSectionRef }) {
                   alt={p.name}
                   loading="lazy"
                   decoding="async"
-                  className="absolute inset-0 w-full h-full object-cover transform-gpu will-change-transform group-hover:scale-105 transition-transform duration-[800ms] ease-[cubic-bezier(0.215,0.61,0.355,1)]"
+                  className="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-[1200ms] ease-[cubic-bezier(0.215,0.61,0.355,1)]"
                 />
               </div>
             ))}
@@ -249,7 +256,7 @@ export default function CallAction({ setSectionRef }) {
         ref={setRef(9)}
         className="py-32 lg:py-48 bg-[#3B3A38] text-white px-6 md:px-12 lg:px-24 relative overflow-hidden border-t border-white/15"
       >
-        <div className="max-w-4xl mx-auto text-center space-y-8 relative z-10 transform-gpu">
+        <div className="max-w-4xl mx-auto text-center space-y-8 relative z-10">
           <div className="inline-block w-3 h-3 bg-[#d2b79b] rotate-45 mb-4" />
 
           <span className="text-[#d2b79b] font-mono text-xs uppercase tracking-[0.35em] block font-medium">
@@ -272,11 +279,11 @@ export default function CallAction({ setSectionRef }) {
           <div className="pt-8 flex flex-col sm:flex-row items-center justify-center gap-6">
             <Link
               to="/support-us"
-              className="group w-full sm:w-auto border border-[#d2b79b] bg-[#d2b79b] text-[#0A0A0A] px-10 py-5 flex items-center justify-center gap-3 text-xs uppercase tracking-[0.25em] font-medium hover:bg-transparent hover:text-[#d2b79b] transition-colors duration-500 rounded-none transform-gpu"
+              className="group w-full sm:w-auto border border-[#d2b79b] bg-[#d2b79b] text-[#0A0A0A] px-10 py-5 flex items-center justify-center gap-3 text-xs uppercase tracking-[0.25em] font-medium hover:bg-transparent hover:text-[#d2b79b] transition-colors duration-500 rounded-none"
             >
               <span>Support Us Today</span>
               <svg
-                className="w-4 h-4 transform group-hover:translate-x-2 transition-transform duration-500 ease-out will-change-transform"
+                className="w-4 h-4 transform group-hover:translate-x-2 transition-transform duration-500 ease-out"
                 fill="none"
                 viewBox="0 0 24 24"
                 stroke="currentColor"
@@ -287,7 +294,7 @@ export default function CallAction({ setSectionRef }) {
             </Link>
             <Link
               to="/membership"
-              className="w-full sm:w-auto border border-white/30 bg-transparent text-white px-10 py-5 text-xs uppercase tracking-[0.25em] font-medium hover:border-white hover:bg-white/5 transition-all duration-500 ease-out rounded-none transform-gpu"
+              className="w-full sm:w-auto border border-white/30 bg-transparent text-white px-10 py-5 text-xs uppercase tracking-[0.25em] font-medium hover:border-white hover:bg-white/5 transition-all duration-500 ease-out rounded-none"
             >
               Become A Member
             </Link>

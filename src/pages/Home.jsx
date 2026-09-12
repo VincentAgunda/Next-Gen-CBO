@@ -224,7 +224,7 @@ export default function Home() {
               {/* Card 1 */}
               <motion.div 
                 variants={itemVariant}
-                className="bg-[#F5F5F7] hover:bg-white p-10 lg:p-14 flex flex-col justify-between min-h-[380px] group transition-colors duration-[0.8s] ease-[cubic-bezier(0.16,1,0.3,1)]"
+                className="bg-[#fafafa] hover:bg-white p-10 lg:p-14 flex flex-col justify-between min-h-[380px] group transition-colors duration-[0.8s] ease-[cubic-bezier(0.16,1,0.3,1)]"
               >
                 <div>
                   <span className="text-[10px] font-mono text-neutral-400 group-hover:text-[#B0926A] block mb-8 transition-colors duration-500 tracking-widest">
@@ -242,7 +242,7 @@ export default function Home() {
               {/* Card 2 */}
               <motion.div 
                 variants={itemVariant}
-                className="bg-[#F5F5F7] hover:bg-white p-10 lg:p-14 flex flex-col justify-between min-h-[380px] group transition-colors duration-[0.8s] ease-[cubic-bezier(0.16,1,0.3,1)]"
+                className="bg-[#fafafa] hover:bg-white p-10 lg:p-14 flex flex-col justify-between min-h-[380px] group transition-colors duration-[0.8s] ease-[cubic-bezier(0.16,1,0.3,1)]"
               >
                 <div>
                   <span className="text-[10px] font-mono text-neutral-400 group-hover:text-[#B0926A] block mb-8 transition-colors duration-500 tracking-widest">
