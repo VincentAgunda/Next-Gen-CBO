@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import MembershipForm from "../components/MembershipForm";
 import LoginForm from "../components/LoginForm";
 import { motion, AnimatePresence } from "framer-motion";
@@ -18,7 +18,26 @@ const staggerContainer = {
 };
 
 export default function Membership() {
-  const [tab, setTab] = useState("register");
+  // Defaulting to "login" so the user immediately sees the login side
+  const [tab, setTab] = useState("login");
+  
+  // Create a reference to the toggle section
+  const authSectionRef = useRef(null);
+
+  // Scroll to the toggle section smoothly when entering the page
+  useEffect(() => {
+    // A small timeout ensures framer-motion has finished initial layout rendering
+    const timer = setTimeout(() => {
+      if (authSectionRef.current) {
+        authSectionRef.current.scrollIntoView({ 
+          behavior: "smooth", 
+          block: "start" // Aligns the top of the section with the top of the viewport
+        });
+      }
+    }, 100);
+
+    return () => clearTimeout(timer);
+  }, []);
 
   return (
     <div className="font-sans text-black bg-[#f4f4f4] antialiased selection:bg-[#03A10E] selection:text-white overflow-hidden min-h-screen flex flex-col items-center">
@@ -39,7 +58,7 @@ export default function Membership() {
 
         <motion.h1 variants={fadeInUp} className="text-5xl md:text-7xl lg:text-[110px] font-normal leading-[0.95] tracking-tight text-black mb-10">
           Ecosystem <br />
-          <span className="text-[#03A10E]">Access.</span>
+          <span className="text-[#B0926A]">Access.</span>
         </motion.h1>
         
         <motion.p variants={fadeInUp} className="max-w-2xl text-black opacity-85 font-normal text-[16px] md:text-[18px] leading-relaxed">
@@ -49,6 +68,7 @@ export default function Membership() {
 
       {/* 02. TOGGLE CONTROLS - PILL STYLE & CENTERED */}
       <motion.div 
+        ref={authSectionRef} // Attached the ref here!
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ ...smoothTransition, delay: 0.4 }}
@@ -57,13 +77,13 @@ export default function Membership() {
         <div className="relative flex items-center bg-[#EAEAEA] rounded-full p-1.5 shadow-inner">
           
           <button
-            onClick={() => setTab("register")}
+            onClick={() => setTab("login")}
             className={`relative z-10 px-8 py-2.5 text-[13px] md:text-sm font-medium transition-colors duration-300 rounded-full ${
-              tab === "register" ? "text-white" : "text-[#555] hover:text-black"
+              tab === "login" ? "text-white" : "text-[#555] hover:text-black"
             }`}
           >
-            Register Profile
-            {tab === "register" && (
+            Secure Login
+            {tab === "login" && (
               <motion.div
                 layoutId="activeTabIndicator"
                 className="absolute inset-0 bg-[#1C1C1E] rounded-full -z-10 shadow-sm"
@@ -73,13 +93,13 @@ export default function Membership() {
           </button>
 
           <button
-            onClick={() => setTab("login")}
+            onClick={() => setTab("register")}
             className={`relative z-10 px-8 py-2.5 text-[13px] md:text-sm font-medium transition-colors duration-300 rounded-full ${
-              tab === "login" ? "text-white" : "text-[#555] hover:text-black"
+              tab === "register" ? "text-white" : "text-[#555] hover:text-black"
             }`}
           >
-            Secure Login
-            {tab === "login" && (
+            Register Profile
+            {tab === "register" && (
               <motion.div
                 layoutId="activeTabIndicator"
                 className="absolute inset-0 bg-[#1C1C1E] rounded-full -z-10 shadow-sm"
