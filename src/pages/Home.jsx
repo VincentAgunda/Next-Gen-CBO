@@ -8,11 +8,12 @@ import FeaturedInitiatives from "../components/FeaturedInitiatives";
 import CallAction from "./call-action"; 
 import { programs } from "../data/programs";
 import { Link } from "react-router-dom";
-import { motion } from "framer-motion"; // Added framer-motion
+import { motion } from "framer-motion";
+import Lenis from "@studio-freight/lenis"; // Added Lenis for smooth scroll
 
 // Firebase imports
 import { collection, onSnapshot, query, orderBy, limit } from "firebase/firestore";
-import { db } from "../firebase/config"; // Ensure this matches your project structure
+import { db } from "../firebase/config";
 
 // --- PILLARS & SECTIONS ANIMATION CONFIG & DATA ---
 const customEase = [0.16, 1, 0.3, 1];
@@ -59,7 +60,6 @@ const pillars = [
   }
 ];
 
-// Updated sections config (Pillars color matched to #FAFAFA)
 const sectionsConfig = [
   { id: "hero", color: "#F5F5F7", dotColor: "bg-black" },
   { id: "who-we-are", color: "#F5F5F7", dotColor: "bg-black" },
@@ -73,7 +73,6 @@ const sectionsConfig = [
   { id: "action", color: "#3B3A38", dotColor: "bg-white" },
 ];
 
-// Navigation Links for Massive Typography Section
 const massiveTypographyLinks = [
   { title: "Explore All Programs", path: "/programs" },
   { title: "The Innovation Hub", path: "/innovation-hub" },
@@ -83,13 +82,31 @@ const massiveTypographyLinks = [
 export default function Home() {
   const sectionRefs = useRef([]);
   const dotRefs = useRef([]);
-  
-  // State to hold real-time Firebase events
   const [liveEvents, setLiveEvents] = useState([]);
+
+  // Setup Lenis Smooth Scrolling
+  useEffect(() => {
+    const lenis = new Lenis({
+      duration: 1.2,
+      easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)), // Apple-like smooth easing
+      smooth: true,
+      smoothTouch: false, // Let mobile use native smooth scrolling
+    });
+
+    function raf(time) {
+      lenis.raf(time);
+      requestAnimationFrame(raf);
+    }
+
+    requestAnimationFrame(raf);
+
+    return () => {
+      lenis.destroy(); // Cleanup on unmount
+    };
+  }, []);
 
   // Fetch events from Firebase
   useEffect(() => {
-    // Query the newest 3 events based on creation time
     const q = query(
       collection(db, "events"), 
       orderBy("createdAt", "desc"), 
@@ -156,7 +173,7 @@ export default function Home() {
   }, []);
 
   return (
-    <div className="font-sans text-[#111111] antialiased selection:bg-[#03A10E] selection:text-white overflow-hidden scroll-smooth bg-[#F5F5F7]">
+    <div className="font-sans text-[#111111] antialiased selection:bg-[#03A10E] selection:text-white overflow-hidden bg-[#F5F5F7]">
       
       {/* Scroll Progress Indicator */}
       <div className="fixed right-6 top-1/2 -translate-y-1/2 z-50 flex flex-col items-end gap-3 pointer-events-none hidden md:flex">
@@ -176,7 +193,7 @@ export default function Home() {
         <HeroSection />
       </section>
 
-      {/* SECTION 1: WHO WE ARE (Updated to match Apple-like Section 2 Theme) */}
+      {/* SECTION 1: WHO WE ARE */}
       <section ref={setSectionRef(1)} className="py-28 lg:py-36 bg-[#F5F5F7] border-b border-neutral-200/60 overflow-hidden">
         <div className="max-w-[1400px] mx-auto px-6 md:px-12 lg:px-24">
           <motion.div 
@@ -227,7 +244,6 @@ export default function Home() {
             {/* Right Column: Cards */}
             <div className="lg:col-span-7 grid md:grid-cols-2 gap-[1px] bg-neutral-200/70 overflow-hidden shadow-sm shadow-black/5 rounded-2xl md:rounded-none">
               
-              {/* Card 1 */}
               <motion.div 
                 variants={itemVariant}
                 className="bg-[#F5F5F7] hover:bg-white p-10 lg:p-14 flex flex-col justify-between min-h-[380px] group transition-colors duration-[0.8s] ease-[cubic-bezier(0.16,1,0.3,1)]"
@@ -245,7 +261,6 @@ export default function Home() {
                 </div>
               </motion.div>
 
-              {/* Card 2 */}
               <motion.div 
                 variants={itemVariant}
                 className="bg-[#F5F5F7] hover:bg-white p-10 lg:p-14 flex flex-col justify-between min-h-[380px] group transition-colors duration-[0.8s] ease-[cubic-bezier(0.16,1,0.3,1)]"
@@ -266,7 +281,7 @@ export default function Home() {
             </div>
           </motion.div>
 
-          {/* Image Wrapper */}
+          {/* Image Wrapper - Removed Grayscale & Transparency Filters */}
           <motion.div 
             variants={staggerContainer}
             initial="hidden"
@@ -274,15 +289,14 @@ export default function Home() {
             viewport={{ once: true, margin: "-100px" }}
             className="mt-24 lg:mt-36"
           >
-            <motion.div variants={itemVariant} className="overflow-hidden border border-neutral-200 rounded-sm shadow-sm group relative bg-[#1a1a1a]">
+            <motion.div variants={itemVariant} className="overflow-hidden border border-neutral-200 rounded-sm shadow-sm group relative">
               <img
                 src="/Hero/h4.jpeg"
                 alt="Who We Are Team"
                 loading="lazy"
                 decoding="async"
-                className="w-full h-[40vh] md:h-[50vh] lg:h-[60vh] object-cover object-[center_30%] opacity-80 grayscale contrast-[1.15] transform-gpu will-change-[transform,filter,opacity] group-hover:scale-105 group-hover:grayscale-0 group-hover:opacity-100 group-hover:contrast-100 transition-[transform,filter,opacity] duration-[1000ms] ease-[cubic-bezier(0.215,0.61,0.355,1)]"
+                className="w-full h-[40vh] md:h-[50vh] lg:h-[60vh] object-cover object-[center_30%] transform-gpu will-change-transform group-hover:scale-105 transition-transform duration-[1000ms] ease-[cubic-bezier(0.215,0.61,0.355,1)]"
               />
-              <div className="absolute inset-0 bg-gradient-to-b from-transparent via-white/5 to-[#FAF9F6]/20 mix-blend-overlay pointer-events-none group-hover:opacity-0 transition-opacity duration-1000 ease-in-out"></div>
             </motion.div>
           </motion.div>
         </div>
