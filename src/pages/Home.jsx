@@ -9,11 +9,10 @@ import CallAction from "./call-action";
 import { programs } from "../data/programs";
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
-import Lenis from "@studio-freight/lenis"; // Added Lenis for smooth scroll
 
 // Firebase imports
 import { collection, onSnapshot, query, orderBy, limit } from "firebase/firestore";
-import { db } from "../firebase/config";
+import { db } from "../firebase/config"; 
 
 // --- PILLARS & SECTIONS ANIMATION CONFIG & DATA ---
 const customEase = [0.16, 1, 0.3, 1];
@@ -82,30 +81,9 @@ const massiveTypographyLinks = [
 export default function Home() {
   const sectionRefs = useRef([]);
   const dotRefs = useRef([]);
+  
   const [liveEvents, setLiveEvents] = useState([]);
 
-  // Setup Lenis Smooth Scrolling
-  useEffect(() => {
-    const lenis = new Lenis({
-      duration: 1.2,
-      easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)), // Apple-like smooth easing
-      smooth: true,
-      smoothTouch: false, // Let mobile use native smooth scrolling
-    });
-
-    function raf(time) {
-      lenis.raf(time);
-      requestAnimationFrame(raf);
-    }
-
-    requestAnimationFrame(raf);
-
-    return () => {
-      lenis.destroy(); // Cleanup on unmount
-    };
-  }, []);
-
-  // Fetch events from Firebase
   useEffect(() => {
     const q = query(
       collection(db, "events"), 
@@ -124,7 +102,6 @@ export default function Home() {
     return () => unsubscribe();
   }, []);
 
-  // Intersection Observer for dot navigation
   useEffect(() => {
     const observer = new IntersectionObserver(
       (entries) => {
@@ -173,7 +150,7 @@ export default function Home() {
   }, []);
 
   return (
-    <div className="font-sans text-[#111111] antialiased selection:bg-[#03A10E] selection:text-white overflow-hidden bg-[#F5F5F7]">
+    <div className="font-sans text-[#111111] antialiased selection:bg-[#03A10E] selection:text-white overflow-x-hidden scroll-smooth bg-[#F5F5F7]">
       
       {/* Scroll Progress Indicator */}
       <div className="fixed right-6 top-1/2 -translate-y-1/2 z-50 flex flex-col items-end gap-3 pointer-events-none hidden md:flex">
@@ -244,6 +221,7 @@ export default function Home() {
             {/* Right Column: Cards */}
             <div className="lg:col-span-7 grid md:grid-cols-2 gap-[1px] bg-neutral-200/70 overflow-hidden shadow-sm shadow-black/5 rounded-2xl md:rounded-none">
               
+              {/* Card 1 */}
               <motion.div 
                 variants={itemVariant}
                 className="bg-[#F5F5F7] hover:bg-white p-10 lg:p-14 flex flex-col justify-between min-h-[380px] group transition-colors duration-[0.8s] ease-[cubic-bezier(0.16,1,0.3,1)]"
@@ -261,6 +239,7 @@ export default function Home() {
                 </div>
               </motion.div>
 
+              {/* Card 2 */}
               <motion.div 
                 variants={itemVariant}
                 className="bg-[#F5F5F7] hover:bg-white p-10 lg:p-14 flex flex-col justify-between min-h-[380px] group transition-colors duration-[0.8s] ease-[cubic-bezier(0.16,1,0.3,1)]"
@@ -281,7 +260,7 @@ export default function Home() {
             </div>
           </motion.div>
 
-          {/* Image Wrapper - Removed Grayscale & Transparency Filters */}
+          {/* Image Wrapper */}
           <motion.div 
             variants={staggerContainer}
             initial="hidden"
@@ -289,13 +268,13 @@ export default function Home() {
             viewport={{ once: true, margin: "-100px" }}
             className="mt-24 lg:mt-36"
           >
-            <motion.div variants={itemVariant} className="overflow-hidden border border-neutral-200 rounded-sm shadow-sm group relative">
+            <motion.div variants={itemVariant} className="overflow-hidden border border-neutral-200 rounded-sm shadow-sm group relative bg-transparent">
               <img
                 src="/Hero/h4.jpeg"
                 alt="Who We Are Team"
                 loading="lazy"
                 decoding="async"
-                className="w-full h-[40vh] md:h-[50vh] lg:h-[60vh] object-cover object-[center_30%] transform-gpu will-change-transform group-hover:scale-105 transition-transform duration-[1000ms] ease-[cubic-bezier(0.215,0.61,0.355,1)]"
+                className="w-full h-[40vh] md:h-[50vh] lg:h-[60vh] object-cover object-[center_30%] transform-gpu will-change-[transform] group-hover:scale-105 transition-transform duration-[1000ms] ease-[cubic-bezier(0.215,0.61,0.355,1)]"
               />
             </motion.div>
           </motion.div>
