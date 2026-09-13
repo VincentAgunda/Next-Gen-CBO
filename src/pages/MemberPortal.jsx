@@ -6,6 +6,13 @@ import { signOut } from "firebase/auth";
 import { useNavigate } from "react-router-dom";
 import EventCard from "../components/EventCard"; // adjust path to match your folder structure
 
+// Statuses that grant full portal access
+const ACTIVE_STATUSES = ["approved", "active"];
+// Statuses that mean "waiting for review"
+const PENDING_STATUSES = ["pending", "submitted", "under_review"];
+// Statuses that mean "no access"
+const BLOCKED_STATUSES = ["revoked", "rejected", "suspended", "disabled"];
+
 export default function MemberPortalDashboard() {
   const { userData, currentUser, loading } = useAuth();
   const [announcements, setAnnouncements] = useState([]);
@@ -25,9 +32,15 @@ export default function MemberPortalDashboard() {
     }
   }, [userData, navigate]);
 
-  // 2. Fetch Announcements
+  // Normalized status helpers
+  const status = (userData?.status || "").toLowerCase();
+  const isActive = ACTIVE_STATUSES.includes(status);
+  const isPending = PENDING_STATUSES.includes(status);
+  const isBlocked = BLOCKED_STATUSES.includes(status);
+
+  // 2. Fetch Announcements (only if the member is active)
   useEffect(() => {
-    if (!currentUser) return;
+    if (!currentUser || !isActive) return;
 
     const q = query(
       collection(db, "announcements"),
@@ -39,11 +52,11 @@ export default function MemberPortalDashboard() {
     });
 
     return unsub;
-  }, [currentUser]);
+  }, [currentUser, isActive]);
 
-  // 3. Fetch Events (mirrors Admin EventManagement source)
+  // 3. Fetch Events (only if active)
   useEffect(() => {
-    if (!currentUser) return;
+    if (!currentUser || !isActive) return;
 
     const eventsRef = collection(db, "events");
 
@@ -62,11 +75,11 @@ export default function MemberPortalDashboard() {
     );
 
     return unsub;
-  }, [currentUser]);
+  }, [currentUser, isActive]);
 
-  // 4. Fetch Writing Exercises & Works (mirrors Admin WritingManagement source)
+  // 4. Fetch Writing Exercises & Works (only if active)
   useEffect(() => {
-    if (!currentUser) return;
+    if (!currentUser || !isActive) return;
 
     const writingRef = collection(db, "writingResources");
 
@@ -85,7 +98,7 @@ export default function MemberPortalDashboard() {
     );
 
     return unsub;
-  }, [currentUser]);
+  }, [currentUser, isActive]);
 
   // 5. Logout Handler
   const handleLogout = async () => {
@@ -114,13 +127,38 @@ export default function MemberPortalDashboard() {
   // Fallback if data fails to load
   if (!userData) {
     return (
-      <div className="min-h-screen flex items-center justify-center bg-[#FAFAFC]">
-        <p className="text-[#B0926A] font-light tracking-widest text-sm uppercase">
-          Authentication required. Please log in.
-        </p>
+      <div className="min-h-screen flex items-center justify-center bg-[#FAFAFC] px-6">
+        <div className="text-center space-y-8 max-w-md">
+          <p className="text-[#B0926A] font-light tracking-widest text-sm uppercase">
+            Authentication required. Please log in.
+          </p>
+          <button
+            onClick={() => navigate("/membership")}
+            className="text-[10px] uppercase tracking-[0.25em] font-medium text-neutral-500 hover:text-neutral-900 transition-all duration-300 border border-neutral-200 hover:border-[#B0926A]/50 px-8 py-3"
+          >
+            Return to Login
+          </button>
+        </div>
       </div>
     );
   }
+
+  // ============================================================
+  // STATUS GATE
+  // Revoked / Rejected / Suspended / Pending → no full portal
+  // ============================================================
+
+  if (isBlocked || (!isActive && !isPending)) {
+    return <AccessDeniedScreen status={status} onLogout={handleLogout} />;
+  }
+
+  if (isPending) {
+    return <PendingScreen status={status} onLogout={handleLogout} />;
+  }
+
+  // ============================================================
+  // ACTIVE MEMBER — full portal
+  // ============================================================
 
   const firstName = userData?.fullName?.split(" ")[0] || "Member";
 
@@ -129,16 +167,16 @@ export default function MemberPortalDashboard() {
       {/* Sticky Top Header */}
       <header className="bg-white/80 backdrop-blur-md border-b border-neutral-200/60 sticky top-0 z-50 transition-all duration-300">
         <div className="max-w-[1400px] mx-auto px-6 md:px-12 lg:px-24 h-20 sm:h-24 flex items-center justify-between">
-          
+
           {/* NGYAR Logo - Clickable button routing to Home */}
-          <button 
-            onClick={() => navigate("/")} 
+          <button
+            onClick={() => navigate("/")}
             className="flex items-center hover:opacity-70 transition-opacity duration-300 outline-none"
           >
-            <img 
-              src="/assets/navbar/nav1.png" 
-              alt="NGYAR Logo" 
-              className="h-10 w-auto object-contain" 
+            <img
+              src="/assets/navbar/nav1.png"
+              alt="NGYAR Logo"
+              className="h-10 w-auto object-contain"
             />
           </button>
 
@@ -190,12 +228,10 @@ export default function MemberPortalDashboard() {
                     </span>
                     <span
                       className={`tracking-widest uppercase text-[11px] font-medium ${
-                        userData.status === "approved"
-                          ? "text-emerald-700"
-                          : "text-[#B0926A]"
+                        isActive ? "text-emerald-700" : "text-[#B0926A]"
                       }`}
                     >
-                      {userData.status}
+                      {status || "unknown"}
                     </span>
                   </div>
 
@@ -401,6 +437,78 @@ export default function MemberPortalDashboard() {
           </section>
         </div>
       </main>
+    </div>
+  );
+}
+
+/* ============================================================
+   Status Screens
+============================================================ */
+
+function AccessDeniedScreen({ status, onLogout }) {
+  return (
+    <div className="min-h-screen bg-[#FAFAFC] flex items-center justify-center px-6">
+      <div className="max-w-lg w-full bg-white/80 backdrop-blur-sm border border-neutral-200/60 p-10 sm:p-14 text-center space-y-8">
+        <div className="space-y-4">
+          <span className="text-[10px] uppercase tracking-[0.35em] text-[#B0926A] font-semibold block">
+            Access Restricted
+          </span>
+          <h1 className="text-3xl sm:text-4xl font-light text-neutral-900 tracking-tight">
+            Your access has been revoked.
+          </h1>
+          <p className="text-neutral-500 font-light text-sm leading-relaxed">
+            Your NGYAR member access is currently marked as{" "}
+            <span className="uppercase tracking-widest text-[#B0926A] font-medium">
+              {status || "restricted"}
+            </span>
+            . If you believe this is a mistake, please contact the alliance
+            administration to restore your access.
+          </p>
+        </div>
+
+        <div className="pt-4 border-t border-neutral-100">
+          <button
+            onClick={onLogout}
+            className="text-[10px] uppercase tracking-[0.25em] font-medium text-neutral-500 hover:text-neutral-900 transition-all duration-300 border border-neutral-200 hover:border-[#B0926A]/50 px-8 py-3"
+          >
+            Secure Log Out
+          </button>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+function PendingScreen({ status, onLogout }) {
+  return (
+    <div className="min-h-screen bg-[#FAFAFC] flex items-center justify-center px-6">
+      <div className="max-w-lg w-full bg-white/80 backdrop-blur-sm border border-neutral-200/60 p-10 sm:p-14 text-center space-y-8">
+        <div className="space-y-4">
+          <span className="text-[10px] uppercase tracking-[0.35em] text-[#B0926A] font-semibold block">
+            Application Under Review
+          </span>
+          <h1 className="text-3xl sm:text-4xl font-light text-neutral-900 tracking-tight">
+            Your application is pending.
+          </h1>
+          <p className="text-neutral-500 font-light text-sm leading-relaxed">
+            Your application is currently{" "}
+            <span className="uppercase tracking-widest text-[#B0926A] font-medium">
+              {status || "pending"}
+            </span>
+            . Once an administrator reviews and approves it, you will gain full
+            access to the member portal, events, and writing resources.
+          </p>
+        </div>
+
+        <div className="pt-4 border-t border-neutral-100">
+          <button
+            onClick={onLogout}
+            className="text-[10px] uppercase tracking-[0.25em] font-medium text-neutral-500 hover:text-neutral-900 transition-all duration-300 border border-neutral-200 hover:border-[#B0926A]/50 px-8 py-3"
+          >
+            Secure Log Out
+          </button>
+        </div>
+      </div>
     </div>
   );
 }
