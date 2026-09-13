@@ -10,20 +10,22 @@ import {
   Newspaper,
   Handshake,
   VolunteerActivism,
+  EditNote,
   Menu,
   Close,
   Logout
 } from "@mui/icons-material";
 
 // IMPORTANT: Adjust these paths based on where your components are located
-import Navbar from "./Navbar"; 
-import Footer from "./Footer"; 
+import Navbar from "./Navbar";
+import Footer from "./Footer";
 
 const links = [
   { to: "/admin", icon: <Dashboard fontSize="small" />, label: "Dashboard" },
   { to: "/admin/members", icon: <People fontSize="small" />, label: "Members" },
   { to: "/admin/programs", icon: <School fontSize="small" />, label: "Programs" },
   { to: "/admin/events", icon: <Event fontSize="small" />, label: "Events" },
+  { to: "/admin/writing", icon: <EditNote fontSize="small" />, label: "Writing" },
   { to: "/admin/research", icon: <Biotech fontSize="small" />, label: "Research" },
   { to: "/admin/innovations", icon: <Biotech fontSize="small" />, label: "Innovations" },
   { to: "/admin/news", icon: <Newspaper fontSize="small" />, label: "News" },
@@ -42,10 +44,10 @@ export default function AdminLayout() {
 
       {/* Admin Wrapper */}
       <div className="flex flex-1 overflow-hidden relative">
-        
+
         {/* Mobile Sidebar Overlay Backdrop */}
         {sidebarOpen && (
-          <div 
+          <div
             className="fixed inset-0 bg-black/40 z-30 lg:hidden backdrop-blur-sm transition-opacity"
             onClick={() => setSidebarOpen(false)}
           />
@@ -61,8 +63,8 @@ export default function AdminLayout() {
             <h2 className="text-[#d2b79b] font-heading text-[11px] uppercase tracking-[0.25em] font-bold">
               Admin Panel
             </h2>
-            <button 
-              className="lg:hidden text-[#333333] hover:text-[#d2b79b] transition-colors" 
+            <button
+              className="lg:hidden text-[#333333] hover:text-[#d2b79b] transition-colors"
               onClick={() => setSidebarOpen(false)}
             >
               <Close />
@@ -78,8 +80,8 @@ export default function AdminLayout() {
                 onClick={() => setSidebarOpen(false)} // Close sidebar on mobile after clicking
                 className={({ isActive }) =>
                   `flex items-center gap-3 px-4 py-3 rounded-md font-sans text-xs uppercase tracking-[0.15em] transition-all duration-300 ${
-                    isActive 
-                      ? "bg-[#333333] text-white font-medium shadow-md" 
+                    isActive
+                      ? "bg-[#333333] text-white font-medium shadow-md"
                       : "text-[#777777] hover:bg-[#F5F5F7] hover:text-[#333333]"
                   }`
                 }
@@ -100,11 +102,11 @@ export default function AdminLayout() {
 
         {/* Main Content Area */}
         <main className="flex-1 flex flex-col h-full w-full overflow-hidden">
-          
+
           {/* Mobile Admin Topbar */}
           <div className="lg:hidden bg-white border-b border-gray-100 p-4 flex items-center gap-4 z-10">
-            <button 
-              onClick={() => setSidebarOpen(true)} 
+            <button
+              onClick={() => setSidebarOpen(true)}
               className="text-[#333333] hover:bg-gray-50 p-1 rounded-md"
             >
               <Menu />

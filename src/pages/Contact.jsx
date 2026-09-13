@@ -43,7 +43,7 @@ export default function Contact() {
   return (
     <div className="font-sans text-black bg-[#f4f4f4] antialiased selection:bg-[#03A10E] selection:text-white overflow-hidden min-h-screen">
       
-      {/* 01. TYPOGRAPHIC HERO */}
+      {/* 01. HEADER */}
       <motion.header 
         initial="hidden"
         animate="visible"
@@ -59,11 +59,11 @@ export default function Contact() {
 
         <motion.h1 variants={fadeInUp} className="max-w-5xl text-5xl sm:text-6xl md:text-7xl lg:text-[4.5rem] xl:text-[5.5rem] font-medium text-neutral-900 tracking-tighter leading-[1.02]">
           Contact {" "}
-          <span className="text-[#03A10E]">Secretariat.</span>
+          <span className="text-[#03A10E]">Us.</span>
         </motion.h1>
         
         <motion.p variants={fadeInUp} className="max-w-2xl mt-8 md:mt-10 text-neutral-600 font-normal text-base md:text-lg leading-relaxed">
-          Route structural ecosystem questions or operational ledger verifications directly to our registered Makueni office location.
+          Have a question or want to work with us? Reach out directly to our team at the Makueni office. We'd love to hear from you.
         </motion.p>
       </motion.header>
 
@@ -77,7 +77,7 @@ export default function Contact() {
       >
         <div className="max-w-[1440px] mx-auto grid lg:grid-cols-12 gap-16 items-start">
           
-          {/* Core Identity Parameters Panel */}
+          {/* Contact Information */}
           <motion.div variants={fadeInUp} className="lg:col-span-5 space-y-10">
             <div className="space-y-6 bg-[#f4f4f4] p-8 border border-[#E5E5E5] shadow-none rounded-none">
               <div className="flex items-center gap-4 group">
@@ -85,7 +85,7 @@ export default function Contact() {
                   <Phone className="text-[#03A10E] group-hover:text-white transition-colors text-sm" />
                 </div>
                 <div className="flex flex-col">
-                  <span className="text-[10px] uppercase tracking-wider text-[#757575] font-semibold">Voice Prefix Line</span>
+                  <span className="text-[10px] uppercase tracking-wider text-[#757575] font-semibold">Phone</span>
                   <span className="text-sm font-medium text-black">+254 792 823 182</span>
                 </div>
               </div>
@@ -95,7 +95,7 @@ export default function Contact() {
                   <Email className="text-[#03A10E] group-hover:text-white transition-colors text-sm" />
                 </div>
                 <div className="flex flex-col">
-                  <span className="text-[10px] uppercase tracking-wider text-[#757575] font-semibold">Electronic Mail Routing</span>
+                  <span className="text-[10px] uppercase tracking-wider text-[#757575] font-semibold">Email</span>
                   <span className="text-sm font-medium text-black">info@ngyar-agri.org</span>
                 </div>
               </div>
@@ -105,7 +105,7 @@ export default function Contact() {
                   <LocationOn className="text-[#03A10E] group-hover:text-white transition-colors text-sm" />
                 </div>
                 <div className="flex flex-col">
-                  <span className="text-[10px] uppercase tracking-wider text-[#757575] font-semibold">Headquarters Seat</span>
+                  <span className="text-[10px] uppercase tracking-wider text-[#757575] font-semibold">Location</span>
                   <span className="text-sm font-medium text-black leading-tight">
                     Emali-Sultan Humud Municipality, Makueni County, Kenya
                   </span>
@@ -113,10 +113,10 @@ export default function Contact() {
               </div>
             </div>
 
-            {/* Precision Premium Embedded Map Frame */}
+            {/* Map */}
             <div className="h-72 bg-[#E5E5E5] rounded-none overflow-hidden border border-[#E5E5E5] relative group">
               <iframe
-                title="NGYAR Makueni Operations Command Head Office Location"
+                title="NGYAR Makueni Office Location"
                 src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3986.5323204987!2d37.4589212!3d-2.2789123!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x1843b3531bfa28b5%3A0x63cd94f877bf7a16!2sEmali!5e0!3m2!1sen!2ske!4v1719748000000!5m2!1sen!2ske"
                 width="100%"
                 height="100%"
@@ -128,29 +128,29 @@ export default function Contact() {
             </div>
           </motion.div>
 
-          {/* Secure Messaging Dispatch Frame */}
+          {/* Contact Form */}
           <motion.div variants={fadeInUp} className="lg:col-span-7 bg-[#f4f4f4] p-10 md:p-12 border border-[#E5E5E5] rounded-none shadow-none space-y-8">
-            <h2 className="text-2xl font-normal tracking-tight text-black">Transmit Digital Correspondence</h2>
+            <h2 className="text-2xl font-normal tracking-tight text-black">Send a Message</h2>
             <form onSubmit={handleSubmit(onSubmit)} className="space-y-8">
               <div>
-                <label className="block text-[10px] uppercase tracking-[0.25em] text-[#757575] font-semibold mb-2">Your Identity Name</label>
-                <input {...register("name")} placeholder="Full Corporate / Individual Legal Title" required className="w-full bg-transparent border-b border-[#E5E5E5] py-4 text-sm focus:outline-none focus:border-[#03A10E] transition-colors rounded-none placeholder:text-[#A3A3A3]" />
+                <label className="block text-[10px] uppercase tracking-[0.25em] text-[#757575] font-semibold mb-2">Your Name</label>
+                <input {...register("name")} placeholder="e.g. Jane Doe" required className="w-full bg-transparent border-b border-[#E5E5E5] py-4 text-sm focus:outline-none focus:border-[#03A10E] transition-colors rounded-none placeholder:text-[#A3A3A3]" />
               </div>
               <div>
-                <label className="block text-[10px] uppercase tracking-[0.25em] text-[#757575] font-semibold mb-2">Return Mail Link</label>
-                <input {...register("email")} type="email" placeholder="correspondent@domain.com" required className="w-full bg-transparent border-b border-[#E5E5E5] py-4 text-sm focus:outline-none focus:border-[#03A10E] transition-colors rounded-none placeholder:text-[#A3A3A3]" />
+                <label className="block text-[10px] uppercase tracking-[0.25em] text-[#757575] font-semibold mb-2">Email Address</label>
+                <input {...register("email")} type="email" placeholder="jane@example.com" required className="w-full bg-transparent border-b border-[#E5E5E5] py-4 text-sm focus:outline-none focus:border-[#03A10E] transition-colors rounded-none placeholder:text-[#A3A3A3]" />
               </div>
               <div>
-                <label className="block text-[10px] uppercase tracking-[0.25em] text-[#757575] font-semibold mb-2">Secure Text Message Body</label>
-                <textarea {...register("message")} rows={6} placeholder="Provide explicit details regarding your structural request or consultation terms..." required className="w-full bg-transparent border-b border-[#E5E5E5] py-4 text-sm focus:outline-none focus:border-[#03A10E] transition-colors resize-none rounded-none placeholder:text-[#A3A3A3]" />
+                <label className="block text-[10px] uppercase tracking-[0.25em] text-[#757575] font-semibold mb-2">Message</label>
+                <textarea {...register("message")} rows={6} placeholder="How can we help you?" required className="w-full bg-transparent border-b border-[#E5E5E5] py-4 text-sm focus:outline-none focus:border-[#03A10E] transition-colors resize-none rounded-none placeholder:text-[#A3A3A3]" />
               </div>
               <button className="w-full bg-black text-white py-5 text-[10px] md:text-xs uppercase tracking-[0.25em] font-semibold hover:bg-[#03A10E] transition-all duration-300 rounded-none">
-                Dispatch Correspondence Assets
+                Send Message
               </button>
             </form>
             {sent && (
               <div className="p-4 bg-[#E5E5E5] text-[#03A10E] text-[10px] md:text-xs uppercase tracking-wider font-semibold border border-[#03A10E] transition-all animate-fade-in rounded-none">
-                Data packet safely dispatched into the communications queue.
+                Thank you! Your message has been sent successfully.
               </div>
             )}
           </motion.div>

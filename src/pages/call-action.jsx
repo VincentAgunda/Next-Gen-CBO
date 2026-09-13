@@ -281,7 +281,7 @@ export default function CallAction({ setSectionRef }) {
               to="/support-us"
               className="group w-full sm:w-auto border border-[#d2b79b] bg-[#d2b79b] text-[#0A0A0A] px-10 py-5 flex items-center justify-center gap-3 text-xs uppercase tracking-[0.25em] font-medium hover:bg-transparent hover:text-[#d2b79b] transition-colors duration-500 rounded-none"
             >
-              <span>Support Us Today</span>
+              <span>Donate</span>
               <svg
                 className="w-4 h-4 transform group-hover:translate-x-2 transition-transform duration-500 ease-out"
                 fill="none"

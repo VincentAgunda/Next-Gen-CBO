@@ -26,6 +26,7 @@ import AdminNewsManagement from "./pages/Admin/NewsManagement";
 import AdminPartnershipManagement from "./pages/Admin/PartnershipManagement";
 import AdminVolunteerManagement from "./pages/Admin/VolunteerManagement";
 import AdminLogin from "./components/AdminLogin";
+import WritingManagement from "./pages/admin/WritingManagement";
 
 export default function App() {
   return (
@@ -75,6 +76,7 @@ export default function App() {
         <Route path="news" element={<AdminNewsManagement />} />
         <Route path="partnerships" element={<AdminPartnershipManagement />} />
         <Route path="volunteers" element={<AdminVolunteerManagement />} />
+        <Route path="/admin/writing" element={<WritingManagement />} />
       </Route>
     </Routes>
   );

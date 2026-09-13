@@ -31,7 +31,7 @@ export default function Footer() {
       title: "Direct Contact",
       links: [
         { name: "info@nextgenyouth.org", path: "mailto:info@nextgenyouth.org", isExternal: true },
-        { name: "+254 700 000 000", path: "tel:+254700000000", isExternal: true },
+        { name: "+254 792 823 182", path: "tel:+254 792 823 182", isExternal: true },
         { name: "Nairobi, Kenya", path: null, isStatic: true },
       ]
     },
@@ -153,7 +153,7 @@ export default function Footer() {
           <div className="flex flex-wrap gap-x-5 gap-y-2 text-[13px] text-[#555555] font-normal order-3 mt-1 lg:mt-0">
             <Link to="/imprint" className="hover:text-black transition-colors duration-200">Imprint</Link>
             <Link to="/privacy-policy" className="hover:text-black transition-colors duration-200">Privacy policy</Link>
-            <Link to="/app" className="hover:text-black transition-colors duration-200">Conduct App</Link>
+            
           </div>
 
         </div>
